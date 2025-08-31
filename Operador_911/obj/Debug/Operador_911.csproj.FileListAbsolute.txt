@@ -12,3 +12,17 @@ C:\Users\HP\source\repos\Operador_911\obj\Debug\Operador_911.Form1.resources
 C:\Users\HP\source\repos\Operador_911\bin\Debug\GMap.NET.Core.dll
 C:\Users\HP\source\repos\Operador_911\bin\Debug\GMap.NET.WindowsForms.dll
 C:\Users\HP\source\repos\Operador_911\obj\Debug\Operador.20608DC6.Up2Date
+C:\Users\HP\source\repos\Operator-911\Operador_911\bin\Debug\Operador_911.exe.config
+C:\Users\HP\source\repos\Operator-911\Operador_911\bin\Debug\Operador_911.exe
+C:\Users\HP\source\repos\Operator-911\Operador_911\bin\Debug\Operador_911.pdb
+C:\Users\HP\source\repos\Operator-911\Operador_911\bin\Debug\GMap.NET.Core.dll
+C:\Users\HP\source\repos\Operator-911\Operador_911\bin\Debug\GMap.NET.WindowsForms.dll
+C:\Users\HP\source\repos\Operator-911\Operador_911\obj\Debug\Operador_911.csproj.AssemblyReference.cache
+C:\Users\HP\source\repos\Operator-911\Operador_911\obj\Debug\Operador_911.exe.config
+C:\Users\HP\source\repos\Operator-911\Operador_911\obj\Debug\Operador_911.Form1.resources
+C:\Users\HP\source\repos\Operator-911\Operador_911\obj\Debug\Operador_911.Properties.Resources.resources
+C:\Users\HP\source\repos\Operator-911\Operador_911\obj\Debug\Operador_911.csproj.GenerateResource.cache
+C:\Users\HP\source\repos\Operator-911\Operador_911\obj\Debug\Operador_911.csproj.CoreCompileInputs.cache
+C:\Users\HP\source\repos\Operator-911\Operador_911\obj\Debug\Operador.20608DC6.Up2Date
+C:\Users\HP\source\repos\Operator-911\Operador_911\obj\Debug\Operador_911.exe
+C:\Users\HP\source\repos\Operator-911\Operador_911\obj\Debug\Operador_911.pdb

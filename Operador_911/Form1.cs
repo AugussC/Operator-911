@@ -383,6 +383,188 @@ namespace Operador_911
             polygonContravencional.Stroke = new Pen(Color.Aqua, 2);
             polygonOverlay.Polygons.Add(polygonContravencional);
 
+            // Polígono irregular de la Comisaría 19
+            List<PointLatLng> puntosComisaria19 = new List<PointLatLng>()
+            {
+                new PointLatLng(-27.4745657702835, -58.8234427571297),
+                new PointLatLng(-27.4755081266637, -58.8139235973358),
+                new PointLatLng(-27.4770025540942, -58.8071000576019),
+                new PointLatLng(-27.4812620369682, -58.8078832626343),
+                new PointLatLng(-27.4866539729156, -58.8082158565521),
+                new PointLatLng(-27.4872440716799, -58.8113218545914),
+                new PointLatLng(-27.486820533371, -58.8162410259247),
+                new PointLatLng(-27.4912795010552, -58.8170295953751),
+                new PointLatLng(-27.4940299801881, -58.8174962997437),
+                new PointLatLng(-27.4941870123903, -58.8179039955139),
+                new PointLatLng(-27.4916126077212, -58.8196098804474),
+                new PointLatLng(-27.4902516227046, -58.8202965259552),
+                new PointLatLng(-27.4866301785442, -58.8229733705521),
+                new PointLatLng(-27.4846647457218, -58.8245290517807),
+                new PointLatLng(-27.4745610108873, -58.8234454393387),
+                new PointLatLng(-27.4745657702835, -58.8234427571297) // cierre del polígono
+            };
+            GMapPolygon polygonComisaria19 = new GMapPolygon(puntosComisaria19, "Jurisdicción Comisaría 19");
+            polygonComisaria19.Fill = new SolidBrush(Color.FromArgb(50, Color.BlueViolet));
+            polygonComisaria19.Stroke = new Pen(Color.BlueViolet, 2);
+            polygonOverlay.Polygons.Add(polygonComisaria19);
+
+            // Polígono irregular de la Comisaría 9na
+            List<PointLatLng> puntosComisaria9 = new List<PointLatLng>()
+                {
+                    new PointLatLng(-27.4681213596460, -58.7960225343704),
+                    new PointLatLng(-27.4632045063789, -58.7959635257721),
+                    new PointLatLng(-27.4630474300069, -58.7959098815918),
+                    new PointLatLng(-27.4606864975746, -58.7958401441574),
+                    new PointLatLng(-27.4600534163703, -58.7956470251083),
+                    new PointLatLng(-27.4591156879064, -58.7950998544693),
+                    new PointLatLng(-27.4566023458884, -58.7938338518143),
+                    new PointLatLng(-27.4539604189419, -58.7911838293076),
+                    new PointLatLng(-27.4551266827847, -58.7841725349426),
+                    new PointLatLng(-27.4513136683029, -58.7713193893433),
+                    new PointLatLng(-27.4494047313849, -58.7660998106003),
+                    new PointLatLng(-27.4277376487585, -58.7618350982666),
+                    new PointLatLng(-27.3926499547873, -58.7380599975586),
+                    new PointLatLng(-27.4539032954981, -58.7222671508789),
+                    new PointLatLng(-27.4852786498133, -58.7284469604492),
+                    new PointLatLng(-27.4838319246238, -58.7415790557861),
+                    new PointLatLng(-27.4842887872630, -58.7470722198486),
+                    new PointLatLng(-27.4781971295957, -58.7826061248779),
+                    new PointLatLng(-27.4708866957483, -58.7799453735352),
+                    new PointLatLng(-27.4609482970101, -58.7673497200012),
+                    new PointLatLng(-27.4681213596460, -58.7960225343704) // cierre del polígono
+                };
+            GMapPolygon polygon9 = new GMapPolygon(puntosComisaria9, "Jurisdicción Comisaría 9na");
+            polygon9.Fill = new SolidBrush(Color.FromArgb(50, Color.Orange));
+            polygon9.Stroke = new Pen(Color.Orange, 2);
+            polygonOverlay.Polygons.Add(polygon9);
+
+            // Polígono irregular de la Comisaría 11ra
+            List<PointLatLng> puntosComisaria11 = new List<PointLatLng>()
+                {
+                    new PointLatLng(-27.4672384365180, -58.8097608089447),
+                    new PointLatLng(-27.4619121895736, -58.8089722394943),
+                    new PointLatLng(-27.4619121895736, -58.8089346885681),
+                    new PointLatLng(-27.4617408315116, -58.8087952136993),
+                    new PointLatLng(-27.4614219144092, -58.8087657094002),
+                    new PointLatLng(-27.4613029152541, -58.8088461756706),
+                    new PointLatLng(-27.4609125971237, -58.8088837265968),
+                    new PointLatLng(-27.4611577361109, -58.8084492087364),
+                    new PointLatLng(-27.4612410356427, -58.8071644306183),
+                    new PointLatLng(-27.4597916148098, -58.8051769137383),
+                    new PointLatLng(-27.4600605564042, -58.8041925430298),
+                    new PointLatLng(-27.4609125971237, -58.8039055466652),
+                    new PointLatLng(-27.4612029558645, -58.8028299808502),
+                    new PointLatLng(-27.4607793174456, -58.8020038604736),
+                    new PointLatLng(-27.4599391757658, -58.8020440936089),
+                    new PointLatLng(-27.4591775687108, -58.8010892271996),
+                    new PointLatLng(-27.4590728473293, -58.8005045056343),
+                    new PointLatLng(-27.4587586825880, -58.8001665472984),
+                    new PointLatLng(-27.4587182219123, -58.7996354699135),
+                    new PointLatLng(-27.4592608697387, -58.7990292906761),
+                    new PointLatLng(-27.4567594314429, -58.7943220138550),
+                    new PointLatLng(-27.4572735280568, -58.7940537929535),
+                    new PointLatLng(-27.4579589864800, -58.7946224212646),
+                    new PointLatLng(-27.4591014077159, -58.7952232360840),
+                    new PointLatLng(-27.4600724564596, -58.7957060337067),
+                    new PointLatLng(-27.4607102975490, -58.7959045171738),
+                    new PointLatLng(-27.4681975144092, -58.7960493564606),
+                    new PointLatLng(-27.4691161270953, -58.8000458478928),
+                    new PointLatLng(-27.4690209344264, -58.8009953498840),
+                    new PointLatLng(-27.4672408163742, -58.8071376085281),
+                    new PointLatLng(-27.4671551415181, -58.8076794147491),
+                    new PointLatLng(-27.4671265832180, -58.8081622123718),
+                    new PointLatLng(-27.4672384365180, -58.8097608089447) // cierre del polígono
+                };
+            GMapPolygon polygon11 = new GMapPolygon(puntosComisaria11, "Jurisdicción Comisaría 11ra");
+            polygon11.Fill = new SolidBrush(Color.FromArgb(50, Color.Purple));
+            polygon11.Stroke = new Pen(Color.Purple, 2);
+            polygonOverlay.Polygons.Add(polygon11);
+
+            // Polígono irregular de la Comisaría 15ta
+            List<PointLatLng> puntosComisaria15 = new List<PointLatLng>()
+                {
+                    new PointLatLng(-27.5009558390785, -58.8363415002823),
+            new PointLatLng(-27.5066679766598, -58.8352605700493),
+            new PointLatLng(-27.5098986170722, -58.8350728154182),
+            new PointLatLng(-27.5109501010738, -58.8368135690689),
+            new PointLatLng(-27.5112688747814, -58.8367277383804),
+            new PointLatLng(-27.5119206927707, -58.8364407420158),
+            new PointLatLng(-27.5127342703898, -58.835751414299),
+            new PointLatLng(-27.5132576212335, -58.8355824351311),
+            new PointLatLng(-27.5134836128735, -58.8354778289795),
+            new PointLatLng(-27.5137310137155, -58.8349172472954),
+            new PointLatLng(-27.5139474889958, -58.8347375392914),
+            new PointLatLng(-27.5139950659234, -58.8347536325455),
+            new PointLatLng(-27.5140711889647, -58.836110830307),
+            new PointLatLng(-27.5143685440901, -58.836113512516),
+            new PointLatLng(-27.5152534681874, -58.8356360793114),
+            new PointLatLng(-27.5157244732716, -58.8355153799057),
+            new PointLatLng(-27.5155817446712, -58.8342922925949),
+            new PointLatLng(-27.5160693999579, -58.833948969841),
+            new PointLatLng(-27.5162216431167, -58.8340884447098),
+            new PointLatLng(-27.5170423252650, -58.8338255882263),
+            new PointLatLng(-27.5176370186474, -58.833409845829),
+            new PointLatLng(-27.5182103000239, -58.8333347439766),
+            new PointLatLng(-27.5186860499347, -58.833415210247),
+            new PointLatLng(-27.5199848367125, -58.8327527046204),
+            new PointLatLng(-27.5222017779719, -58.8309073448181),
+            new PointLatLng(-27.5330099157296, -58.8306713104248),
+            new PointLatLng(-27.5379188949334, -58.8320016860962),
+            new PointLatLng(-27.5477361954454, -58.8326454162598),
+            new PointLatLng(-27.5520737929418, -58.831787109375),
+            new PointLatLng(-27.5580091750524, -58.8254356384277),
+            new PointLatLng(-27.5594168788654, -58.8244485855103),
+            new PointLatLng(-27.5570960602256, -58.8243198394775),
+            new PointLatLng(-27.5559546560132, -58.821873664856),
+            new PointLatLng(-27.5569438736829, -58.8156938552856),
+            new PointLatLng(-27.5576667578823, -58.81432056427),
+            new PointLatLng(-27.5583135449738, -58.8138055801392),
+            new PointLatLng(-27.5561448908726, -58.8082265853882),
+            new PointLatLng(-27.5551556660047, -58.806939125061),
+            new PointLatLng(-27.5544327652732, -58.8032054901123),
+            new PointLatLng(-27.5551556660047, -58.8007164001465),
+            new PointLatLng(-27.5533293812970, -58.7986135482788),
+            new PointLatLng(-27.5539761939380, -58.796854019165),
+            new PointLatLng(-27.5515791632846, -58.7963819503784),
+            new PointLatLng(-27.5491820803115, -58.7938928604126),
+            new PointLatLng(-27.5459858883000, -58.7928628921509),
+            new PointLatLng(-27.5445019103956, -58.7946224212646),
+            new PointLatLng(-27.5406206426408, -58.7938499450684),
+            new PointLatLng(-27.5377286285066, -58.7948369979858),
+            new PointLatLng(-27.5338090668215, -58.7947940826416),
+            new PointLatLng(-27.5318302058789, -58.7965106964111),
+            new PointLatLng(-27.5303840926595, -58.797025680542),
+            new PointLatLng(-27.5290521294418, -58.7971115112305),
+            new PointLatLng(-27.5276440364913, -58.7979698181152),
+            new PointLatLng(-27.5244234317765, -58.7972563505173),
+            new PointLatLng(-27.5224039645967, -58.7994021177292),
+            new PointLatLng(-27.5222398366591, -58.7996220588684),
+            new PointLatLng(-27.5210980703136, -58.800273835659),
+            new PointLatLng(-27.5188073658326, -58.8017624616623),
+            new PointLatLng(-27.5154080912910, -58.8054236769676),
+            new PointLatLng(-27.5131339203497, -58.8079690933228),
+            new PointLatLng(-27.5120110905811, -58.8090848922729),
+            new PointLatLng(-27.5106979361433, -58.8098037242889),
+            new PointLatLng(-27.5087852701169, -58.8103938102722),
+            new PointLatLng(-27.5068345068349, -58.8107585906982),
+            new PointLatLng(-27.5041985424853, -58.8119065761566),
+            new PointLatLng(-27.5031136868309, -58.8124537467957),
+            new PointLatLng(-27.5001826198302, -58.8138055801392),
+            new PointLatLng(-27.4981936370525, -58.8152325153351),
+            new PointLatLng(-27.5012389549215, -58.8219058513641),
+            new PointLatLng(-27.4995640405206, -58.8244807720184),
+            new PointLatLng(-27.4993737077259, -58.8256394863129),
+            new PointLatLng(-27.5023904437865, -58.8261330127716),
+            new PointLatLng(-27.5016862288869, -58.8312613964081),
+            new PointLatLng(-27.5016291301840, -58.8313364982605),
+            new PointLatLng(-27.5009629764616, -58.8363361358643),
+            new PointLatLng(-27.5009558390785, -58.8363415002823)
+                };
+            GMapPolygon polygon15 = new GMapPolygon(puntosComisaria15, "Jurisdicción Comisaría 15ta");
+            polygon15.Fill = new SolidBrush(Color.FromArgb(50, Color.DarkBlue));
+            polygon15.Stroke = new Pen(Color.DarkBlue, 2);
+            polygonOverlay.Polygons.Add(polygon15);
+
             // ----------------- AGREGAMOS OVERLAYS AL MAPA -----------------
             gMapControl1.Overlays.Add(polygonOverlay);
         }
@@ -445,6 +627,31 @@ namespace Operador_911
             GMarkerGoogle markerContravencional = new GMarkerGoogle(comisariaContravencional, GMarkerGoogleType.blue_dot);
             markerContravencional.ToolTipText = "Comisaría Contravencional\nDirección: Av. Centenario N° 3200 (casi calle Reconquista) - B° Hipódromo\nTel: 379-4474058";
             markerOverlay.Markers.Add(markerContravencional);
+
+            // ---------------- Comisaría 19 ----------------
+            PointLatLng comisaria19 = new PointLatLng(-27.480988, -58.817582);
+            GMarkerGoogle markerComisaria19 = new GMarkerGoogle(comisaria19, GMarkerGoogleType.blue_dot);
+            markerComisaria19.ToolTipText = "Comisaría 19na\nDirección: Chile y Pje. Castellanos - B° Tambor de Tacuarí\nTel: 379-4475445";
+            markerOverlay.Markers.Add(markerComisaria19);
+
+            // ---------------- Comisaría 9na ----------------
+            PointLatLng comisaria9 = new PointLatLng(-27.457898, -58.787947);
+            GMarkerGoogle marker9 = new GMarkerGoogle(comisaria9, GMarkerGoogleType.blue_dot);
+            marker9.ToolTipText = "Comisaría 9na\nDirección: Murcia S/N° - B° Apipé\nTel: 379-4457681";
+            markerOverlay.Markers.Add(marker9);
+
+            // ---------------- Comisaría 11ra ----------------
+            PointLatLng comisaria11 = new PointLatLng(-27.463190226718, -58.8063758611679);
+            GMarkerGoogle marker11 = new GMarkerGoogle(comisaria11, GMarkerGoogleType.blue_dot);
+            marker11.ToolTipText = "Comisaría 11ra\nDirección: Zacarias Sanchez S/N° - B° Quinta Ferré\nTel: 379-4421924";
+            markerOverlay.Markers.Add(marker11);
+
+            // ---------------- Comisaría 15ta ----------------
+            PointLatLng comisaria15 = new PointLatLng(-27.515120, -58.828607);
+            GMarkerGoogle marker15 = new GMarkerGoogle(comisaria15, GMarkerGoogleType.blue_dot);
+            marker15.ToolTipText = "Comisaría 15ta.\nDirección: Mocoretá S/N° - B° Río Paraná\nTel: 379-4101568";
+            markerOverlay.Markers.Add(marker15);
+
             gMapControl1.Overlays.Add(markerOverlay);
         }
 
