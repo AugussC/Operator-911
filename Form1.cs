@@ -1041,6 +1041,84 @@ namespace Operador_911
             poligonoComisaria20.Stroke = new Pen(Color.Crimson, 2);
             polygonOverlay.Polygons.Add(poligonoComisaria20);
 
+            // ---------------- Polígono irregular de la Comisaría 16ta ----------------
+            List<PointLatLng> puntosComisaria16 = new List<PointLatLng>()
+            {
+                new PointLatLng(-27.4612148557966, -58.768036365509),
+                new PointLatLng(-27.4691732426571, -58.8002443313599),
+                new PointLatLng(-27.4708486193024, -58.8002014160156),
+                new PointLatLng(-27.4738946934024, -58.8012313842773),
+                new PointLatLng(-27.474922724406,  -58.7980556488037),
+                new PointLatLng(-27.4813952918761, -58.7991285324097),
+                new PointLatLng(-27.4836034925935, -58.7911462783813),
+                new PointLatLng(-27.4840603561803, -58.7833786010742),
+                new PointLatLng(-27.4834131322064, -58.7828207015991),
+                new PointLatLng(-27.4804053944255, -58.7836360931396),
+                new PointLatLng(-27.4780829077971, -58.7834644317627),
+                new PointLatLng(-27.4716482219041, -58.7809753417969),
+                new PointLatLng(-27.467916693459,  -58.777027130127),
+                new PointLatLng(-27.4612148557966, -58.768036365509) // cerramos polígono
+            };
+
+            GMapPolygon polygon16 = new GMapPolygon(puntosComisaria16, "Jurisdicción Comisaría 16ta");
+            polygon16.Fill = new SolidBrush(Color.FromArgb(50, Color.Olive));
+            polygon16.Stroke = new Pen(Color.Olive, 2);
+            polygonOverlay.Polygons.Add(polygon16);
+
+            // ---------------- Polígono irregular de la Comisaría 10ma ----------------
+            List<PointLatLng> puntosComisaria10 = new List<PointLatLng>()
+                {
+                    new PointLatLng(-27.4840413202353, -58.7821125984192),
+                    new PointLatLng(-27.4804625041356, -58.7835288047791),
+                    new PointLatLng(-27.4781971295957, -58.7828636169434),
+                    new PointLatLng(-27.4794345248237, -58.7780785560608),
+                    new PointLatLng(-27.4831085549027, -58.7576079368591),
+                    new PointLatLng(-27.484555289594,  -58.7454199790955),
+                    new PointLatLng(-27.4840222842871, -58.7417936325073),
+                    new PointLatLng(-27.4841555358557, -58.7381887435913),
+                    new PointLatLng(-27.4853928641505, -58.7308716773987),
+                    new PointLatLng(-27.4861542900379, -58.7281680107117),
+                    new PointLatLng(-27.489295116176,  -58.7216019630432),
+                    new PointLatLng(-27.4979937851212, -58.633861541748),
+                    new PointLatLng(-27.5072056303184, -58.6282825469971),
+                    new PointLatLng(-27.514285284736,  -58.6439895629883),
+                    new PointLatLng(-27.4982983212527, -58.7653541564941),
+                    new PointLatLng(-27.4976892481473, -58.7690448760986),
+                    new PointLatLng(-27.4869918524337, -58.7668132781982),
+                    new PointLatLng(-27.4857355064513, -58.7709760665894),
+                    new PointLatLng(-27.4840413202353, -58.7821125984192) // cerramos polígono
+                };
+
+            GMapPolygon polygon10 = new GMapPolygon(puntosComisaria10, "Jurisdicción Comisaría 10ma");
+            polygon10.Fill = new SolidBrush(Color.FromArgb(50, Color.Purple));
+            polygon10.Stroke = new Pen(Color.Purple, 2);
+            polygonOverlay.Polygons.Add(polygon10);
+
+            // ---------------- Polígono irregular de la Comisaría 17ma ----------------
+            List<PointLatLng> puntosComisaria17 = new List<PointLatLng>()
+            {
+                new PointLatLng(-27.4539223366493, -58.7911033630371),
+                new PointLatLng(-27.4551028816051, -58.7842798233032),
+                new PointLatLng(-27.4513517514963, -58.7715125083923),
+                new PointLatLng(-27.4501902081819, -58.766233921051),
+                new PointLatLng(-27.4298516977404, -58.7622213363647),
+                new PointLatLng(-27.4276614660575, -58.7743234634399),
+                new PointLatLng(-27.4305182813668, -58.7756323814392),
+                new PointLatLng(-27.4320799758153, -58.7793016433716),
+                new PointLatLng(-27.4391454148103, -58.7845158576965),
+                new PointLatLng(-27.4389359339076, -58.7861680984497),
+                new PointLatLng(-27.4430302612957, -58.7880778312683),
+                new PointLatLng(-27.4488191904972, -58.7879061698914),
+                new PointLatLng(-27.4508566689564, -58.7908887863159),
+                new PointLatLng(-27.4517897072752, -58.7900519371033),
+                new PointLatLng(-27.4539223366493, -58.7911033630371) // cerramos polígono
+            };
+
+            GMapPolygon polygon17 = new GMapPolygon(puntosComisaria17, "Jurisdicción Comisaría 17ma");
+            polygon17.Fill = new SolidBrush(Color.FromArgb(50, Color.Blue));
+            polygon17.Stroke = new Pen(Color.Blue, 2);
+            polygonOverlay.Polygons.Add(polygon17);
+
             // ----------------- AGREGAMOS OVERLAYS AL MAPA -----------------
             gMapControl1.Overlays.Add(polygonOverlay);
         }
@@ -1109,6 +1187,12 @@ namespace Operador_911
             GMarkerGoogle markerComisaria19 = new GMarkerGoogle(comisaria19, GMarkerGoogleType.blue_dot);
             markerComisaria19.ToolTipText = "Comisaría 19na\nDirección: Chile y Pje. Castellanos - B° Tambor de Tacuarí\nTel: 379-4475445";
             markerOverlay.Markers.Add(markerComisaria19);
+
+            // ---------------- Comisaría 16 ----------------
+            PointLatLng comisaria16 = new PointLatLng(-27.473535, -58.789226);
+            GMarkerGoogle markerComisaria16 = new GMarkerGoogle(comisaria16, GMarkerGoogleType.blue_dot);
+            markerComisaria16.ToolTipText = "Comisaría 16ta\nDirección: Domingo Lastra y Laplace S/N° - B° San Gerónimo\nTel: 379-4484656";
+            markerOverlay.Markers.Add(markerComisaria16);
 
             // ---------------- Comisaría 9na ----------------
             PointLatLng comisaria9 = new PointLatLng(-27.457898, -58.787947);
@@ -1181,6 +1265,18 @@ namespace Operador_911
             GMapMarker markerComisaria20 = new GMarkerGoogle(puntoComisaria20, GMarkerGoogleType.blue_dot);
             markerComisaria20.ToolTipText = "Comisaría 20da.\nDirección: 500 Viviendas. Lote 'A'. Mz 81 - B° Pirayui Nuevo\nTeléfono: 379-4470558";
             markerOverlay.Markers.Add(markerComisaria20);
+
+            // ---------------- Comisaría 10 ----------------
+            PointLatLng comisaria10 = new PointLatLng(-27.489529, -58.721392);
+            GMarkerGoogle markerComisaria10 = new GMarkerGoogle(comisaria10, GMarkerGoogleType.blue_dot);
+            markerComisaria10.ToolTipText = "Comisaría 10ma\nDirección: Ruta Provincial N° 5. Km 7 - B° Laguna Brava\nTel: 379-4495920";
+            markerOverlay.Markers.Add(markerComisaria10);
+
+            // ---------------- Comisaría 17 ----------------
+            PointLatLng comisaria17 = new PointLatLng(-27.441618, -58.783901);
+            GMarkerGoogle markerComisaria17 = new GMarkerGoogle(comisaria17, GMarkerGoogleType.blue_dot);
+            markerComisaria17.ToolTipText = "Comisaría 17ma\nDirección: Saladas N° 5780 - B° Molina Punta\nTel: 379-4484657";
+            markerOverlay.Markers.Add(markerComisaria17);
 
             gMapControl1.Overlays.Add(markerOverlay);
         }
