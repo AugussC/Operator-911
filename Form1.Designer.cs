@@ -116,6 +116,7 @@
             this.textLatitud.Name = "textLatitud";
             this.textLatitud.Size = new System.Drawing.Size(142, 20);
             this.textLatitud.TabIndex = 2;
+            
             // 
             // textLongitud
             // 

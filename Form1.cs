@@ -288,7 +288,7 @@ namespace Operador_911
                 new PointLatLng(-27.4854261766432, -58.8378810882568)
             };
 
-            GMapPolygon polygon7 = new GMapPolygon(puntosComisaria7, "Comisaría 7ma");
+            GMapPolygon polygon7 = new GMapPolygon(puntosComisaria7, "Jurisdicción Comisaría 7ma");
             polygon7.Fill = new SolidBrush(Color.FromArgb(50, Color.Brown));
             polygon7.Stroke = new Pen(Color.Brown, 2);
             polygonOverlay.Polygons.Add(polygon7);
@@ -484,81 +484,81 @@ namespace Operador_911
             List<PointLatLng> puntosComisaria15 = new List<PointLatLng>()
                 {
                     new PointLatLng(-27.5009558390785, -58.8363415002823),
-            new PointLatLng(-27.5066679766598, -58.8352605700493),
-            new PointLatLng(-27.5098986170722, -58.8350728154182),
-            new PointLatLng(-27.5109501010738, -58.8368135690689),
-            new PointLatLng(-27.5112688747814, -58.8367277383804),
-            new PointLatLng(-27.5119206927707, -58.8364407420158),
-            new PointLatLng(-27.5127342703898, -58.835751414299),
-            new PointLatLng(-27.5132576212335, -58.8355824351311),
-            new PointLatLng(-27.5134836128735, -58.8354778289795),
-            new PointLatLng(-27.5137310137155, -58.8349172472954),
-            new PointLatLng(-27.5139474889958, -58.8347375392914),
-            new PointLatLng(-27.5139950659234, -58.8347536325455),
-            new PointLatLng(-27.5140711889647, -58.836110830307),
-            new PointLatLng(-27.5143685440901, -58.836113512516),
-            new PointLatLng(-27.5152534681874, -58.8356360793114),
-            new PointLatLng(-27.5157244732716, -58.8355153799057),
-            new PointLatLng(-27.5155817446712, -58.8342922925949),
-            new PointLatLng(-27.5160693999579, -58.833948969841),
-            new PointLatLng(-27.5162216431167, -58.8340884447098),
-            new PointLatLng(-27.5170423252650, -58.8338255882263),
-            new PointLatLng(-27.5176370186474, -58.833409845829),
-            new PointLatLng(-27.5182103000239, -58.8333347439766),
-            new PointLatLng(-27.5186860499347, -58.833415210247),
-            new PointLatLng(-27.5199848367125, -58.8327527046204),
-            new PointLatLng(-27.5222017779719, -58.8309073448181),
-            new PointLatLng(-27.5330099157296, -58.8306713104248),
-            new PointLatLng(-27.5379188949334, -58.8320016860962),
-            new PointLatLng(-27.5477361954454, -58.8326454162598),
-            new PointLatLng(-27.5520737929418, -58.831787109375),
-            new PointLatLng(-27.5580091750524, -58.8254356384277),
-            new PointLatLng(-27.5594168788654, -58.8244485855103),
-            new PointLatLng(-27.5570960602256, -58.8243198394775),
-            new PointLatLng(-27.5559546560132, -58.821873664856),
-            new PointLatLng(-27.5569438736829, -58.8156938552856),
-            new PointLatLng(-27.5576667578823, -58.81432056427),
-            new PointLatLng(-27.5583135449738, -58.8138055801392),
-            new PointLatLng(-27.5561448908726, -58.8082265853882),
-            new PointLatLng(-27.5551556660047, -58.806939125061),
-            new PointLatLng(-27.5544327652732, -58.8032054901123),
-            new PointLatLng(-27.5551556660047, -58.8007164001465),
-            new PointLatLng(-27.5533293812970, -58.7986135482788),
-            new PointLatLng(-27.5539761939380, -58.796854019165),
-            new PointLatLng(-27.5515791632846, -58.7963819503784),
-            new PointLatLng(-27.5491820803115, -58.7938928604126),
-            new PointLatLng(-27.5459858883000, -58.7928628921509),
-            new PointLatLng(-27.5445019103956, -58.7946224212646),
-            new PointLatLng(-27.5406206426408, -58.7938499450684),
-            new PointLatLng(-27.5377286285066, -58.7948369979858),
-            new PointLatLng(-27.5338090668215, -58.7947940826416),
-            new PointLatLng(-27.5318302058789, -58.7965106964111),
-            new PointLatLng(-27.5303840926595, -58.797025680542),
-            new PointLatLng(-27.5290521294418, -58.7971115112305),
-            new PointLatLng(-27.5276440364913, -58.7979698181152),
-            new PointLatLng(-27.5244234317765, -58.7972563505173),
-            new PointLatLng(-27.5224039645967, -58.7994021177292),
-            new PointLatLng(-27.5222398366591, -58.7996220588684),
-            new PointLatLng(-27.5210980703136, -58.800273835659),
-            new PointLatLng(-27.5188073658326, -58.8017624616623),
-            new PointLatLng(-27.5154080912910, -58.8054236769676),
-            new PointLatLng(-27.5131339203497, -58.8079690933228),
-            new PointLatLng(-27.5120110905811, -58.8090848922729),
-            new PointLatLng(-27.5106979361433, -58.8098037242889),
-            new PointLatLng(-27.5087852701169, -58.8103938102722),
-            new PointLatLng(-27.5068345068349, -58.8107585906982),
-            new PointLatLng(-27.5041985424853, -58.8119065761566),
-            new PointLatLng(-27.5031136868309, -58.8124537467957),
-            new PointLatLng(-27.5001826198302, -58.8138055801392),
-            new PointLatLng(-27.4981936370525, -58.8152325153351),
-            new PointLatLng(-27.5012389549215, -58.8219058513641),
-            new PointLatLng(-27.4995640405206, -58.8244807720184),
-            new PointLatLng(-27.4993737077259, -58.8256394863129),
-            new PointLatLng(-27.5023904437865, -58.8261330127716),
-            new PointLatLng(-27.5016862288869, -58.8312613964081),
-            new PointLatLng(-27.5016291301840, -58.8313364982605),
-            new PointLatLng(-27.5009629764616, -58.8363361358643),
-            new PointLatLng(-27.5009558390785, -58.8363415002823)
+                    new PointLatLng(-27.5066679766598, -58.8352605700493),
+                    new PointLatLng(-27.5098986170722, -58.8350728154182),
+                    new PointLatLng(-27.5109501010738, -58.8368135690689),
+                    new PointLatLng(-27.5112688747814, -58.8367277383804),
+                    new PointLatLng(-27.5119206927707, -58.8364407420158),
+                    new PointLatLng(-27.5127342703898, -58.835751414299),
+                    new PointLatLng(-27.5132576212335, -58.8355824351311),
+                    new PointLatLng(-27.5134836128735, -58.8354778289795),
+                    new PointLatLng(-27.5137310137155, -58.8349172472954),
+                    new PointLatLng(-27.5139474889958, -58.8347375392914),
+                    new PointLatLng(-27.5139950659234, -58.8347536325455),
+                    new PointLatLng(-27.5140711889647, -58.836110830307),
+                    new PointLatLng(-27.5143685440901, -58.836113512516),
+                    new PointLatLng(-27.5152534681874, -58.8356360793114),
+                    new PointLatLng(-27.5157244732716, -58.8355153799057),
+                    new PointLatLng(-27.5155817446712, -58.8342922925949),
+                    new PointLatLng(-27.5160693999579, -58.833948969841),
+                    new PointLatLng(-27.5162216431167, -58.8340884447098),
+                    new PointLatLng(-27.5170423252650, -58.8338255882263),
+                    new PointLatLng(-27.5176370186474, -58.833409845829),
+                    new PointLatLng(-27.5182103000239, -58.8333347439766),
+                    new PointLatLng(-27.5186860499347, -58.833415210247),
+                    new PointLatLng(-27.5199848367125, -58.8327527046204),
+                    new PointLatLng(-27.5222017779719, -58.8309073448181),
+                    new PointLatLng(-27.5330099157296, -58.8306713104248),
+                    new PointLatLng(-27.5379188949334, -58.8320016860962),
+                    new PointLatLng(-27.5477361954454, -58.8326454162598),
+                    new PointLatLng(-27.5520737929418, -58.831787109375),
+                    new PointLatLng(-27.5580091750524, -58.8254356384277),
+                    new PointLatLng(-27.5594168788654, -58.8244485855103),
+                    new PointLatLng(-27.5570960602256, -58.8243198394775),
+                    new PointLatLng(-27.5559546560132, -58.821873664856),
+                    new PointLatLng(-27.5569438736829, -58.8156938552856),
+                    new PointLatLng(-27.5576667578823, -58.81432056427),
+                    new PointLatLng(-27.5583135449738, -58.8138055801392),
+                    new PointLatLng(-27.5561448908726, -58.8082265853882),
+                    new PointLatLng(-27.5551556660047, -58.806939125061),
+                    new PointLatLng(-27.5544327652732, -58.8032054901123),
+                    new PointLatLng(-27.5551556660047, -58.8007164001465),
+                    new PointLatLng(-27.5533293812970, -58.7986135482788),
+                    new PointLatLng(-27.5539761939380, -58.796854019165),
+                    new PointLatLng(-27.5515791632846, -58.7963819503784),
+                    new PointLatLng(-27.5491820803115, -58.7938928604126),
+                    new PointLatLng(-27.5459858883000, -58.7928628921509),
+                    new PointLatLng(-27.5445019103956, -58.7946224212646),
+                    new PointLatLng(-27.5406206426408, -58.7938499450684),
+                    new PointLatLng(-27.5377286285066, -58.7948369979858),
+                    new PointLatLng(-27.5338090668215, -58.7947940826416),
+                    new PointLatLng(-27.5318302058789, -58.7965106964111),
+                    new PointLatLng(-27.5303840926595, -58.797025680542),
+                    new PointLatLng(-27.5290521294418, -58.7971115112305),
+                    new PointLatLng(-27.5276440364913, -58.7979698181152),
+                    new PointLatLng(-27.5244234317765, -58.7972563505173),
+                    new PointLatLng(-27.5224039645967, -58.7994021177292),
+                    new PointLatLng(-27.5222398366591, -58.7996220588684),
+                    new PointLatLng(-27.5210980703136, -58.800273835659),
+                    new PointLatLng(-27.5188073658326, -58.8017624616623),
+                    new PointLatLng(-27.5154080912910, -58.8054236769676),
+                    new PointLatLng(-27.5131339203497, -58.8079690933228),
+                    new PointLatLng(-27.5120110905811, -58.8090848922729),
+                    new PointLatLng(-27.5106979361433, -58.8098037242889),
+                    new PointLatLng(-27.5087852701169, -58.8103938102722),
+                    new PointLatLng(-27.5068345068349, -58.8107585906982),
+                    new PointLatLng(-27.5041985424853, -58.8119065761566),
+                    new PointLatLng(-27.5031136868309, -58.8124537467957),
+                    new PointLatLng(-27.5001826198302, -58.8138055801392),
+                    new PointLatLng(-27.4981936370525, -58.8152325153351),
+                    new PointLatLng(-27.5012389549215, -58.8219058513641),
+                    new PointLatLng(-27.4995640405206, -58.8244807720184),
+                    new PointLatLng(-27.4993737077259, -58.8256394863129),
+                    new PointLatLng(-27.5023904437865, -58.8261330127716),
+                    new PointLatLng(-27.5016862288869, -58.8312613964081),
+                    new PointLatLng(-27.5016291301840, -58.8313364982605),
+                    new PointLatLng(-27.5009629764616, -58.8363361358643),
+                    new PointLatLng(-27.5009558390785, -58.8363415002823)
                 };
             GMapPolygon polygon15 = new GMapPolygon(puntosComisaria15, "Jurisdicción Comisaría 15ta");
             polygon15.Fill = new SolidBrush(Color.FromArgb(50, Color.DarkBlue));
@@ -775,10 +775,271 @@ namespace Operador_911
                 new PointLatLng(-27.5023238290566, -58.7975406646729)
             };
 
-            GMapPolygon poligonoComisaria13 = new GMapPolygon(puntosComisaria13, "Comisaría 13ra");
+            GMapPolygon poligonoComisaria13 = new GMapPolygon(puntosComisaria13, "Jurisdicción Comisaría 13ra");
             poligonoComisaria13.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
             poligonoComisaria13.Stroke = new Pen(Color.Black, 2);
             polygonOverlay.Polygons.Add(poligonoComisaria13);
+
+            // Polígono de la jurisdicción Riachuelo
+            List<PointLatLng> puntosRiachuelo = new List<PointLatLng>
+            {
+                new PointLatLng(-27.5610908815265, -58.8226890563965),
+                new PointLatLng(-27.570221355756, -58.8198566436768),
+                new PointLatLng(-27.5766122357459, -58.8231182098389),
+                new PointLatLng(-27.5794271481169, -58.8286972045898),
+                new PointLatLng(-27.5874910917509, -58.8258647918701),
+                new PointLatLng(-27.5886321679601, -58.8214015960693),
+                new PointLatLng(-27.5979124800513, -58.8176250457764),
+                new PointLatLng(-27.6077244144558, -58.8185691833496),
+                new PointLatLng(-27.6122117505519, -58.822774887085),
+                new PointLatLng(-27.6192085858021, -58.822774887085),
+                new PointLatLng(-27.6297030004805, -58.8111019134521),
+                new PointLatLng(-27.6408807268791, -58.81178855896),
+                new PointLatLng(-27.6454427360491, -58.8089561462402),
+                new PointLatLng(-27.6505367547775, -58.8032054901123),
+                new PointLatLng(-27.6449865436932, -58.7653541564941),
+                new PointLatLng(-27.6394360509825, -58.7283611297607),
+                new PointLatLng(-27.6271175134432, -58.710765838623),
+                new PointLatLng(-27.6246840580954, -58.6877632141113),
+                new PointLatLng(-27.6147975895629, -58.6626148223877),
+                new PointLatLng(-27.5788946026678, -58.6681938171387),
+                new PointLatLng(-27.5606343378777, -58.656005859375),
+                new PointLatLng(-27.5352170807974, -58.6584091186523),
+                new PointLatLng(-27.5343037764902, -58.6592674255371),
+                new PointLatLng(-27.5313735406018, -58.6587309837341),
+                new PointLatLng(-27.5319633995606, -58.6619925498962),
+                new PointLatLng(-27.534665293686, -58.6632370948792),
+                new PointLatLng(-27.5357878921352, -58.6661338806152),
+                new PointLatLng(-27.5354454056883, -58.6686015129089),
+                new PointLatLng(-27.5414768164325, -58.6680436134338),
+                new PointLatLng(-27.5432652468286, -58.6702752113342),
+                new PointLatLng(-27.5436267345419, -58.6740732192993),
+                new PointLatLng(-27.5454722059094, -58.6772918701172),
+                new PointLatLng(-27.5442736043233, -58.6807894706726),
+                new PointLatLng(-27.5438169907554, -58.6811542510986),
+                new PointLatLng(-27.5440072466393, -58.6814546585083),
+                new PointLatLng(-27.5471654461798, -58.6816263198853),
+                new PointLatLng(-27.5561448908726, -58.6845016479492),
+                new PointLatLng(-27.5561448908726, -58.684287071228),
+                new PointLatLng(-27.5550415241004, -58.6832356452942),
+                new PointLatLng(-27.5553649258546, -58.6827635765076),
+                new PointLatLng(-27.5567536402078, -58.6834931373596),
+                new PointLatLng(-27.5571341068284, -58.6849737167358),
+                new PointLatLng(-27.5599114732175, -58.6866474151611),
+                new PointLatLng(-27.5614142654623, -58.6896944046021),
+                new PointLatLng(-27.5606343378777, -58.6896729469299),
+                new PointLatLng(-27.5604631335199, -58.6901235580444),
+                new PointLatLng(-27.5623083219742, -58.6911106109619),
+                new PointLatLng(-27.5629170371348, -58.6908745765686),
+                new PointLatLng(-27.5629550817203, -58.6910676956177),
+                new PointLatLng(-27.5584086604012, -58.6992216110229),
+                new PointLatLng(-27.5590554431222, -58.6999297142029),
+                new PointLatLng(-27.562003963128, -58.6991357803345),
+                new PointLatLng(-27.5634877045322, -58.700122833252),
+                new PointLatLng(-27.563430637926, -58.7009167671204),
+                new PointLatLng(-27.559626130594, -58.7053799629211),
+                new PointLatLng(-27.5601777923303, -58.7085342407227),
+                new PointLatLng(-27.5597022220328, -58.7098217010498),
+                new PointLatLng(-27.5560307499965, -58.7108516693115),
+                new PointLatLng(-27.5561639143404, -58.711838722229),
+                new PointLatLng(-27.5614523105686, -58.7139630317688),
+                new PointLatLng(-27.5636969485013, -58.7184691429138),
+                new PointLatLng(-27.5637730371184, -58.7178039550781),
+                new PointLatLng(-27.5636589041729, -58.7172031402588),
+                new PointLatLng(-27.5641725014929, -58.7178897857666),
+                new PointLatLng(-27.5642866339043, -58.7192416191101),
+                new PointLatLng(-27.5607484739679, -58.7232112884521),
+                new PointLatLng(-27.5609006552369, -58.7247776985168),
+                new PointLatLng(-27.5635067267277, -58.7282752990723),
+                new PointLatLng(-27.5632974823961, -58.7294340133667),
+                new PointLatLng(-27.5610147910502, -58.7308931350708),
+                new PointLatLng(-27.5593027413909, -58.7314295768738),
+                new PointLatLng(-27.559359810143, -58.7320733070374),
+                new PointLatLng(-27.5603870426085, -58.7333178520203),
+                new PointLatLng(-27.5606914059376, -58.7351417541504),
+                new PointLatLng(-27.5619278732846, -58.7365579605103),
+                new PointLatLng(-27.5644388102683, -58.7363219261169),
+                new PointLatLng(-27.5657323008436, -58.7373518943787),
+                new PointLatLng(-27.5655611044368, -58.73939037323),
+                new PointLatLng(-27.5610338136742, -58.7419438362122),
+                new PointLatLng(-27.5572482465575, -58.7400341033936),
+                new PointLatLng(-27.5560878204494, -58.7402701377869),
+                new PointLatLng(-27.5556312559958, -58.7416648864746),
+                new PointLatLng(-27.5567916869291, -58.7444543838501),
+                new PointLatLng(-27.5562400081787, -58.7465143203735),
+                new PointLatLng(-27.556449265962, -58.7474584579468),
+                new PointLatLng(-27.5562400081787, -58.7475228309631),
+                new PointLatLng(-27.5558405149394, -58.7467932701111),
+                new PointLatLng(-27.5549654294315, -58.7488317489624),
+                new PointLatLng(-27.5556883266564, -58.7497758865356),
+                new PointLatLng(-27.5568677803324, -58.7499690055847),
+                new PointLatLng(-27.5569628970122, -58.750741481781),
+                new PointLatLng(-27.5561258674015, -58.7519001960754),
+                new PointLatLng(-27.5564302425437, -58.7542176246643),
+                new PointLatLng(-27.5555932088724, -58.7549257278442),
+                new PointLatLng(-27.5543947177344, -58.7555694580078),
+                new PointLatLng(-27.5546800739537, -58.755784034729),
+                new PointLatLng(-27.5552507841677, -58.7556123733521),
+                new PointLatLng(-27.5542425274476, -58.7566423416138),
+                new PointLatLng(-27.553843026941, -58.7567067146301),
+                new PointLatLng(-27.5522830586646, -58.7612342834473),
+                new PointLatLng(-27.5517884299499, -58.7629294395447),
+                new PointLatLng(-27.552834757295, -58.7628436088562),
+                new PointLatLng(-27.5545278840624, -58.7665128707886),
+                new PointLatLng(-27.555498091006, -58.7662553787231),
+                new PointLatLng(-27.5540713131227, -58.768572807312),
+                new PointLatLng(-27.5546800739537, -58.7690019607544),
+                new PointLatLng(-27.554565931555, -58.7694096565247),
+                new PointLatLng(-27.5549844531037, -58.7701392173767),
+                new PointLatLng(-27.5544327652732, -58.7736582756042),
+                new PointLatLng(-27.5553459022484, -58.7744092941284),
+                new PointLatLng(-27.5577048042873, -58.779194355011),
+                new PointLatLng(-27.5579330824403, -58.7798166275024),
+                new PointLatLng(-27.5571150835286, -58.7812542915344),
+                new PointLatLng(-27.5576667578823, -58.7833786010742),
+                new PointLatLng(-27.5584847526838, -58.7831425666809),
+                new PointLatLng(-27.5585037757462, -58.7833142280579),
+                new PointLatLng(-27.5578189434231, -58.7835288047791),
+                new PointLatLng(-27.5583706142401, -58.7865972518921),
+                new PointLatLng(-27.5592646955396, -58.7876486778259),
+                new PointLatLng(-27.559207626738, -58.7915539741516),
+                new PointLatLng(-27.5585418218611, -58.7924766540527),
+                new PointLatLng(-27.5586369370908, -58.7934637069702),
+                new PointLatLng(-27.559359810143, -58.7938499450684),
+                new PointLatLng(-27.5601587695579, -58.7936997413635),
+                new PointLatLng(-27.5626126799764, -58.7956094741821),
+                new PointLatLng(-27.5626126799764, -58.7967681884766),
+                new PointLatLng(-27.5619849406721, -58.7982058525085),
+                new PointLatLng(-27.5623653891639, -58.798828125),
+                new PointLatLng(-27.562289299571, -58.7992787361145),
+                new PointLatLng(-27.563430637926, -58.8001155853271),
+                new PointLatLng(-27.5625746352723, -58.800265789032),
+                new PointLatLng(-27.5630501931262, -58.8037204742432),
+                new PointLatLng(-27.562441478704, -58.8055014610291),
+                new PointLatLng(-27.5629360594292, -58.8071966171265),
+                new PointLatLng(-27.5637730371184, -58.807647228241),
+                new PointLatLng(-27.5639822805435, -58.8082480430603),
+                new PointLatLng(-27.5635828154767, -58.8088917732239),
+                new PointLatLng(-27.5634686823335, -58.8102221488953),
+                new PointLatLng(-27.5652187108222, -58.8111233711243),
+                new PointLatLng(-27.5653708858939, -58.8125824928284),
+                new PointLatLng(-27.5646860964098, -58.8139128684998),
+                new PointLatLng(-27.5646860964098, -58.815586566925),
+                new PointLatLng(-27.5643627221127, -58.8170027732849),
+                new PointLatLng(-27.562593657626, -58.8187408447266),
+                new PointLatLng(-27.5612430623208, -58.8192129135132),
+                new PointLatLng(-27.5608816325898, -58.8199210166931),
+                new PointLatLng(-27.5609006552369, -58.8204574584961),
+                new PointLatLng(-27.5615664458083, -58.8208222389221),
+                new PointLatLng(-27.561205017142, -58.8212084770203),
+                new PointLatLng(-27.5610528362949, -58.8224530220032),
+                new PointLatLng(-27.5610908815265, -58.8226890563965)
+            };
+
+            GMapPolygon poligonoRiachuelo = new GMapPolygon(puntosRiachuelo, "Jurisdicción Comisaria Riachuelo");
+            poligonoRiachuelo.Fill = new SolidBrush(Color.FromArgb(50, Color.DarkOliveGreen));
+            poligonoRiachuelo.Stroke = new Pen(Color.DarkOliveGreen, 2);
+            polygonOverlay.Polygons.Add(poligonoRiachuelo);
+
+            // Polígono de la jurisdicción Comisaria 18 y 2da de la mujer y menor
+            List<PointLatLng> puntosComisaria18yMujer = new List<PointLatLng>
+            {
+                new PointLatLng(-27.4825755425945, -58.7953519821167),
+                new PointLatLng(-27.4838319246238, -58.7906312942505),
+                new PointLatLng(-27.4844030026267, -58.7823271751404),
+                new PointLatLng(-27.4861733256177, -58.7697100639343),
+                new PointLatLng(-27.4870870295756, -58.7672853469849),
+                new PointLatLng(-27.4975940801701, -58.7691307067871),
+                new PointLatLng(-27.4971658232547, -58.7713837623596),
+                new PointLatLng(-27.4969469357434, -58.771448135376),
+                new PointLatLng(-27.4954527789319, -58.7820214033127),
+                new PointLatLng(-27.4961713091019, -58.7821233272552),
+                new PointLatLng(-27.4963093044255, -58.7818872928619),
+                new PointLatLng(-27.4976321473709, -58.7816351652145),
+                new PointLatLng(-27.5019431726832, -58.7796342372894),
+                new PointLatLng(-27.5027996476718, -58.7794840335846),
+                new PointLatLng(-27.5032469152943, -58.7795162200928),
+                new PointLatLng(-27.5037036973729, -58.7792694568634),
+                new PointLatLng(-27.5027425495466, -58.7856316566467),
+                new PointLatLng(-27.5024665748571, -58.7904167175293),
+                new PointLatLng(-27.5023428618407, -58.7975406646729),
+                new PointLatLng(-27.5013626691789, -58.7974226474762),
+                new PointLatLng(-27.4999447051226, -58.7984418869019),
+                new PointLatLng(-27.4961189660028, -58.7966179847717),
+                new PointLatLng(-27.4868966752095, -58.7951803207397),
+                new PointLatLng(-27.4863636812341, -58.7954914569855),
+                new PointLatLng(-27.484850344994, -58.7953734397888),
+                new PointLatLng(-27.4833750600895, -58.7955451011658),
+                new PointLatLng(-27.4825755425945, -58.7953519821167)
+            };
+
+            GMapPolygon poligonoComisaria18yMujer = new GMapPolygon(puntosComisaria18yMujer, "Jurisdicción Comisaria 18 y 2da de la Mujer y el Menor");
+            poligonoComisaria18yMujer.Fill = new SolidBrush(Color.FromArgb(50, Color.DarkOrange));
+            poligonoComisaria18yMujer.Stroke = new Pen(Color.DarkOrange, 2);
+            polygonOverlay.Polygons.Add(poligonoComisaria18yMujer);
+
+            // Polígono de la jurisdicción Comisaria 20
+            List<PointLatLng> puntosComisaria20 = new List<PointLatLng>
+            {
+                new PointLatLng(-27.5165118560545, -58.78910779953),
+                new PointLatLng(-27.5148942659848, -58.7879490852356),
+                new PointLatLng(-27.5143233461629, -58.7879705429077),
+                new PointLatLng(-27.511011952761, -58.7853741645813),
+                new PointLatLng(-27.5108597023916, -58.7837433815002),
+                new PointLatLng(-27.5100794159418, -58.782434463501),
+                new PointLatLng(-27.5101936045484, -58.7790870666504),
+                new PointLatLng(-27.5046172558423, -58.7708473205566),
+                new PointLatLng(-27.5009820094811, -58.770546913147),
+                new PointLatLng(-27.5175204589978, -58.6467790603638),
+                new PointLatLng(-27.5217450726983, -58.6484098434448),
+                new PointLatLng(-27.5226584813487, -58.6507701873779),
+                new PointLatLng(-27.530878817744, -58.6508560180664),
+                new PointLatLng(-27.5331240805271, -58.6573791503906),
+                new PointLatLng(-27.5308027063374, -58.6581087112427),
+                new PointLatLng(-27.5315638180312, -58.6627864837646),
+                new PointLatLng(-27.5339612854183, -58.6636018753052),
+                new PointLatLng(-27.535102918174, -58.6664772033691),
+                new PointLatLng(-27.5347984839321, -58.6694812774658),
+                new PointLatLng(-27.5418763619188, -58.6693954467773),
+                new PointLatLng(-27.5445019103956, -58.6786651611328),
+                new PointLatLng(-27.5428657063932, -58.6805105209351),
+                new PointLatLng(-27.5430559639246, -58.6821413040161),
+                new PointLatLng(-27.5460239387519, -58.6822700500488),
+                new PointLatLng(-27.5493723269033, -58.6845874786377),
+                new PointLatLng(-27.5562970785228, -58.6855316162109),
+                new PointLatLng(-27.5567536402078, -58.6896944046021),
+                new PointLatLng(-27.5551937132798, -58.6896085739136),
+                new PointLatLng(-27.5554600438363, -58.6918830871582),
+                new PointLatLng(-27.5614332880171, -58.6924409866333),
+                new PointLatLng(-27.5578569897753, -58.6971187591553),
+                new PointLatLng(-27.5581613601186, -58.6944150924683),
+                new PointLatLng(-27.5561829378049, -58.694372177124),
+                new PointLatLng(-27.5563731722688, -58.7002515792847),
+                new PointLatLng(-27.5625746352723, -58.7005090713501),
+                new PointLatLng(-27.5551556660047, -58.7117099761963),
+                new PointLatLng(-27.5633735712901, -58.7193489074707),
+                new PointLatLng(-27.5595310162214, -58.7234687805176),
+                new PointLatLng(-27.5625746352723, -58.7286186218262),
+                new PointLatLng(-27.5583135449738, -58.731107711792),
+                new PointLatLng(-27.5608245646288, -58.7372446060181),
+                new PointLatLng(-27.5642105456432, -58.7391328811646),
+                new PointLatLng(-27.5593407872289, -58.7404632568359),
+                new PointLatLng(-27.5574765256597, -58.7368583679199),
+                new PointLatLng(-27.5538620508076, -58.7424802780151),
+                new PointLatLng(-27.5500191628502, -58.7433815002441),
+                new PointLatLng(-27.5491820803115, -58.7481880187988),
+                new PointLatLng(-27.5535576685465, -58.7484884262085),
+                new PointLatLng(-27.553976193938, -58.7500762939453),
+                new PointLatLng(-27.5502474569808, -58.7514495849609),
+                new PointLatLng(-27.5505898972869, -58.7526082992554),
+                new PointLatLng(-27.5469751957656, -58.753981590271),
+                new PointLatLng(-27.5165118560545, -58.78910779953)
+            };
+
+            GMapPolygon poligonoComisaria20 = new GMapPolygon(puntosComisaria20, "Jurisdicción Comisaria 20");
+            poligonoComisaria20.Fill = new SolidBrush(Color.FromArgb(50, Color.Crimson));
+            poligonoComisaria20.Stroke = new Pen(Color.Crimson, 2);
+            polygonOverlay.Polygons.Add(poligonoComisaria20);
 
             // ----------------- AGREGAMOS OVERLAYS AL MAPA -----------------
             gMapControl1.Overlays.Add(polygonOverlay);
@@ -897,8 +1158,33 @@ namespace Operador_911
             markerComisaria13.ToolTipText = "Comisaría 13ra\nDirección: Calle N° 189, entre Suecia y Cuba - B° Nuestra Señora de la Asunción\nTeléfono: 379-4471860";
             markerOverlay.Markers.Add(markerComisaria13);
 
+            // Marker de la Comisaría Riachuelo
+            PointLatLng puntoComisariaRiachuelo = new PointLatLng(-27.583541, -58.746105);
+            GMapMarker markerRiachuelo = new GMarkerGoogle(puntoComisariaRiachuelo, GMarkerGoogleType.blue_dot);
+            markerRiachuelo.ToolTipText = "Comisaría Riachuelo\nDirección: Juan José Echazarreta e Isadora Villanueva\nTeléfono: 379-4485014";
+            markerOverlay.Markers.Add(markerRiachuelo);
+
+            // Marker de la Comisaría 18va
+            PointLatLng comisaria18 = new PointLatLng(-27.488318, -58.783728);
+            GMapMarker markerComisaria18 = new GMarkerGoogle(comisaria18, GMarkerGoogleType.blue_dot);
+            markerComisaria18.ToolTipText = "Comisaría 18va\nDirección: Turín y el Trébol - B° 17 de Agosto\nTeléfono: 379-4484658";
+            markerOverlay.Markers.Add(markerComisaria18);
+
+            // Marker de la Comisaría 2da de la Mujer
+            PointLatLng puntoComisaria2daMujer = new PointLatLng(-27.488216, -58.784457);
+            GMapMarker markerComisaria2daMujer = new GMarkerGoogle(puntoComisaria2daMujer, GMarkerGoogleType.blue_dot);
+            markerComisaria2daMujer.ToolTipText = "Comisaría 2da. De la Mujer y el Menor\nDirección: Calle Milán S/N° - B° 17 de Agosto\nTeléfono: 379-4485651";
+            markerOverlay.Markers.Add(markerComisaria2daMujer);
+
+            // Marker de la Comisaría 20da
+            PointLatLng puntoComisaria20 = new PointLatLng(-27.519600, -58.779113);
+            GMapMarker markerComisaria20 = new GMarkerGoogle(puntoComisaria20, GMarkerGoogleType.blue_dot);
+            markerComisaria20.ToolTipText = "Comisaría 20da.\nDirección: 500 Viviendas. Lote 'A'. Mz 81 - B° Pirayui Nuevo\nTeléfono: 379-4470558";
+            markerOverlay.Markers.Add(markerComisaria20);
+
             gMapControl1.Overlays.Add(markerOverlay);
         }
 
+        
     }
 }
