@@ -36,7 +36,7 @@ namespace Operador_911
 
             // Panel mapa a la izquierda
             panelMapa.Dock = DockStyle.Left;
-            panelMapa.Width = 1075; // ancho fijo para el mapa
+            panelMapa.Width = 960; // ancho fijo para el mapa
 
             // Panel formulario a la derecha (ocupa lo que sobra)
             panelForm.Dock = DockStyle.Fill;
