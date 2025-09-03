@@ -14,7 +14,6 @@ namespace Operador_911
     {
         GMapOverlay markerOverlay;
         GMapOverlay polygonOverlay;
-        DataTable dt;
         private bool jurisdiccionesVisibles = true;
 
         // Variable para guardar los límites
@@ -27,16 +26,25 @@ namespace Operador_911
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+            
             gMapControl1.Dock = DockStyle.Fill;
 
-            // Configuración del panel
+            // Panel navegación arriba
             panelNavegacion.Dock = DockStyle.Top;
             panelNavegacion.Height = 50;
             panelNavegacion.BackColor = Color.DodgerBlue;
 
+            // Panel mapa a la izquierda
+            panelMapa.Dock = DockStyle.Left;
+            panelMapa.Width = 1075; // ancho fijo para el mapa
+
+            // Panel formulario a la derecha (ocupa lo que sobra)
+            panelForm.Dock = DockStyle.Fill;
+
             // Configuración del mapa
+            gMapControl1.Parent = panelMapa;
             gMapControl1.Dock = DockStyle.Fill;
+            // Configuración del mapa
             gMapControl1.DragButton = MouseButtons.Left;
             gMapControl1.CanDragMap = true;
             gMapControl1.MapProvider = GMapProviders.GoogleMap;
@@ -44,14 +52,15 @@ namespace Operador_911
 
             // Centro en Corrientes Capital
             gMapControl1.Position = new PointLatLng(-27.4692, -58.8306);
-            gMapControl1.MinZoom = 13;
+            gMapControl1.MinZoom = 12;
             gMapControl1.MaxZoom = 19;
             gMapControl1.Zoom = 14;
+
 
             CargarJurisdicciones();
             CargarMarkers();
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            gMapControl1.OnPositionChanged += gMapControl1_OnPositionChanged;
+           
 
         }
 
@@ -80,21 +89,9 @@ namespace Operador_911
             gMapControl1.Refresh(); // refresca el mapa
         }
 
-        private void gMapControl1_OnPositionChanged(PointLatLng point)
-        {
-            // Actualiza los TextBox con la posición del centro del mapa (cruz roja)
-            textLatitud.Text = point.Lat.ToString();
-            textLongitud.Text = point.Lng.ToString();
-        }
+        
 
-        private void btnCopiar_Click(object sender, EventArgs e)
-        {
-            // Copia Latitud y Longitud juntas, separadas por coma
-            string coordenadas = $"{textLatitud.Text}, {textLongitud.Text}";
-            Clipboard.SetText(coordenadas);
-
-            
-        }
+       
 
         private void CargarJurisdicciones()
         {
@@ -1281,6 +1278,35 @@ namespace Operador_911
             gMapControl1.Overlays.Add(markerOverlay);
         }
 
-        
+        private void btnAgregarAlerta_Click(object sender, EventArgs e)
+        {
+            string direccion = $"{textDireccion.Text},Corrientes Capital, Corrientes, Argentina";
+
+
+            GeoCoderStatusCode status;
+            var point = GMapProviders.OpenStreetMap.GetPoint(direccion, out status);
+
+            if (status == GeoCoderStatusCode.G_GEO_SUCCESS && point != null)
+            {
+                gMapControl1.Position = point.Value;
+                gMapControl1.Zoom = 16;
+
+                var overlay = new GMapOverlay("markers");
+                var marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.red);
+                overlay.Markers.Add(marker);
+
+
+                gMapControl1.Overlays.Clear();
+                gMapControl1.Overlays.Add(overlay);
+
+                
+                
+
+            }
+            else
+            {
+                MessageBox.Show($"No se encontró la dirección. Status: {status}");
+            }
+        }
     }
 }
