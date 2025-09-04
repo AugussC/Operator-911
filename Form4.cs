@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Operador_911
 {
-    public partial class Form2 : Form
+    public partial class Form4 : Form
     {
-        public Form2()
+        public Form4()
         {
             InitializeComponent();
-        }
-
-        private void panelNavegacion_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

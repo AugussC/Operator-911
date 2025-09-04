@@ -1,6 +1,6 @@
 ﻿namespace Operador_911
 {
-    partial class Form2
+    partial class Form4
     {
         /// <summary>
         /// Required designer variable.
@@ -67,15 +67,14 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // Form2
+            // Form4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1449, 774);
             this.Controls.Add(this.panelNavegacion);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "Form4";
+            this.Text = "Form4";
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
