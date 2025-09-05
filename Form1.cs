@@ -3,10 +3,11 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using System.Collections.Generic;
 
 namespace Operador_911
 {
@@ -26,7 +27,7 @@ namespace Operador_911
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            
+
             gMapControl1.Dock = DockStyle.Fill;
 
             // Panel navegación arriba
@@ -60,9 +61,63 @@ namespace Operador_911
             CargarJurisdicciones();
             CargarMarkers();
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-           
+
 
         }
+
+        private Dictionary<string, Color> coloresDelitos = new Dictionary<string, Color>()
+        {
+            // Rojo (Emergencia)
+            { "Abuso de armas", Color.Red },
+            { "Abuso sexual", Color.Red },
+            { "Asesinato", Color.Red },
+            { "Asesinato en Progreso", Color.Red },
+            { "Choque", Color.Red },
+            { "Descompensación", Color.Red },
+            { "Disparo de arma de fuego con herida", Color.Red },
+            { "Disparo de arma de fuego y agresión en estado de emoción violenta", Color.Red },
+            { "Encarcelación u otra privación grave de la libertad física", Color.Red },
+            { "Explotación de Menores", Color.Red },
+            { "Homicidio", Color.Red },
+            { "Incendio", Color.Red },
+            { "Intento de Homicidio", Color.Red },
+            { "Intento de Suicidio", Color.Red },
+            { "Motín", Color.Red },
+            { "Prostitución forzada", Color.Red },
+            { "Robo a mano armada", Color.Red },
+            { "Robo en Progreso", Color.Red },
+            { "Secuestro", Color.Red },
+            { "Sustracción, retención y ocultamiento de menores", Color.Red },
+            { "Trata de menores", Color.Red },
+            { "Trata de mujeres", Color.Red },
+            { "Usurpación con gente dentro", Color.Red },
+            { "Violación", Color.Red },
+
+            // Amarillo (Media)
+            { "Amenazas", Color.Yellow },
+            { "Contrabando de estupefacientes", Color.Yellow },
+            { "Delitos contra el orden público", Color.Yellow },
+            { "Delitos contra la seguridad pública", Color.Yellow },
+            { "Delitos contra las personas", Color.Yellow },
+            { "Disparo de arma de fuego sin herir", Color.Yellow },
+            { "Entorpecimiento de transporte o servicio público", Color.Yellow },
+            { "Insania", Color.Yellow },
+            { "Lesiones", Color.Yellow },
+            { "Resistencia a la autoridad", Color.Yellow },
+            { "Riña", Color.Yellow },
+            { "Robo", Color.Yellow },
+            { "Solicitud Médica", Color.Yellow },
+            { "Violación de domicilio", Color.Yellow },
+
+            // Verde (Baja)
+            { "Daños", Color.LightGreen },
+            { "Desacato", Color.LightGreen },
+            { "Lesiones leves", Color.LightGreen },
+            { "Obstrucción de la vía pública", Color.LightGreen },
+            { "Usurpación", Color.LightGreen },
+            { "otros", Color.LightGreen }
+        };
+
 
         private void btnJurisdicciones_Click(object sender, EventArgs e)
         {
@@ -74,7 +129,7 @@ namespace Operador_911
                 markerOverlay.Markers.Clear();
 
                 jurisdiccionesVisibles = false;
-                
+
             }
             else
             {
@@ -83,15 +138,15 @@ namespace Operador_911
                 CargarMarkers();        // 👉 si los querés manejar aparte
 
                 jurisdiccionesVisibles = true;
-                
+
             }
 
             gMapControl1.Refresh(); // refresca el mapa
         }
 
-        
 
-       
+
+
 
         private void CargarJurisdicciones()
         {
@@ -1278,13 +1333,77 @@ namespace Operador_911
             gMapControl1.Overlays.Add(markerOverlay);
         }
 
+
+        private bool validacionesFormulario()
+        {
+            string direccion = textDireccion.Text.Trim();
+            string telefono = textTelefono.Text.Trim();
+            string nombre = textNombre.Text.Trim();
+
+            if (string.IsNullOrEmpty(direccion))
+            {
+                MessageBox.Show("El campo Dirección es obligatorio.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+
+            }
+
+
+            // Validar que direccion no tenga caracteres especiales
+            if (!Regex.IsMatch(direccion, @"^[a-zA-Z0-9\s]+$"))
+            {
+                MessageBox.Show("La dirección no puede contener caracteres especiales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Validar que nombre (si no está vacío) contenga solo letras
+            if (!string.IsNullOrEmpty(nombre) && !Regex.IsMatch(nombre, @"^[a-zA-Z\s]+$"))
+            {
+                MessageBox.Show("El nombre solo puede contener letras.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Validar que teléfono (si no está vacío) contenga solo números
+            if (!string.IsNullOrEmpty(telefono) && !Regex.IsMatch(telefono, @"^\d+$"))
+            {
+                MessageBox.Show("El teléfono solo puede contener números.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Validar que haya al menos un delito seleccionado
+            if (ListDelitos.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar al menos un delito.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
         private void btnAgregarAlerta_Click(object sender, EventArgs e)
         {
-            string direccion = $"{textDireccion.Text},Corrientes Capital, Corrientes, Argentina";
+            if (!validacionesFormulario()) return;
 
+            string direccion = textDireccion.Text.Trim();
+            string telefono = textTelefono.Text.Trim();
+            string nombre = textNombre.Text.Trim();
+            string delito = ListDelitos.SelectedItem.ToString();
+
+            // Generar ID automático
+            int id = dataGridView1.Rows.Count + 1;
+
+            
+
+            // Agregar la fila respetando el orden de las columnas
+            int rowIndex = dataGridView1.Rows.Add(id, delito, "En Espera", telefono, nombre, direccion);
+
+            // Colorear la fila según el tipo de delito
+            PintarFila(rowIndex, delito);
+
+            // Mostrar ubicación en el mapa
+            string direccionCompleta = $"{direccion}, Corrientes Capital, Corrientes, Argentina";
 
             GeoCoderStatusCode status;
-            var point = GMapProviders.OpenStreetMap.GetPoint(direccion, out status);
+            var point = GMapProviders.OpenStreetMap.GetPoint(direccionCompleta, out status);
 
             if (status == GeoCoderStatusCode.G_GEO_SUCCESS && point != null)
             {
@@ -1295,18 +1414,44 @@ namespace Operador_911
                 var marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.red);
                 overlay.Markers.Add(marker);
 
-
                 gMapControl1.Overlays.Clear();
                 gMapControl1.Overlays.Add(overlay);
-
-                
-                
-
             }
             else
             {
                 MessageBox.Show($"No se encontró la dirección. Status: {status}");
             }
         }
+        private void ListDelitos_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (e.NewValue == CheckState.Checked)
+            {
+                for (int i = 0; i < ListDelitos.Items.Count; i++)
+                {
+                    if (i != e.Index)
+                        ListDelitos.SetItemChecked(i, false);
+                }
+            }
+        }
+
+        private void PintarFila(int rowIndex, string delito)
+        {
+            DataGridViewRow row = dataGridView1.Rows[rowIndex];
+
+            delito = delito.Trim();
+
+            if (coloresDelitos.ContainsKey(delito))
+            {
+                row.DefaultCellStyle.BackColor = coloresDelitos[delito];
+                row.DefaultCellStyle.ForeColor = (coloresDelitos[delito] == Color.Red) ? Color.White : Color.Black;
+            }
+            else
+            {
+               
+            }
+        }
+
+
     }
 }
+

@@ -47,7 +47,7 @@
             this.btnJurisdicciones = new System.Windows.Forms.Button();
             this.id_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.incidente_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -229,10 +229,11 @@
             "Violación ",
             "Violación de domicilio ",
             "otros"});
-            this.ListDelitos.Location = new System.Drawing.Point(12, 182);
+            this.ListDelitos.Location = new System.Drawing.Point(13, 182);
             this.ListDelitos.Name = "ListDelitos";
             this.ListDelitos.Size = new System.Drawing.Size(370, 109);
             this.ListDelitos.TabIndex = 11;
+            this.ListDelitos.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ListDelitos_ItemCheck);
             // 
             // label2
             // 
@@ -304,9 +305,13 @@
             // 
             // Estado
             // 
+            this.Estado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Estado.HeaderText = "Estado";
+            this.Estado.Items.AddRange(new object[] {
+            "En Espera",
+            "Atendido"});
             this.Estado.Name = "Estado";
-            this.Estado.Width = 60;
+            this.Estado.Width = 75;
             // 
             // Telefono
             // 
@@ -371,7 +376,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_alerta;
         private System.Windows.Forms.DataGridViewTextBoxColumn incidente_alerta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
