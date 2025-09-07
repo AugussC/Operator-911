@@ -174,5 +174,14 @@
   <ItemGroup>
     <None Include="Resources\iconoChorro.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombero %282%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombero %282%29 %281%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bombero %282%29 %282%29.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

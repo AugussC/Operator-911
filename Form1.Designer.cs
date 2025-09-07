@@ -31,31 +31,32 @@
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.panelNavegacion = new System.Windows.Forms.Panel();
             this.tituloPrograma = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textDireccion = new System.Windows.Forms.TextBox();
             this.txtLongitud = new System.Windows.Forms.Label();
             this.btnAgregarAlerta = new System.Windows.Forms.Button();
             this.panelMapa = new System.Windows.Forms.Panel();
             this.panelForm = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ListDelitos = new System.Windows.Forms.CheckedListBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textTelefono = new System.Windows.Forms.TextBox();
-            this.textNombre = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtLatitud = new System.Windows.Forms.Label();
-            this.btnJurisdicciones = new System.Windows.Forms.Button();
             this.id_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.incidente_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ListDelitos = new System.Windows.Forms.CheckedListBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textTelefono = new System.Windows.Forms.TextBox();
+            this.textNombre = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtLatitud = new System.Windows.Forms.Label();
+            this.btnBomberos = new System.Windows.Forms.Button();
+            this.btnJurisdicciones = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelNavegacion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMapa.SuspendLayout();
             this.panelForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -103,15 +104,6 @@
             this.tituloPrograma.Size = new System.Drawing.Size(72, 13);
             this.tituloPrograma.TabIndex = 1;
             this.tituloPrograma.Text = "911 Operador";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(73, 52);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // textDireccion
             // 
@@ -179,6 +171,47 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(370, 270);
             this.dataGridView1.TabIndex = 12;
+            // 
+            // id_alerta
+            // 
+            this.id_alerta.HeaderText = "ID";
+            this.id_alerta.MinimumWidth = 3;
+            this.id_alerta.Name = "id_alerta";
+            this.id_alerta.Width = 35;
+            // 
+            // incidente_alerta
+            // 
+            this.incidente_alerta.HeaderText = "Incidente";
+            this.incidente_alerta.Name = "incidente_alerta";
+            this.incidente_alerta.Width = 75;
+            // 
+            // Estado
+            // 
+            this.Estado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Items.AddRange(new object[] {
+            "En Espera",
+            "Atendido"});
+            this.Estado.Name = "Estado";
+            this.Estado.Width = 75;
+            // 
+            // Telefono
+            // 
+            this.Telefono.HeaderText = "Telefono";
+            this.Telefono.Name = "Telefono";
+            this.Telefono.Width = 75;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Width = 90;
+            // 
+            // direccion
+            // 
+            this.direccion.HeaderText = "Direccion";
+            this.direccion.Name = "direccion";
+            this.direccion.Width = 90;
             // 
             // ListDelitos
             // 
@@ -277,65 +310,47 @@
             this.txtLatitud.TabIndex = 4;
             this.txtLatitud.Text = "Direccion";
             // 
+            // btnBomberos
+            // 
+            this.btnBomberos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBomberos.BackColor = System.Drawing.Color.White;
+            this.btnBomberos.Image = global::Operador_911.Properties.Resources.bombero__2___2_;
+            this.btnBomberos.Location = new System.Drawing.Point(165, 447);
+            this.btnBomberos.Margin = new System.Windows.Forms.Padding(0);
+            this.btnBomberos.Name = "btnBomberos";
+            this.btnBomberos.Size = new System.Drawing.Size(64, 47);
+            this.btnBomberos.TabIndex = 9;
+            this.btnBomberos.UseVisualStyleBackColor = false;
+            this.btnBomberos.Click += new System.EventHandler(this.btnBomberos_Click);
+            // 
             // btnJurisdicciones
             // 
             this.btnJurisdicciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnJurisdicciones.BackColor = System.Drawing.Color.White;
             this.btnJurisdicciones.Image = global::Operador_911.Properties.Resources.istockphoto_599271426_612x612__1___1_;
-            this.btnJurisdicciones.Location = new System.Drawing.Point(12, 454);
+            this.btnJurisdicciones.Location = new System.Drawing.Point(12, 447);
             this.btnJurisdicciones.Margin = new System.Windows.Forms.Padding(0);
             this.btnJurisdicciones.Name = "btnJurisdicciones";
-            this.btnJurisdicciones.Size = new System.Drawing.Size(64, 40);
+            this.btnJurisdicciones.Size = new System.Drawing.Size(64, 47);
             this.btnJurisdicciones.TabIndex = 2;
             this.btnJurisdicciones.UseVisualStyleBackColor = false;
             this.btnJurisdicciones.Click += new System.EventHandler(this.btnJurisdicciones_Click);
             // 
-            // id_alerta
+            // pictureBox1
             // 
-            this.id_alerta.HeaderText = "ID";
-            this.id_alerta.MinimumWidth = 3;
-            this.id_alerta.Name = "id_alerta";
-            this.id_alerta.Width = 35;
-            // 
-            // incidente_alerta
-            // 
-            this.incidente_alerta.HeaderText = "Incidente";
-            this.incidente_alerta.Name = "incidente_alerta";
-            this.incidente_alerta.Width = 75;
-            // 
-            // Estado
-            // 
-            this.Estado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Items.AddRange(new object[] {
-            "En Espera",
-            "Atendido"});
-            this.Estado.Name = "Estado";
-            this.Estado.Width = 75;
-            // 
-            // Telefono
-            // 
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.Name = "Telefono";
-            this.Telefono.Width = 75;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 90;
-            // 
-            // direccion
-            // 
-            this.direccion.HeaderText = "Direccion";
-            this.direccion.Name = "direccion";
-            this.direccion.Width = 90;
+            this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(73, 52);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(966, 503);
+            this.Controls.Add(this.btnBomberos);
             this.Controls.Add(this.btnJurisdicciones);
             this.Controls.Add(this.panelForm);
             this.Controls.Add(this.panelMapa);
@@ -346,11 +361,11 @@
             this.Load += new System.EventHandler(this.Form1_Load_1);
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMapa.ResumeLayout(false);
             this.panelForm.ResumeLayout(false);
             this.panelForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -380,6 +395,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
+        private System.Windows.Forms.Button btnBomberos;
     }
 }
 
