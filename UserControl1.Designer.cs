@@ -44,9 +44,10 @@
             // 
             this.labelTitulo.AutoSize = true;
             this.labelTitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo.Location = new System.Drawing.Point(554, 30);
+            this.labelTitulo.Location = new System.Drawing.Point(831, 46);
+            this.labelTitulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo.Name = "labelTitulo";
-            this.labelTitulo.Size = new System.Drawing.Size(129, 25);
+            this.labelTitulo.Size = new System.Drawing.Size(183, 37);
             this.labelTitulo.TabIndex = 1;
             this.labelTitulo.Text = "Bienvenido";
             // 
@@ -56,55 +57,60 @@
             this.chart1.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(36, 299);
+            this.chart1.Location = new System.Drawing.Point(54, 460);
+            this.chart1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chart1.Name = "chart1";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Series1";
             this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1094, 342);
+            this.chart1.Size = new System.Drawing.Size(1641, 526);
             this.chart1.TabIndex = 2;
             this.chart1.Text = "chart1";
             // 
             // labelEficienciaJurisdiccion
             // 
             this.labelEficienciaJurisdiccion.AutoSize = true;
-            this.labelEficienciaJurisdiccion.Location = new System.Drawing.Point(750, 190);
+            this.labelEficienciaJurisdiccion.Location = new System.Drawing.Point(1125, 292);
+            this.labelEficienciaJurisdiccion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEficienciaJurisdiccion.Name = "labelEficienciaJurisdiccion";
-            this.labelEficienciaJurisdiccion.Size = new System.Drawing.Size(53, 13);
+            this.labelEficienciaJurisdiccion.Size = new System.Drawing.Size(77, 20);
             this.labelEficienciaJurisdiccion.TabIndex = 9;
             this.labelEficienciaJurisdiccion.Text = "Eficiencia";
             // 
             // labelAlertasAtendidas
             // 
             this.labelAlertasAtendidas.AutoSize = true;
-            this.labelAlertasAtendidas.Location = new System.Drawing.Point(376, 190);
+            this.labelAlertasAtendidas.Location = new System.Drawing.Point(564, 292);
+            this.labelAlertasAtendidas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAlertasAtendidas.Name = "labelAlertasAtendidas";
-            this.labelAlertasAtendidas.Size = new System.Drawing.Size(84, 13);
+            this.labelAlertasAtendidas.Size = new System.Drawing.Size(127, 20);
             this.labelAlertasAtendidas.TabIndex = 8;
             this.labelAlertasAtendidas.Text = "Alerta Atendidas";
             // 
             // labelPatrullas
             // 
             this.labelPatrullas.AutoSize = true;
-            this.labelPatrullas.Location = new System.Drawing.Point(750, 91);
+            this.labelPatrullas.Location = new System.Drawing.Point(1125, 140);
+            this.labelPatrullas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPatrullas.Name = "labelPatrullas";
-            this.labelPatrullas.Size = new System.Drawing.Size(47, 13);
+            this.labelPatrullas.Size = new System.Drawing.Size(70, 20);
             this.labelPatrullas.TabIndex = 7;
             this.labelPatrullas.Text = "Patrullas";
             // 
             // labelPolicias
             // 
             this.labelPolicias.AutoSize = true;
-            this.labelPolicias.Location = new System.Drawing.Point(376, 91);
+            this.labelPolicias.Location = new System.Drawing.Point(564, 140);
+            this.labelPolicias.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPolicias.Name = "labelPolicias";
-            this.labelPolicias.Size = new System.Drawing.Size(43, 13);
+            this.labelPolicias.Size = new System.Drawing.Size(62, 20);
             this.labelPolicias.TabIndex = 6;
             this.labelPolicias.Text = "Policias";
             // 
             // UCInicioComisario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.labelEficienciaJurisdiccion);
             this.Controls.Add(this.labelAlertasAtendidas);
@@ -112,8 +118,10 @@
             this.Controls.Add(this.labelPolicias);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.labelTitulo);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UCInicioComisario";
-            this.Size = new System.Drawing.Size(1162, 699);
+            this.Size = new System.Drawing.Size(1743, 1075);
+            this.Load += new System.EventHandler(this.UCInicioComisario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

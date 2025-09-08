@@ -90,6 +90,30 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCAlertasSupervisor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCAlertasSupervisor.Designer.cs">
+      <DependentUpon>UCAlertasSupervisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCInicioSupervisor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCInicioSupervisor.Designer.cs">
+      <DependentUpon>UCInicioSupervisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPlanillaSupervisor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPlanillaSupervisor.Designer.cs">
+      <DependentUpon>UCPlanillaSupervisor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCReporteSupervisor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCReporteSupervisor.Designer.cs">
+      <DependentUpon>UCReporteSupervisor.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl1.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -136,6 +160,18 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UCAlertasSupervisor.resx">
+      <DependentUpon>UCAlertasSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCInicioSupervisor.resx">
+      <DependentUpon>UCInicioSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPlanillaSupervisor.resx">
+      <DependentUpon>UCPlanillaSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCReporteSupervisor.resx">
+      <DependentUpon>UCReporteSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>

@@ -64,5 +64,10 @@ namespace Operador_911
         {
             LoadUserControl(new UCPlanilla());
         }
+
+        private void panelComisario_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

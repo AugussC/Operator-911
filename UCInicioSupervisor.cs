@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Operador_911
 {
-    public partial class UCInicioComisario : UserControl
+    public partial class UCInicioSupervisor : UserControl
     {
-        public UCInicioComisario()
+        public UCInicioSupervisor()
         {
             InitializeComponent();
         }
 
-        private void UCInicioComisario_Load(object sender, EventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

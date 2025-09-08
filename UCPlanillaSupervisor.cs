@@ -10,14 +10,19 @@ using System.Windows.Forms;
 
 namespace Operador_911
 {
-    public partial class UCInicioComisario : UserControl
+    public partial class UCPlanillaSupervisor : UserControl
     {
-        public UCInicioComisario()
+        public UCPlanillaSupervisor()
         {
             InitializeComponent();
         }
 
-        private void UCInicioComisario_Load(object sender, EventArgs e)
+        private void labelTitulo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UCPlanillaSupervisor_Load(object sender, EventArgs e)
         {
 
         }

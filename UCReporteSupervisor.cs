@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace Operador_911
 {
-    public partial class UCInicioComisario : UserControl
+    public partial class UCReporteSupervisor : UserControl
     {
-        public UCInicioComisario()
+        public UCReporteSupervisor()
         {
             InitializeComponent();
-        }
-
-        private void UCInicioComisario_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

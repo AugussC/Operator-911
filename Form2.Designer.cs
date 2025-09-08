@@ -1,4 +1,7 @@
-﻿namespace Operador_911
+﻿using System;
+using System.Windows.Forms;
+
+namespace Operador_911
 {
     partial class Form2
     {
@@ -20,6 +23,23 @@
             base.Dispose(disposing);
         }
 
+        private void LoadUserControl(UserControl uc)
+        {
+            panel_supervisor.Controls.Clear();  // Limpia el panel
+            uc.Dock = DockStyle.Fill;           // Hace que el control ocupe todo el panel
+            panel_supervisor.Controls.Add(uc);  // Lo agrega dentro del panel
+        }
+
+        private void btninicio_supervisor(object sender, EventArgs e)
+        {
+            LoadUserControl(new UCInicioSupervisor());
+        }
+
+        private void btnAlerta_Click(object sender, EventArgs e)
+        {
+            LoadUserControl(new UCPlanillaSupervisor());
+        }
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -31,8 +51,13 @@
             this.panelNavegacion = new System.Windows.Forms.Panel();
             this.tituloPrograma = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAlertas = new System.Windows.Forms.Button();
+            this.btnInicio_supervisor = new System.Windows.Forms.Button();
+            this.panel_supervisor = new System.Windows.Forms.Panel();
             this.panelNavegacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelNavegacion
@@ -44,8 +69,8 @@
             this.panelNavegacion.Location = new System.Drawing.Point(0, 0);
             this.panelNavegacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelNavegacion.Name = "panelNavegacion";
-            this.panelNavegacion.Size = new System.Drawing.Size(1450, 68);
-            this.panelNavegacion.TabIndex = 2;
+            this.panelNavegacion.Size = new System.Drawing.Size(2044, 68);
+            this.panelNavegacion.TabIndex = 3;
             // 
             // tituloPrograma
             // 
@@ -67,18 +92,62 @@
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.btnAlertas);
+            this.panel1.Controls.Add(this.btnInicio_supervisor);
+            this.panel1.Location = new System.Drawing.Point(0, 68);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(272, 1075);
+            this.panel1.TabIndex = 4;
+            // 
+            // btnAlertas
+            // 
+            this.btnAlertas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAlertas.Location = new System.Drawing.Point(20, 175);
+            this.btnAlertas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAlertas.Name = "btnAlertas";
+            this.btnAlertas.Size = new System.Drawing.Size(226, 77);
+            this.btnAlertas.TabIndex = 1;
+            this.btnAlertas.Text = "Alertas";
+            this.btnAlertas.UseVisualStyleBackColor = true;
+            // 
+            // btnInicio_supervisor
+            // 
+            this.btnInicio_supervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInicio_supervisor.Location = new System.Drawing.Point(20, 58);
+            this.btnInicio_supervisor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnInicio_supervisor.Name = "btnInicio_supervisor";
+            this.btnInicio_supervisor.Size = new System.Drawing.Size(226, 77);
+            this.btnInicio_supervisor.TabIndex = 0;
+            this.btnInicio_supervisor.Text = "Inicio/Estadisticas";
+            this.btnInicio_supervisor.UseVisualStyleBackColor = true;
+            // 
+            // panel_supervisor
+            // 
+            this.panel_supervisor.Location = new System.Drawing.Point(279, 68);
+            this.panel_supervisor.Name = "panel_supervisor";
+            this.panel_supervisor.Size = new System.Drawing.Size(1748, 1052);
+            this.panel_supervisor.TabIndex = 5;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1449, 774);
+            this.ClientSize = new System.Drawing.Size(2025, 1122);
+            this.Controls.Add(this.panel_supervisor);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelNavegacion);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form2";
             this.Text = "Form2";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -88,5 +157,9 @@
         private System.Windows.Forms.Panel panelNavegacion;
         private System.Windows.Forms.Label tituloPrograma;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnAlertas;
+        private System.Windows.Forms.Button btnInicio_supervisor;
+        private System.Windows.Forms.Panel panel_supervisor;
     }
 }
