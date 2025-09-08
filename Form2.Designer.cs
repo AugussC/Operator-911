@@ -23,23 +23,6 @@ namespace Operador_911
             base.Dispose(disposing);
         }
 
-        private void LoadUserControl(UserControl uc)
-        {
-            panel_supervisor.Controls.Clear();  // Limpia el panel
-            uc.Dock = DockStyle.Fill;           // Hace que el control ocupe todo el panel
-            panel_supervisor.Controls.Add(uc);  // Lo agrega dentro del panel
-        }
-
-        private void btninicio_supervisor(object sender, EventArgs e)
-        {
-            LoadUserControl(new UCInicioSupervisor());
-        }
-
-        private void btnAlerta_Click(object sender, EventArgs e)
-        {
-            LoadUserControl(new UCPlanillaSupervisor());
-        }
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -52,10 +35,10 @@ namespace Operador_911
             this.tituloPrograma = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
             this.btnInicio_supervisor = new System.Windows.Forms.Button();
             this.panel_supervisor = new System.Windows.Forms.Panel();
-            this.btnUsuarios = new System.Windows.Forms.Button();
             this.panelNavegacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -102,8 +85,19 @@ namespace Operador_911
             this.panel1.Location = new System.Drawing.Point(0, 68);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(272, 1075);
+            this.panel1.Size = new System.Drawing.Size(261, 1075);
             this.panel1.TabIndex = 4;
+            // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.Location = new System.Drawing.Point(20, 290);
+            this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(226, 77);
+            this.btnUsuarios.TabIndex = 2;
+            this.btnUsuarios.Text = "Usuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = true;
             // 
             // btnReportes
             // 
@@ -129,21 +123,10 @@ namespace Operador_911
             // 
             // panel_supervisor
             // 
-            this.panel_supervisor.Location = new System.Drawing.Point(279, 68);
+            this.panel_supervisor.Location = new System.Drawing.Point(268, 68);
             this.panel_supervisor.Name = "panel_supervisor";
-            this.panel_supervisor.Size = new System.Drawing.Size(1748, 1052);
+            this.panel_supervisor.Size = new System.Drawing.Size(1773, 1072);
             this.panel_supervisor.TabIndex = 5;
-            // 
-            // btnUsuarios
-            // 
-            this.btnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.Location = new System.Drawing.Point(20, 290);
-            this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(226, 77);
-            this.btnUsuarios.TabIndex = 2;
-            this.btnUsuarios.Text = "Usuarios";
-            this.btnUsuarios.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 

@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridReportes = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnEditarUsuario = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,6 +37,8 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnEditarUsuario = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReportes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,27 +61,6 @@
             this.dataGridReportes.Size = new System.Drawing.Size(1265, 652);
             this.dataGridReportes.TabIndex = 14;
             this.dataGridReportes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridReportes_CellContentClick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(689, 98);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(311, 37);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Reportes Recibidos";
-            // 
-            // btnEditarUsuario
-            // 
-            this.btnEditarUsuario.Location = new System.Drawing.Point(710, 207);
-            this.btnEditarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnEditarUsuario.Name = "btnEditarUsuario";
-            this.btnEditarUsuario.Size = new System.Drawing.Size(258, 55);
-            this.btnEditarUsuario.TabIndex = 23;
-            this.btnEditarUsuario.Text = "Visualizar Detalle de Reporte";
-            this.btnEditarUsuario.UseVisualStyleBackColor = true;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -139,10 +118,32 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.Width = 150;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(689, 98);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(311, 37);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Reportes Recibidos";
+            // 
+            // btnEditarUsuario
+            // 
+            this.btnEditarUsuario.Location = new System.Drawing.Point(710, 207);
+            this.btnEditarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEditarUsuario.Name = "btnEditarUsuario";
+            this.btnEditarUsuario.Size = new System.Drawing.Size(258, 55);
+            this.btnEditarUsuario.TabIndex = 23;
+            this.btnEditarUsuario.Text = "Visualizar Detalle de Reporte";
+            this.btnEditarUsuario.UseVisualStyleBackColor = true;
+            // 
             // UCPlanillaSupervisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.btnEditarUsuario);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridReportes);

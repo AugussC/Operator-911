@@ -39,13 +39,6 @@
             this.btnEditarUsuario = new System.Windows.Forms.Button();
             this.btnAgregarUsuario = new System.Windows.Forms.Button();
             this.dataGrid_Usuarios = new System.Windows.Forms.DataGridView();
-            this.labelTitulo_Usuarios = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.labelDni = new System.Windows.Forms.Label();
-            this.labelNombyAp = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.labelTel = new System.Windows.Forms.Label();
             this.Nro_Vehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo_Patrulla = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +46,13 @@
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.columnaTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.labelTitulo_Usuarios = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.labelDni = new System.Windows.Forms.Label();
+            this.labelNombyAp = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.labelTel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Usuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -172,6 +172,55 @@
             this.dataGrid_Usuarios.TabIndex = 22;
             this.dataGrid_Usuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // Nro_Vehiculo
+            // 
+            this.Nro_Vehiculo.HeaderText = "id_usuario";
+            this.Nro_Vehiculo.MinimumWidth = 8;
+            this.Nro_Vehiculo.Name = "Nro_Vehiculo";
+            this.Nro_Vehiculo.Width = 125;
+            // 
+            // Tipo_Patrulla
+            // 
+            this.Tipo_Patrulla.HeaderText = "Rol";
+            this.Tipo_Patrulla.MinimumWidth = 8;
+            this.Tipo_Patrulla.Name = "Tipo_Patrulla";
+            this.Tipo_Patrulla.Width = 125;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "NombreUsuario";
+            this.Column4.MinimumWidth = 8;
+            this.Column4.Name = "Column4";
+            this.Column4.Width = 125;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Contraseña";
+            this.Column2.MinimumWidth = 8;
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 125;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Nombre y Apellido";
+            this.Column3.MinimumWidth = 8;
+            this.Column3.Name = "Column3";
+            this.Column3.Width = 125;
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Correo";
+            this.Estado.MinimumWidth = 8;
+            this.Estado.Name = "Estado";
+            this.Estado.Width = 125;
+            // 
+            // columnaTelefono
+            // 
+            this.columnaTelefono.HeaderText = "Telefono";
+            this.columnaTelefono.MinimumWidth = 8;
+            this.columnaTelefono.Name = "columnaTelefono";
+            this.columnaTelefono.Width = 125;
+            // 
             // labelTitulo_Usuarios
             // 
             this.labelTitulo_Usuarios.AutoSize = true;
@@ -239,59 +288,11 @@
             this.labelTel.TabIndex = 28;
             this.labelTel.Text = "Telefono";
             // 
-            // Nro_Vehiculo
-            // 
-            this.Nro_Vehiculo.HeaderText = "id_usuario";
-            this.Nro_Vehiculo.MinimumWidth = 8;
-            this.Nro_Vehiculo.Name = "Nro_Vehiculo";
-            this.Nro_Vehiculo.Width = 125;
-            // 
-            // Tipo_Patrulla
-            // 
-            this.Tipo_Patrulla.HeaderText = "Rol";
-            this.Tipo_Patrulla.MinimumWidth = 8;
-            this.Tipo_Patrulla.Name = "Tipo_Patrulla";
-            this.Tipo_Patrulla.Width = 125;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "NombreUsuario";
-            this.Column4.MinimumWidth = 8;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Contraseña";
-            this.Column2.MinimumWidth = 8;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Nombre y Apellido";
-            this.Column3.MinimumWidth = 8;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 125;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Correo";
-            this.Estado.MinimumWidth = 8;
-            this.Estado.Name = "Estado";
-            this.Estado.Width = 125;
-            // 
-            // columnaTelefono
-            // 
-            this.columnaTelefono.HeaderText = "Telefono";
-            this.columnaTelefono.MinimumWidth = 8;
-            this.columnaTelefono.Name = "columnaTelefono";
-            this.columnaTelefono.Width = 125;
-            // 
             // UCListaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.labelTel);
             this.Controls.Add(this.textBox3);
