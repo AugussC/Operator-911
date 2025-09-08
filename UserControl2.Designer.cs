@@ -38,12 +38,19 @@
             this.TipoVehiculoBox = new System.Windows.Forms.ComboBox();
             this.labelEstado = new System.Windows.Forms.Label();
             this.EstadoVehiculoBox = new System.Windows.Forms.ComboBox();
+            this.Nro_Vehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo_Patrulla = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nro_Vehiculo,
+            this.Tipo_Patrulla,
+            this.Estado});
             this.dataGridView1.Location = new System.Drawing.Point(27, 212);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1114, 430);
@@ -132,6 +139,21 @@
             this.EstadoVehiculoBox.Size = new System.Drawing.Size(688, 21);
             this.EstadoVehiculoBox.TabIndex = 9;
             // 
+            // Nro_Vehiculo
+            // 
+            this.Nro_Vehiculo.HeaderText = "Nro Vehiculo";
+            this.Nro_Vehiculo.Name = "Nro_Vehiculo";
+            // 
+            // Tipo_Patrulla
+            // 
+            this.Tipo_Patrulla.HeaderText = "Tipo Patrulla";
+            this.Tipo_Patrulla.Name = "Tipo_Patrulla";
+            // 
+            // Estado
+            // 
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
             // UCPatrullasComisario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,5 +188,8 @@
         private System.Windows.Forms.ComboBox TipoVehiculoBox;
         private System.Windows.Forms.Label labelEstado;
         private System.Windows.Forms.ComboBox EstadoVehiculoBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Vehiculo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_Patrulla;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
     }
 }
