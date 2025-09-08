@@ -52,9 +52,10 @@ namespace Operador_911
             this.tituloPrograma = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAlertas = new System.Windows.Forms.Button();
+            this.btnReportes = new System.Windows.Forms.Button();
             this.btnInicio_supervisor = new System.Windows.Forms.Button();
             this.panel_supervisor = new System.Windows.Forms.Panel();
+            this.btnUsuarios = new System.Windows.Forms.Button();
             this.panelNavegacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -95,7 +96,8 @@ namespace Operador_911
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.btnAlertas);
+            this.panel1.Controls.Add(this.btnUsuarios);
+            this.panel1.Controls.Add(this.btnReportes);
             this.panel1.Controls.Add(this.btnInicio_supervisor);
             this.panel1.Location = new System.Drawing.Point(0, 68);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -103,16 +105,16 @@ namespace Operador_911
             this.panel1.Size = new System.Drawing.Size(272, 1075);
             this.panel1.TabIndex = 4;
             // 
-            // btnAlertas
+            // btnReportes
             // 
-            this.btnAlertas.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlertas.Location = new System.Drawing.Point(20, 175);
-            this.btnAlertas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnAlertas.Name = "btnAlertas";
-            this.btnAlertas.Size = new System.Drawing.Size(226, 77);
-            this.btnAlertas.TabIndex = 1;
-            this.btnAlertas.Text = "Alertas";
-            this.btnAlertas.UseVisualStyleBackColor = true;
+            this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.Location = new System.Drawing.Point(20, 175);
+            this.btnReportes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(226, 77);
+            this.btnReportes.TabIndex = 1;
+            this.btnReportes.Text = "Reportes";
+            this.btnReportes.UseVisualStyleBackColor = true;
             // 
             // btnInicio_supervisor
             // 
@@ -131,6 +133,17 @@ namespace Operador_911
             this.panel_supervisor.Name = "panel_supervisor";
             this.panel_supervisor.Size = new System.Drawing.Size(1748, 1052);
             this.panel_supervisor.TabIndex = 5;
+            // 
+            // btnUsuarios
+            // 
+            this.btnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.Location = new System.Drawing.Point(20, 290);
+            this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUsuarios.Name = "btnUsuarios";
+            this.btnUsuarios.Size = new System.Drawing.Size(226, 77);
+            this.btnUsuarios.TabIndex = 2;
+            this.btnUsuarios.Text = "Usuarios";
+            this.btnUsuarios.UseVisualStyleBackColor = true;
             // 
             // Form2
             // 
@@ -158,8 +171,9 @@ namespace Operador_911
         private System.Windows.Forms.Label tituloPrograma;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button btnAlertas;
+        private System.Windows.Forms.Button btnReportes;
         private System.Windows.Forms.Button btnInicio_supervisor;
         private System.Windows.Forms.Panel panel_supervisor;
+        private Button btnUsuarios;
     }
 }

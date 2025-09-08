@@ -76,3 +76,4 @@ C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.UCAlertasSupervisor
 C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.UCInicioSupervisor.resources
 C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.UCPlanillaSupervisor.resources
 C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.UCReporteSupervisor.resources
+C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\obj\Debug\Operador_911.UCListaUsuarios.resources

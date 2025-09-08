@@ -102,6 +102,12 @@
     <Compile Include="UCInicioSupervisor.Designer.cs">
       <DependentUpon>UCInicioSupervisor.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCListaUsuarios.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCListaUsuarios.Designer.cs">
+      <DependentUpon>UCListaUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCPlanillaSupervisor.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCInicioSupervisor.resx">
       <DependentUpon>UCInicioSupervisor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCListaUsuarios.resx">
+      <DependentUpon>UCListaUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCPlanillaSupervisor.resx">
       <DependentUpon>UCPlanillaSupervisor.cs</DependentUpon>
