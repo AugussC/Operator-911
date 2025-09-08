@@ -26,5 +26,10 @@ namespace Operador_911
         {
 
         }
+
+        private void dataGridReportes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridReportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
     }
 }
