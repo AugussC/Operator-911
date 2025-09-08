@@ -59,5 +59,10 @@ namespace Operador_911
         {
             LoadUserControl(new UCPoliciasComisario());
         }
+
+        private void btnHorarios_Click(object sender, EventArgs e)
+        {
+            LoadUserControl(new UCPlanilla());
+        }
     }
 }

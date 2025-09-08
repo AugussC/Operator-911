@@ -58,21 +58,21 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(83, 30);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(310, 20);
+            this.textBox1.Size = new System.Drawing.Size(590, 20);
             this.textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(83, 78);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(310, 20);
+            this.textBox2.Size = new System.Drawing.Size(590, 20);
             this.textBox2.TabIndex = 2;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(83, 127);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(310, 20);
+            this.textBox3.Size = new System.Drawing.Size(590, 20);
             this.textBox3.TabIndex = 3;
             // 
             // labelNombre
@@ -106,14 +106,14 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(83, 176);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(310, 20);
+            this.textBox4.Size = new System.Drawing.Size(590, 20);
             this.textBox4.TabIndex = 7;
             // 
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(83, 225);
             this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(310, 20);
+            this.textBox5.Size = new System.Drawing.Size(590, 20);
             this.textBox5.TabIndex = 8;
             // 
             // labelTelefono
@@ -127,7 +127,7 @@
             // 
             // btnAgregarPatrulla
             // 
-            this.btnAgregarPatrulla.Location = new System.Drawing.Point(40, 262);
+            this.btnAgregarPatrulla.Location = new System.Drawing.Point(515, 276);
             this.btnAgregarPatrulla.Name = "btnAgregarPatrulla";
             this.btnAgregarPatrulla.Size = new System.Drawing.Size(84, 30);
             this.btnAgregarPatrulla.TabIndex = 10;
@@ -136,7 +136,7 @@
             // 
             // btnEditarPatrulla
             // 
-            this.btnEditarPatrulla.Location = new System.Drawing.Point(130, 262);
+            this.btnEditarPatrulla.Location = new System.Drawing.Point(605, 276);
             this.btnEditarPatrulla.Name = "btnEditarPatrulla";
             this.btnEditarPatrulla.Size = new System.Drawing.Size(84, 30);
             this.btnEditarPatrulla.TabIndex = 11;
@@ -145,7 +145,7 @@
             // 
             // btnEliminarPatrulla
             // 
-            this.btnEliminarPatrulla.Location = new System.Drawing.Point(220, 262);
+            this.btnEliminarPatrulla.Location = new System.Drawing.Point(695, 276);
             this.btnEliminarPatrulla.Name = "btnEliminarPatrulla";
             this.btnEliminarPatrulla.Size = new System.Drawing.Size(84, 30);
             this.btnEliminarPatrulla.TabIndex = 12;
@@ -157,7 +157,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(14, 312);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(667, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(1123, 326);
             this.dataGridView1.TabIndex = 13;
             // 
             // UCPoliciasComisario
@@ -179,7 +179,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.labelNroPlaca);
             this.Name = "UCPoliciasComisario";
-            this.Size = new System.Drawing.Size(696, 440);
+            this.Size = new System.Drawing.Size(1162, 699);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

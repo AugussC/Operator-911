@@ -44,15 +44,15 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 212);
+            this.dataGridView1.Location = new System.Drawing.Point(27, 212);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(642, 210);
+            this.dataGridView1.Size = new System.Drawing.Size(1114, 430);
             this.dataGridView1.TabIndex = 0;
             // 
             // labelCodigo
             // 
             this.labelCodigo.AutoSize = true;
-            this.labelCodigo.Location = new System.Drawing.Point(47, 23);
+            this.labelCodigo.Location = new System.Drawing.Point(42, 17);
             this.labelCodigo.Name = "labelCodigo";
             this.labelCodigo.Size = new System.Drawing.Size(68, 13);
             this.labelCodigo.TabIndex = 1;
@@ -60,7 +60,7 @@
             // 
             // btnAgregarPatrulla
             // 
-            this.btnAgregarPatrulla.Location = new System.Drawing.Point(27, 176);
+            this.btnAgregarPatrulla.Location = new System.Drawing.Point(438, 176);
             this.btnAgregarPatrulla.Name = "btnAgregarPatrulla";
             this.btnAgregarPatrulla.Size = new System.Drawing.Size(84, 30);
             this.btnAgregarPatrulla.TabIndex = 2;
@@ -69,7 +69,7 @@
             // 
             // btnEditarPatrulla
             // 
-            this.btnEditarPatrulla.Location = new System.Drawing.Point(117, 176);
+            this.btnEditarPatrulla.Location = new System.Drawing.Point(528, 176);
             this.btnEditarPatrulla.Name = "btnEditarPatrulla";
             this.btnEditarPatrulla.Size = new System.Drawing.Size(84, 30);
             this.btnEditarPatrulla.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             // btnEliminarPatrulla
             // 
-            this.btnEliminarPatrulla.Location = new System.Drawing.Point(207, 176);
+            this.btnEliminarPatrulla.Location = new System.Drawing.Point(618, 176);
             this.btnEliminarPatrulla.Name = "btnEliminarPatrulla";
             this.btnEliminarPatrulla.Size = new System.Drawing.Size(84, 30);
             this.btnEliminarPatrulla.TabIndex = 4;
@@ -87,15 +87,15 @@
             // 
             // textNroVehiculo
             // 
-            this.textNroVehiculo.Location = new System.Drawing.Point(50, 39);
+            this.textNroVehiculo.Location = new System.Drawing.Point(45, 33);
             this.textNroVehiculo.Name = "textNroVehiculo";
-            this.textNroVehiculo.Size = new System.Drawing.Size(346, 20);
+            this.textNroVehiculo.Size = new System.Drawing.Size(688, 20);
             this.textNroVehiculo.TabIndex = 5;
             // 
             // labelTipo
             // 
             this.labelTipo.AutoSize = true;
-            this.labelTipo.Location = new System.Drawing.Point(47, 73);
+            this.labelTipo.Location = new System.Drawing.Point(42, 67);
             this.labelTipo.Name = "labelTipo";
             this.labelTipo.Size = new System.Drawing.Size(28, 13);
             this.labelTipo.TabIndex = 6;
@@ -107,15 +107,15 @@
             this.TipoVehiculoBox.Items.AddRange(new object[] {
             "Auto",
             "Moto"});
-            this.TipoVehiculoBox.Location = new System.Drawing.Point(50, 89);
+            this.TipoVehiculoBox.Location = new System.Drawing.Point(45, 83);
             this.TipoVehiculoBox.Name = "TipoVehiculoBox";
-            this.TipoVehiculoBox.Size = new System.Drawing.Size(346, 21);
+            this.TipoVehiculoBox.Size = new System.Drawing.Size(688, 21);
             this.TipoVehiculoBox.TabIndex = 7;
             // 
             // labelEstado
             // 
             this.labelEstado.AutoSize = true;
-            this.labelEstado.Location = new System.Drawing.Point(47, 124);
+            this.labelEstado.Location = new System.Drawing.Point(42, 118);
             this.labelEstado.Name = "labelEstado";
             this.labelEstado.Size = new System.Drawing.Size(40, 13);
             this.labelEstado.TabIndex = 8;
@@ -127,9 +127,9 @@
             this.EstadoVehiculoBox.Items.AddRange(new object[] {
             "Patrulla",
             "En Base"});
-            this.EstadoVehiculoBox.Location = new System.Drawing.Point(50, 140);
+            this.EstadoVehiculoBox.Location = new System.Drawing.Point(45, 134);
             this.EstadoVehiculoBox.Name = "EstadoVehiculoBox";
-            this.EstadoVehiculoBox.Size = new System.Drawing.Size(346, 21);
+            this.EstadoVehiculoBox.Size = new System.Drawing.Size(688, 21);
             this.EstadoVehiculoBox.TabIndex = 9;
             // 
             // UCPatrullasComisario
@@ -147,7 +147,7 @@
             this.Controls.Add(this.labelCodigo);
             this.Controls.Add(this.dataGridView1);
             this.Name = "UCPatrullasComisario";
-            this.Size = new System.Drawing.Size(670, 422);
+            this.Size = new System.Drawing.Size(1162, 699);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

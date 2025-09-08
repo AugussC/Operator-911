@@ -62,3 +62,4 @@ C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.Form4.resources
 C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.UCInicioComisario.resources
 C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.UCPoliciasComisario.resources
 C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.UCPatrullasComisario.resources
+C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.UCPlanilla.resources

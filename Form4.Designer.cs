@@ -51,7 +51,7 @@
             this.panelNavegacion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelNavegacion.Location = new System.Drawing.Point(0, 0);
             this.panelNavegacion.Name = "panelNavegacion";
-            this.panelNavegacion.Size = new System.Drawing.Size(967, 44);
+            this.panelNavegacion.Size = new System.Drawing.Size(1363, 44);
             this.panelNavegacion.TabIndex = 2;
             // 
             // tituloPrograma
@@ -72,7 +72,7 @@
             this.panel1.Controls.Add(this.btnInicio);
             this.panel1.Location = new System.Drawing.Point(0, 33);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(181, 459);
+            this.panel1.Size = new System.Drawing.Size(181, 699);
             this.panel1.TabIndex = 3;
             // 
             // btnHorarios
@@ -84,6 +84,7 @@
             this.btnHorarios.TabIndex = 3;
             this.btnHorarios.Text = "Planilla Horarios";
             this.btnHorarios.UseVisualStyleBackColor = true;
+            this.btnHorarios.Click += new System.EventHandler(this.btnHorarios_Click);
             // 
             // btnPolicias
             // 
@@ -122,7 +123,7 @@
             // 
             this.panelComisario.Location = new System.Drawing.Point(187, 33);
             this.panelComisario.Name = "panelComisario";
-            this.panelComisario.Size = new System.Drawing.Size(726, 459);
+            this.panelComisario.Size = new System.Drawing.Size(1162, 699);
             this.panelComisario.TabIndex = 4;
             // 
             // pictureBox1
@@ -138,13 +139,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(913, 487);
+            this.ClientSize = new System.Drawing.Size(1350, 729);
             this.Controls.Add(this.panelNavegacion);
             this.Controls.Add(this.panelComisario);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form4";
             this.Text = "Form4";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
             this.panel1.ResumeLayout(false);
