@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Text.RegularExpressions;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace Operador_911
@@ -14,12 +15,13 @@ namespace Operador_911
     public partial class Form1 : Form
     {
         GMapOverlay markerPatrullas;
+        GMapOverlay markerComisarias;
         GMapOverlay markerHospitales;
         GMapOverlay markerBomberos;
         GMapOverlay markerAlertas;
         GMapOverlay polygonOverlay;
-        private bool jurisdiccionesVisibles = true;
-        private bool bomberosVisibles = true;
+        private bool jurisdiccionesVisibles = false;
+        private bool bomberosVisibles = false;
 
         // Variable para guardar los límites
         private RectLatLng mapBounds;
@@ -62,9 +64,12 @@ namespace Operador_911
             gMapControl1.Zoom = 14;
 
 
-            CargarJurisdicciones();
-            CargarMarkers();
-            CargarBomberos();
+           
+            
+            
+            CargarPatrullas();
+
+
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
 
@@ -131,7 +136,7 @@ namespace Operador_911
                 // Ocultar todas las jurisdicciones
                 polygonOverlay.Polygons.Clear();
                 // Si también querés ocultar los marcadores de comisarías:
-                markerPatrullas.Markers.Clear();
+                markerComisarias.Markers.Clear();
 
                 jurisdiccionesVisibles = false;
 
@@ -1183,159 +1188,159 @@ namespace Operador_911
         private void CargarMarkers()
         {
             // ----------------- OVERLAY PARA MARKERS -----------------
-            markerPatrullas = new GMapOverlay("markers");
+            markerComisarias = new GMapOverlay("markers");
 
             // Marker de la Comisaría 1ra
             PointLatLng comisaria1 = new PointLatLng(-27.468517, -58.841793);
             GMarkerGoogle marker1 = new GMarkerGoogle(comisaria1, GMarkerGoogleType.blue_dot);
             marker1.ToolTipText = "Comisaría 1ra\nDirección: Tucumán N°1028 - B° Deportes\nTel: 379-4424502";
-            markerPatrullas.Markers.Add(marker1);
+            markerComisarias.Markers.Add(marker1);
 
             // Marker de la Comisaría 4ta
             PointLatLng comisaria4 = new PointLatLng(-27.460246, -58.827128);
             GMarkerGoogle marker4 = new GMarkerGoogle(comisaria4, GMarkerGoogleType.blue_dot);
             marker4.ToolTipText = "Comisaría 4ta\nDirección: Alvear N°1802 - B° Aldana\nTel: 379-4424518";
-            markerPatrullas.Markers.Add(marker4);
+            markerComisarias.Markers.Add(marker4);
 
             // Marker de la Comisaría 1ra. de la Mujer y el Menor
             PointLatLng comisariaMujerMenor = new PointLatLng(-27.474024, -58.833750);
             GMarkerGoogle markerMujerMenor = new GMarkerGoogle(comisariaMujerMenor, GMarkerGoogleType.blue_dot);
             markerMujerMenor.ToolTipText = "Comisaría 1ra. de la Mujer y el Menor\nDirección: Calle Catamarca N°1445 - Bº Centro\nTel: 379-4432913";
-            markerPatrullas.Markers.Add(markerMujerMenor);
+            markerComisarias.Markers.Add(markerMujerMenor);
 
             // Marker de la Comisaría 3ra
             PointLatLng comisaria3ra = new PointLatLng(-27.476074, -58.831420);
             GMarkerGoogle marker3ra = new GMarkerGoogle(comisaria3ra, GMarkerGoogleType.blue_dot);
             marker3ra.ToolTipText = "Comisaría 3ra\nDirección: Santa Fe N°1575 - B° Centro\nTel: 379-4421272";
-            markerPatrullas.Markers.Add(marker3ra);
+            markerComisarias.Markers.Add(marker3ra);
 
             // ---------------- Comisaría 2da ----------------
             PointLatLng comisaria2 = new PointLatLng(-27.480499, -58.845120);
             GMarkerGoogle marker2 = new GMarkerGoogle(comisaria2, GMarkerGoogleType.blue_dot);
             marker2.ToolTipText = "Comisaría 2da\nDirección: Av. Juan Bautista Alberdi N° 2084 - B° San Martín\nTel: 379-4421149";
-            markerPatrullas.Markers.Add(marker2);
+            markerComisarias.Markers.Add(marker2);
 
             // ---------------- Comisaría 12da ----------------
             PointLatLng comisaria12 = new PointLatLng(-27.490683, -58.844033);
             GMarkerGoogle marker12 = new GMarkerGoogle(comisaria12, GMarkerGoogleType.blue_dot);
             marker12.ToolTipText = "Comisaría 12da\nDirección: Diego de Irala y Cabeza de Vaca - B° Juan de Vera\nTel: 379-4444649";
-            markerPatrullas.Markers.Add(marker12);
+            markerComisarias.Markers.Add(marker12);
 
             // ---------------- Comisaría 7ma ----------------
             PointLatLng comisaria7 = new PointLatLng(-27.493629, -58.832291);
             GMarkerGoogle marker7 = new GMarkerGoogle(comisaria7, GMarkerGoogleType.blue_dot);
             marker7.ToolTipText = "Comisaría 7ma\nDirección: José Manuel Estrada (Esq. Calle Cosquin) - B° 1.000Vivdas\nTel: 379-4443304";
-            markerPatrullas.Markers.Add(marker7);
+            markerComisarias.Markers.Add(marker7);
 
             // ---------------- Comisaría 6ta ----------------
             PointLatLng comisaria6 = new PointLatLng(-27.461791, -58.816690);
             GMarkerGoogle marker6 = new GMarkerGoogle(comisaria6, GMarkerGoogleType.blue_dot);
             marker6.ToolTipText = "Comisaría 6ta\nDirección: José María Rolón N° 2590 - B° Bañado Norte\nTel: 319-4422825";
-            markerPatrullas.Markers.Add(marker6);
+            markerComisarias.Markers.Add(marker6);
 
             // ---------------- Comisaría Contravencional ----------------
             PointLatLng comisariaContravencional = new PointLatLng(-27.471607, -58.810639);
             GMarkerGoogle markerContravencional = new GMarkerGoogle(comisariaContravencional, GMarkerGoogleType.blue_dot);
             markerContravencional.ToolTipText = "Comisaría Contravencional\nDirección: Av. Centenario N° 3200 (casi calle Reconquista) - B° Hipódromo\nTel: 379-4474058";
-            markerPatrullas.Markers.Add(markerContravencional);
+            markerComisarias.Markers.Add(markerContravencional);
 
             // ---------------- Comisaría 19 ----------------
             PointLatLng comisaria19 = new PointLatLng(-27.480988, -58.817582);
             GMarkerGoogle markerComisaria19 = new GMarkerGoogle(comisaria19, GMarkerGoogleType.blue_dot);
             markerComisaria19.ToolTipText = "Comisaría 19na\nDirección: Chile y Pje. Castellanos - B° Tambor de Tacuarí\nTel: 379-4475445";
-            markerPatrullas.Markers.Add(markerComisaria19);
+            markerComisarias.Markers.Add(markerComisaria19);
 
             // ---------------- Comisaría 16 ----------------
             PointLatLng comisaria16 = new PointLatLng(-27.473535, -58.789226);
             GMarkerGoogle markerComisaria16 = new GMarkerGoogle(comisaria16, GMarkerGoogleType.blue_dot);
             markerComisaria16.ToolTipText = "Comisaría 16ta\nDirección: Domingo Lastra y Laplace S/N° - B° San Gerónimo\nTel: 379-4484656";
-            markerPatrullas.Markers.Add(markerComisaria16);
+            markerComisarias.Markers.Add(markerComisaria16);
 
             // ---------------- Comisaría 9na ----------------
             PointLatLng comisaria9 = new PointLatLng(-27.457898, -58.787947);
             GMarkerGoogle marker9 = new GMarkerGoogle(comisaria9, GMarkerGoogleType.blue_dot);
             marker9.ToolTipText = "Comisaría 9na\nDirección: Murcia S/N° - B° Apipé\nTel: 379-4457681";
-            markerPatrullas.Markers.Add(marker9);
+            markerComisarias.Markers.Add(marker9);
 
             // ---------------- Comisaría 11ra ----------------
             PointLatLng comisaria11 = new PointLatLng(-27.463190226718, -58.8063758611679);
             GMarkerGoogle marker11 = new GMarkerGoogle(comisaria11, GMarkerGoogleType.blue_dot);
             marker11.ToolTipText = "Comisaría 11ra\nDirección: Zacarias Sanchez S/N° - B° Quinta Ferré\nTel: 379-4421924";
-            markerPatrullas.Markers.Add(marker11);
+            markerComisarias.Markers.Add(marker11);
 
             // ---------------- Comisaría 15ta ----------------
             PointLatLng comisaria15 = new PointLatLng(-27.515120, -58.828607);
             GMarkerGoogle marker15 = new GMarkerGoogle(comisaria15, GMarkerGoogleType.blue_dot);
             marker15.ToolTipText = "Comisaría 15ta.\nDirección: Mocoretá S/N° - B° Río Paraná\nTel: 379-4101568";
-            markerPatrullas.Markers.Add(marker15);
+            markerComisarias.Markers.Add(marker15);
 
             // ---------------- Comisaría 8va ----------------
             PointLatLng comisaria8 = new PointLatLng(-27.490740, -58.803505);
             GMarkerGoogle marker8 = new GMarkerGoogle(comisaria8, GMarkerGoogleType.blue_dot);
             marker8.ToolTipText = "Comisaría 8va\nDirección:Larrea (Esq. Las Piedras) - B° Laguna Seca\nTel: 379-4451033";
-            markerPatrullas.Markers.Add(marker8);
+            markerComisarias.Markers.Add(marker8);
 
             // Marker de la Comisaría 21ra
             PointLatLng comisaria21 = new PointLatLng(-27.499028, -58.803586);
             GMarkerGoogle marker21 = new GMarkerGoogle(comisaria21, GMarkerGoogleType.blue_dot);
             marker21.ToolTipText = "Comisaría 21ra\nDirección: Escocia y Berazategui - B° Parque Ingenieros Serantes (Zona conocida como B° La Olla)\nTel: 379-4124202";
-            markerPatrullas.Markers.Add(marker21);
+            markerComisarias.Markers.Add(marker21);
 
             // Marker de la Comisaría Estación Terminal de Ómnibus
             PointLatLng comisariaTerminal = new PointLatLng(-27.498276, -58.815324);
             GMarkerGoogle markerTerminal = new GMarkerGoogle(comisariaTerminal, GMarkerGoogleType.blue_dot);
             markerTerminal.ToolTipText = "Comisaría Estación Terminal de Ómnibus\nDirección: Av. Maipú N° 2599 - Bº Villa Ongai\nTel: 379-485014";
-            markerPatrullas.Markers.Add(markerTerminal);
+            markerComisarias.Markers.Add(markerTerminal);
 
             // Marker de la Comisaría 14ta
             PointLatLng comisaria14 = new PointLatLng(-27.527650, -58.789281);
             GMarkerGoogle marker14 = new GMarkerGoogle(comisaria14, GMarkerGoogleType.blue_dot);
             marker14.ToolTipText = "Comisaría 14ta\nDirección: Hidalgo, entre calles Mariano Beodo y Garzon - B° Dr. Montaña\nTel: 379-4414593";
-            markerPatrullas.Markers.Add(marker14);
+            markerComisarias.Markers.Add(marker14);
 
             // Marker de la Comisaría 13ra
             PointLatLng puntoComisaria13 = new PointLatLng(-27.504758, -58.782623);
             GMarkerGoogle markerComisaria13 = new GMarkerGoogle(puntoComisaria13, GMarkerGoogleType.blue_dot);
             markerComisaria13.ToolTipText = "Comisaría 13ra\nDirección: Calle N° 189, entre Suecia y Cuba - B° Nuestra Señora de la Asunción\nTeléfono: 379-4471860";
-            markerPatrullas.Markers.Add(markerComisaria13);
+            markerComisarias.Markers.Add(markerComisaria13);
 
             // Marker de la Comisaría Riachuelo
             PointLatLng puntoComisariaRiachuelo = new PointLatLng(-27.583541, -58.746105);
             GMapMarker markerRiachuelo = new GMarkerGoogle(puntoComisariaRiachuelo, GMarkerGoogleType.blue_dot);
             markerRiachuelo.ToolTipText = "Comisaría Riachuelo\nDirección: Juan José Echazarreta e Isadora Villanueva\nTeléfono: 379-4485014";
-            markerPatrullas.Markers.Add(markerRiachuelo);
+            markerComisarias.Markers.Add(markerRiachuelo);
 
             // Marker de la Comisaría 18va
             PointLatLng comisaria18 = new PointLatLng(-27.488318, -58.783728);
             GMapMarker markerComisaria18 = new GMarkerGoogle(comisaria18, GMarkerGoogleType.blue_dot);
             markerComisaria18.ToolTipText = "Comisaría 18va\nDirección: Turín y el Trébol - B° 17 de Agosto\nTeléfono: 379-4484658";
-            markerPatrullas.Markers.Add(markerComisaria18);
+            markerComisarias.Markers.Add(markerComisaria18);
 
             // Marker de la Comisaría 2da de la Mujer
             PointLatLng puntoComisaria2daMujer = new PointLatLng(-27.488216, -58.784457);
             GMapMarker markerComisaria2daMujer = new GMarkerGoogle(puntoComisaria2daMujer, GMarkerGoogleType.blue_dot);
             markerComisaria2daMujer.ToolTipText = "Comisaría 2da. De la Mujer y el Menor\nDirección: Calle Milán S/N° - B° 17 de Agosto\nTeléfono: 379-4485651";
-            markerPatrullas.Markers.Add(markerComisaria2daMujer);
+            markerComisarias.Markers.Add(markerComisaria2daMujer);
 
             // Marker de la Comisaría 20da
             PointLatLng puntoComisaria20 = new PointLatLng(-27.519600, -58.779113);
             GMapMarker markerComisaria20 = new GMarkerGoogle(puntoComisaria20, GMarkerGoogleType.blue_dot);
             markerComisaria20.ToolTipText = "Comisaría 20da.\nDirección: 500 Viviendas. Lote 'A'. Mz 81 - B° Pirayui Nuevo\nTeléfono: 379-4470558";
-            markerPatrullas.Markers.Add(markerComisaria20);
+            markerComisarias.Markers.Add(markerComisaria20);
 
             // ---------------- Comisaría 10 ----------------
             PointLatLng comisaria10 = new PointLatLng(-27.489529, -58.721392);
             GMarkerGoogle markerComisaria10 = new GMarkerGoogle(comisaria10, GMarkerGoogleType.blue_dot);
             markerComisaria10.ToolTipText = "Comisaría 10ma\nDirección: Ruta Provincial N° 5. Km 7 - B° Laguna Brava\nTel: 379-4495920";
-            markerPatrullas.Markers.Add(markerComisaria10);
+            markerComisarias.Markers.Add(markerComisaria10);
 
             // ---------------- Comisaría 17 ----------------
             PointLatLng comisaria17 = new PointLatLng(-27.441618, -58.783901);
             GMarkerGoogle markerComisaria17 = new GMarkerGoogle(comisaria17, GMarkerGoogleType.blue_dot);
             markerComisaria17.ToolTipText = "Comisaría 17ma\nDirección: Saladas N° 5780 - B° Molina Punta\nTel: 379-4484657";
-            markerPatrullas.Markers.Add(markerComisaria17);
+            markerComisarias.Markers.Add(markerComisaria17);
 
-            gMapControl1.Overlays.Add(markerPatrullas);
+            gMapControl1.Overlays.Add(markerComisarias);
         }
         private void CargarBomberos()
         {
@@ -1379,11 +1384,30 @@ namespace Operador_911
             markerBomberos.Markers.Add(markerBomberosVoluntariosRiachuelo);
 
             gMapControl1.Overlays.Add(markerBomberos);
-            
 
+
+        }
+        private void CargarPatrullas()
+        {
+            markerPatrullas = new GMapOverlay("Patrullas");
             
-               
-            
+            Bitmap icono = new Bitmap("C:\\Users\\HP\\source\\repos\\Operator-911\\Resources\\iconoPatrulla.png");
+            PointLatLng patrulla1 = new PointLatLng(-27.504955, -58.789288);
+            var marker = new GMarkerGoogle(patrulla1, icono);
+            markerPatrullas.Markers.Add(marker);
+
+           
+
+          
+            PointLatLng patrulla2 = new PointLatLng(-27.476527, -58.830662);
+            var marker2 = new GMarkerGoogle(patrulla2, icono);
+            markerPatrullas.Markers.Add(marker2);
+
+
+
+            gMapControl1.Overlays.Add(markerPatrullas);
+
+
         }
 
         private bool validacionesFormulario()
@@ -1518,7 +1542,8 @@ namespace Operador_911
                 bomberosVisibles = true;
             }
 
-            gMapControl1.Refresh(); 
+            gMapControl1.Refresh();
+         
         }
     }
 }
