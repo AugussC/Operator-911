@@ -31,6 +31,7 @@
             this.gMapControl1 = new GMap.NET.WindowsForms.GMapControl();
             this.panelNavegacion = new System.Windows.Forms.Panel();
             this.tituloPrograma = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textDireccion = new System.Windows.Forms.TextBox();
             this.txtLongitud = new System.Windows.Forms.Label();
             this.btnAgregarAlerta = new System.Windows.Forms.Button();
@@ -51,12 +52,11 @@
             this.txtLatitud = new System.Windows.Forms.Label();
             this.btnBomberos = new System.Windows.Forms.Button();
             this.btnJurisdicciones = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelNavegacion.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMapa.SuspendLayout();
             this.panelForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -104,6 +104,15 @@
             this.tituloPrograma.Size = new System.Drawing.Size(72, 13);
             this.tituloPrograma.TabIndex = 1;
             this.tituloPrograma.Text = "911 Operador";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(73, 52);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // textDireccion
             // 
@@ -159,6 +168,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.CadetBlue;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_alerta,
@@ -336,15 +346,6 @@
             this.btnJurisdicciones.UseVisualStyleBackColor = false;
             this.btnJurisdicciones.Click += new System.EventHandler(this.btnJurisdicciones_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(73, 52);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -361,11 +362,11 @@
             this.Load += new System.EventHandler(this.Form1_Load_1);
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelMapa.ResumeLayout(false);
             this.panelForm.ResumeLayout(false);
             this.panelForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
