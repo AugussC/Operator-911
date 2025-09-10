@@ -76,3 +76,5 @@ C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\obj\Debug\Operador_911.UC
 C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.UCListaUsuarios.resources
 C:\Users\HP\source\repos\Operator-911\bin\Debug\Newtonsoft.Json.dll
 C:\Users\HP\source\repos\Operator-911\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\bin\Debug\Newtonsoft.Json.xml

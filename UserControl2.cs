@@ -16,6 +16,8 @@ namespace Operador_911
         {
             InitializeComponent();
             this.Load += new System.EventHandler(this.Form1_Load);
+
+            textNroVehiculo.KeyPress += textNroVehiculo_KeyPress;
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -25,5 +27,24 @@ namespace Operador_911
             
         }
 
+        private void labelTitulo_Usuarios_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UCPatrullasComisario_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+        // validacion
+        private void textNroVehiculo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

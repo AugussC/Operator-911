@@ -63,5 +63,15 @@ namespace Operador_911
             int filaTurno2 = dataGridHorarios.Rows.Add();
             dataGridHorarios.Rows[filaTurno2].HeaderCell.Value = "18-06";
         }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UCPlanilla_Load(object sender, EventArgs e)
+        {
+
+        }
     }
  }
