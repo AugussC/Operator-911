@@ -83,12 +83,14 @@ namespace Operador_911
 
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
-            
+
 
 
 
             // Cargar calles desde GeoJSON
-            CargarCallesDesdeGeoJSON("C:\\Users\\HP\\source\\repos\\Operator-911\\Resources\\calles.geojson");
+            string ruta = Path.Combine(Application.StartupPath, @"..\..\Resources\calles.geojson");
+
+            CargarCallesDesdeGeoJSON(ruta);
 
 
         }
@@ -1453,8 +1455,9 @@ namespace Operador_911
         private void CargarPatrullas()
         {
             markerPatrullas = new GMapOverlay("Patrullas");
-            
-            Bitmap icono = new Bitmap("C:\\Users\\HP\\source\\repos\\Operator-911\\Resources\\iconoPatrulla.png");
+            string ruta = Path.Combine(Application.StartupPath, @"..\..\Resources\iconoPatrulla.png");
+            Bitmap icono = new Bitmap(ruta);
+
             PointLatLng patrulla1 = new PointLatLng(-27.504955, -58.789288);
             var marker = new GMarkerGoogle(patrulla1, icono);
             markerPatrullas.Markers.Add(marker);
