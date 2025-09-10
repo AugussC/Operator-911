@@ -8,7 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.IO; // Para Fil
+using System.IO; 
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
 
