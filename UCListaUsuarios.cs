@@ -49,7 +49,7 @@ namespace Operador_911
 
         private void UCListaUsuarios_Load(object sender, EventArgs e)
         {
-
+            dataGridUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
 

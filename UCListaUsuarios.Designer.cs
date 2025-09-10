@@ -37,21 +37,19 @@
             this.btnEliminarUsuario = new System.Windows.Forms.Button();
             this.btnEditarUsuario = new System.Windows.Forms.Button();
             this.btnAgregarUsuario = new System.Windows.Forms.Button();
-            this.dataGrid_Usuarios = new System.Windows.Forms.DataGridView();
-            this.Nro_Vehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo_Patrulla = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.columnaTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridUsuarios = new System.Windows.Forms.DataGridView();
             this.labelTitulo_Usuarios = new System.Windows.Forms.Label();
             this.textBoxApellido = new System.Windows.Forms.TextBox();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.labelApellido = new System.Windows.Forms.Label();
             this.labelNombre = new System.Windows.Forms.Label();
             this.comboBoxRol = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Usuarios)).BeginInit();
+            this.Nro_Vehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Columna_Dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tipo_Patrulla = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
             // labelPass
@@ -143,73 +141,22 @@
             this.btnAgregarUsuario.Text = "Agregar";
             this.btnAgregarUsuario.UseVisualStyleBackColor = true;
             // 
-            // dataGrid_Usuarios
+            // dataGridUsuarios
             // 
-            this.dataGrid_Usuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGrid_Usuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nro_Vehiculo,
-            this.Tipo_Patrulla,
+            this.Columna_Dni,
             this.Column4,
-            this.Column2,
             this.Column3,
-            this.Estado,
-            this.columnaTelefono});
-            this.dataGrid_Usuarios.Location = new System.Drawing.Point(680, 197);
-            this.dataGrid_Usuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dataGrid_Usuarios.Name = "dataGrid_Usuarios";
-            this.dataGrid_Usuarios.RowHeadersWidth = 62;
-            this.dataGrid_Usuarios.Size = new System.Drawing.Size(939, 802);
-            this.dataGrid_Usuarios.TabIndex = 22;
-            this.dataGrid_Usuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Nro_Vehiculo
-            // 
-            this.Nro_Vehiculo.HeaderText = "id_usuario";
-            this.Nro_Vehiculo.MinimumWidth = 8;
-            this.Nro_Vehiculo.Name = "Nro_Vehiculo";
-            this.Nro_Vehiculo.Width = 125;
-            // 
-            // Tipo_Patrulla
-            // 
-            this.Tipo_Patrulla.HeaderText = "Rol";
-            this.Tipo_Patrulla.MinimumWidth = 8;
-            this.Tipo_Patrulla.Name = "Tipo_Patrulla";
-            this.Tipo_Patrulla.Width = 125;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "NombreUsuario";
-            this.Column4.MinimumWidth = 8;
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 125;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Contraseña";
-            this.Column2.MinimumWidth = 8;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 125;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Nombre y Apellido";
-            this.Column3.MinimumWidth = 8;
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 125;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Correo";
-            this.Estado.MinimumWidth = 8;
-            this.Estado.Name = "Estado";
-            this.Estado.Width = 125;
-            // 
-            // columnaTelefono
-            // 
-            this.columnaTelefono.HeaderText = "Telefono";
-            this.columnaTelefono.MinimumWidth = 8;
-            this.columnaTelefono.Name = "columnaTelefono";
-            this.columnaTelefono.Width = 125;
+            this.Tipo_Patrulla});
+            this.dataGridUsuarios.Location = new System.Drawing.Point(680, 197);
+            this.dataGridUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridUsuarios.Name = "dataGridUsuarios";
+            this.dataGridUsuarios.RowHeadersWidth = 62;
+            this.dataGridUsuarios.Size = new System.Drawing.Size(939, 802);
+            this.dataGridUsuarios.TabIndex = 22;
+            this.dataGridUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // labelTitulo_Usuarios
             // 
@@ -268,6 +215,36 @@
             this.comboBoxRol.Size = new System.Drawing.Size(478, 28);
             this.comboBoxRol.TabIndex = 28;
             // 
+            // Nro_Vehiculo
+            // 
+            this.Nro_Vehiculo.HeaderText = "id_usuario";
+            this.Nro_Vehiculo.MinimumWidth = 8;
+            this.Nro_Vehiculo.Name = "Nro_Vehiculo";
+            // 
+            // Columna_Dni
+            // 
+            this.Columna_Dni.HeaderText = "DNI";
+            this.Columna_Dni.MinimumWidth = 8;
+            this.Columna_Dni.Name = "Columna_Dni";
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Nombre";
+            this.Column4.MinimumWidth = 8;
+            this.Column4.Name = "Column4";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Apellido";
+            this.Column3.MinimumWidth = 8;
+            this.Column3.Name = "Column3";
+            // 
+            // Tipo_Patrulla
+            // 
+            this.Tipo_Patrulla.HeaderText = "Rol";
+            this.Tipo_Patrulla.MinimumWidth = 8;
+            this.Tipo_Patrulla.Name = "Tipo_Patrulla";
+            // 
             // UCListaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -279,7 +256,7 @@
             this.Controls.Add(this.labelApellido);
             this.Controls.Add(this.labelNombre);
             this.Controls.Add(this.labelTitulo_Usuarios);
-            this.Controls.Add(this.dataGrid_Usuarios);
+            this.Controls.Add(this.dataGridUsuarios);
             this.Controls.Add(this.btnEliminarUsuario);
             this.Controls.Add(this.btnEditarUsuario);
             this.Controls.Add(this.btnAgregarUsuario);
@@ -292,7 +269,7 @@
             this.Name = "UCListaUsuarios";
             this.Size = new System.Drawing.Size(1743, 1075);
             this.Load += new System.EventHandler(this.UCListaUsuarios_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_Usuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -308,19 +285,17 @@
         private System.Windows.Forms.Button btnEliminarUsuario;
         private System.Windows.Forms.Button btnEditarUsuario;
         private System.Windows.Forms.Button btnAgregarUsuario;
-        private System.Windows.Forms.DataGridView dataGrid_Usuarios;
+        private System.Windows.Forms.DataGridView dataGridUsuarios;
         private System.Windows.Forms.Label labelTitulo_Usuarios;
         private System.Windows.Forms.TextBox textBoxApellido;
         private System.Windows.Forms.TextBox textBoxNombre;
         private System.Windows.Forms.Label labelApellido;
         private System.Windows.Forms.Label labelNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Vehiculo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_Patrulla;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn columnaTelefono;
         private System.Windows.Forms.ComboBox comboBoxRol;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Vehiculo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Columna_Dni;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_Patrulla;
     }
 }

@@ -55,5 +55,10 @@ namespace Operador_911
         {
 
         }
+
+        private void panelNavegacion_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

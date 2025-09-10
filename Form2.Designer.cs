@@ -55,6 +55,7 @@ namespace Operador_911
             this.panelNavegacion.Name = "panelNavegacion";
             this.panelNavegacion.Size = new System.Drawing.Size(2044, 68);
             this.panelNavegacion.TabIndex = 3;
+            this.panelNavegacion.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNavegacion_Paint_1);
             // 
             // tituloPrograma
             // 

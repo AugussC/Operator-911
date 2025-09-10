@@ -24,12 +24,12 @@ namespace Operador_911
 
         private void UCPlanillaSupervisor_Load(object sender, EventArgs e)
         {
-
+            dataGridReportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void dataGridReportes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            dataGridReportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+       
         }
     }
 }
