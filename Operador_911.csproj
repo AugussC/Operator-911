@@ -202,6 +202,7 @@
     <None Include="Resources\4fTAsWOK_400x400 %281%29 %281%29.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\calles.geojson" />
     <None Include="Resources\istockphoto-599271426-612x612.jpg" />
   </ItemGroup>
   <ItemGroup>

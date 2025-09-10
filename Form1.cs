@@ -8,7 +8,9 @@ using System.Data;
 using System.Drawing;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.IO; // Para Fil
 using System.Windows.Forms;
+using Newtonsoft.Json.Linq;
 
 namespace Operador_911
 {
@@ -23,8 +25,17 @@ namespace Operador_911
         private bool jurisdiccionesVisibles = false;
         private bool bomberosVisibles = false;
 
+        private GMapOverlay callesOverlay;
+        private List<Calle> redVial = new List<Calle>();
+
         // Variable para guardar los límites
         private RectLatLng mapBounds;
+
+
+        public class Calle
+        {
+            public List<PointLatLng> Puntos { get; set; }
+        }
 
         public Form1()
         {
@@ -72,8 +83,60 @@ namespace Operador_911
 
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
+            
+
+
+
+            // Cargar calles desde GeoJSON
+            CargarCallesDesdeGeoJSON("C:\\Users\\HP\\source\\repos\\Operator-911\\Resources\\calles.geojson");
+
 
         }
+
+        private void CargarCallesDesdeGeoJSON(string rutaArchivo)
+        {
+            string json = File.ReadAllText(rutaArchivo);
+            JObject geojson = JObject.Parse(json);
+
+            foreach (var feature in geojson["features"])
+            {
+                string geometryType = feature["geometry"]["type"].ToString();
+
+                if (geometryType == "LineString")
+                {
+                    var coords = feature["geometry"]["coordinates"];
+                    List<PointLatLng> puntos = new List<PointLatLng>();
+
+                    foreach (var coord in coords)
+                    {
+                        double lon = (double)coord[0];
+                        double lat = (double)coord[1];
+                        puntos.Add(new PointLatLng(lat, lon));
+                    }
+
+                    redVial.Add(new Calle { Puntos = puntos });
+                }
+                else if (geometryType == "MultiLineString")
+                {
+                    foreach (var line in feature["geometry"]["coordinates"])
+                    {
+                        List<PointLatLng> puntos = new List<PointLatLng>();
+
+                        foreach (var coord in line)
+                        {
+                            double lon = (double)coord[0];
+                            double lat = (double)coord[1];
+                            puntos.Add(new PointLatLng(lat, lon));
+                        }
+
+                        redVial.Add(new Calle { Puntos = puntos });
+                    }
+                }
+            }
+
+            MessageBox.Show($"Se cargaron {redVial.Count} calles en memoria");
+        }
+
 
         private Dictionary<string, Color> coloresDelitos = new Dictionary<string, Color>()
         {
