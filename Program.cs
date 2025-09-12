@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Operador_911
-{
+{///nunca usar un numererador para un coso de auditoria ejemplo una factura, 
+    //se hace otra tabla donde se guarda el ultimo valor
     internal static class Program
     {
         /// <summary>
@@ -16,7 +17,7 @@ namespace Operador_911
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form2());
+            Application.Run(new Form3());
         }
     }
 }

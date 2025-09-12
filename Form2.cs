@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Operador_911
@@ -20,6 +21,7 @@ namespace Operador_911
             this.btnInicio_supervisor.Click += btnInicio_supervisor_Click;
             this.btnReportes.Click += btnReportes_Click;
             this.btnUsuarios.Click += btnUsuarios_Click;
+            
 
             this.Load += Form2_Load; // para mostrar Inicio por defecto al arrancar
         }
@@ -29,6 +31,7 @@ namespace Operador_911
             panel_supervisor.Controls.Clear();   // borra lo que haya antes
             uc.Dock = DockStyle.Fill;            // que ocupe todo el panel
             panel_supervisor.Controls.Add(uc);   // lo agrega al panel
+
         }
 
         private void btnInicio_supervisor_Click(object sender, EventArgs e)
@@ -53,12 +56,14 @@ namespace Operador_911
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            LoadUserControl(new UCInicioSupervisor());
         }
 
         private void panelNavegacion_Paint_1(object sender, PaintEventArgs e)
         {
 
         }
+
+        
     }
 }

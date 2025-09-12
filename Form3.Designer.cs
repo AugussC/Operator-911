@@ -55,9 +55,9 @@
             this.label1.Location = new System.Drawing.Point(79, 79);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 13);
+            this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "DNI";
+            this.label1.Text = "Correo";
             // 
             // label2
             // 
@@ -87,6 +87,7 @@
             this.textBoxContraseña.Name = "textBoxContraseña";
             this.textBoxContraseña.Size = new System.Drawing.Size(182, 22);
             this.textBoxContraseña.TabIndex = 5;
+            this.textBoxContraseña.UseSystemPasswordChar = true;
             // 
             // textBoxCorreo
             // 
