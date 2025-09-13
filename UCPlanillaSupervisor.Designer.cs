@@ -136,9 +136,9 @@
             // 
             this.pictureBoxReporte.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.pictureBoxReporte.Image = global::Operador_911.Properties.Resources.Reporte_Policial;
-            this.pictureBoxReporte.Location = new System.Drawing.Point(339, 64);
+            this.pictureBoxReporte.Location = new System.Drawing.Point(142, 64);
             this.pictureBoxReporte.Name = "pictureBoxReporte";
-            this.pictureBoxReporte.Size = new System.Drawing.Size(452, 562);
+            this.pictureBoxReporte.Size = new System.Drawing.Size(857, 562);
             this.pictureBoxReporte.TabIndex = 25;
             this.pictureBoxReporte.TabStop = false;
             // 
