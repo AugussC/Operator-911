@@ -58,10 +58,7 @@ namespace Operador_911
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
 
         private void UCListaUsuarios_Load(object sender, EventArgs e)
         {
@@ -186,7 +183,7 @@ namespace Operador_911
         {
             using (SqlConnection conn = Database.GetConnection())
             {
-                string query = "SELECT id_usuario, nombre, apellido, DNI, correo, rol, activo FROM Usuario";
+                string query = "SELECT id_usuario, nombre, apellido, DNI, correo, rol, activo FROM Usuario WHERE activo = 1";
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -229,6 +226,176 @@ namespace Operador_911
                 textBoxConfirmarContraseña.UseSystemPasswordChar = true; // Ocultar
                 btnMostrarConfirmarContraseña.Text = "👁"; // Cambia el icono
             }
+        }
+        private void CargarUsuariosEliminados()
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = "SELECT id_usuario, nombre, apellido, DNI, correo, rol, activo FROM Usuario WHERE activo = 0";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridUsuarios.DataSource = dt;
+            }
+        }
+        private void btnUsuarioEliminado_Click(object sender, EventArgs e)
+        {
+            if (btnUsuarioEliminado.Text == "Ver Usuarios Eliminados")
+            {
+                CargarUsuariosEliminados();
+                btnUsuarioEliminado.Text = "Ver Usuarios Activos";
+            }
+            else
+            {
+                CargarUsuarios();
+                btnUsuarioEliminado.Text = "Ver Usuarios Eliminados";
+            }
+            
+        }
+
+        private void btnEliminarUsuario_Click(object sender, EventArgs e)
+        {
+            if (dataGridUsuarios.CurrentRow != null)
+            {
+                int idUsuario = Convert.ToInt32(dataGridUsuarios.CurrentRow.Cells["id_usuario"].Value);
+
+                DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar este usuario?",
+                                                      "Confirmación",
+                                                      MessageBoxButtons.YesNo,
+                                                      MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    using (SqlConnection conn = Database.GetConnection())
+                    {
+                        string query = "UPDATE Usuario SET activo = 0 WHERE id_usuario = @id";
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@id", idUsuario);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Usuario desactivado correctamente.");
+                    CargarUsuarios(); // refresca la grilla con solo activos
+                }
+            }
+        }
+
+        private void dataGridUsuarios_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridUsuarios.Columns["activo"].Index && e.RowIndex >= 0)
+            {
+                int idUsuario = Convert.ToInt32(dataGridUsuarios.Rows[e.RowIndex].Cells["id_usuario"].Value);
+                bool nuevoEstado = Convert.ToBoolean(dataGridUsuarios.Rows[e.RowIndex].Cells["activo"].Value);
+
+                if (nuevoEstado)
+                    ActivarUsuario(idUsuario, e.RowIndex);
+                else
+                    DesactivarUsuario(idUsuario, e.RowIndex);
+            }
+        }
+
+        private void ActivarUsuario(int idUsuario, int rowIndex)
+        {
+            DialogResult result = MessageBox.Show(
+                "¿Desea activar este usuario?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection conn = Database.GetConnection()) // conexión ya abierta
+                {
+                    string query = "UPDATE Usuario SET activo = 1 WHERE id_usuario = @id";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idUsuario);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Usuario activado correctamente.");
+                CargarUsuariosEliminados();
+            }
+            else
+            {
+                // Restaurar valor anterior si cancela
+                dataGridUsuarios.CellValueChanged -= dataGridUsuarios_CellValueChanged;
+                dataGridUsuarios.Rows[rowIndex].Cells["activo"].Value = false;
+                dataGridUsuarios.CellValueChanged += dataGridUsuarios_CellValueChanged;
+            }
+        }
+
+
+
+        private void DesactivarUsuario(int idUsuario, int rowIndex)
+        {
+            DialogResult result = MessageBox.Show(
+                "¿Desea desactivar este usuario?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection conn = Database.GetConnection()) // conexión ya abierta
+                {
+                    string query = "UPDATE Usuario SET activo = 0 WHERE id_usuario = @id";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idUsuario);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Usuario desactivado correctamente.");
+                CargarUsuarios();
+            }
+            else
+            {
+                // Restaurar valor anterior si cancela
+                dataGridUsuarios.CellValueChanged -= dataGridUsuarios_CellValueChanged;
+                dataGridUsuarios.Rows[rowIndex].Cells["activo"].Value = true;
+                dataGridUsuarios.CellValueChanged += dataGridUsuarios_CellValueChanged;
+            }
+        }
+
+
+
+        private void dataGridUsuarios_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridUsuarios.CurrentRow != null)
+            {
+                textBoxNombre.Text = dataGridUsuarios.CurrentRow.Cells["nombre"].Value.ToString();
+                textBoxApellido.Text = dataGridUsuarios.CurrentRow.Cells["apellido"].Value.ToString();
+                textBoxDNI.Text = dataGridUsuarios.CurrentRow.Cells["DNI"].Value.ToString();
+                textBoxCorreo.Text = dataGridUsuarios.CurrentRow.Cells["correo"].Value.ToString();
+                comboBoxRol.Text = dataGridUsuarios.CurrentRow.Cells["rol"].Value.ToString();
+            }
+        }
+
+        private void dataGridUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // para que no tome el header
+            {
+                DataGridViewRow fila = dataGridUsuarios.Rows[e.RowIndex];
+
+                textBoxNombre.Text = fila.Cells["nombre"].Value.ToString();
+                textBoxApellido.Text = fila.Cells["apellido"].Value.ToString();
+                textBoxDNI.Text = fila.Cells["DNI"].Value.ToString();
+                textBoxCorreo.Text = fila.Cells["correo"].Value.ToString();
+                comboBoxRol.Text = fila.Cells["rol"].Value.ToString();
+            }
+        }
+
+        private void dataGridUsuarios_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dataGridUsuarios.IsCurrentCellDirty)
+            {
+                dataGridUsuarios.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+
         }
     }
 }

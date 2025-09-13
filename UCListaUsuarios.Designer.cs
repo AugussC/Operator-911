@@ -50,6 +50,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnMostrarContraseña = new System.Windows.Forms.Button();
             this.btnMostrarConfirmarContraseña = new System.Windows.Forms.Button();
+            this.btnUsuarioEliminado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,6 +116,7 @@
             this.btnEliminarUsuario.TabIndex = 21;
             this.btnEliminarUsuario.Text = "Eliminar";
             this.btnEliminarUsuario.UseVisualStyleBackColor = true;
+            this.btnEliminarUsuario.Click += new System.EventHandler(this.btnEliminarUsuario_Click);
             // 
             // btnEditarUsuario
             // 
@@ -138,12 +140,16 @@
             // dataGridUsuarios
             // 
             this.dataGridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridUsuarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridUsuarios.Location = new System.Drawing.Point(453, 128);
             this.dataGridUsuarios.Name = "dataGridUsuarios";
             this.dataGridUsuarios.RowHeadersWidth = 62;
             this.dataGridUsuarios.Size = new System.Drawing.Size(626, 521);
             this.dataGridUsuarios.TabIndex = 22;
-            this.dataGridUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsuarios_CellClick);
+            this.dataGridUsuarios.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsuarios_CellValueChanged);
+            this.dataGridUsuarios.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridUsuarios_CurrentCellDirtyStateChanged);
+            this.dataGridUsuarios.SelectionChanged += new System.EventHandler(this.dataGridUsuarios_SelectionChanged);
             // 
             // labelTitulo_Usuarios
             // 
@@ -258,11 +264,22 @@
             this.btnMostrarConfirmarContraseña.UseVisualStyleBackColor = true;
             this.btnMostrarConfirmarContraseña.Click += new System.EventHandler(this.btnMostrarConfirmarContraseña_Click);
             // 
+            // btnUsuarioEliminado
+            // 
+            this.btnUsuarioEliminado.Location = new System.Drawing.Point(930, 86);
+            this.btnUsuarioEliminado.Name = "btnUsuarioEliminado";
+            this.btnUsuarioEliminado.Size = new System.Drawing.Size(149, 36);
+            this.btnUsuarioEliminado.TabIndex = 35;
+            this.btnUsuarioEliminado.Text = "Ver Usuarios Eliminados";
+            this.btnUsuarioEliminado.UseVisualStyleBackColor = true;
+            this.btnUsuarioEliminado.Click += new System.EventHandler(this.btnUsuarioEliminado_Click);
+            // 
             // UCListaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.btnUsuarioEliminado);
             this.Controls.Add(this.btnMostrarConfirmarContraseña);
             this.Controls.Add(this.btnMostrarContraseña);
             this.Controls.Add(this.textBoxConfirmarContraseña);
@@ -318,5 +335,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnMostrarContraseña;
         private System.Windows.Forms.Button btnMostrarConfirmarContraseña;
+        private System.Windows.Forms.Button btnUsuarioEliminado;
     }
 }

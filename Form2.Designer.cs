@@ -33,15 +33,15 @@ namespace Operador_911
         {
             this.panelNavegacion = new System.Windows.Forms.Panel();
             this.tituloPrograma = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
             this.btnInicio_supervisor = new System.Windows.Forms.Button();
             this.panel_supervisor = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelNavegacion.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelNavegacion
@@ -64,15 +64,6 @@ namespace Operador_911
             this.tituloPrograma.Size = new System.Drawing.Size(72, 13);
             this.tituloPrograma.TabIndex = 1;
             this.tituloPrograma.Text = "911 Operador";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(73, 52);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // panel1
             // 
@@ -118,10 +109,19 @@ namespace Operador_911
             // panel_supervisor
             // 
             this.panel_supervisor.Location = new System.Drawing.Point(179, 44);
-            this.panel_supervisor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel_supervisor.Margin = new System.Windows.Forms.Padding(2);
             this.panel_supervisor.Name = "panel_supervisor";
             this.panel_supervisor.Size = new System.Drawing.Size(1182, 697);
             this.panel_supervisor.TabIndex = 5;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
+            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(73, 52);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // Form2
             // 
@@ -134,11 +134,10 @@ namespace Operador_911
             this.Name = "Form2";
             this.Text = "Form2";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-      
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

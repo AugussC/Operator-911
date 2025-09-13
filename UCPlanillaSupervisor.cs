@@ -15,6 +15,9 @@ namespace Operador_911
         public UCPlanillaSupervisor()
         {
             InitializeComponent();
+            pictureBoxReporte.Visible = false;
+            btnOcultarReporte.Visible = false;
+
         }
 
         private void labelTitulo_Click(object sender, EventArgs e)
@@ -31,5 +34,20 @@ namespace Operador_911
         {
        
         }
+
+        private void btnVerReporte_Click(object sender, EventArgs e)
+        {
+            pictureBoxReporte.Visible = true;
+            pictureBoxReporte.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBoxReporte.BringToFront();
+            btnOcultarReporte.Visible = true;
+        }
+
+        private void btnOcultarReporte_Click(object sender, EventArgs e)
+        {
+            pictureBoxReporte.Visible = false;
+            btnOcultarReporte.Visible = false;
+        }
     }
 }
+
