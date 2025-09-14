@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Operador_911
 {
@@ -64,6 +65,26 @@ namespace Operador_911
 
         }
 
-        
+        private void btnRestore_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Archivos de Backup (*.bak)|*.bak"; // Solo mostrar .bak
+            openFileDialog.Title = "Seleccionar archivo de backup";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // Obtenemos la ruta del archivo seleccionado
+                string rutaBackup = openFileDialog.FileName;
+
+                try
+                {
+                    Database.RestoreBackup(rutaBackup); // Llamamos a tu función
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al restaurar el backup: " + ex.Message);
+                }
+            }
+        }
     }
 }
