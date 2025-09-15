@@ -77,5 +77,10 @@ namespace Operador_911
                 e.Handled = true;
             }
         }
+
+        private void textBoxNroPlaca_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -52,7 +52,7 @@
             this.panelNavegacion.Location = new System.Drawing.Point(0, 0);
             this.panelNavegacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelNavegacion.Name = "panelNavegacion";
-            this.panelNavegacion.Size = new System.Drawing.Size(2044, 68);
+            this.panelNavegacion.Size = new System.Drawing.Size(2040, 68);
             this.panelNavegacion.TabIndex = 2;
             // 
             // tituloPrograma
@@ -138,10 +138,10 @@
             // 
             // panelComisario
             // 
-            this.panelComisario.Location = new System.Drawing.Point(280, 51);
+            this.panelComisario.Location = new System.Drawing.Point(254, 51);
             this.panelComisario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelComisario.Name = "panelComisario";
-            this.panelComisario.Size = new System.Drawing.Size(1743, 1075);
+            this.panelComisario.Size = new System.Drawing.Size(1786, 1087);
             this.panelComisario.TabIndex = 4;
             this.panelComisario.Paint += new System.Windows.Forms.PaintEventHandler(this.panelComisario_Paint);
             // 
@@ -151,8 +151,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2025, 1122);
             this.Controls.Add(this.panelNavegacion);
-            this.Controls.Add(this.panelComisario);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelComisario);
             this.Name = "Form4";
             this.Text = "Form4";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

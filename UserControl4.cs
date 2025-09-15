@@ -73,5 +73,10 @@ namespace Operador_911
         {
 
         }
+
+        private void DiaBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
  }

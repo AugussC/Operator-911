@@ -22,7 +22,7 @@ namespace Operador_911
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewPatrullas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             
         }

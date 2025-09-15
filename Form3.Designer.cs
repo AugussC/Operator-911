@@ -29,103 +29,170 @@
         private void InitializeComponent()
         {
             this.btnInicioSesion = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelCorreo = new System.Windows.Forms.Label();
+            this.labelContraseña = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxContraseña = new System.Windows.Forms.TextBox();
             this.textBoxCorreo = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.checkBoxMostrarContraseña = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnInicioSesion
             // 
-            this.btnInicioSesion.Location = new System.Drawing.Point(127, 231);
-            this.btnInicioSesion.Margin = new System.Windows.Forms.Padding(2);
+            this.btnInicioSesion.Location = new System.Drawing.Point(137, 366);
             this.btnInicioSesion.Name = "btnInicioSesion";
-            this.btnInicioSesion.Size = new System.Drawing.Size(89, 27);
+            this.btnInicioSesion.Size = new System.Drawing.Size(134, 42);
             this.btnInicioSesion.TabIndex = 0;
             this.btnInicioSesion.Text = "Iniciar Sesion";
             this.btnInicioSesion.UseVisualStyleBackColor = true;
             this.btnInicioSesion.Click += new System.EventHandler(this.btnInicioSesion_Click);
             // 
-            // label1
+            // labelCorreo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(79, 79);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Correo";
+            this.labelCorreo.AutoSize = true;
+            this.labelCorreo.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.labelCorreo.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCorreo.Location = new System.Drawing.Point(53, 155);
+            this.labelCorreo.Name = "labelCorreo";
+            this.labelCorreo.Size = new System.Drawing.Size(86, 32);
+            this.labelCorreo.TabIndex = 1;
+            this.labelCorreo.Text = "Correo";
+            this.labelCorreo.Click += new System.EventHandler(this.labelCorreo_Click);
             // 
-            // label2
+            // labelContraseña
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(79, 151);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Contraseña";
+            this.labelContraseña.AutoSize = true;
+            this.labelContraseña.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.labelContraseña.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelContraseña.Location = new System.Drawing.Point(53, 243);
+            this.labelContraseña.Name = "labelContraseña";
+            this.labelContraseña.Size = new System.Drawing.Size(134, 32);
+            this.labelContraseña.TabIndex = 2;
+            this.labelContraseña.Text = "Contraseña";
+            this.labelContraseña.Click += new System.EventHandler(this.labelContraseña_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(321, 276);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(488, 434);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(254, 13);
+            this.label3.Size = new System.Drawing.Size(378, 20);
             this.label3.TabIndex = 3;
             this.label3.Text = "Ministerio de Seguridad de la provincia de Corrientes";
             // 
             // textBoxContraseña
             // 
-            this.textBoxContraseña.Location = new System.Drawing.Point(81, 179);
-            this.textBoxContraseña.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxContraseña.Location = new System.Drawing.Point(59, 278);
             this.textBoxContraseña.Multiline = true;
             this.textBoxContraseña.Name = "textBoxContraseña";
-            this.textBoxContraseña.Size = new System.Drawing.Size(182, 22);
+            this.textBoxContraseña.Size = new System.Drawing.Size(305, 32);
             this.textBoxContraseña.TabIndex = 5;
             this.textBoxContraseña.UseSystemPasswordChar = true;
+            this.textBoxContraseña.TextChanged += new System.EventHandler(this.textBoxContraseña_TextChanged);
             // 
             // textBoxCorreo
             // 
-            this.textBoxCorreo.Location = new System.Drawing.Point(82, 107);
-            this.textBoxCorreo.Margin = new System.Windows.Forms.Padding(2);
+            this.textBoxCorreo.Location = new System.Drawing.Point(59, 190);
             this.textBoxCorreo.Multiline = true;
             this.textBoxCorreo.Name = "textBoxCorreo";
-            this.textBoxCorreo.Size = new System.Drawing.Size(182, 22);
+            this.textBoxCorreo.Size = new System.Drawing.Size(305, 32);
             this.textBoxCorreo.TabIndex = 7;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
-            this.pictureBox1.Location = new System.Drawing.Point(336, 47);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(510, 81);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(229, 226);
+            this.pictureBox1.Size = new System.Drawing.Size(344, 348);
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(15, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(403, 32);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "Bienvenido al Sistemade operadores";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label2.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label2.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(91, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(220, 32);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "del servicio del 911";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.checkBoxMostrarContraseña);
+            this.panel1.Controls.Add(this.textBoxCorreo);
+            this.panel1.Controls.Add(this.textBoxContraseña);
+            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btnInicioSesion);
+            this.panel1.Controls.Add(this.labelContraseña);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.labelCorreo);
+            this.panel1.Location = new System.Drawing.Point(28, 46);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(436, 436);
+            this.panel1.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Symbol", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(54, 91);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(310, 28);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Ingrese sus Credenciales de Sesion";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // checkBoxMostrarContraseña
+            // 
+            this.checkBoxMostrarContraseña.AutoSize = true;
+            this.checkBoxMostrarContraseña.Location = new System.Drawing.Point(74, 316);
+            this.checkBoxMostrarContraseña.Name = "checkBoxMostrarContraseña";
+            this.checkBoxMostrarContraseña.Size = new System.Drawing.Size(176, 24);
+            this.checkBoxMostrarContraseña.TabIndex = 11;
+            this.checkBoxMostrarContraseña.Text = "Mostrar Contraseña";
+            this.checkBoxMostrarContraseña.UseVisualStyleBackColor = true;
+            this.checkBoxMostrarContraseña.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form3
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(595, 341);
-            this.Controls.Add(this.textBoxCorreo);
+            this.ClientSize = new System.Drawing.Size(892, 525);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.textBoxContraseña);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnInicioSesion);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Controls.Add(this.panel1);
             this.Name = "Form3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form3";
+            this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,11 +201,16 @@
         #endregion
 
         private System.Windows.Forms.Button btnInicioSesion;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelCorreo;
+        private System.Windows.Forms.Label labelContraseña;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxContraseña;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBoxCorreo;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox checkBoxMostrarContraseña;
     }
 }

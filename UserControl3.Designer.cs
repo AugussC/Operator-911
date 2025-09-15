@@ -48,13 +48,17 @@
             this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelTitulo_Patrullas = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelNroPlaca
             // 
             this.labelNroPlaca.AutoSize = true;
-            this.labelNroPlaca.Location = new System.Drawing.Point(60, 347);
+            this.labelNroPlaca.Location = new System.Drawing.Point(37, 207);
             this.labelNroPlaca.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNroPlaca.Name = "labelNroPlaca";
             this.labelNroPlaca.Size = new System.Drawing.Size(99, 20);
@@ -63,32 +67,33 @@
             // 
             // textBoxNroPlaca
             // 
-            this.textBoxNroPlaca.Location = new System.Drawing.Point(64, 371);
+            this.textBoxNroPlaca.Location = new System.Drawing.Point(41, 232);
             this.textBoxNroPlaca.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNroPlaca.Name = "textBoxNroPlaca";
-            this.textBoxNroPlaca.Size = new System.Drawing.Size(603, 26);
+            this.textBoxNroPlaca.Size = new System.Drawing.Size(522, 26);
             this.textBoxNroPlaca.TabIndex = 1;
+            this.textBoxNroPlaca.TextChanged += new System.EventHandler(this.textBoxNroPlaca_TextChanged);
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(64, 445);
+            this.textBoxNombre.Location = new System.Drawing.Point(41, 306);
             this.textBoxNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNombre.Name = "textBoxNombre";
-            this.textBoxNombre.Size = new System.Drawing.Size(603, 26);
+            this.textBoxNombre.Size = new System.Drawing.Size(522, 26);
             this.textBoxNombre.TabIndex = 2;
             // 
             // textBoxApellido
             // 
-            this.textBoxApellido.Location = new System.Drawing.Point(64, 520);
+            this.textBoxApellido.Location = new System.Drawing.Point(41, 381);
             this.textBoxApellido.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxApellido.Name = "textBoxApellido";
-            this.textBoxApellido.Size = new System.Drawing.Size(603, 26);
+            this.textBoxApellido.Size = new System.Drawing.Size(522, 26);
             this.textBoxApellido.TabIndex = 3;
             // 
             // labelNombre
             // 
             this.labelNombre.AutoSize = true;
-            this.labelNombre.Location = new System.Drawing.Point(60, 420);
+            this.labelNombre.Location = new System.Drawing.Point(37, 281);
             this.labelNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(65, 20);
@@ -98,7 +103,7 @@
             // labelApellido
             // 
             this.labelApellido.AutoSize = true;
-            this.labelApellido.Location = new System.Drawing.Point(60, 496);
+            this.labelApellido.Location = new System.Drawing.Point(37, 356);
             this.labelApellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelApellido.Name = "labelApellido";
             this.labelApellido.Size = new System.Drawing.Size(65, 20);
@@ -108,7 +113,7 @@
             // labelDNI
             // 
             this.labelDNI.AutoSize = true;
-            this.labelDNI.Location = new System.Drawing.Point(60, 571);
+            this.labelDNI.Location = new System.Drawing.Point(37, 432);
             this.labelDNI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDNI.Name = "labelDNI";
             this.labelDNI.Size = new System.Drawing.Size(37, 20);
@@ -117,24 +122,24 @@
             // 
             // textBoxDNI
             // 
-            this.textBoxDNI.Location = new System.Drawing.Point(64, 596);
+            this.textBoxDNI.Location = new System.Drawing.Point(41, 457);
             this.textBoxDNI.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxDNI.Name = "textBoxDNI";
-            this.textBoxDNI.Size = new System.Drawing.Size(603, 26);
+            this.textBoxDNI.Size = new System.Drawing.Size(522, 26);
             this.textBoxDNI.TabIndex = 7;
             // 
             // textBoxTelefono
             // 
-            this.textBoxTelefono.Location = new System.Drawing.Point(64, 671);
+            this.textBoxTelefono.Location = new System.Drawing.Point(41, 532);
             this.textBoxTelefono.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxTelefono.Name = "textBoxTelefono";
-            this.textBoxTelefono.Size = new System.Drawing.Size(603, 26);
+            this.textBoxTelefono.Size = new System.Drawing.Size(522, 26);
             this.textBoxTelefono.TabIndex = 8;
             // 
             // labelTelefono
             // 
             this.labelTelefono.AutoSize = true;
-            this.labelTelefono.Location = new System.Drawing.Point(60, 647);
+            this.labelTelefono.Location = new System.Drawing.Point(37, 507);
             this.labelTelefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTelefono.Name = "labelTelefono";
             this.labelTelefono.Size = new System.Drawing.Size(71, 20);
@@ -143,7 +148,7 @@
             // 
             // btnAgregarPatrulla
             // 
-            this.btnAgregarPatrulla.Location = new System.Drawing.Point(151, 790);
+            this.btnAgregarPatrulla.Location = new System.Drawing.Point(90, 620);
             this.btnAgregarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregarPatrulla.Name = "btnAgregarPatrulla";
             this.btnAgregarPatrulla.Size = new System.Drawing.Size(126, 46);
@@ -153,7 +158,7 @@
             // 
             // btnEditarPatrulla
             // 
-            this.btnEditarPatrulla.Location = new System.Drawing.Point(287, 790);
+            this.btnEditarPatrulla.Location = new System.Drawing.Point(235, 620);
             this.btnEditarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditarPatrulla.Name = "btnEditarPatrulla";
             this.btnEditarPatrulla.Size = new System.Drawing.Size(126, 46);
@@ -163,7 +168,7 @@
             // 
             // btnEliminarPatrulla
             // 
-            this.btnEliminarPatrulla.Location = new System.Drawing.Point(421, 790);
+            this.btnEliminarPatrulla.Location = new System.Drawing.Point(383, 620);
             this.btnEliminarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEliminarPatrulla.Name = "btnEliminarPatrulla";
             this.btnEliminarPatrulla.Size = new System.Drawing.Size(126, 46);
@@ -180,11 +185,11 @@
             this.Nombre,
             this.DNI,
             this.Telefono});
-            this.dataGridView1.Location = new System.Drawing.Point(772, 155);
+            this.dataGridView1.Location = new System.Drawing.Point(740, 190);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.Size = new System.Drawing.Size(884, 839);
+            this.dataGridView1.Size = new System.Drawing.Size(867, 804);
             this.dataGridView1.TabIndex = 13;
             // 
             // Nro_Placa
@@ -226,37 +231,69 @@
             // 
             this.labelTitulo_Patrullas.AutoSize = true;
             this.labelTitulo_Patrullas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo_Patrullas.Location = new System.Drawing.Point(210, 182);
+            this.labelTitulo_Patrullas.Location = new System.Drawing.Point(129, 71);
             this.labelTitulo_Patrullas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo_Patrullas.Name = "labelTitulo_Patrullas";
             this.labelTitulo_Patrullas.Size = new System.Drawing.Size(336, 37);
             this.labelTitulo_Patrullas.TabIndex = 24;
             this.labelTitulo_Patrullas.Text = "Administrar Patrullas";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Location = new System.Drawing.Point(1676, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(117, 1075);
+            this.panel1.TabIndex = 26;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel2.Controls.Add(this.labelNroPlaca);
+            this.panel2.Controls.Add(this.labelTitulo_Patrullas);
+            this.panel2.Controls.Add(this.textBoxNroPlaca);
+            this.panel2.Controls.Add(this.labelNombre);
+            this.panel2.Controls.Add(this.btnEliminarPatrulla);
+            this.panel2.Controls.Add(this.textBoxNombre);
+            this.panel2.Controls.Add(this.btnEditarPatrulla);
+            this.panel2.Controls.Add(this.labelApellido);
+            this.panel2.Controls.Add(this.btnAgregarPatrulla);
+            this.panel2.Controls.Add(this.textBoxApellido);
+            this.panel2.Controls.Add(this.textBoxTelefono);
+            this.panel2.Controls.Add(this.labelTelefono);
+            this.panel2.Controls.Add(this.labelDNI);
+            this.panel2.Controls.Add(this.textBoxDNI);
+            this.panel2.Location = new System.Drawing.Point(62, 190);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(617, 778);
+            this.panel2.TabIndex = 27;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1026, 100);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(278, 37);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Lista de patrullas";
+            // 
             // UCPoliciasComisario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.labelTitulo_Patrullas);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnEliminarPatrulla);
-            this.Controls.Add(this.btnEditarPatrulla);
-            this.Controls.Add(this.btnAgregarPatrulla);
-            this.Controls.Add(this.labelTelefono);
-            this.Controls.Add(this.textBoxTelefono);
-            this.Controls.Add(this.textBoxDNI);
-            this.Controls.Add(this.labelDNI);
-            this.Controls.Add(this.labelApellido);
-            this.Controls.Add(this.labelNombre);
-            this.Controls.Add(this.textBoxApellido);
-            this.Controls.Add(this.textBoxNombre);
-            this.Controls.Add(this.textBoxNroPlaca);
-            this.Controls.Add(this.labelNroPlaca);
+            this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UCPoliciasComisario";
             this.Size = new System.Drawing.Size(1743, 1075);
             this.Load += new System.EventHandler(this.UCPoliciasComisario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -284,5 +321,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.Label labelTitulo_Patrullas;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
     }
 }

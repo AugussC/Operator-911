@@ -17,8 +17,6 @@ namespace Operador_911
         public Form3()
         {
             InitializeComponent();
-
-            
             textBoxContraseña.KeyPress += textBoxContraseña_KeyPress;
         }
 
@@ -32,7 +30,6 @@ namespace Operador_911
         // Contraseña: podés elegir reglas (ej: letras y números, sin espacios)
         private void textBoxContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            textBoxContraseña.UseSystemPasswordChar = true;
             // Ejemplo: no permitir espacios
             if (char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
@@ -121,5 +118,36 @@ namespace Operador_911
             }
         }
 
+        private void labelCorreo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelContraseña_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxContraseña_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
