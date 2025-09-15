@@ -57,6 +57,7 @@ namespace Operador_911
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             LoadUserControl(new UCInicioSupervisor());
         }
 

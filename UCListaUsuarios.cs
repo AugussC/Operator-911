@@ -24,7 +24,16 @@ namespace Operador_911
             textBoxDNI.KeyPress += textBoxDNI_KeyPress;
             textBoxContraseña.KeyPress += textBoxContraseña_KeyPress;
             CargarUsuarios();
+            dataGridUsuarios.DataBindingComplete += DataGridUsuarios_DataBindingComplete;
+
         }
+
+        private void DataGridUsuarios_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dataGridUsuarios.ClearSelection(); // Quita la selección inicial
+            LimpiarFormulario(); // Limpiar formulario y desactivar editar
+        }
+
 
         private string HashPassword(string password)
         {
@@ -74,7 +83,7 @@ namespace Operador_911
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
-            textBoxContraseña.UseSystemPasswordChar = !checkBoxContraseña2.Checked;
+            textBoxConfirmarContraseña.UseSystemPasswordChar = !checkBoxContraseña2.Checked;
         }
 
         // validacion
@@ -200,6 +209,21 @@ namespace Operador_911
 
                 dataGridUsuarios.DataSource = dt;
             }
+            dataGridUsuarios.ClearSelection(); // Evita que se seleccione la primera fila
+            LimpiarFormulario(); // Limpia los TextBox y desactiva editar
+
+        }
+
+        private void LimpiarFormulario()
+        {
+            textBoxNombre.Text = "";
+            textBoxApellido.Text = "";
+            textBoxDNI.Text = "";
+            textBoxCorreo.Text = "";
+            comboBoxRol.SelectedIndex = -1;
+            textBoxContraseña.Text = "";
+            textBoxConfirmarContraseña.Text = "";
+            btnEditarUsuario.Enabled = false;
         }
 
 
@@ -219,6 +243,9 @@ namespace Operador_911
 
                 dataGridUsuarios.DataSource = dt;
             }
+            dataGridUsuarios.ClearSelection(); // Evita que se seleccione la primera fila
+            LimpiarFormulario(); // Limpia los TextBox y desactiva editar
+
         }
         private void btnUsuarioEliminado_Click(object sender, EventArgs e)
         {
@@ -358,7 +385,7 @@ namespace Operador_911
 
         private void dataGridUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // para que no tome el header
+            if (e.RowIndex >= 0) // Solo si es fila de datos, no encabezado
             {
                 DataGridViewRow fila = dataGridUsuarios.Rows[e.RowIndex];
 
@@ -367,8 +394,11 @@ namespace Operador_911
                 textBoxDNI.Text = fila.Cells["DNI"].Value.ToString();
                 textBoxCorreo.Text = fila.Cells["correo"].Value.ToString();
                 comboBoxRol.Text = fila.Cells["rol"].Value.ToString();
+
+                btnEditarUsuario.Enabled = true; // Activar editar solo si hay selección
             }
         }
+
 
         private void dataGridUsuarios_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
@@ -383,5 +413,127 @@ namespace Operador_911
         {
 
         }
+
+        private void btnEditarUsuario_Click(object sender, EventArgs e)
+        {
+            // Validar selección
+            if (dataGridUsuarios.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un usuario para editar.");
+                return;
+            }
+
+            int idUsuario = Convert.ToInt32(dataGridUsuarios.CurrentRow.Cells["id_usuario"].Value);
+
+            // Obtener datos de los TextBox
+            string nombre = textBoxNombre.Text.Trim();
+            string apellido = textBoxApellido.Text.Trim();
+            string dni = textBoxDNI.Text.Trim();
+            string correo = textBoxCorreo.Text.Trim();
+            string rol = comboBoxRol.SelectedItem != null ? comboBoxRol.SelectedItem.ToString() : "";
+
+            // Validar campos obligatorios
+            if (string.IsNullOrEmpty(nombre) ||
+                string.IsNullOrEmpty(apellido) ||
+                string.IsNullOrEmpty(dni) ||
+                string.IsNullOrEmpty(correo) ||
+                string.IsNullOrEmpty(rol))
+            {
+                MessageBox.Show("Todos los campos obligatorios deben estar completos.");
+                return;
+            }
+
+            // Validar DNI solo números
+            if (!dni.All(char.IsDigit))
+            {
+                MessageBox.Show("El DNI debe contener solo números.");
+                return;
+            }
+
+            // Validar rol permitido
+            string[] rolesPermitidos = { "Jefe Operador", "Operador", "Comisario" };
+            if (!rolesPermitidos.Contains(rol))
+            {
+                MessageBox.Show("Seleccione un rol válido (Jefe Operador, Operador o Comisario).");
+                return;
+            }
+
+            // Contraseña opcional: solo se actualiza si el usuario la completa
+            string contraseña = textBoxContraseña.Text.Trim();
+            string confirmarContraseña = textBoxConfirmarContraseña.Text.Trim();
+            string contraseñaHash = null;
+
+            if (!string.IsNullOrEmpty(contraseña) || !string.IsNullOrEmpty(confirmarContraseña))
+            {
+                if (contraseña != confirmarContraseña)
+                {
+                    MessageBox.Show("Las contraseñas no coinciden.");
+                    return;
+                }
+                contraseñaHash = HashPassword(contraseña);
+            }
+
+            try
+            {
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string query;
+
+                    if (contraseñaHash != null)
+                    {
+                        query = "UPDATE Usuario SET nombre=@nombre, apellido=@apellido, dni=@dni, correo=@correo, rol=@rol, contraseña=@contraseña WHERE id_usuario=@id";
+                    }
+                    else
+                    {
+                        query = "UPDATE Usuario SET nombre=@nombre, apellido=@apellido, dni=@dni, correo=@correo, rol=@rol WHERE id_usuario=@id";
+                    }
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idUsuario);
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.Parameters.AddWithValue("@apellido", apellido);
+                        cmd.Parameters.AddWithValue("@dni", dni);
+                        cmd.Parameters.AddWithValue("@correo", correo);
+                        cmd.Parameters.AddWithValue("@rol", rol);
+
+                        if (contraseñaHash != null)
+                            cmd.Parameters.AddWithValue("@contraseña", contraseñaHash);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Usuario actualizado correctamente ✅");
+
+                // Refrescar grilla
+                CargarUsuarios();
+
+                // Limpiar campos de contraseña
+                textBoxContraseña.Text = "";
+                textBoxConfirmarContraseña.Text = "";
+                LimpiarFormulario();
+                dataGridUsuarios.ClearSelection();
+
+                if (btnUsuarioEliminado.Text == "Ver Usuarios Eliminados")
+                {
+                    CargarUsuarios();
+                }
+                else
+                {
+                    
+                    CargarUsuariosEliminados();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar usuario: " + ex.Message);
+            }
+
+        }
+
     }
+
 }
+
