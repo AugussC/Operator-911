@@ -44,7 +44,8 @@
             // 
             // btnInicioSesion
             // 
-            this.btnInicioSesion.Location = new System.Drawing.Point(135, 279);
+            this.btnInicioSesion.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInicioSesion.Location = new System.Drawing.Point(131, 295);
             this.btnInicioSesion.Name = "btnInicioSesion";
             this.btnInicioSesion.Size = new System.Drawing.Size(134, 42);
             this.btnInicioSesion.TabIndex = 0;
@@ -57,7 +58,7 @@
             this.labelCorreo.AutoSize = true;
             this.labelCorreo.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.labelCorreo.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCorreo.Location = new System.Drawing.Point(57, 67);
+            this.labelCorreo.Location = new System.Drawing.Point(56, 81);
             this.labelCorreo.Name = "labelCorreo";
             this.labelCorreo.Size = new System.Drawing.Size(86, 32);
             this.labelCorreo.TabIndex = 1;
@@ -69,7 +70,7 @@
             this.labelContraseña.AutoSize = true;
             this.labelContraseña.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.labelContraseña.Font = new System.Drawing.Font("Segoe UI Symbol", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelContraseña.Location = new System.Drawing.Point(57, 152);
+            this.labelContraseña.Location = new System.Drawing.Point(56, 166);
             this.labelContraseña.Name = "labelContraseña";
             this.labelContraseña.Size = new System.Drawing.Size(134, 32);
             this.labelContraseña.TabIndex = 2;
@@ -87,7 +88,7 @@
             // 
             // textBoxContraseña
             // 
-            this.textBoxContraseña.Location = new System.Drawing.Point(48, 187);
+            this.textBoxContraseña.Location = new System.Drawing.Point(47, 201);
             this.textBoxContraseña.Name = "textBoxContraseña";
             this.textBoxContraseña.Size = new System.Drawing.Size(305, 26);
             this.textBoxContraseña.TabIndex = 5;
@@ -96,7 +97,7 @@
             // 
             // textBoxCorreo
             // 
-            this.textBoxCorreo.Location = new System.Drawing.Point(48, 102);
+            this.textBoxCorreo.Location = new System.Drawing.Point(47, 116);
             this.textBoxCorreo.Name = "textBoxCorreo";
             this.textBoxCorreo.Size = new System.Drawing.Size(305, 26);
             this.textBoxCorreo.TabIndex = 7;
@@ -120,17 +121,18 @@
             this.panel1.Controls.Add(this.btnInicioSesion);
             this.panel1.Controls.Add(this.labelContraseña);
             this.panel1.Controls.Add(this.labelCorreo);
-            this.panel1.Location = new System.Drawing.Point(46, 89);
+            this.panel1.Location = new System.Drawing.Point(54, 81);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(402, 340);
+            this.panel1.Size = new System.Drawing.Size(402, 373);
             this.panel1.TabIndex = 10;
             // 
             // checkBoxContraseña
             // 
             this.checkBoxContraseña.AutoSize = true;
-            this.checkBoxContraseña.Location = new System.Drawing.Point(63, 234);
+            this.checkBoxContraseña.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBoxContraseña.Location = new System.Drawing.Point(62, 244);
             this.checkBoxContraseña.Name = "checkBoxContraseña";
-            this.checkBoxContraseña.Size = new System.Drawing.Size(176, 24);
+            this.checkBoxContraseña.Size = new System.Drawing.Size(172, 23);
             this.checkBoxContraseña.TabIndex = 11;
             this.checkBoxContraseña.Text = "Mostrar Contraseña";
             this.checkBoxContraseña.UseVisualStyleBackColor = true;
@@ -140,10 +142,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.label4.Font = new System.Drawing.Font("Segoe UI Symbol", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(43, 26);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(310, 28);
+            this.label4.Size = new System.Drawing.Size(323, 24);
             this.label4.TabIndex = 10;
             this.label4.Text = "Ingrese sus Credenciales de Sesion";
             this.label4.Click += new System.EventHandler(this.label4_Click);

@@ -62,10 +62,11 @@ namespace Operador_911
             // tituloPrograma
             // 
             this.tituloPrograma.AutoSize = true;
+            this.tituloPrograma.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tituloPrograma.Location = new System.Drawing.Point(138, 26);
             this.tituloPrograma.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tituloPrograma.Name = "tituloPrograma";
-            this.tituloPrograma.Size = new System.Drawing.Size(107, 20);
+            this.tituloPrograma.Size = new System.Drawing.Size(119, 22);
             this.tituloPrograma.TabIndex = 1;
             this.tituloPrograma.Text = "911 Operador";
             // 
@@ -94,7 +95,7 @@ namespace Operador_911
             // 
             // btnRestore
             // 
-            this.btnRestore.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRestore.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRestore.Location = new System.Drawing.Point(20, 406);
             this.btnRestore.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRestore.Name = "btnRestore";
@@ -106,7 +107,7 @@ namespace Operador_911
             // 
             // btnUsuarios
             // 
-            this.btnUsuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuarios.Location = new System.Drawing.Point(20, 289);
             this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUsuarios.Name = "btnUsuarios";
@@ -117,7 +118,7 @@ namespace Operador_911
             // 
             // btnReportes
             // 
-            this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.Location = new System.Drawing.Point(20, 175);
             this.btnReportes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReportes.Name = "btnReportes";
@@ -128,13 +129,13 @@ namespace Operador_911
             // 
             // btnInicio_supervisor
             // 
-            this.btnInicio_supervisor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInicio_supervisor.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInicio_supervisor.Location = new System.Drawing.Point(20, 58);
             this.btnInicio_supervisor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnInicio_supervisor.Name = "btnInicio_supervisor";
             this.btnInicio_supervisor.Size = new System.Drawing.Size(226, 77);
             this.btnInicio_supervisor.TabIndex = 0;
-            this.btnInicio_supervisor.Text = "Inicio/Estadisticas";
+            this.btnInicio_supervisor.Text = "Inicio";
             this.btnInicio_supervisor.UseVisualStyleBackColor = true;
             // 
             // panel_supervisor

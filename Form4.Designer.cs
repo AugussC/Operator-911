@@ -58,10 +58,11 @@
             // tituloPrograma
             // 
             this.tituloPrograma.AutoSize = true;
+            this.tituloPrograma.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tituloPrograma.Location = new System.Drawing.Point(138, 26);
             this.tituloPrograma.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tituloPrograma.Name = "tituloPrograma";
-            this.tituloPrograma.Size = new System.Drawing.Size(107, 20);
+            this.tituloPrograma.Size = new System.Drawing.Size(119, 22);
             this.tituloPrograma.TabIndex = 1;
             this.tituloPrograma.Text = "911 Operador";
             // 
@@ -90,7 +91,7 @@
             // 
             // btnHorarios
             // 
-            this.btnHorarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHorarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHorarios.Location = new System.Drawing.Point(20, 446);
             this.btnHorarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnHorarios.Name = "btnHorarios";
@@ -102,7 +103,7 @@
             // 
             // btnPolicias
             // 
-            this.btnPolicias.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPolicias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPolicias.Location = new System.Drawing.Point(20, 311);
             this.btnPolicias.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPolicias.Name = "btnPolicias";
@@ -114,7 +115,7 @@
             // 
             // btnPatrulla
             // 
-            this.btnPatrulla.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPatrulla.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPatrulla.Location = new System.Drawing.Point(20, 175);
             this.btnPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPatrulla.Name = "btnPatrulla";
@@ -126,7 +127,7 @@
             // 
             // btnInicio
             // 
-            this.btnInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInicio.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInicio.Location = new System.Drawing.Point(20, 58);
             this.btnInicio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnInicio.Name = "btnInicio";

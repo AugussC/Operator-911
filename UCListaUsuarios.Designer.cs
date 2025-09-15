@@ -60,20 +60,22 @@
             // labelPass
             // 
             this.labelPass.AutoSize = true;
-            this.labelPass.Location = new System.Drawing.Point(72, 416);
+            this.labelPass.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPass.Location = new System.Drawing.Point(72, 414);
             this.labelPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPass.Name = "labelPass";
-            this.labelPass.Size = new System.Drawing.Size(92, 20);
+            this.labelPass.Size = new System.Drawing.Size(98, 22);
             this.labelPass.TabIndex = 14;
             this.labelPass.Text = "Contraseña";
             // 
             // labelRol
             // 
             this.labelRol.AutoSize = true;
+            this.labelRol.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelRol.Location = new System.Drawing.Point(72, 631);
             this.labelRol.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelRol.Name = "labelRol";
-            this.labelRol.Size = new System.Drawing.Size(33, 20);
+            this.labelRol.Size = new System.Drawing.Size(35, 22);
             this.labelRol.TabIndex = 12;
             this.labelRol.Text = "Rol";
             // 
@@ -88,10 +90,11 @@
             // labelDNI
             // 
             this.labelDNI.AutoSize = true;
-            this.labelDNI.Location = new System.Drawing.Point(72, 257);
+            this.labelDNI.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDNI.Location = new System.Drawing.Point(72, 255);
             this.labelDNI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDNI.Name = "labelDNI";
-            this.labelDNI.Size = new System.Drawing.Size(301, 20);
+            this.labelDNI.Size = new System.Drawing.Size(339, 22);
             this.labelDNI.TabIndex = 10;
             this.labelDNI.Text = "Documento Nacional de Indentidad (DNI)";
             this.labelDNI.Click += new System.EventHandler(this.labelCodigo_Click);
@@ -119,6 +122,7 @@
             // 
             // btnEliminarUsuario
             // 
+            this.btnEliminarUsuario.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminarUsuario.Location = new System.Drawing.Point(385, 718);
             this.btnEliminarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEliminarUsuario.Name = "btnEliminarUsuario";
@@ -130,6 +134,7 @@
             // 
             // btnEditarUsuario
             // 
+            this.btnEditarUsuario.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarUsuario.Location = new System.Drawing.Point(238, 718);
             this.btnEditarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditarUsuario.Name = "btnEditarUsuario";
@@ -140,6 +145,7 @@
             // 
             // btnAgregarUsuario
             // 
+            this.btnAgregarUsuario.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarUsuario.Location = new System.Drawing.Point(85, 718);
             this.btnAgregarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregarUsuario.Name = "btnAgregarUsuario";
@@ -195,20 +201,22 @@
             // labelApellido
             // 
             this.labelApellido.AutoSize = true;
-            this.labelApellido.Location = new System.Drawing.Point(72, 178);
+            this.labelApellido.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelApellido.Location = new System.Drawing.Point(72, 176);
             this.labelApellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelApellido.Name = "labelApellido";
-            this.labelApellido.Size = new System.Drawing.Size(65, 20);
+            this.labelApellido.Size = new System.Drawing.Size(72, 22);
             this.labelApellido.TabIndex = 25;
             this.labelApellido.Text = "Apellido";
             // 
             // labelNombre
             // 
             this.labelNombre.AutoSize = true;
-            this.labelNombre.Location = new System.Drawing.Point(72, 101);
+            this.labelNombre.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombre.Location = new System.Drawing.Point(72, 99);
             this.labelNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(65, 20);
+            this.labelNombre.Size = new System.Drawing.Size(72, 22);
             this.labelNombre.TabIndex = 24;
             this.labelNombre.Text = "Nombre";
             this.labelNombre.Click += new System.EventHandler(this.label3_Click);
@@ -238,10 +246,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 335);
+            this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(72, 333);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 20);
+            this.label1.Size = new System.Drawing.Size(62, 22);
             this.label1.TabIndex = 29;
             this.label1.Text = "Correo";
             // 
@@ -257,15 +266,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 525);
+            this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(72, 523);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(165, 20);
+            this.label2.Size = new System.Drawing.Size(181, 22);
             this.label2.TabIndex = 31;
             this.label2.Text = "Confirmar Contraseña";
             // 
             // btnUsuarioEliminado
             // 
+            this.btnUsuarioEliminado.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuarioEliminado.Location = new System.Drawing.Point(1408, 132);
             this.btnUsuarioEliminado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUsuarioEliminado.Name = "btnUsuarioEliminado";
@@ -315,9 +326,10 @@
             // checkBoxContraseña1
             // 
             this.checkBoxContraseña1.AutoSize = true;
+            this.checkBoxContraseña1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxContraseña1.Location = new System.Drawing.Point(76, 475);
             this.checkBoxContraseña1.Name = "checkBoxContraseña1";
-            this.checkBoxContraseña1.Size = new System.Drawing.Size(176, 24);
+            this.checkBoxContraseña1.Size = new System.Drawing.Size(172, 23);
             this.checkBoxContraseña1.TabIndex = 35;
             this.checkBoxContraseña1.Text = "Mostrar Contraseña";
             this.checkBoxContraseña1.UseVisualStyleBackColor = true;
@@ -326,9 +338,10 @@
             // checkBoxContraseña2
             // 
             this.checkBoxContraseña2.AutoSize = true;
+            this.checkBoxContraseña2.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxContraseña2.Location = new System.Drawing.Point(76, 584);
             this.checkBoxContraseña2.Name = "checkBoxContraseña2";
-            this.checkBoxContraseña2.Size = new System.Drawing.Size(176, 24);
+            this.checkBoxContraseña2.Size = new System.Drawing.Size(172, 23);
             this.checkBoxContraseña2.TabIndex = 36;
             this.checkBoxContraseña2.Text = "Mostrar Contraseña";
             this.checkBoxContraseña2.UseVisualStyleBackColor = true;

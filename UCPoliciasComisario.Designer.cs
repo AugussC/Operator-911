@@ -58,16 +58,17 @@
             // labelNroPlaca
             // 
             this.labelNroPlaca.AutoSize = true;
-            this.labelNroPlaca.Location = new System.Drawing.Point(37, 207);
+            this.labelNroPlaca.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNroPlaca.Location = new System.Drawing.Point(37, 187);
             this.labelNroPlaca.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNroPlaca.Name = "labelNroPlaca";
-            this.labelNroPlaca.Size = new System.Drawing.Size(99, 20);
+            this.labelNroPlaca.Size = new System.Drawing.Size(109, 22);
             this.labelNroPlaca.TabIndex = 0;
             this.labelNroPlaca.Text = "Nro de Placa";
             // 
             // textBoxNroPlaca
             // 
-            this.textBoxNroPlaca.Location = new System.Drawing.Point(41, 232);
+            this.textBoxNroPlaca.Location = new System.Drawing.Point(41, 214);
             this.textBoxNroPlaca.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNroPlaca.Name = "textBoxNroPlaca";
             this.textBoxNroPlaca.Size = new System.Drawing.Size(522, 26);
@@ -76,7 +77,7 @@
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(41, 306);
+            this.textBoxNombre.Location = new System.Drawing.Point(41, 296);
             this.textBoxNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(522, 26);
@@ -84,7 +85,7 @@
             // 
             // textBoxApellido
             // 
-            this.textBoxApellido.Location = new System.Drawing.Point(41, 381);
+            this.textBoxApellido.Location = new System.Drawing.Point(41, 380);
             this.textBoxApellido.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxApellido.Name = "textBoxApellido";
             this.textBoxApellido.Size = new System.Drawing.Size(522, 26);
@@ -94,36 +95,39 @@
             // labelNombre
             // 
             this.labelNombre.AutoSize = true;
-            this.labelNombre.Location = new System.Drawing.Point(37, 281);
+            this.labelNombre.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNombre.Location = new System.Drawing.Point(37, 269);
             this.labelNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(65, 20);
+            this.labelNombre.Size = new System.Drawing.Size(72, 22);
             this.labelNombre.TabIndex = 4;
             this.labelNombre.Text = "Nombre";
             // 
             // labelApellido
             // 
             this.labelApellido.AutoSize = true;
-            this.labelApellido.Location = new System.Drawing.Point(37, 356);
+            this.labelApellido.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelApellido.Location = new System.Drawing.Point(37, 353);
             this.labelApellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelApellido.Name = "labelApellido";
-            this.labelApellido.Size = new System.Drawing.Size(65, 20);
+            this.labelApellido.Size = new System.Drawing.Size(72, 22);
             this.labelApellido.TabIndex = 5;
             this.labelApellido.Text = "Apellido";
             // 
             // labelDNI
             // 
             this.labelDNI.AutoSize = true;
-            this.labelDNI.Location = new System.Drawing.Point(37, 432);
+            this.labelDNI.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDNI.Location = new System.Drawing.Point(37, 442);
             this.labelDNI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDNI.Name = "labelDNI";
-            this.labelDNI.Size = new System.Drawing.Size(37, 20);
+            this.labelDNI.Size = new System.Drawing.Size(339, 22);
             this.labelDNI.TabIndex = 6;
-            this.labelDNI.Text = "DNI";
+            this.labelDNI.Text = "Documento Nacional de Indentidad (DNI)";
             // 
             // textBoxDNI
             // 
-            this.textBoxDNI.Location = new System.Drawing.Point(41, 457);
+            this.textBoxDNI.Location = new System.Drawing.Point(41, 469);
             this.textBoxDNI.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxDNI.Name = "textBoxDNI";
             this.textBoxDNI.Size = new System.Drawing.Size(522, 26);
@@ -131,7 +135,7 @@
             // 
             // textBoxTelefono
             // 
-            this.textBoxTelefono.Location = new System.Drawing.Point(41, 532);
+            this.textBoxTelefono.Location = new System.Drawing.Point(41, 556);
             this.textBoxTelefono.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxTelefono.Name = "textBoxTelefono";
             this.textBoxTelefono.Size = new System.Drawing.Size(522, 26);
@@ -140,16 +144,18 @@
             // labelTelefono
             // 
             this.labelTelefono.AutoSize = true;
-            this.labelTelefono.Location = new System.Drawing.Point(37, 507);
+            this.labelTelefono.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTelefono.Location = new System.Drawing.Point(37, 529);
             this.labelTelefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTelefono.Name = "labelTelefono";
-            this.labelTelefono.Size = new System.Drawing.Size(71, 20);
+            this.labelTelefono.Size = new System.Drawing.Size(79, 22);
             this.labelTelefono.TabIndex = 9;
             this.labelTelefono.Text = "Telefono";
             // 
             // btnAgregarPatrulla
             // 
-            this.btnAgregarPatrulla.Location = new System.Drawing.Point(90, 620);
+            this.btnAgregarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarPatrulla.Location = new System.Drawing.Point(95, 649);
             this.btnAgregarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregarPatrulla.Name = "btnAgregarPatrulla";
             this.btnAgregarPatrulla.Size = new System.Drawing.Size(126, 46);
@@ -159,7 +165,8 @@
             // 
             // btnEditarPatrulla
             // 
-            this.btnEditarPatrulla.Location = new System.Drawing.Point(235, 620);
+            this.btnEditarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarPatrulla.Location = new System.Drawing.Point(240, 649);
             this.btnEditarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditarPatrulla.Name = "btnEditarPatrulla";
             this.btnEditarPatrulla.Size = new System.Drawing.Size(126, 46);
@@ -169,7 +176,8 @@
             // 
             // btnEliminarPatrulla
             // 
-            this.btnEliminarPatrulla.Location = new System.Drawing.Point(383, 620);
+            this.btnEliminarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarPatrulla.Location = new System.Drawing.Point(388, 649);
             this.btnEliminarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEliminarPatrulla.Name = "btnEliminarPatrulla";
             this.btnEliminarPatrulla.Size = new System.Drawing.Size(126, 46);
@@ -232,7 +240,7 @@
             // 
             this.labelTitulo_Patrullas.AutoSize = true;
             this.labelTitulo_Patrullas.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo_Patrullas.Location = new System.Drawing.Point(129, 71);
+            this.labelTitulo_Patrullas.Location = new System.Drawing.Point(132, 84);
             this.labelTitulo_Patrullas.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo_Patrullas.Name = "labelTitulo_Patrullas";
             this.labelTitulo_Patrullas.Size = new System.Drawing.Size(336, 37);

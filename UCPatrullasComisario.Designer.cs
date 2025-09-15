@@ -87,15 +87,18 @@
             // labelCodigo
             // 
             this.labelCodigo.AutoSize = true;
-            this.labelCodigo.Location = new System.Drawing.Point(47, 248);
+            this.labelCodigo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCodigo.Location = new System.Drawing.Point(47, 246);
             this.labelCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCodigo.Name = "labelCodigo";
-            this.labelCodigo.Size = new System.Drawing.Size(99, 20);
+            this.labelCodigo.Size = new System.Drawing.Size(110, 22);
             this.labelCodigo.TabIndex = 1;
             this.labelCodigo.Text = "Nro Vehiculo";
+            this.labelCodigo.Click += new System.EventHandler(this.labelCodigo_Click);
             // 
             // btnAgregarPatrulla
             // 
+            this.btnAgregarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregarPatrulla.Location = new System.Drawing.Point(104, 590);
             this.btnAgregarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregarPatrulla.Name = "btnAgregarPatrulla";
@@ -106,6 +109,7 @@
             // 
             // btnEditarPatrulla
             // 
+            this.btnEditarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarPatrulla.Location = new System.Drawing.Point(247, 590);
             this.btnEditarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditarPatrulla.Name = "btnEditarPatrulla";
@@ -116,6 +120,7 @@
             // 
             // btnEliminarPatrulla
             // 
+            this.btnEliminarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminarPatrulla.Location = new System.Drawing.Point(390, 590);
             this.btnEliminarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEliminarPatrulla.Name = "btnEliminarPatrulla";
@@ -135,10 +140,11 @@
             // labelTipo
             // 
             this.labelTipo.AutoSize = true;
-            this.labelTipo.Location = new System.Drawing.Point(47, 340);
+            this.labelTipo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTipo.Location = new System.Drawing.Point(47, 338);
             this.labelTipo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTipo.Name = "labelTipo";
-            this.labelTipo.Size = new System.Drawing.Size(39, 20);
+            this.labelTipo.Size = new System.Drawing.Size(45, 22);
             this.labelTipo.TabIndex = 6;
             this.labelTipo.Text = "Tipo";
             // 
@@ -158,10 +164,11 @@
             // labelEstado
             // 
             this.labelEstado.AutoSize = true;
-            this.labelEstado.Location = new System.Drawing.Point(47, 427);
+            this.labelEstado.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEstado.Location = new System.Drawing.Point(47, 425);
             this.labelEstado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEstado.Name = "labelEstado";
-            this.labelEstado.Size = new System.Drawing.Size(60, 20);
+            this.labelEstado.Size = new System.Drawing.Size(63, 22);
             this.labelEstado.TabIndex = 8;
             this.labelEstado.Text = "Estado";
             // 

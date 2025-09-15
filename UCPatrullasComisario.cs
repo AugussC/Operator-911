@@ -46,5 +46,10 @@ namespace Operador_911
                 e.Handled = true;
             }
         }
+
+        private void labelCodigo_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

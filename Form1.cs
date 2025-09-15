@@ -1611,6 +1611,11 @@ namespace Operador_911
             gMapControl1.Refresh();
          
         }
+
+        private void panelNavegacion_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 

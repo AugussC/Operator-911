@@ -118,29 +118,29 @@
     <Compile Include="UCPlanillaSupervisor.Designer.cs">
       <DependentUpon>UCPlanillaSupervisor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl1.cs">
+    <Compile Include="UCInicioComisario.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <Compile Include="UCInicioComisario.Designer.cs">
+      <DependentUpon>UCInicioComisario.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl2.cs">
+    <Compile Include="UCPatrullasComisario.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl2.Designer.cs">
-      <DependentUpon>UserControl2.cs</DependentUpon>
+    <Compile Include="UCPatrullasComisario.Designer.cs">
+      <DependentUpon>UCPatrullasComisario.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl3.cs">
+    <Compile Include="UCPoliciasComisario.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl3.Designer.cs">
-      <DependentUpon>UserControl3.cs</DependentUpon>
+    <Compile Include="UCPoliciasComisario.Designer.cs">
+      <DependentUpon>UCPoliciasComisario.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl4.cs">
+    <Compile Include="UCPlanillaComisario.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl4.Designer.cs">
-      <DependentUpon>UserControl4.cs</DependentUpon>
+    <Compile Include="UCPlanillaComisario.Designer.cs">
+      <DependentUpon>UCPlanillaComisario.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -176,17 +176,17 @@
     <EmbeddedResource Include="UCPlanillaSupervisor.resx">
       <DependentUpon>UCPlanillaSupervisor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <EmbeddedResource Include="UCInicioComisario.resx">
+      <DependentUpon>UCInicioComisario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl2.resx">
-      <DependentUpon>UserControl2.cs</DependentUpon>
+    <EmbeddedResource Include="UCPatrullasComisario.resx">
+      <DependentUpon>UCPatrullasComisario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl3.resx">
-      <DependentUpon>UserControl3.cs</DependentUpon>
+    <EmbeddedResource Include="UCPoliciasComisario.resx">
+      <DependentUpon>UCPoliciasComisario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl4.resx">
-      <DependentUpon>UserControl4.cs</DependentUpon>
+    <EmbeddedResource Include="UCPlanillaComisario.resx">
+      <DependentUpon>UCPlanillaComisario.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

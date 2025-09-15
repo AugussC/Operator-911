@@ -63,30 +63,33 @@
             // labelPatrulla
             // 
             this.labelPatrulla.AutoSize = true;
-            this.labelPatrulla.Location = new System.Drawing.Point(92, 170);
+            this.labelPatrulla.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPatrulla.Location = new System.Drawing.Point(92, 168);
             this.labelPatrulla.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPatrulla.Name = "labelPatrulla";
-            this.labelPatrulla.Size = new System.Drawing.Size(62, 20);
+            this.labelPatrulla.Size = new System.Drawing.Size(68, 22);
             this.labelPatrulla.TabIndex = 1;
             this.labelPatrulla.Text = "Patrulla";
             // 
             // labelPolicia1
             // 
             this.labelPolicia1.AutoSize = true;
-            this.labelPolicia1.Location = new System.Drawing.Point(92, 277);
+            this.labelPolicia1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPolicia1.Location = new System.Drawing.Point(92, 275);
             this.labelPolicia1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPolicia1.Name = "labelPolicia1";
-            this.labelPolicia1.Size = new System.Drawing.Size(67, 20);
+            this.labelPolicia1.Size = new System.Drawing.Size(75, 22);
             this.labelPolicia1.TabIndex = 2;
             this.labelPolicia1.Text = "Policia 1";
             // 
             // labelPolicia2
             // 
             this.labelPolicia2.AutoSize = true;
-            this.labelPolicia2.Location = new System.Drawing.Point(92, 375);
+            this.labelPolicia2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPolicia2.Location = new System.Drawing.Point(92, 373);
             this.labelPolicia2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPolicia2.Name = "labelPolicia2";
-            this.labelPolicia2.Size = new System.Drawing.Size(67, 20);
+            this.labelPolicia2.Size = new System.Drawing.Size(75, 22);
             this.labelPolicia2.TabIndex = 3;
             this.labelPolicia2.Text = "Policia 2";
             // 
@@ -133,15 +136,17 @@
             // labelHorario
             // 
             this.labelHorario.AutoSize = true;
-            this.labelHorario.Location = new System.Drawing.Point(92, 475);
+            this.labelHorario.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelHorario.Location = new System.Drawing.Point(92, 473);
             this.labelHorario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelHorario.Name = "labelHorario";
-            this.labelHorario.Size = new System.Drawing.Size(61, 20);
+            this.labelHorario.Size = new System.Drawing.Size(67, 22);
             this.labelHorario.TabIndex = 8;
             this.labelHorario.Text = "Horario";
             // 
             // btnEditarPatrullas
             // 
+            this.btnEditarPatrullas.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarPatrullas.Location = new System.Drawing.Point(139, 692);
             this.btnEditarPatrullas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditarPatrullas.Name = "btnEditarPatrullas";
@@ -152,7 +157,7 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.Location = new System.Drawing.Point(1426, 123);
             this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLimpiar.Name = "btnLimpiar";
@@ -164,6 +169,7 @@
             // 
             // btnEliminarPatrullas
             // 
+            this.btnEliminarPatrullas.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminarPatrullas.Location = new System.Drawing.Point(329, 692);
             this.btnEliminarPatrullas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEliminarPatrullas.Name = "btnEliminarPatrullas";
@@ -175,10 +181,11 @@
             // labelDia
             // 
             this.labelDia.AutoSize = true;
-            this.labelDia.Location = new System.Drawing.Point(92, 577);
+            this.labelDia.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDia.Location = new System.Drawing.Point(92, 575);
             this.labelDia.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDia.Name = "labelDia";
-            this.labelDia.Size = new System.Drawing.Size(33, 20);
+            this.labelDia.Size = new System.Drawing.Size(35, 22);
             this.labelDia.TabIndex = 12;
             this.labelDia.Text = "Dia";
             // 
@@ -197,12 +204,12 @@
             // 
             this.labelTitulo_Usuarios.AutoSize = true;
             this.labelTitulo_Usuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo_Usuarios.Location = new System.Drawing.Point(89, 62);
+            this.labelTitulo_Usuarios.Location = new System.Drawing.Point(68, 61);
             this.labelTitulo_Usuarios.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo_Usuarios.Name = "labelTitulo_Usuarios";
-            this.labelTitulo_Usuarios.Size = new System.Drawing.Size(434, 37);
+            this.labelTitulo_Usuarios.Size = new System.Drawing.Size(489, 37);
             this.labelTitulo_Usuarios.TabIndex = 24;
-            this.labelTitulo_Usuarios.Text = "Gestion de planilla horarios";
+            this.labelTitulo_Usuarios.Text = "Gestion de Planilla de Horarios";
             // 
             // panel1
             // 
