@@ -1,6 +1,6 @@
 ﻿namespace Operador_911
 {
-    partial class Form1
+    partial class FormOperador
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -369,7 +369,7 @@
             this.btnJurisdicciones.UseVisualStyleBackColor = false;
             this.btnJurisdicciones.Click += new System.EventHandler(this.btnJurisdicciones_Click);
             // 
-            // Form1
+            // FormOperador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -380,10 +380,10 @@
             this.Controls.Add(this.panelMapa);
             this.Controls.Add(this.panelNavegacion);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "FormOperador";
+            this.Text = "FormOperador";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.Form1_Load_1);
+            this.Load += new System.EventHandler(this.FormOperador_Load_1);
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

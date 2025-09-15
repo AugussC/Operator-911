@@ -15,7 +15,7 @@ namespace Operador_911
         public UCPoliciasComisario()
         {
             InitializeComponent();
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FormOperador_Load);
 
             textBoxNombre.KeyPress += textBoxNombre_KeyPress;
             textBoxApellido.KeyPress += textBoxApellido_KeyPress;
@@ -23,7 +23,7 @@ namespace Operador_911
             textBoxNroPlaca.KeyPress += textBoxNroPlaca_KeyPress;
             textBoxTelefono.KeyPress += textBoxTelefono_KeyPress;
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormOperador_Load(object sender, EventArgs e)
         {
 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

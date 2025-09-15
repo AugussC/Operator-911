@@ -15,11 +15,11 @@ namespace Operador_911
         public UCPatrullasComisario()
         {
             InitializeComponent();
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FormOperador_Load);
 
             textNroVehiculo.KeyPress += textNroVehiculo_KeyPress;
         }
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormOperador_Load(object sender, EventArgs e)
         {
 
             dataGridViewPatrullas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

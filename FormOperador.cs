@@ -14,7 +14,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Operador_911
 {
-    public partial class Form1 : Form
+    public partial class FormOperador : Form
     {
         GMapOverlay markerPatrullas;
         GMapOverlay markerComisarias;
@@ -37,12 +37,12 @@ namespace Operador_911
             public List<PointLatLng> Puntos { get; set; }
         }
 
-        public Form1()
+        public FormOperador()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load_1(object sender, EventArgs e)
+        private void FormOperador_Load_1(object sender, EventArgs e)
         {
 
             gMapControl1.Dock = DockStyle.Fill;

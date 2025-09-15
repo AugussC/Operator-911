@@ -13,9 +13,9 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Operador_911
 {
-    public partial class Form3 : Form
+    public partial class FormLogin : Form
     {
-        public Form3()
+        public FormLogin()
         {
             InitializeComponent();
             textBoxContraseña.KeyPress += textBoxContraseña_KeyPress;
@@ -85,13 +85,13 @@ namespace Operador_911
                             switch (rol)
                             {
                                 case "Jefe Operador":
-                                    nextForm = new Form2();
+                                    nextForm = new FormJefeOperador();
                                     break;
                                 case "Operador":
-                                    nextForm = new Form1();
+                                    nextForm = new FormOperador();
                                     break;
                                 case "Comisario":
-                                    nextForm = new Form4();
+                                    nextForm = new FormComisario();
                                     break;
                                 default:
                                     MessageBox.Show("Rol desconocido.");
@@ -144,7 +144,7 @@ namespace Operador_911
             
         }
 
-        private void Form3_Load(object sender, EventArgs e)
+        private void FormLogin_Load(object sender, EventArgs e)
         {
             textBoxContraseña.UseSystemPasswordChar = true;
         }

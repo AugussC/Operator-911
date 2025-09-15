@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace Operador_911
 {
-    partial class Form2
+    partial class FormJefeOperador
     {
         /// <summary>
         /// Required designer variable.
@@ -149,7 +149,7 @@ namespace Operador_911
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // Form2
+            // FormJefeOperador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -158,8 +158,8 @@ namespace Operador_911
             this.Controls.Add(this.panelNavegacion);
             this.Controls.Add(this.panel_supervisor);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "Form2";
-            this.Text = "Form2";
+            this.Name = "FormJefeOperador";
+            this.Text = "FormJefeOperador";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();

@@ -1,6 +1,6 @@
 ﻿namespace Operador_911
 {
-    partial class Form3
+    partial class FormLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -150,7 +150,7 @@
             this.label4.Text = "Ingrese sus Credenciales de Sesion";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
-            // Form3
+            // FormLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -159,10 +159,10 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
-            this.Name = "Form3";
+            this.Name = "FormLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form3";
-            this.Load += new System.EventHandler(this.Form3_Load);
+            this.Text = "FormLogin";
+            this.Load += new System.EventHandler(this.FormLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

@@ -15,10 +15,10 @@ namespace Operador_911
         public UCPlanilla()
         {
             InitializeComponent();
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FormOperador_Load);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FormOperador_Load(object sender, EventArgs e)
         {
             // Crear columnas (días de la semana)
             string[] dias = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" };

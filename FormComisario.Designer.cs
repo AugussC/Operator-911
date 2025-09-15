@@ -1,6 +1,6 @@
 ﻿namespace Operador_911
 {
-    partial class Form4
+    partial class FormComisario
     {
         /// <summary>
         /// Required designer variable.
@@ -146,7 +146,7 @@
             this.panelComisario.TabIndex = 4;
             this.panelComisario.Paint += new System.Windows.Forms.PaintEventHandler(this.panelComisario_Paint);
             // 
-            // Form4
+            // FormComisario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -154,8 +154,8 @@
             this.Controls.Add(this.panelNavegacion);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelComisario);
-            this.Name = "Form4";
-            this.Text = "Form4";
+            this.Name = "FormComisario";
+            this.Text = "FormComisario";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();

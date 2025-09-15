@@ -12,9 +12,9 @@ using System.IO;
 
 namespace Operador_911
 {
-    public partial class Form2 : Form
+    public partial class FormJefeOperador : Form
     {
-        public Form2()
+        public FormJefeOperador()
         {
             InitializeComponent();
 
@@ -24,7 +24,7 @@ namespace Operador_911
             this.btnUsuarios.Click += btnUsuarios_Click;
             
 
-            this.Load += Form2_Load; // para mostrar Inicio por defecto al arrancar
+            this.Load += FormJefeOperador_Load; // para mostrar Inicio por defecto al arrancar
         }
 
         private void LoadUserControl(UserControl uc)
@@ -55,7 +55,7 @@ namespace Operador_911
 
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        private void FormJefeOperador_Load(object sender, EventArgs e)
         {
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             LoadUserControl(new UCInicioSupervisor());

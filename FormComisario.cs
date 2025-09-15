@@ -13,16 +13,16 @@ using System.Windows.Forms;
 
 namespace Operador_911
 {
-    public partial class Form4 : Form
+    public partial class FormComisario : Form
     {
-        public Form4()
+        public FormComisario()
         {
             InitializeComponent();
-            this.Load += new System.EventHandler(this.Form4_Load);
+            this.Load += new System.EventHandler(this.FormComisario_Load);
 
         }
 
-        private void Form4_Load(object sender, EventArgs e)
+        private void FormComisario_Load(object sender, EventArgs e)
         {
 
             
