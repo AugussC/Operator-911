@@ -82,5 +82,10 @@ namespace Operador_911
         {
 
         }
+
+        private void textBoxApellido_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

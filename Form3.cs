@@ -9,6 +9,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace Operador_911
 {
@@ -135,7 +136,7 @@ namespace Operador_911
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-
+            textBoxContraseña.UseSystemPasswordChar = !checkBoxContraseña.Checked;
         }
 
         private void textBoxContraseña_TextChanged(object sender, EventArgs e)
@@ -143,11 +144,9 @@ namespace Operador_911
             
         }
 
-        
-
         private void Form3_Load(object sender, EventArgs e)
         {
-
+            textBoxContraseña.UseSystemPasswordChar = true;
         }
     }
 }

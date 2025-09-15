@@ -56,11 +56,11 @@
             this.Nro_Vehiculo,
             this.Tipo_Patrulla,
             this.Estado});
-            this.dataGridViewPatrullas.Location = new System.Drawing.Point(772, 197);
+            this.dataGridViewPatrullas.Location = new System.Drawing.Point(721, 197);
             this.dataGridViewPatrullas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewPatrullas.Name = "dataGridViewPatrullas";
             this.dataGridViewPatrullas.RowHeadersWidth = 62;
-            this.dataGridViewPatrullas.Size = new System.Drawing.Size(849, 751);
+            this.dataGridViewPatrullas.Size = new System.Drawing.Size(911, 802);
             this.dataGridViewPatrullas.TabIndex = 0;
             // 
             // Nro_Vehiculo
@@ -87,7 +87,7 @@
             // labelCodigo
             // 
             this.labelCodigo.AutoSize = true;
-            this.labelCodigo.Location = new System.Drawing.Point(46, 217);
+            this.labelCodigo.Location = new System.Drawing.Point(47, 248);
             this.labelCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCodigo.Name = "labelCodigo";
             this.labelCodigo.Size = new System.Drawing.Size(99, 20);
@@ -96,7 +96,7 @@
             // 
             // btnAgregarPatrulla
             // 
-            this.btnAgregarPatrulla.Location = new System.Drawing.Point(116, 507);
+            this.btnAgregarPatrulla.Location = new System.Drawing.Point(104, 590);
             this.btnAgregarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAgregarPatrulla.Name = "btnAgregarPatrulla";
             this.btnAgregarPatrulla.Size = new System.Drawing.Size(126, 46);
@@ -106,7 +106,7 @@
             // 
             // btnEditarPatrulla
             // 
-            this.btnEditarPatrulla.Location = new System.Drawing.Point(250, 507);
+            this.btnEditarPatrulla.Location = new System.Drawing.Point(247, 590);
             this.btnEditarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEditarPatrulla.Name = "btnEditarPatrulla";
             this.btnEditarPatrulla.Size = new System.Drawing.Size(126, 46);
@@ -116,7 +116,7 @@
             // 
             // btnEliminarPatrulla
             // 
-            this.btnEliminarPatrulla.Location = new System.Drawing.Point(393, 507);
+            this.btnEliminarPatrulla.Location = new System.Drawing.Point(390, 590);
             this.btnEliminarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnEliminarPatrulla.Name = "btnEliminarPatrulla";
             this.btnEliminarPatrulla.Size = new System.Drawing.Size(126, 46);
@@ -126,16 +126,16 @@
             // 
             // textNroVehiculo
             // 
-            this.textNroVehiculo.Location = new System.Drawing.Point(50, 242);
+            this.textNroVehiculo.Location = new System.Drawing.Point(51, 273);
             this.textNroVehiculo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textNroVehiculo.Name = "textNroVehiculo";
-            this.textNroVehiculo.Size = new System.Drawing.Size(533, 26);
+            this.textNroVehiculo.Size = new System.Drawing.Size(513, 26);
             this.textNroVehiculo.TabIndex = 5;
             // 
             // labelTipo
             // 
             this.labelTipo.AutoSize = true;
-            this.labelTipo.Location = new System.Drawing.Point(46, 309);
+            this.labelTipo.Location = new System.Drawing.Point(47, 340);
             this.labelTipo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTipo.Name = "labelTipo";
             this.labelTipo.Size = new System.Drawing.Size(39, 20);
@@ -149,16 +149,16 @@
             this.TipoVehiculoBox.Items.AddRange(new object[] {
             "Auto",
             "Moto"});
-            this.TipoVehiculoBox.Location = new System.Drawing.Point(50, 334);
+            this.TipoVehiculoBox.Location = new System.Drawing.Point(51, 365);
             this.TipoVehiculoBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.TipoVehiculoBox.Name = "TipoVehiculoBox";
-            this.TipoVehiculoBox.Size = new System.Drawing.Size(533, 28);
+            this.TipoVehiculoBox.Size = new System.Drawing.Size(513, 28);
             this.TipoVehiculoBox.TabIndex = 7;
             // 
             // labelEstado
             // 
             this.labelEstado.AutoSize = true;
-            this.labelEstado.Location = new System.Drawing.Point(46, 396);
+            this.labelEstado.Location = new System.Drawing.Point(47, 427);
             this.labelEstado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelEstado.Name = "labelEstado";
             this.labelEstado.Size = new System.Drawing.Size(60, 20);
@@ -172,17 +172,17 @@
             this.EstadoVehiculoBox.Items.AddRange(new object[] {
             "Patrulla",
             "En Base"});
-            this.EstadoVehiculoBox.Location = new System.Drawing.Point(50, 421);
+            this.EstadoVehiculoBox.Location = new System.Drawing.Point(51, 452);
             this.EstadoVehiculoBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.EstadoVehiculoBox.Name = "EstadoVehiculoBox";
-            this.EstadoVehiculoBox.Size = new System.Drawing.Size(533, 28);
+            this.EstadoVehiculoBox.Size = new System.Drawing.Size(513, 28);
             this.EstadoVehiculoBox.TabIndex = 9;
             // 
             // labelTitulo_Vehiculos
             // 
             this.labelTitulo_Vehiculos.AutoSize = true;
             this.labelTitulo_Vehiculos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo_Vehiculos.Location = new System.Drawing.Point(140, 96);
+            this.labelTitulo_Vehiculos.Location = new System.Drawing.Point(132, 135);
             this.labelTitulo_Vehiculos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTitulo_Vehiculos.Name = "labelTitulo_Vehiculos";
             this.labelTitulo_Vehiculos.Size = new System.Drawing.Size(350, 37);
@@ -211,9 +211,9 @@
             this.panel2.Controls.Add(this.labelEstado);
             this.panel2.Controls.Add(this.labelCodigo);
             this.panel2.Controls.Add(this.labelTipo);
-            this.panel2.Location = new System.Drawing.Point(57, 197);
+            this.panel2.Location = new System.Drawing.Point(68, 197);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(638, 678);
+            this.panel2.Size = new System.Drawing.Size(616, 802);
             this.panel2.TabIndex = 26;
             // 
             // label1

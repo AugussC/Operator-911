@@ -113,7 +113,7 @@
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel3.Controls.Add(this.chart2);
-            this.panel3.Location = new System.Drawing.Point(865, 440);
+            this.panel3.Location = new System.Drawing.Point(899, 469);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(693, 512);
             this.panel3.TabIndex = 30;
@@ -140,7 +140,7 @@
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel2.Controls.Add(this.chart3);
-            this.panel2.Location = new System.Drawing.Point(66, 440);
+            this.panel2.Location = new System.Drawing.Point(100, 469);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(693, 512);
             this.panel2.TabIndex = 29;

@@ -63,9 +63,19 @@ namespace Operador_911
         private void UCListaUsuarios_Load(object sender, EventArgs e)
         {
             dataGridUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            textBoxContraseña.UseSystemPasswordChar = true;
+            textBoxConfirmarContraseña.UseSystemPasswordChar = true;
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxContraseña.UseSystemPasswordChar = !checkBoxContraseña1.Checked;
+        }
 
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            textBoxContraseña.UseSystemPasswordChar = !checkBoxContraseña2.Checked;
+        }
 
         // validacion
 
@@ -198,35 +208,6 @@ namespace Operador_911
 
         }
 
-        private void btnMostrarContraseña_Click(object sender, EventArgs e)
-        {
-            // Cambia entre mostrar y ocultar
-            if (textBoxContraseña.UseSystemPasswordChar)
-            {
-                textBoxContraseña.UseSystemPasswordChar = false; // Mostrar
-                btnMostrarContraseña.Text = "🙈"; // Cambia el icono
-            }
-            else
-            {
-                textBoxContraseña.UseSystemPasswordChar = true; // Ocultar
-                btnMostrarContraseña.Text = "👁"; // Cambia el icono
-            }
-        }
-
-        private void btnMostrarConfirmarContraseña_Click(object sender, EventArgs e)
-        {
-            // Cambia entre mostrar y ocultar
-            if (textBoxConfirmarContraseña.UseSystemPasswordChar)
-            {
-                textBoxConfirmarContraseña.UseSystemPasswordChar = false; // Mostrar
-                btnMostrarConfirmarContraseña.Text = "🙈"; // Cambia el icono
-            }
-            else
-            {
-                textBoxConfirmarContraseña.UseSystemPasswordChar = true; // Ocultar
-                btnMostrarConfirmarContraseña.Text = "👁"; // Cambia el icono
-            }
-        }
         private void CargarUsuariosEliminados()
         {
             using (SqlConnection conn = Database.GetConnection())
@@ -395,6 +376,11 @@ namespace Operador_911
             {
                 dataGridUsuarios.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
 
         }
     }

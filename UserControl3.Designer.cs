@@ -89,6 +89,7 @@
             this.textBoxApellido.Name = "textBoxApellido";
             this.textBoxApellido.Size = new System.Drawing.Size(522, 26);
             this.textBoxApellido.TabIndex = 3;
+            this.textBoxApellido.TextChanged += new System.EventHandler(this.textBoxApellido_TextChanged);
             // 
             // labelNombre
             // 
@@ -185,11 +186,11 @@
             this.Nombre,
             this.DNI,
             this.Telefono});
-            this.dataGridView1.Location = new System.Drawing.Point(740, 190);
+            this.dataGridView1.Location = new System.Drawing.Point(721, 197);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.Size = new System.Drawing.Size(867, 804);
+            this.dataGridView1.Size = new System.Drawing.Size(911, 802);
             this.dataGridView1.TabIndex = 13;
             // 
             // Nro_Placa
@@ -263,9 +264,9 @@
             this.panel2.Controls.Add(this.labelTelefono);
             this.panel2.Controls.Add(this.labelDNI);
             this.panel2.Controls.Add(this.textBoxDNI);
-            this.panel2.Location = new System.Drawing.Point(62, 190);
+            this.panel2.Location = new System.Drawing.Point(68, 197);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(617, 778);
+            this.panel2.Size = new System.Drawing.Size(616, 802);
             this.panel2.TabIndex = 27;
             // 
             // label1
