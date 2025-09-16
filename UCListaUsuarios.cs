@@ -533,6 +533,50 @@ namespace Operador_911
 
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string textoBuscado = textBoxBuscar.Text.Trim();
+            string query = ""; // Declaramos fuera del if
+
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                if (btnUsuarioEliminado.Text == "Ver Usuarios Eliminados")
+                {
+                    
+                    query = @"SELECT id_usuario, nombre, apellido, DNI, correo, rol, activo
+                      FROM Usuario
+                      WHERE activo = 1 
+                      AND (nombre LIKE @texto 
+                           OR correo LIKE @texto 
+                           OR DNI LIKE @texto)";
+                }
+                else
+                {
+                    
+                    query = @"SELECT id_usuario, nombre, apellido, DNI, correo, rol, activo
+                      FROM Usuario
+                      WHERE activo = 0 
+                      AND (nombre LIKE @texto 
+                           OR correo LIKE @texto 
+                           OR DNI LIKE @texto)";
+                }
+
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@texto", "%" + textoBuscado + "%");
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridUsuarios.DataSource = dt;
+            }
+
+            dataGridUsuarios.ClearSelection();
+        }
+
+        private void textBoxBuscar_TextChanged(object sender, EventArgs e)
+        {
+            btnBuscar_Click(sender, e);
+        }
     }
 
 }

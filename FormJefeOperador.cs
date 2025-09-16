@@ -22,7 +22,7 @@ namespace Operador_911
             this.btnInicio_supervisor.Click += btnInicio_supervisor_Click;
             this.btnReportes.Click += btnReportes_Click;
             this.btnUsuarios.Click += btnUsuarios_Click;
-            
+
 
             this.Load += FormJefeOperador_Load; // para mostrar Inicio por defecto al arrancar
         }
@@ -87,5 +87,16 @@ namespace Operador_911
                 }
             }
         }
+
+        private void btnBackup_Click(object sender, EventArgs e)
+        {
+            string fechaHora = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string ruta = $@"C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\Backup\Operador911_{fechaHora}.bak";
+            Database.HacerBackup(ruta);
+            MessageBox.Show("Copia de Seguridad Creada con exito");
+
+        }
+
     }
 }
+

@@ -53,6 +53,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.checkBoxContraseña2 = new System.Windows.Forms.CheckBox();
             this.checkBoxContraseña1 = new System.Windows.Forms.CheckBox();
+            this.textBoxBuscar = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -165,7 +167,7 @@
             // 
             this.labelTitulo_Usuarios.AutoSize = true;
             this.labelTitulo_Usuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo_Usuarios.Location = new System.Drawing.Point(660, 88);
+            this.labelTitulo_Usuarios.Location = new System.Drawing.Point(658, 30);
             this.labelTitulo_Usuarios.Name = "labelTitulo_Usuarios";
             this.labelTitulo_Usuarios.Size = new System.Drawing.Size(231, 25);
             this.labelTitulo_Usuarios.TabIndex = 23;
@@ -216,7 +218,7 @@
             "Operador",
             "Comisario"});
             this.comboBoxRol.Location = new System.Drawing.Point(45, 425);
-            this.comboBoxRol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxRol.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxRol.Name = "comboBoxRol";
             this.comboBoxRol.Size = new System.Drawing.Size(320, 21);
             this.comboBoxRol.TabIndex = 28;
@@ -272,7 +274,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Location = new System.Drawing.Point(1117, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(78, 699);
             this.panel1.TabIndex = 36;
@@ -301,7 +303,7 @@
             this.panel2.Controls.Add(this.btnAgregarUsuario);
             this.panel2.Controls.Add(this.labelRol);
             this.panel2.Location = new System.Drawing.Point(45, 128);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(411, 521);
             this.panel2.TabIndex = 37;
@@ -312,7 +314,7 @@
             this.checkBoxContraseña2.AutoSize = true;
             this.checkBoxContraseña2.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxContraseña2.Location = new System.Drawing.Point(51, 380);
-            this.checkBoxContraseña2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxContraseña2.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxContraseña2.Name = "checkBoxContraseña2";
             this.checkBoxContraseña2.Size = new System.Drawing.Size(122, 17);
             this.checkBoxContraseña2.TabIndex = 36;
@@ -325,7 +327,7 @@
             this.checkBoxContraseña1.AutoSize = true;
             this.checkBoxContraseña1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxContraseña1.Location = new System.Drawing.Point(51, 309);
-            this.checkBoxContraseña1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxContraseña1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxContraseña1.Name = "checkBoxContraseña1";
             this.checkBoxContraseña1.Size = new System.Drawing.Size(122, 17);
             this.checkBoxContraseña1.TabIndex = 35;
@@ -333,17 +335,37 @@
             this.checkBoxContraseña1.UseVisualStyleBackColor = true;
             this.checkBoxContraseña1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // textBoxBuscar
+            // 
+            this.textBoxBuscar.Location = new System.Drawing.Point(481, 95);
+            this.textBoxBuscar.Name = "textBoxBuscar";
+            this.textBoxBuscar.Size = new System.Drawing.Size(305, 20);
+            this.textBoxBuscar.TabIndex = 38;
+            this.textBoxBuscar.TextChanged += new System.EventHandler(this.textBoxBuscar_TextChanged);
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(792, 93);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(67, 23);
+            this.btnBuscar.TabIndex = 39;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
+            // 
             // UCListaUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnUsuarioEliminado);
             this.Controls.Add(this.labelTitulo_Usuarios);
             this.Controls.Add(this.dataGridUsuarios);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UCListaUsuarios";
             this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCListaUsuarios_Load);
@@ -381,5 +403,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox checkBoxContraseña2;
         private System.Windows.Forms.CheckBox checkBoxContraseña1;
+        private System.Windows.Forms.TextBox textBoxBuscar;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }

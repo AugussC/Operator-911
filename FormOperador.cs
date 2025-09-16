@@ -1536,7 +1536,7 @@ namespace Operador_911
             
 
             // Agregar la fila respetando el orden de las columnas
-            int rowIndex = dataGridView1.Rows.Add(id, delito, "En Espera", telefono, nombre, direccion);
+            int rowIndex = dataGridView1.Rows.Add(id,"No asignada", "En Espera", delito, telefono, nombre, direccion);
 
             // Colorear la fila según el tipo de delito
             PintarFila(rowIndex, delito);

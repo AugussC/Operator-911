@@ -38,12 +38,6 @@
             this.panelMapa = new System.Windows.Forms.Panel();
             this.panelForm = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.id_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.incidente_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ListDelitos = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textTelefono = new System.Windows.Forms.TextBox();
@@ -52,6 +46,13 @@
             this.txtLatitud = new System.Windows.Forms.Label();
             this.btnBomberos = new System.Windows.Forms.Button();
             this.btnJurisdicciones = new System.Windows.Forms.Button();
+            this.id_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Patrulla = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.incidente_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panelNavegacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMapa.SuspendLayout();
@@ -67,8 +68,7 @@
             this.gMapControl1.GrayScaleMode = false;
             this.gMapControl1.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.gMapControl1.LevelsKeepInMemmory = 5;
-            this.gMapControl1.Location = new System.Drawing.Point(-160, 8);
-            this.gMapControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gMapControl1.Location = new System.Drawing.Point(-107, 5);
             this.gMapControl1.MarkersEnabled = true;
             this.gMapControl1.MaxZoom = 2;
             this.gMapControl1.MinZoom = 2;
@@ -82,7 +82,7 @@
             this.gMapControl1.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.gMapControl1.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.gMapControl1.ShowTileGridLines = false;
-            this.gMapControl1.Size = new System.Drawing.Size(1284, 651);
+            this.gMapControl1.Size = new System.Drawing.Size(856, 423);
             this.gMapControl1.TabIndex = 0;
             this.gMapControl1.Zoom = 0D;
             // 
@@ -92,57 +92,51 @@
             this.panelNavegacion.Controls.Add(this.tituloPrograma);
             this.panelNavegacion.Controls.Add(this.pictureBox1);
             this.panelNavegacion.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panelNavegacion.Location = new System.Drawing.Point(-2, 0);
-            this.panelNavegacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelNavegacion.Location = new System.Drawing.Point(-1, 0);
             this.panelNavegacion.Name = "panelNavegacion";
-            this.panelNavegacion.Size = new System.Drawing.Size(1450, 68);
+            this.panelNavegacion.Size = new System.Drawing.Size(967, 44);
             this.panelNavegacion.TabIndex = 1;
             this.panelNavegacion.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNavegacion_Paint);
             // 
             // tituloPrograma
             // 
             this.tituloPrograma.AutoSize = true;
-            this.tituloPrograma.Location = new System.Drawing.Point(138, 26);
-            this.tituloPrograma.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.tituloPrograma.Location = new System.Drawing.Point(92, 17);
             this.tituloPrograma.Name = "tituloPrograma";
-            this.tituloPrograma.Size = new System.Drawing.Size(107, 20);
+            this.tituloPrograma.Size = new System.Drawing.Size(72, 13);
             this.tituloPrograma.TabIndex = 1;
             this.tituloPrograma.Text = "911 Operador";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
-            this.pictureBox1.Location = new System.Drawing.Point(20, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(110, 80);
+            this.pictureBox1.Size = new System.Drawing.Size(73, 52);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // textDireccion
             // 
-            this.textDireccion.Location = new System.Drawing.Point(18, 85);
-            this.textDireccion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textDireccion.Location = new System.Drawing.Point(12, 55);
             this.textDireccion.Name = "textDireccion";
-            this.textDireccion.Size = new System.Drawing.Size(553, 26);
+            this.textDireccion.Size = new System.Drawing.Size(370, 20);
             this.textDireccion.TabIndex = 2;
             // 
             // txtLongitud
             // 
             this.txtLongitud.AutoSize = true;
-            this.txtLongitud.Location = new System.Drawing.Point(20, 142);
-            this.txtLongitud.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtLongitud.Location = new System.Drawing.Point(13, 92);
             this.txtLongitud.Name = "txtLongitud";
-            this.txtLongitud.Size = new System.Drawing.Size(71, 20);
+            this.txtLongitud.Size = new System.Drawing.Size(49, 13);
             this.txtLongitud.TabIndex = 5;
             this.txtLongitud.Text = "Telefono";
             // 
             // btnAgregarAlerta
             // 
-            this.btnAgregarAlerta.Location = new System.Drawing.Point(201, 457);
-            this.btnAgregarAlerta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAgregarAlerta.Location = new System.Drawing.Point(134, 297);
             this.btnAgregarAlerta.Name = "btnAgregarAlerta";
-            this.btnAgregarAlerta.Size = new System.Drawing.Size(206, 52);
+            this.btnAgregarAlerta.Size = new System.Drawing.Size(137, 34);
             this.btnAgregarAlerta.TabIndex = 6;
             this.btnAgregarAlerta.Text = "Agregar";
             this.btnAgregarAlerta.UseVisualStyleBackColor = true;
@@ -151,10 +145,9 @@
             // panelMapa
             // 
             this.panelMapa.Controls.Add(this.gMapControl1);
-            this.panelMapa.Location = new System.Drawing.Point(-2, 69);
-            this.panelMapa.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelMapa.Location = new System.Drawing.Point(-1, 45);
             this.panelMapa.Name = "panelMapa";
-            this.panelMapa.Size = new System.Drawing.Size(1143, 655);
+            this.panelMapa.Size = new System.Drawing.Size(762, 426);
             this.panelMapa.TabIndex = 7;
             // 
             // panelForm
@@ -170,10 +163,9 @@
             this.panelForm.Controls.Add(this.btnAgregarAlerta);
             this.panelForm.Controls.Add(this.textDireccion);
             this.panelForm.Controls.Add(this.txtLongitud);
-            this.panelForm.Location = new System.Drawing.Point(1038, 69);
-            this.panelForm.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.panelForm.Location = new System.Drawing.Point(692, 45);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(411, 706);
+            this.panelForm.Size = new System.Drawing.Size(274, 459);
             this.panelForm.TabIndex = 8;
             // 
             // dataGridView1
@@ -182,63 +174,17 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.id_alerta,
-            this.incidente_alerta,
+            this.Patrulla,
             this.Estado,
+            this.incidente_alerta,
             this.Telefono,
             this.Nombre,
             this.direccion});
-            this.dataGridView1.Location = new System.Drawing.Point(20, 538);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 350);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.Size = new System.Drawing.Size(555, 415);
+            this.dataGridView1.Size = new System.Drawing.Size(370, 270);
             this.dataGridView1.TabIndex = 12;
-            // 
-            // id_alerta
-            // 
-            this.id_alerta.HeaderText = "ID";
-            this.id_alerta.MinimumWidth = 3;
-            this.id_alerta.Name = "id_alerta";
-            this.id_alerta.Width = 35;
-            // 
-            // incidente_alerta
-            // 
-            this.incidente_alerta.HeaderText = "Incidente";
-            this.incidente_alerta.MinimumWidth = 8;
-            this.incidente_alerta.Name = "incidente_alerta";
-            this.incidente_alerta.Width = 75;
-            // 
-            // Estado
-            // 
-            this.Estado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Items.AddRange(new object[] {
-            "En Espera",
-            "Atendido"});
-            this.Estado.MinimumWidth = 8;
-            this.Estado.Name = "Estado";
-            this.Estado.Width = 75;
-            // 
-            // Telefono
-            // 
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.MinimumWidth = 8;
-            this.Telefono.Name = "Telefono";
-            this.Telefono.Width = 75;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 8;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 90;
-            // 
-            // direccion
-            // 
-            this.direccion.HeaderText = "Direccion";
-            this.direccion.MinimumWidth = 8;
-            this.direccion.Name = "direccion";
-            this.direccion.Width = 90;
             // 
             // ListDelitos
             // 
@@ -289,57 +235,51 @@
             "Violación ",
             "Violación de domicilio ",
             "otros"});
-            this.ListDelitos.Location = new System.Drawing.Point(20, 280);
-            this.ListDelitos.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.ListDelitos.Location = new System.Drawing.Point(13, 182);
             this.ListDelitos.Name = "ListDelitos";
-            this.ListDelitos.Size = new System.Drawing.Size(553, 165);
+            this.ListDelitos.Size = new System.Drawing.Size(370, 109);
             this.ListDelitos.TabIndex = 11;
             this.ListDelitos.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ListDelitos_ItemCheck);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(20, 215);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(13, 140);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 20);
+            this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "Nombre";
             // 
             // textTelefono
             // 
-            this.textTelefono.Location = new System.Drawing.Point(18, 166);
-            this.textTelefono.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textTelefono.Location = new System.Drawing.Point(12, 108);
             this.textTelefono.Name = "textTelefono";
-            this.textTelefono.Size = new System.Drawing.Size(553, 26);
+            this.textTelefono.Size = new System.Drawing.Size(370, 20);
             this.textTelefono.TabIndex = 9;
             // 
             // textNombre
             // 
-            this.textNombre.Location = new System.Drawing.Point(18, 240);
-            this.textNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textNombre.Location = new System.Drawing.Point(12, 156);
             this.textNombre.Name = "textNombre";
-            this.textNombre.Size = new System.Drawing.Size(553, 26);
+            this.textNombre.Size = new System.Drawing.Size(370, 20);
             this.textNombre.TabIndex = 8;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(180, 0);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(120, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(257, 33);
+            this.label1.Size = new System.Drawing.Size(171, 24);
             this.label1.TabIndex = 7;
             this.label1.Text = "Formulario Alerta";
             // 
             // txtLatitud
             // 
             this.txtLatitud.AutoSize = true;
-            this.txtLatitud.Location = new System.Drawing.Point(20, 60);
-            this.txtLatitud.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.txtLatitud.Location = new System.Drawing.Point(13, 39);
             this.txtLatitud.Name = "txtLatitud";
-            this.txtLatitud.Size = new System.Drawing.Size(75, 20);
+            this.txtLatitud.Size = new System.Drawing.Size(52, 13);
             this.txtLatitud.TabIndex = 4;
             this.txtLatitud.Text = "Direccion";
             // 
@@ -348,10 +288,10 @@
             this.btnBomberos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnBomberos.BackColor = System.Drawing.Color.White;
             this.btnBomberos.Image = global::Operador_911.Properties.Resources.bombero__2___2_;
-            this.btnBomberos.Location = new System.Drawing.Point(248, 688);
+            this.btnBomberos.Location = new System.Drawing.Point(165, 447);
             this.btnBomberos.Margin = new System.Windows.Forms.Padding(0);
             this.btnBomberos.Name = "btnBomberos";
-            this.btnBomberos.Size = new System.Drawing.Size(96, 72);
+            this.btnBomberos.Size = new System.Drawing.Size(64, 47);
             this.btnBomberos.TabIndex = 9;
             this.btnBomberos.UseVisualStyleBackColor = false;
             this.btnBomberos.Click += new System.EventHandler(this.btnBomberos_Click);
@@ -361,25 +301,86 @@
             this.btnJurisdicciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnJurisdicciones.BackColor = System.Drawing.Color.White;
             this.btnJurisdicciones.Image = global::Operador_911.Properties.Resources.istockphoto_599271426_612x612__1___1_;
-            this.btnJurisdicciones.Location = new System.Drawing.Point(18, 688);
+            this.btnJurisdicciones.Location = new System.Drawing.Point(12, 447);
             this.btnJurisdicciones.Margin = new System.Windows.Forms.Padding(0);
             this.btnJurisdicciones.Name = "btnJurisdicciones";
-            this.btnJurisdicciones.Size = new System.Drawing.Size(96, 72);
+            this.btnJurisdicciones.Size = new System.Drawing.Size(64, 47);
             this.btnJurisdicciones.TabIndex = 2;
             this.btnJurisdicciones.UseVisualStyleBackColor = false;
             this.btnJurisdicciones.Click += new System.EventHandler(this.btnJurisdicciones_Click);
             // 
+            // id_alerta
+            // 
+            this.id_alerta.HeaderText = "ID";
+            this.id_alerta.MinimumWidth = 3;
+            this.id_alerta.Name = "id_alerta";
+            this.id_alerta.Width = 35;
+            // 
+            // Patrulla
+            // 
+            this.Patrulla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Patrulla.HeaderText = "Patrulla ";
+            this.Patrulla.Items.AddRange(new object[] {
+            "Patrulla 1",
+            "Patrulla 2",
+            "Patrulla 3",
+            "Patrulla 4",
+            "Patrulla 5",
+            "Patrulla 6",
+            "Patrulla 7",
+            "Patrulla 8",
+            "No asignada"});
+            this.Patrulla.Name = "Patrulla";
+            // 
+            // Estado
+            // 
+            this.Estado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Items.AddRange(new object[] {
+            "En Espera",
+            "Atendido"});
+            this.Estado.MinimumWidth = 8;
+            this.Estado.Name = "Estado";
+            this.Estado.Width = 75;
+            // 
+            // incidente_alerta
+            // 
+            this.incidente_alerta.HeaderText = "Incidente";
+            this.incidente_alerta.MinimumWidth = 8;
+            this.incidente_alerta.Name = "incidente_alerta";
+            this.incidente_alerta.Width = 75;
+            // 
+            // Telefono
+            // 
+            this.Telefono.HeaderText = "Telefono";
+            this.Telefono.MinimumWidth = 8;
+            this.Telefono.Name = "Telefono";
+            this.Telefono.Width = 75;
+            // 
+            // Nombre
+            // 
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 8;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.Width = 90;
+            // 
+            // direccion
+            // 
+            this.direccion.HeaderText = "Direccion";
+            this.direccion.MinimumWidth = 8;
+            this.direccion.Name = "direccion";
+            this.direccion.Width = 90;
+            // 
             // FormOperador
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1449, 774);
+            this.ClientSize = new System.Drawing.Size(913, 487);
             this.Controls.Add(this.btnBomberos);
             this.Controls.Add(this.btnJurisdicciones);
             this.Controls.Add(this.panelForm);
             this.Controls.Add(this.panelMapa);
             this.Controls.Add(this.panelNavegacion);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormOperador";
             this.Text = "FormOperador";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -414,13 +415,14 @@
         private System.Windows.Forms.TextBox textTelefono;
         private System.Windows.Forms.CheckedListBox ListDelitos;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnBomberos;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_alerta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn incidente_alerta;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Patrulla;
         private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn incidente_alerta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
-        private System.Windows.Forms.Button btnBomberos;
     }
 }
 
