@@ -240,5 +240,11 @@
   <ItemGroup>
     <None Include="Resources\Reporte Policial.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ambulanciaLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ambulanciaLogo2.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

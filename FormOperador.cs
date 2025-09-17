@@ -24,6 +24,7 @@ namespace Operador_911
         GMapOverlay polygonOverlay;
         private bool jurisdiccionesVisibles = false;
         private bool bomberosVisibles = false;
+        private bool hospitalesVisibles = false;
 
         private GMapOverlay callesOverlay;
         private List<Calle> redVial = new List<Calle>();
@@ -136,7 +137,7 @@ namespace Operador_911
                 }
             }
 
-            MessageBox.Show($"Se cargaron {redVial.Count} calles en memoria");
+           
         }
 
 
@@ -1452,6 +1453,54 @@ namespace Operador_911
 
 
         }
+
+        private void CargarHospitales()
+        {
+            markerHospitales = new GMapOverlay("hospital");
+            // ---------------- Hospital Juan Pablo II ----------------
+            PointLatLng HospitalJuanPablo = new PointLatLng(-27.47577689779967, -58.81889708220148);
+            GMarkerGoogle markerHospitalJuanPablo = new GMarkerGoogle(HospitalJuanPablo, GMarkerGoogleType.lightblue_dot);
+            markerHospitalJuanPablo.ToolTipText = "Hospital Juan Pablo II";
+            markerHospitales.Markers.Add(markerHospitalJuanPablo);
+
+            // ---------------- Hospital de Campaña  ----------------
+            PointLatLng HospitalCampaña = new PointLatLng(-27.477312177606823, -58.81788135673643);
+            GMarkerGoogle markerHospitalCampaña = new GMarkerGoogle(HospitalCampaña, GMarkerGoogleType.lightblue_dot);
+            markerHospitalCampaña.ToolTipText = "Hospital de Campaña ";
+            markerHospitales.Markers.Add(markerHospitalCampaña);
+
+            // ---------------- Hospital Angela Iglesia de Llano  ----------------
+            PointLatLng HospitalLlano = new PointLatLng(-27.47577689779967, -58.81889708220148);
+            GMarkerGoogle markerHospitalLlano = new GMarkerGoogle(HospitalLlano, GMarkerGoogleType.lightblue_dot);
+            markerHospitalLlano.ToolTipText = "Hospital Angela Iglesia de Llano";
+            markerHospitales.Markers.Add(markerHospitalLlano);
+
+            // ---------------- Hospital Jose Ramon Vidal  ----------------
+            PointLatLng HospitaVidal = new PointLatLng(-27.47954697199342, -58.8390440707281);
+            GMarkerGoogle markerHospitaVidal = new GMarkerGoogle(HospitaVidal, GMarkerGoogleType.lightblue_dot);
+            markerHospitaVidal.ToolTipText = "Hospital Jose Ramon Vidal";
+            markerHospitales.Markers.Add(markerHospitaVidal);
+
+            // ---------------- Hospital Escuela Jose de San Martin  ----------------
+            PointLatLng HospitalEscuela = new PointLatLng(-27.47541576011016, -58.835972128451665);
+            GMarkerGoogle markerHospitalEscuela = new GMarkerGoogle(HospitalEscuela, GMarkerGoogleType.lightblue_dot);
+            markerHospitalEscuela.ToolTipText = "Hospital Escuela Jose de San Martin";
+            markerHospitales.Markers.Add(markerHospitalEscuela);
+
+            // ---------------- Hospital Riachuelo  ----------------
+            PointLatLng HospitalRiachuelo = new PointLatLng(-27.581693913423443, -58.740014895754996);
+            GMarkerGoogle markerHospitalRiachuelo = new GMarkerGoogle(HospitalRiachuelo, GMarkerGoogleType.lightblue_dot);
+            markerHospitalRiachuelo.ToolTipText = "Hospital Riachuelo";
+            markerHospitales.Markers.Add(markerHospitalRiachuelo);
+
+            // ---------------- Clinica del Niño  ----------------
+            PointLatLng HospitalNiño = new PointLatLng(-27.473016697490362, -58.82891050978708);
+            GMarkerGoogle markerHospitalNiño = new GMarkerGoogle(HospitalNiño, GMarkerGoogleType.lightblue_dot);
+            markerHospitalNiño.ToolTipText = "Clinica del Niño";
+            markerHospitales.Markers.Add(markerHospitalNiño);
+
+            gMapControl1.Overlays.Add(markerHospitales);
+        }
         private void CargarPatrullas()
         {
             markerPatrullas = new GMapOverlay("Patrullas");
@@ -1612,9 +1661,22 @@ namespace Operador_911
          
         }
 
-        private void panelNavegacion_Paint(object sender, PaintEventArgs e)
-        {
+       
 
+        private void btnHospitales_Click(object sender, EventArgs e)
+        {
+            if (hospitalesVisibles)
+            {
+                markerHospitales.Markers.Clear();
+                hospitalesVisibles = false;
+            }
+            else
+            {
+                CargarHospitales();
+                hospitalesVisibles = true;
+            }
+
+            gMapControl1.Refresh();
         }
     }
 }

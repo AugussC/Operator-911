@@ -17,7 +17,7 @@ namespace Operador_911
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormJefeOperador());
+            Application.Run(new FormOperador());
             Database.HacerBackupSemanal();
         }
     }
