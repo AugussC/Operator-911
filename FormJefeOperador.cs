@@ -26,14 +26,14 @@ namespace Operador_911
             this.btnCerrarSesion.Click += btnCerrarSesion_Click;
 
 
-            this.Load += FormJefeOperador_Load; // para mostrar Inicio por defecto al arrancar
+            this.Load += FormJefeOperador_Load;
         }
 
         private void LoadUserControl(UserControl uc)
         {
-            panel_supervisor.Controls.Clear();   // borra lo que haya antes
-            uc.Dock = DockStyle.Fill;            // que ocupe todo el panel
-            panel_supervisor.Controls.Add(uc);   // lo agrega al panel
+            panel_supervisor.Controls.Clear();   
+            uc.Dock = DockStyle.Fill;            
+            panel_supervisor.Controls.Add(uc);  
 
         }
 
@@ -44,12 +44,12 @@ namespace Operador_911
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
-            LoadUserControl(new UCPlanillaSupervisor());
+            LoadUserControl(new UCReportesSupervisor());
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            LoadUserControl(new UCListaUsuarios());
+            LoadUserControl(new UCUsuariosSupervisor());
         }
 
         private void panelNavegacion_Paint(object sender, PaintEventArgs e)
@@ -115,11 +115,11 @@ namespace Operador_911
 
             if (result == DialogResult.Yes)
             {
-                FormLogin login = new FormLogin();
-                login.Show();
-                this.Close();
+                this.Close(); 
             }
         }
+
+        
     }
 }
 

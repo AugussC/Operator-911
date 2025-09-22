@@ -1,6 +1,6 @@
 ﻿namespace Operador_911
 {
-    partial class UCListaUsuarios
+    partial class UCUsuariosSupervisor
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -353,7 +353,7 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // UCListaUsuarios
+            // UCUsuariosSupervisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -366,9 +366,9 @@
             this.Controls.Add(this.dataGridUsuarios);
             this.Controls.Add(this.panel2);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "UCListaUsuarios";
+            this.Name = "UCUsuariosSupervisor";
             this.Size = new System.Drawing.Size(1162, 699);
-            this.Load += new System.EventHandler(this.UCListaUsuarios_Load);
+            this.Load += new System.EventHandler(this.UCUsuariosSupervisor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

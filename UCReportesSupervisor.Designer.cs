@@ -1,6 +1,6 @@
 ﻿namespace Operador_911
 {
-    partial class UCPlanillaSupervisor
+    partial class UCReportesSupervisor
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -208,7 +208,7 @@
             this.labelHasta.TabIndex = 36;
             this.labelHasta.Text = "Hasta";
             // 
-            // UCPlanillaSupervisor
+            // UCResportesSupervisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -224,9 +224,9 @@
             this.Controls.Add(this.dataGridReportes);
             this.Controls.Add(this.pictureBoxReporte);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "UCPlanillaSupervisor";
+            this.Name = "UCResportesSupervisor";
             this.Size = new System.Drawing.Size(1162, 699);
-            this.Load += new System.EventHandler(this.UCPlanillaSupervisor_Load);
+            this.Load += new System.EventHandler(this.UCResportesSupervisor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReportes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReporte)).EndInit();
             this.ResumeLayout(false);

@@ -13,9 +13,9 @@ using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 namespace Operador_911
 {
-    public partial class UCListaUsuarios : UserControl
+    public partial class UCUsuariosSupervisor : UserControl
     {
-        public UCListaUsuarios()
+        public UCUsuariosSupervisor()
         {
             InitializeComponent();
 
@@ -69,7 +69,7 @@ namespace Operador_911
 
         
 
-        private void UCListaUsuarios_Load(object sender, EventArgs e)
+        private void UCUsuariosSupervisor_Load(object sender, EventArgs e)
         {
             dataGridUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             textBoxContraseña.UseSystemPasswordChar = true;

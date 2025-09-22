@@ -98,6 +98,13 @@ namespace Operador_911
                                     return;
                             }
 
+                            nextForm.FormClosed += (s, args) =>
+                            {
+                                this.Show(); // cuando se cierre, reaparece el login
+                                textBoxContraseña.Clear();
+                                textBoxCorreo.Clear();
+                            };
+
                             nextForm.Show();
                             this.Hide();
                         }

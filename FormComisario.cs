@@ -65,14 +65,20 @@ namespace Operador_911
             LoadUserControl(new UCPlanilla());
         }
 
-        private void panelComisario_Paint(object sender, PaintEventArgs e)
+        
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
+            DialogResult result = MessageBox.Show(
+                "¿Seguro que desea cerrar sesión?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
 
-        }
-
-        private void FormComisario_Load_1(object sender, EventArgs e)
-        {
-
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

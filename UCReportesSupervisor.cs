@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Operador_911
 {
-    public partial class UCPlanillaSupervisor : UserControl
+    public partial class UCReportesSupervisor : UserControl
     {
-        public UCPlanillaSupervisor()
+        public UCReportesSupervisor()
         {
             InitializeComponent();
             pictureBoxReporte.Visible = false;
@@ -25,7 +25,7 @@ namespace Operador_911
 
         }
 
-        private void UCPlanillaSupervisor_Load(object sender, EventArgs e)
+        private void UCResportesSupervisor_Load(object sender, EventArgs e)
         {
             dataGridReportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }

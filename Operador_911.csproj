@@ -107,17 +107,17 @@
     <Compile Include="UCInicioSupervisor.Designer.cs">
       <DependentUpon>UCInicioSupervisor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCListaUsuarios.cs">
+    <Compile Include="UCUsuariosSupervisor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCListaUsuarios.Designer.cs">
-      <DependentUpon>UCListaUsuarios.cs</DependentUpon>
+    <Compile Include="UCUsuariosSupervisor.Designer.cs">
+      <DependentUpon>UCUsuariosSupervisor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UCPlanillaSupervisor.cs">
+    <Compile Include="UCReportesSupervisor.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UCPlanillaSupervisor.Designer.cs">
-      <DependentUpon>UCPlanillaSupervisor.cs</DependentUpon>
+    <Compile Include="UCReportesSupervisor.Designer.cs">
+      <DependentUpon>UCReportesSupervisor.cs</DependentUpon>
     </Compile>
     <Compile Include="UCInicioComisario.cs">
       <SubType>UserControl</SubType>
@@ -171,11 +171,11 @@
     <EmbeddedResource Include="UCInicioSupervisor.resx">
       <DependentUpon>UCInicioSupervisor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCListaUsuarios.resx">
-      <DependentUpon>UCListaUsuarios.cs</DependentUpon>
+    <EmbeddedResource Include="UCUsuariosSupervisor.resx">
+      <DependentUpon>UCUsuariosSupervisor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UCPlanillaSupervisor.resx">
-      <DependentUpon>UCPlanillaSupervisor.cs</DependentUpon>
+    <EmbeddedResource Include="UCReportesSupervisor.resx">
+      <DependentUpon>UCReportesSupervisor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCInicioComisario.resx">
       <DependentUpon>UCInicioComisario.cs</DependentUpon>
