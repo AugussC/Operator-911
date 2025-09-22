@@ -7,7 +7,8 @@ using System.Windows.Forms;
 public static class Database
 {
     // Cadena de conexión (ajustar servidor, base de datos, usuario y contraseña)
-    private static readonly string connectionString = "Server=localhost\\SQLEXPRESS;Database=Operador911;Trusted_Connection=True";
+    private static readonly string connectionString =
+    "Server=localhost;Database=Operador911;Trusted_Connection=True";
 
 
     // Método para obtener la conexión abierta

@@ -69,5 +69,10 @@ namespace Operador_911
         {
 
         }
+
+        private void FormComisario_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

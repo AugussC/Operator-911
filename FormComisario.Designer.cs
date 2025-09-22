@@ -38,6 +38,7 @@
             this.btnPatrulla = new System.Windows.Forms.Button();
             this.btnInicio = new System.Windows.Forms.Button();
             this.panelComisario = new System.Windows.Forms.Panel();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.panelNavegacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -46,6 +47,7 @@
             // panelNavegacion
             // 
             this.panelNavegacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.panelNavegacion.Controls.Add(this.btnCerrarSesion);
             this.panelNavegacion.Controls.Add(this.tituloPrograma);
             this.panelNavegacion.Controls.Add(this.pictureBox1);
             this.panelNavegacion.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -146,6 +148,18 @@
             this.panelComisario.TabIndex = 4;
             this.panelComisario.Paint += new System.Windows.Forms.PaintEventHandler(this.panelComisario_Paint);
             // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(1824, 12);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(163, 42);
+            this.btnCerrarSesion.TabIndex = 3;
+            this.btnCerrarSesion.Text = "Cerrar Sesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = false;
+            // 
             // FormComisario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -157,6 +171,7 @@
             this.Name = "FormComisario";
             this.Text = "FormComisario";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FormComisario_Load_1);
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -176,5 +191,6 @@
         private System.Windows.Forms.Panel panelComisario;
         private System.Windows.Forms.Button btnHorarios;
         private System.Windows.Forms.Button btnPolicias;
+        private System.Windows.Forms.Button btnCerrarSesion;
     }
 }

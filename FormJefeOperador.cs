@@ -13,6 +13,7 @@ using System.IO;
 namespace Operador_911
 {
     public partial class FormJefeOperador : Form
+
     {
         public FormJefeOperador()
         {
@@ -22,6 +23,7 @@ namespace Operador_911
             this.btnInicio_supervisor.Click += btnInicio_supervisor_Click;
             this.btnReportes.Click += btnReportes_Click;
             this.btnUsuarios.Click += btnUsuarios_Click;
+            this.btnCerrarSesion.Click += btnCerrarSesion_Click;
 
 
             this.Load += FormJefeOperador_Load; // para mostrar Inicio por defecto al arrancar
@@ -97,6 +99,27 @@ namespace Operador_911
 
         }
 
+        private void FormJefeOperador_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "¿Seguro que desea cerrar sesión?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                FormLogin login = new FormLogin();
+                login.Show();
+                this.Close();
+            }
+        }
     }
 }
 

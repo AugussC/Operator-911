@@ -79,7 +79,7 @@ namespace Operador_911
                         // Verificar la contraseña ingresada con la hasheada
                         if (contraseñaHash == HashPassword(contraseña))
                         {
-                            MessageBox.Show($"Bienvenido, su rol es: {rol}");
+                            MessageBox.Show($"Bienvenido {rol}, Ha iniciado sesion Correctamente.");
 
                             Form nextForm = null;
                             switch (rol)
@@ -98,9 +98,8 @@ namespace Operador_911
                                     return;
                             }
 
-                            nextForm.FormClosed += (s, args) => this.Close();
-                            this.Hide();
                             nextForm.Show();
+                            this.Hide();
                         }
                         else
                         {
@@ -117,6 +116,11 @@ namespace Operador_911
             {
                 MessageBox.Show("Error en la conexión: " + ex.Message);
             }
+        }
+
+        private void FormOperador_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit(); // si cerró con la X, chau app
         }
 
         private void labelCorreo_Click(object sender, EventArgs e)
