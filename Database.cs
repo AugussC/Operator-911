@@ -56,6 +56,7 @@ public static class Database
         }
     }
 
+    /*
     public static void HacerBackupSemanal()
     {
         string archivoControl = @"C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\Backup\ultimo_backup.txt";
@@ -85,8 +86,8 @@ public static class Database
             
             File.WriteAllText(archivoControl, fechaHoy);
         }
-        
     }
+    */
 }
 
 

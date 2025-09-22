@@ -17,22 +17,12 @@ namespace Operador_911
             InitializeComponent();
             pictureBoxReporte.Visible = false;
             btnOcultarReporte.Visible = false;
-
-        }
-
-        private void labelTitulo_Click(object sender, EventArgs e)
-        {
-
+            CargarDatosEjemplo();
         }
 
         private void UCResportesSupervisor_Load(object sender, EventArgs e)
         {
             dataGridReportes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
-
-        private void dataGridReportes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-       
         }
 
         private void btnVerReporte_Click(object sender, EventArgs e)
@@ -42,11 +32,40 @@ namespace Operador_911
             pictureBoxReporte.BringToFront();
             btnOcultarReporte.Visible = true;
         }
-
         private void btnOcultarReporte_Click(object sender, EventArgs e)
         {
             pictureBoxReporte.Visible = false;
             btnOcultarReporte.Visible = false;
+        }
+
+        private void CargarDatosEjemplo()
+        {
+            // Limpiar filas existentes
+            dataGridReportes.Rows.Clear();
+
+            // Agregar primera fila de ejemplo
+            dataGridReportes.Rows.Add(
+                1,                      // ID_Reporte
+                DateTime.Now.ToString("dd/MM/yyyy HH:mm"),  // Fecha Inicio
+                DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm"), // Fecha Fin
+                101,                    // ID_Alerta
+                1,                      // ID_Patrulla
+                "Calle Falsa 123",      // Dirección
+                "Juan Pérez",           // Nombre
+                "Robo de vehículo"      // Descripción
+            );
+
+            // Agregar segunda fila de ejemplo
+            dataGridReportes.Rows.Add(
+                2,
+                DateTime.Now.ToString("dd/MM/yyyy HH:mm"),
+                DateTime.Now.AddMinutes(45).ToString("dd/MM/yyyy HH:mm"),
+                102,
+                2,
+                "Avenida Siempre Viva 742",
+                "María López",
+                "Incendio en comercio"
+            );
         }
     }
 }

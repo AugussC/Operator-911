@@ -94,7 +94,6 @@
             this.labelCodigo.Size = new System.Drawing.Size(76, 14);
             this.labelCodigo.TabIndex = 1;
             this.labelCodigo.Text = "Nro Vehiculo";
-            this.labelCodigo.Click += new System.EventHandler(this.labelCodigo_Click);
             // 
             // btnAgregarPatrulla
             // 
@@ -186,13 +185,12 @@
             this.labelTitulo_Vehiculos.Size = new System.Drawing.Size(241, 25);
             this.labelTitulo_Vehiculos.TabIndex = 24;
             this.labelTitulo_Vehiculos.Text = "Administrar Vehiculos";
-            this.labelTitulo_Vehiculos.Click += new System.EventHandler(this.labelTitulo_Usuarios_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Location = new System.Drawing.Point(1117, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(78, 699);
             this.panel1.TabIndex = 25;
@@ -211,7 +209,7 @@
             this.panel2.Controls.Add(this.labelCodigo);
             this.panel2.Controls.Add(this.labelTipo);
             this.panel2.Location = new System.Drawing.Point(45, 128);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(411, 521);
             this.panel2.TabIndex = 26;

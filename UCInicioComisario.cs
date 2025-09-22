@@ -27,8 +27,8 @@ namespace Operador_911
 
             Series serieComparativa = new Series("Recursos");
             serieComparativa.ChartType = SeriesChartType.Column;
-            serieComparativa.Points.AddXY("Policías", 120);  // dato estático
-            serieComparativa.Points.AddXY("Patrullas", 40);  // dato estático
+            serieComparativa.Points.AddXY("Policías", 120); 
+            serieComparativa.Points.AddXY("Patrullas", 40);  
 
             chart2.Series.Add(serieComparativa);
 

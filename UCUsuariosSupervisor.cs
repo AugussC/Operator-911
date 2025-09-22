@@ -23,17 +23,18 @@ namespace Operador_911
             textBoxApellido.KeyPress += textBoxApellido_KeyPress;
             textBoxDNI.KeyPress += textBoxDNI_KeyPress;
             textBoxContraseña.KeyPress += textBoxContraseña_KeyPress;
+            
             CargarUsuarios();
+            
             dataGridUsuarios.DataBindingComplete += DataGridUsuarios_DataBindingComplete;
 
         }
 
         private void DataGridUsuarios_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            dataGridUsuarios.ClearSelection(); // Quita la selección inicial
-            LimpiarFormulario(); // Limpiar formulario y desactivar editar
+            dataGridUsuarios.ClearSelection();
+            LimpiarFormulario(); 
         }
-
 
         private string HashPassword(string password)
         {
@@ -46,28 +47,6 @@ namespace Operador_911
                 return builder.ToString();
             }
         }
-
-        private void labelTitulo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelCodigo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
 
         private void UCUsuariosSupervisor_Load(object sender, EventArgs e)
         {
@@ -86,9 +65,6 @@ namespace Operador_911
             textBoxConfirmarContraseña.UseSystemPasswordChar = !checkBoxContraseña2.Checked;
         }
 
-        // validacion
-
-        // Nombre: solo letras y espacio
         private void textBoxNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -97,7 +73,6 @@ namespace Operador_911
             }
         }
 
-        // Apellido: igual que nombre
         private void textBoxApellido_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -106,7 +81,6 @@ namespace Operador_911
             }
         }
 
-        // DNI: solo números
         private void textBoxDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -115,10 +89,8 @@ namespace Operador_911
             }
         }
 
-        // Contraseña: podés elegir reglas (ej: letras y números, sin espacios)
         private void textBoxContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Ejemplo: no permitir espacios
             if (char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
@@ -135,7 +107,6 @@ namespace Operador_911
             string confirmarContraseña = textBoxConfirmarContraseña.Text.Trim();
             string rol = comboBoxRol.SelectedItem != null ? comboBoxRol.SelectedItem.ToString() : "";
 
-            // 🔹 Validaciones
             if (string.IsNullOrEmpty(nombre) ||
                 string.IsNullOrEmpty(apellido) ||
                 string.IsNullOrEmpty(dni) ||
@@ -148,21 +119,18 @@ namespace Operador_911
                 return;
             }
 
-            // Validar DNI solo números
             if (!dni.All(char.IsDigit))
             {
                 MessageBox.Show("El DNI debe contener solo números.");
                 return;
             }
 
-            // Validar confirmación de contraseña
             if (contraseña != confirmarContraseña)
             {
                 MessageBox.Show("Las contraseñas no coinciden.");
                 return;
             }
-
-            // Validar rol permitido
+        
             string[] rolesPermitidos = { "Jefe Operador", "Operador", "Comisario" };
             if (!rolesPermitidos.Contains(rol))
             {
@@ -170,7 +138,6 @@ namespace Operador_911
                 return;
             }
 
-            // 🔹 Hashear la contraseña
             string contraseñaHash = HashPassword(contraseña);
 
             try
@@ -197,7 +164,6 @@ namespace Operador_911
             }
         }
 
-
         private void CargarUsuarios()
         {
             using (SqlConnection conn = Database.GetConnection())
@@ -209,8 +175,8 @@ namespace Operador_911
 
                 dataGridUsuarios.DataSource = dt;
             }
-            dataGridUsuarios.ClearSelection(); // Evita que se seleccione la primera fila
-            LimpiarFormulario(); // Limpia los TextBox y desactiva editar
+            dataGridUsuarios.ClearSelection(); 
+            LimpiarFormulario(); 
 
         }
 
@@ -226,12 +192,6 @@ namespace Operador_911
             btnEditarUsuario.Enabled = false;
         }
 
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void CargarUsuariosEliminados()
         {
             using (SqlConnection conn = Database.GetConnection())
@@ -243,10 +203,10 @@ namespace Operador_911
 
                 dataGridUsuarios.DataSource = dt;
             }
-            dataGridUsuarios.ClearSelection(); // Evita que se seleccione la primera fila
-            LimpiarFormulario(); // Limpia los TextBox y desactiva editar
-
+            dataGridUsuarios.ClearSelection(); 
+            LimpiarFormulario(); 
         }
+
         private void btnUsuarioEliminado_Click(object sender, EventArgs e)
         {
             if (btnUsuarioEliminado.Text == "Ver Usuarios Eliminados")
@@ -259,7 +219,6 @@ namespace Operador_911
                 CargarUsuarios();
                 btnUsuarioEliminado.Text = "Ver Usuarios Eliminados";
             }
-            
         }
 
         private void btnEliminarUsuario_Click(object sender, EventArgs e)
@@ -282,9 +241,8 @@ namespace Operador_911
                         cmd.Parameters.AddWithValue("@id", idUsuario);
                         cmd.ExecuteNonQuery();
                     }
-
                     MessageBox.Show("Usuario desactivado correctamente.");
-                    CargarUsuarios(); // refresca la grilla con solo activos
+                    CargarUsuarios(); 
                 }
             }
         }
@@ -328,14 +286,11 @@ namespace Operador_911
             }
             else
             {
-                // Restaurar valor anterior si cancela
                 dataGridUsuarios.CellValueChanged -= dataGridUsuarios_CellValueChanged;
                 dataGridUsuarios.Rows[rowIndex].Cells["activo"].Value = false;
                 dataGridUsuarios.CellValueChanged += dataGridUsuarios_CellValueChanged;
             }
         }
-
-
 
         private void DesactivarUsuario(int idUsuario, int rowIndex)
         {
@@ -347,7 +302,7 @@ namespace Operador_911
 
             if (result == DialogResult.Yes)
             {
-                using (SqlConnection conn = Database.GetConnection()) // conexión ya abierta
+                using (SqlConnection conn = Database.GetConnection()) 
                 {
                     string query = "UPDATE Usuario SET activo = 0 WHERE id_usuario = @id";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -356,7 +311,6 @@ namespace Operador_911
                         cmd.ExecuteNonQuery();
                     }
                 }
-
                 MessageBox.Show("Usuario desactivado correctamente.");
                 CargarUsuarios();
             }
@@ -368,8 +322,6 @@ namespace Operador_911
                 dataGridUsuarios.CellValueChanged += dataGridUsuarios_CellValueChanged;
             }
         }
-
-
 
         private void dataGridUsuarios_SelectionChanged(object sender, EventArgs e)
         {
@@ -385,7 +337,7 @@ namespace Operador_911
 
         private void dataGridUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0) // Solo si es fila de datos, no encabezado
+            if (e.RowIndex >= 0) 
             {
                 DataGridViewRow fila = dataGridUsuarios.Rows[e.RowIndex];
 
@@ -395,10 +347,9 @@ namespace Operador_911
                 textBoxCorreo.Text = fila.Cells["correo"].Value.ToString();
                 comboBoxRol.Text = fila.Cells["rol"].Value.ToString();
 
-                btnEditarUsuario.Enabled = true; // Activar editar solo si hay selección
+                btnEditarUsuario.Enabled = true; 
             }
         }
-
 
         private void dataGridUsuarios_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
@@ -406,12 +357,6 @@ namespace Operador_911
             {
                 dataGridUsuarios.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnEditarUsuario_Click(object sender, EventArgs e)
@@ -506,10 +451,8 @@ namespace Operador_911
 
                 MessageBox.Show("Usuario actualizado correctamente ✅");
 
-                // Refrescar grilla
+                
                 CargarUsuarios();
-
-                // Limpiar campos de contraseña
                 textBoxContraseña.Text = "";
                 textBoxConfirmarContraseña.Text = "";
                 LimpiarFormulario();
@@ -521,22 +464,19 @@ namespace Operador_911
                 }
                 else
                 {
-                    
                     CargarUsuariosEliminados();
                 }
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al actualizar usuario: " + ex.Message);
             }
-
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             string textoBuscado = textBoxBuscar.Text.Trim();
-            string query = ""; // Declaramos fuera del if
+            string query = "";
 
             using (SqlConnection conn = Database.GetConnection())
             {
@@ -569,7 +509,6 @@ namespace Operador_911
 
                 dataGridUsuarios.DataSource = dt;
             }
-
             dataGridUsuarios.ClearSelection();
         }
 

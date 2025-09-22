@@ -18,17 +18,10 @@ namespace Operador_911
         public FormJefeOperador()
         {
             InitializeComponent();
-
-            // asignar eventos por código (opcional)
-            this.btnInicio_supervisor.Click += btnInicio_supervisor_Click;
-            this.btnReportes.Click += btnReportes_Click;
-            this.btnUsuarios.Click += btnUsuarios_Click;
-            this.btnCerrarSesion.Click += btnCerrarSesion_Click;
-
-
             this.Load += FormJefeOperador_Load;
         }
 
+        // Método para cargar UserControls en el panel
         private void LoadUserControl(UserControl uc)
         {
             panel_supervisor.Controls.Clear();   
@@ -52,20 +45,11 @@ namespace Operador_911
             LoadUserControl(new UCUsuariosSupervisor());
         }
 
-        private void panelNavegacion_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        //agranda la pantalla y pone el usercontrol por defecto
         private void FormJefeOperador_Load(object sender, EventArgs e)
         {
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             LoadUserControl(new UCInicioSupervisor());
-        }
-
-        private void panelNavegacion_Paint_1(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnRestore_Click(object sender, EventArgs e)
@@ -81,7 +65,8 @@ namespace Operador_911
 
                 try
                 {
-                    Database.RestoreBackup(rutaBackup); // Llamamos a tu función
+                    Database.RestoreBackup(rutaBackup); // Restaurar backup
+                    MessageBox.Show("Backup restaurado correctamente.");
                 }
                 catch (Exception ex)
                 {
@@ -94,14 +79,15 @@ namespace Operador_911
         {
             string fechaHora = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             string ruta = $@"C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\Backup\Operador911_{fechaHora}.bak";
-            Database.HacerBackup(ruta);
-            MessageBox.Show("Copia de Seguridad Creada con exito");
-
-        }
-
-        private void FormJefeOperador_Load_1(object sender, EventArgs e)
-        {
-
+            try
+            {
+                Database.HacerBackup(ruta); // Crear backup
+                MessageBox.Show("Copia de seguridad creada con éxito.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear el backup: " + ex.Message);
+            }
         }
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)

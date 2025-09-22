@@ -67,7 +67,7 @@
             this.dataGridReportes.RowHeadersWidth = 62;
             this.dataGridReportes.Size = new System.Drawing.Size(843, 424);
             this.dataGridReportes.TabIndex = 14;
-            this.dataGridReportes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridReportes_CellContentClick);
+     
             // 
             // dataGridViewTextBoxColumn1
             // 

@@ -19,26 +19,14 @@ namespace Operador_911
 
             textNroVehiculo.KeyPress += textNroVehiculo_KeyPress;
         }
+
         private void FormOperador_Load(object sender, EventArgs e)
         {
-
             dataGridViewPatrullas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             
         }
 
-        private void labelTitulo_Usuarios_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void UCPatrullasComisario_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-        // validacion
         private void textNroVehiculo_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
@@ -47,9 +35,14 @@ namespace Operador_911
             }
         }
 
-        private void labelCodigo_Click(object sender, EventArgs e)
+        private void UCPatrullasComisario_Load(object sender, EventArgs e)
         {
 
+            dataGridViewPatrullas.Rows.Add("V-001", "Auto", "En Servicio");
+            dataGridViewPatrullas.Rows.Add("V-002", "Auto", "En Servicio");
+            dataGridViewPatrullas.Rows.Add("V-003", "Moto", "En Servicio");
+            dataGridViewPatrullas.Rows.Add("V-004", "Auto", "En Base");
+            dataGridViewPatrullas.Rows.Add("V-005", "Auto", "En Base");
         }
     }
 }

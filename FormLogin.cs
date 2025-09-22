@@ -18,34 +18,31 @@ namespace Operador_911
         public FormLogin()
         {
             InitializeComponent();
+            // Manejo de validación en tiempo de escritura
             textBoxContraseña.KeyPress += textBoxContraseña_KeyPress;
         }
 
-        
-
-
-        // validacion
-
-        
-
-        // Contraseña: podés elegir reglas (ej: letras y números, sin espacios)
+       
         private void textBoxContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Ejemplo: no permitir espacios
+            // Se verifica que la letra no sea un espacio en blanco y que tampco sea una tecla de control (como Backspace)
             if (char.IsWhiteSpace(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
         }
 
+        /// Hashea la contraseña en SHA256.
         private string HashPassword(string password)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
                 byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
                 StringBuilder builder = new StringBuilder();
+
                 foreach (byte b in bytes)
                     builder.Append(b.ToString("x2"));
+
                 return builder.ToString();
             }
         }
@@ -97,10 +94,10 @@ namespace Operador_911
                                     MessageBox.Show("Rol desconocido.");
                                     return;
                             }
-
+                            // Cuando se cierre el form, se limpia y reaparece el login
                             nextForm.FormClosed += (s, args) =>
                             {
-                                this.Show(); // cuando se cierre, reaparece el login
+                                this.Show(); 
                                 textBoxContraseña.Clear();
                                 textBoxCorreo.Clear();
                             };
@@ -125,34 +122,9 @@ namespace Operador_911
             }
         }
 
-        private void FormOperador_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit(); // si cerró con la X, chau app
-        }
-
-        private void labelCorreo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelContraseña_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             textBoxContraseña.UseSystemPasswordChar = !checkBoxContraseña.Checked;
-        }
-
-        private void textBoxContraseña_TextChanged(object sender, EventArgs e)
-        {
-            
         }
 
         private void FormLogin_Load(object sender, EventArgs e)

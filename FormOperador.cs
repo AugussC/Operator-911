@@ -16,130 +16,20 @@ namespace Operador_911
 {
     public partial class FormOperador : Form
     {
-        GMapOverlay markerPatrullas;
-        GMapOverlay markerComisarias;
-        GMapOverlay markerHospitales;
-        GMapOverlay markerBomberos;
-        GMapOverlay markerAlertas;
-        GMapOverlay polygonOverlay;
+        private GMapOverlay markerPatrullas;
+        private GMapOverlay markerComisarias;
+        private GMapOverlay markerHospitales;
+        private GMapOverlay markerBomberos;
+        private GMapOverlay markerAlertas;
+        private GMapOverlay polygonOverlay;
+        private GMapOverlay callesOverlay;
+
         private bool jurisdiccionesVisibles = false;
         private bool bomberosVisibles = false;
         private bool hospitalesVisibles = false;
 
-        private GMapOverlay callesOverlay;
+  
         private List<Calle> redVial = new List<Calle>();
-
-        // Variable para guardar los límites
-        private RectLatLng mapBounds;
-
-
-        public class Calle
-        {
-            public List<PointLatLng> Puntos { get; set; }
-        }
-
-        public FormOperador()
-        {
-            InitializeComponent();
-        }
-
-        private void FormOperador_Load_1(object sender, EventArgs e)
-        {
-
-            gMapControl1.Dock = DockStyle.Fill;
-
-            // Panel navegación arriba
-            panelNavegacion.Dock = DockStyle.Top;
-            panelNavegacion.Height = 50;
-            panelNavegacion.BackColor = Color.DodgerBlue;
-
-            // Panel mapa a la izquierda
-            panelMapa.Dock = DockStyle.Left;
-            panelMapa.Width = 960; // ancho fijo para el mapa
-
-            // Panel formulario a la derecha (ocupa lo que sobra)
-            panelForm.Dock = DockStyle.Fill;
-
-            // Configuración del mapa
-            gMapControl1.Parent = panelMapa;
-            gMapControl1.Dock = DockStyle.Fill;
-            // Configuración del mapa
-            gMapControl1.DragButton = MouseButtons.Left;
-            gMapControl1.CanDragMap = true;
-            gMapControl1.MapProvider = GMapProviders.GoogleMap;
-            GMaps.Instance.Mode = AccessMode.ServerOnly;
-
-            // Centro en Corrientes Capital
-            gMapControl1.Position = new PointLatLng(-27.4692, -58.8306);
-            gMapControl1.MinZoom = 12;
-            gMapControl1.MaxZoom = 19;
-            gMapControl1.Zoom = 14;
-
-
-           //a
-            
-            
-            CargarPatrullas();
-
-
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-
-
-
-
-
-            // Cargar calles desde GeoJSON
-            string ruta = Path.Combine(Application.StartupPath, @"..\..\Resources\calles.geojson");
-
-            CargarCallesDesdeGeoJSON(ruta);
-
-
-        }
-
-        private void CargarCallesDesdeGeoJSON(string rutaArchivo)
-        {
-            string json = File.ReadAllText(rutaArchivo);
-            JObject geojson = JObject.Parse(json);
-
-            foreach (var feature in geojson["features"])
-            {
-                string geometryType = feature["geometry"]["type"].ToString();
-
-                if (geometryType == "LineString")
-                {
-                    var coords = feature["geometry"]["coordinates"];
-                    List<PointLatLng> puntos = new List<PointLatLng>();
-
-                    foreach (var coord in coords)
-                    {
-                        double lon = (double)coord[0];
-                        double lat = (double)coord[1];
-                        puntos.Add(new PointLatLng(lat, lon));
-                    }
-
-                    redVial.Add(new Calle { Puntos = puntos });
-                }
-                else if (geometryType == "MultiLineString")
-                {
-                    foreach (var line in feature["geometry"]["coordinates"])
-                    {
-                        List<PointLatLng> puntos = new List<PointLatLng>();
-
-                        foreach (var coord in line)
-                        {
-                            double lon = (double)coord[0];
-                            double lat = (double)coord[1];
-                            puntos.Add(new PointLatLng(lat, lon));
-                        }
-
-                        redVial.Add(new Calle { Puntos = puntos });
-                    }
-                }
-            }
-
-           
-        }
-
 
         private Dictionary<string, Color> coloresDelitos = new Dictionary<string, Color>()
         {
@@ -194,42 +84,125 @@ namespace Operador_911
             { "otros", Color.LightGreen }
         };
 
+        public class Calle
+        {
+            public List<PointLatLng> Puntos { get; set; }
+        }
+
+        public FormOperador()
+        {
+            InitializeComponent();
+        }
+
+        private void FormOperador_Load_1(object sender, EventArgs e)
+        {
+
+            gMapControl1.Dock = DockStyle.Fill;
+
+            // Panel navegación arriba
+            panelNavegacion.Dock = DockStyle.Top;
+            panelNavegacion.Height = 50;
+            panelNavegacion.BackColor = Color.DodgerBlue;
+
+            // Panel mapa a la izquierda
+            panelMapa.Dock = DockStyle.Left;
+            panelMapa.Width = 960; // ancho fijo para el mapa
+
+            // Panel formulario a la derecha (ocupa lo que sobra)
+            panelForm.Dock = DockStyle.Fill;
+
+            // Configuración del mapa
+            gMapControl1.Parent = panelMapa;
+            gMapControl1.Dock = DockStyle.Fill;
+            gMapControl1.DragButton = MouseButtons.Left;
+            gMapControl1.CanDragMap = true;
+            gMapControl1.MapProvider = GMapProviders.GoogleMap;
+            GMaps.Instance.Mode = AccessMode.ServerOnly;
+
+            // Centro en Corrientes Capital
+            gMapControl1.Position = new PointLatLng(-27.4692, -58.8306);
+            gMapControl1.MinZoom = 12;
+            gMapControl1.MaxZoom = 19;
+            gMapControl1.Zoom = 14;
+
+            // ===== Datos iniciales =====
+            CargarPatrullas();
+
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+
+            // Cargar calles desde archivo GeoJSON
+            string ruta = Path.Combine(Application.StartupPath, @"..\..\Resources\calles.geojson");
+            CargarCallesDesdeGeoJSON(ruta);
+        }
+
+        // Carga las calles desde un archivo GeoJSON y las guarda en la lista redVial.
+        private void CargarCallesDesdeGeoJSON(string rutaArchivo)
+        {
+            // Leer contenido del archivo
+            string json = File.ReadAllText(rutaArchivo);
+            JObject geojson = JObject.Parse(json);
+
+            // Recorrer todas las features
+            foreach (var feature in geojson["features"])
+            {
+                string geometryType = feature["geometry"]["type"].ToString();
+
+                switch (geometryType)
+                {
+                    case "LineString":
+                        ProcesarLinea(feature["geometry"]["coordinates"]);
+                        break;
+
+                    case "MultiLineString":
+                        foreach (var line in feature["geometry"]["coordinates"])
+                            ProcesarLinea(line);
+                        break;
+                }
+            }
+        }
+        // Procesa una línea (array de coordenadas) y la agrega a la red vial.
+        private void ProcesarLinea(JToken coords)
+        {
+            List<PointLatLng> puntos = new List<PointLatLng>();
+
+            foreach (var coord in coords)
+            {
+                double lon = (double)coord[0];
+                double lat = (double)coord[1];
+                puntos.Add(new PointLatLng(lat, lon));
+            }
+
+            redVial.Add(new Calle { Puntos = puntos });
+        }
 
         private void btnJurisdicciones_Click(object sender, EventArgs e)
         {
             if (jurisdiccionesVisibles)
             {
-                // Ocultar todas las jurisdicciones
+                // Ocultar todas las jurisdicciones y comisarias
                 polygonOverlay.Polygons.Clear();
-                // Si también querés ocultar los marcadores de comisarías:
                 markerComisarias.Markers.Clear();
-
                 jurisdiccionesVisibles = false;
 
             }
             else
             {
                 // Volver a cargar las jurisdicciones y marcadores
-                CargarJurisdicciones(); // 👉 función donde tenés tu código de creación de polígonos
-                CargarMarkers();        // 👉 si los querés manejar aparte
+                CargarJurisdicciones(); 
+                CargarComisarias();       
                 
                 jurisdiccionesVisibles = true;
 
             }
-
             gMapControl1.Refresh(); // refresca el mapa
         }
-
-
-
-
 
         private void CargarJurisdicciones()
         {
             // ----------------- OVERLAY PARA POLÍGONOS -----------------
             polygonOverlay = new GMapOverlay("jurisdicciones");
 
-            // Polígono irregular de la Comisaría 1ra
+            // Polígono de la Jurisdicción Comisaría 1ra
             List<PointLatLng> puntosComisaria1 = new List<PointLatLng>()
             {
                 new PointLatLng(-27.473096, -58.856358),
@@ -243,12 +216,9 @@ namespace Operador_911
                 new PointLatLng(-27.469428, -58.854733),
                 new PointLatLng(-27.473096, -58.856358)
             };
-            GMapPolygon polygon1 = new GMapPolygon(puntosComisaria1, "Jurisdicción Comisaría 1ra");
-            polygon1.Fill = new SolidBrush(Color.FromArgb(50, Color.Red));
-            polygon1.Stroke = new Pen(Color.Red, 2);
-            polygonOverlay.Polygons.Add(polygon1);
+            AgregarPoligono(puntosComisaria1, "Jurisdicción Comisaría 1ra", Color.Red);
 
-            // Polígono irregular de la Comisaría 4ta
+            // Polígono de la Jurisdicción Comisaría 4ta
             List<PointLatLng> puntosComisaria4 = new List<PointLatLng>()
             {
                 new PointLatLng(-27.460508, -58.834946),
@@ -262,31 +232,24 @@ namespace Operador_911
                 new PointLatLng(-27.456849, -58.824476),
                 new PointLatLng(-27.457636, -58.826632),
                 new PointLatLng(-27.458904, -58.831493),
-                new PointLatLng(-27.460508, -58.834946) // cerramos polígono
+                new PointLatLng(-27.460508, -58.834946)
             };
-            GMapPolygon polygon4 = new GMapPolygon(puntosComisaria4, "Jurisdicción Comisaría 4ta");
-            polygon4.Fill = new SolidBrush(Color.FromArgb(50, Color.Green));
-            polygon4.Stroke = new Pen(Color.Green, 2);
-            polygonOverlay.Polygons.Add(polygon4);
+            AgregarPoligono(puntosComisaria4, "Jurisdicción Comisaría 4ta", Color.Green);
 
-            // Polígono de la jurisdicción que incluye ambas comisarías
+            // Polígono de la Jurisdicción Comisaría 1ra Mujer y 3ra
             List<PointLatLng> puntosJurisdiccion = new List<PointLatLng>()
-        {
-            new PointLatLng(-27.469912, -58.835807),
-            new PointLatLng(-27.485333, -58.837662),
-            new PointLatLng(-27.485715, -58.834181),
-            new PointLatLng(-27.483202, -58.825832),
-            new PointLatLng(-27.484662, -58.824536),
-            new PointLatLng(-27.471153, -58.823088),
-            new PointLatLng(-27.469912, -58.835807) // cerramos polígono
-        };
+            {
+                new PointLatLng(-27.469912, -58.835807),
+                new PointLatLng(-27.485333, -58.837662),
+                new PointLatLng(-27.485715, -58.834181),
+                new PointLatLng(-27.483202, -58.825832),
+                new PointLatLng(-27.484662, -58.824536),
+                new PointLatLng(-27.471153, -58.823088),
+                new PointLatLng(-27.469912, -58.835807)
+            };
+            AgregarPoligono(puntosJurisdiccion, "Jurisdicción Comisaría 1ra Mujer y 3ra", Color.Purple);
 
-            GMapPolygon polygonJurisdiccion = new GMapPolygon(puntosJurisdiccion, "Jurisdicción Comisaría 1ra Mujer y 3ra");
-            polygonJurisdiccion.Fill = new SolidBrush(Color.FromArgb(50, Color.Purple));
-            polygonJurisdiccion.Stroke = new Pen(Color.Purple, 2);
-            polygonOverlay.Polygons.Add(polygonJurisdiccion);
-
-            // Polígono de jurisdicción Comisaría 2
+            // Polígono de la Jurisdicción Comisaría 2da
             List<PointLatLng> puntosComisaria2 = new List<PointLatLng>()
             {
                 new PointLatLng(-27.4731117652088, -58.8563588261604),
@@ -312,14 +275,9 @@ namespace Operador_911
                 new PointLatLng(-27.4757080194051, -58.8365185260773),
                 new PointLatLng(-27.4731189043968, -58.8563641905785)
             };
+            AgregarPoligono(puntosComisaria2, "Jurisdicción Comisaría 2da", Color.Orange);
 
-            GMapPolygon polygon3 = new GMapPolygon(puntosComisaria2, "Comisaría 2da");
-            polygon3.Fill = new SolidBrush(Color.FromArgb(50, Color.Orange));
-            polygon3.Stroke = new Pen(Color.Orange, 2);
-            polygonOverlay.Polygons.Add(polygon3);
-
-
-            // Polígono de jurisdicción Comisaría 12
+            // Polígono de la Jurisdicción Comisaría 12va
             List<PointLatLng> puntosComisaria12 = new List<PointLatLng>()
             {
                 new PointLatLng(-27.488819239186, -58.8557928800583),
@@ -377,13 +335,9 @@ namespace Operador_911
                 new PointLatLng(-27.4888144804058, -58.8557982444763)
 
             };
+            AgregarPoligono(puntosComisaria12, "Jurisdicción Comisaría 12", Color.Violet);
 
-            GMapPolygon polygon12 = new GMapPolygon(puntosComisaria12, "Jurisdicción Comisaría 12");
-            polygon12.Fill = new SolidBrush(Color.FromArgb(50, Color.Violet));
-            polygon12.Stroke = new Pen(Color.Violet, 2);
-            polygonOverlay.Polygons.Add(polygon12);
-
-            // Polígono de jurisdicción Comisaría 7
+            // Polígono de jurisdicción Comisaría 7ma
             List<PointLatLng> puntosComisaria7 = new List<PointLatLng>()
             {
                 new PointLatLng(-27.4854261766432, -58.8378810882568),
@@ -415,11 +369,7 @@ namespace Operador_911
                 new PointLatLng(-27.4854261766432, -58.8376799225807),
                 new PointLatLng(-27.4854261766432, -58.8378810882568)
             };
-
-            GMapPolygon polygon7 = new GMapPolygon(puntosComisaria7, "Jurisdicción Comisaría 7ma");
-            polygon7.Fill = new SolidBrush(Color.FromArgb(50, Color.Brown));
-            polygon7.Stroke = new Pen(Color.Brown, 2);
-            polygonOverlay.Polygons.Add(polygon7);
+            AgregarPoligono(puntosComisaria7, "Jurisdicción Comisaría 7ma", Color.Brown);
 
             List<PointLatLng> puntosComisaria6 = new List<PointLatLng>()
             {
@@ -465,13 +415,9 @@ namespace Operador_911
                 new PointLatLng(-27.4556788687099, -58.8207283616066),
                 new PointLatLng(-27.4558002540382, -58.8207337260246),
                 new PointLatLng(-27.4558288152725, -58.8214096426964),
-                new PointLatLng(-27.4558073943475, -58.8213801383972) // cierre del polígono
+                new PointLatLng(-27.4558073943475, -58.8213801383972)
             };
-            GMapPolygon polygon6 = new GMapPolygon(puntosComisaria6, "Jurisdicción Comisaría 6ta");
-            polygon6.Fill = new SolidBrush(Color.FromArgb(50, Color.Blue));
-            polygon6.Stroke = new Pen(Color.Blue, 2);
-            polygonOverlay.Polygons.Add(polygon6);
-
+            AgregarPoligono(puntosComisaria6, "Jurisdicción Comisaría 6ta", Color.Blue);
 
             // Polígono irregular de la Comisaría Contravencional
             List<PointLatLng> puntosComisariaContravencional = new List<PointLatLng>()
@@ -504,14 +450,11 @@ namespace Operador_911
                 new PointLatLng(-27.4675406778458, -58.8145405054092),
                 new PointLatLng(-27.4669219151838, -58.8182634115219),
                 new PointLatLng(-27.4666934480920, -58.8217556476593),
-                new PointLatLng(-27.4666886883559, -58.8217529654503) // cierre del polígono
+                new PointLatLng(-27.4666886883559, -58.8217529654503)
             };
-            GMapPolygon polygonContravencional = new GMapPolygon(puntosComisariaContravencional, "Jurisdicción Comisaría Contravencional");
-            polygonContravencional.Fill = new SolidBrush(Color.FromArgb(50, Color.Aqua));
-            polygonContravencional.Stroke = new Pen(Color.Aqua, 2);
-            polygonOverlay.Polygons.Add(polygonContravencional);
+            AgregarPoligono(puntosComisariaContravencional, "Jurisdicción Comisaría Contravencional", Color.Aqua);
 
-            // Polígono irregular de la Comisaría 19
+            // Polígono irregular de la Comisaría 19na
             List<PointLatLng> puntosComisaria19 = new List<PointLatLng>()
             {
                 new PointLatLng(-27.4745657702835, -58.8234427571297),
@@ -529,12 +472,9 @@ namespace Operador_911
                 new PointLatLng(-27.4866301785442, -58.8229733705521),
                 new PointLatLng(-27.4846647457218, -58.8245290517807),
                 new PointLatLng(-27.4745610108873, -58.8234454393387),
-                new PointLatLng(-27.4745657702835, -58.8234427571297) // cierre del polígono
+                new PointLatLng(-27.4745657702835, -58.8234427571297)
             };
-            GMapPolygon polygonComisaria19 = new GMapPolygon(puntosComisaria19, "Jurisdicción Comisaría 19");
-            polygonComisaria19.Fill = new SolidBrush(Color.FromArgb(50, Color.BlueViolet));
-            polygonComisaria19.Stroke = new Pen(Color.BlueViolet, 2);
-            polygonOverlay.Polygons.Add(polygonComisaria19);
+            AgregarPoligono(puntosComisaria19, "Jurisdicción Comisaría 19", Color.BlueViolet);
 
             // Polígono irregular de la Comisaría 9na
             List<PointLatLng> puntosComisaria9 = new List<PointLatLng>()
@@ -559,12 +499,9 @@ namespace Operador_911
                     new PointLatLng(-27.4781971295957, -58.7826061248779),
                     new PointLatLng(-27.4708866957483, -58.7799453735352),
                     new PointLatLng(-27.4609482970101, -58.7673497200012),
-                    new PointLatLng(-27.4681213596460, -58.7960225343704) // cierre del polígono
+                    new PointLatLng(-27.4681213596460, -58.7960225343704)
                 };
-            GMapPolygon polygon9 = new GMapPolygon(puntosComisaria9, "Jurisdicción Comisaría 9na");
-            polygon9.Fill = new SolidBrush(Color.FromArgb(50, Color.Orange));
-            polygon9.Stroke = new Pen(Color.Orange, 2);
-            polygonOverlay.Polygons.Add(polygon9);
+            AgregarPoligono(puntosComisaria9, "Jurisdicción Comisaría 9na", Color.Orange);
 
             // Polígono irregular de la Comisaría 11ra
             List<PointLatLng> puntosComisaria11 = new List<PointLatLng>()
@@ -601,12 +538,9 @@ namespace Operador_911
                     new PointLatLng(-27.4672408163742, -58.8071376085281),
                     new PointLatLng(-27.4671551415181, -58.8076794147491),
                     new PointLatLng(-27.4671265832180, -58.8081622123718),
-                    new PointLatLng(-27.4672384365180, -58.8097608089447) // cierre del polígono
+                    new PointLatLng(-27.4672384365180, -58.8097608089447)
                 };
-            GMapPolygon polygon11 = new GMapPolygon(puntosComisaria11, "Jurisdicción Comisaría 11ra");
-            polygon11.Fill = new SolidBrush(Color.FromArgb(50, Color.Purple));
-            polygon11.Stroke = new Pen(Color.Purple, 2);
-            polygonOverlay.Polygons.Add(polygon11);
+            AgregarPoligono(puntosComisaria11, "Jurisdicción Comisaría 11ra", Color.Purple);
 
             // Polígono irregular de la Comisaría 15ta
             List<PointLatLng> puntosComisaria15 = new List<PointLatLng>()
@@ -688,10 +622,7 @@ namespace Operador_911
                     new PointLatLng(-27.5009629764616, -58.8363361358643),
                     new PointLatLng(-27.5009558390785, -58.8363415002823)
                 };
-            GMapPolygon polygon15 = new GMapPolygon(puntosComisaria15, "Jurisdicción Comisaría 15ta");
-            polygon15.Fill = new SolidBrush(Color.FromArgb(50, Color.DarkBlue));
-            polygon15.Stroke = new Pen(Color.DarkBlue, 2);
-            polygonOverlay.Polygons.Add(polygon15);
+            AgregarPoligono(puntosComisaria15, "Jurisdicción Comisaría 15ta", Color.DarkBlue);
 
             // Polígono irregular de la Comisaría 8va
             List<PointLatLng> puntosComisaria8 = new List<PointLatLng>()
@@ -727,10 +658,7 @@ namespace Operador_911
                     new PointLatLng(-27.4868276716706, -58.8162329792976),
                     new PointLatLng(-27.4868348099697, -58.8162329792976)
                 };
-            GMapPolygon polygon8 = new GMapPolygon(puntosComisaria8, "Jurisdicción Comisaría 8va");
-            polygon8.Fill = new SolidBrush(Color.FromArgb(50, Color.DarkGreen));
-            polygon8.Stroke = new Pen(Color.DarkGreen, 2);
-            polygonOverlay.Polygons.Add(polygon8);
+            AgregarPoligono(puntosComisaria8, "Jurisdicción Comisaría 8va", Color.DarkGreen);
 
             // Polígono irregular de la Comisaría 21ra
             List<PointLatLng> puntosComisaria21 = new List<PointLatLng>()
@@ -766,11 +694,7 @@ namespace Operador_911
                 new PointLatLng(-27.4940347387430, -58.8174882531166),
                 new PointLatLng(-27.4922074385468, -58.8171824812889)
             };
-
-            GMapPolygon polygon21 = new GMapPolygon(puntosComisaria21, "Jurisdicción Comisaría 21ra");
-            polygon21.Fill = new SolidBrush(Color.FromArgb(50, Color.Yellow));
-            polygon21.Stroke = new Pen(Color.Yellow, 2);
-            polygonOverlay.Polygons.Add(polygon21);
+            AgregarPoligono(puntosComisaria21, "Jurisdicción Comisaría 21ra", Color.Yellow);
 
             // Polígono irregular de la Comisaría 14ta
             List<PointLatLng> puntosComisaria14 = new List<PointLatLng>()
@@ -842,13 +766,9 @@ namespace Operador_911
                 new PointLatLng(-27.5138333042857, -58.8071724772453),
                 new PointLatLng(-27.5138285465869, -58.8071537017822)
             };
+            AgregarPoligono(puntosComisaria14, "Jurisdicción Comisaría 14ta", Color.DarkMagenta);
 
-            GMapPolygon polygon14 = new GMapPolygon(puntosComisaria14, "Jurisdicción Comisaría 14ta");
-            polygon14.Fill = new SolidBrush(Color.FromArgb(50, Color.DarkMagenta));
-            polygon14.Stroke = new Pen(Color.DarkMagenta, 2);
-            polygonOverlay.Polygons.Add(polygon14);
-
-            // Polígono delimitando la jurisdicción
+            // Polígono de la jurisdicción Comisaría 13ra
             List<PointLatLng> puntosComisaria13 = new List<PointLatLng>
             {
                 new PointLatLng(-27.5023238290566, -58.7975406646729),
@@ -902,11 +822,7 @@ namespace Operador_911
                 new PointLatLng(-27.5026759350297, -58.7975996732712),
                 new PointLatLng(-27.5023238290566, -58.7975406646729)
             };
-
-            GMapPolygon poligonoComisaria13 = new GMapPolygon(puntosComisaria13, "Jurisdicción Comisaría 13ra");
-            poligonoComisaria13.Fill = new SolidBrush(Color.FromArgb(50, Color.Black));
-            poligonoComisaria13.Stroke = new Pen(Color.Black, 2);
-            polygonOverlay.Polygons.Add(poligonoComisaria13);
+            AgregarPoligono(puntosComisaria13, "Jurisdicción Comisaría 13ra", Color.Black);
 
             // Polígono de la jurisdicción Riachuelo
             List<PointLatLng> puntosRiachuelo = new List<PointLatLng>
@@ -1063,11 +979,7 @@ namespace Operador_911
                 new PointLatLng(-27.5610528362949, -58.8224530220032),
                 new PointLatLng(-27.5610908815265, -58.8226890563965)
             };
-
-            GMapPolygon poligonoRiachuelo = new GMapPolygon(puntosRiachuelo, "Jurisdicción Comisaria Riachuelo");
-            poligonoRiachuelo.Fill = new SolidBrush(Color.FromArgb(50, Color.DarkOliveGreen));
-            poligonoRiachuelo.Stroke = new Pen(Color.DarkOliveGreen, 2);
-            polygonOverlay.Polygons.Add(poligonoRiachuelo);
+            AgregarPoligono(puntosRiachuelo, "Jurisdicción Comisaria Riachuelo", Color.DarkOliveGreen);
 
             // Polígono de la jurisdicción Comisaria 18 y 2da de la mujer y menor
             List<PointLatLng> puntosComisaria18yMujer = new List<PointLatLng>
@@ -1100,11 +1012,7 @@ namespace Operador_911
                 new PointLatLng(-27.4833750600895, -58.7955451011658),
                 new PointLatLng(-27.4825755425945, -58.7953519821167)
             };
-
-            GMapPolygon poligonoComisaria18yMujer = new GMapPolygon(puntosComisaria18yMujer, "Jurisdicción Comisaria 18 y 2da de la Mujer y el Menor");
-            poligonoComisaria18yMujer.Fill = new SolidBrush(Color.FromArgb(50, Color.DarkOrange));
-            poligonoComisaria18yMujer.Stroke = new Pen(Color.DarkOrange, 2);
-            polygonOverlay.Polygons.Add(poligonoComisaria18yMujer);
+            AgregarPoligono(puntosComisaria18yMujer, "Jurisdicción Comisaria 18 y 2da de la Mujer y el Menor", Color.DarkOrange);
 
             // Polígono de la jurisdicción Comisaria 20
             List<PointLatLng> puntosComisaria20 = new List<PointLatLng>
@@ -1163,13 +1071,9 @@ namespace Operador_911
                 new PointLatLng(-27.5469751957656, -58.753981590271),
                 new PointLatLng(-27.5165118560545, -58.78910779953)
             };
+            AgregarPoligono(puntosComisaria20, "Jurisdicción Comisaria 20", Color.Crimson);
 
-            GMapPolygon poligonoComisaria20 = new GMapPolygon(puntosComisaria20, "Jurisdicción Comisaria 20");
-            poligonoComisaria20.Fill = new SolidBrush(Color.FromArgb(50, Color.Crimson));
-            poligonoComisaria20.Stroke = new Pen(Color.Crimson, 2);
-            polygonOverlay.Polygons.Add(poligonoComisaria20);
-
-            // ---------------- Polígono irregular de la Comisaría 16ta ----------------
+            // ---------------- Polígono de la Jurisdiccion de la Comisaría 16ta ----------------
             List<PointLatLng> puntosComisaria16 = new List<PointLatLng>()
             {
                 new PointLatLng(-27.4612148557966, -58.768036365509),
@@ -1185,15 +1089,11 @@ namespace Operador_911
                 new PointLatLng(-27.4780829077971, -58.7834644317627),
                 new PointLatLng(-27.4716482219041, -58.7809753417969),
                 new PointLatLng(-27.467916693459,  -58.777027130127),
-                new PointLatLng(-27.4612148557966, -58.768036365509) // cerramos polígono
+                new PointLatLng(-27.4612148557966, -58.768036365509) 
             };
+            AgregarPoligono(puntosComisaria16, "Jurisdicción Comisaría 16ta", Color.Olive);
 
-            GMapPolygon polygon16 = new GMapPolygon(puntosComisaria16, "Jurisdicción Comisaría 16ta");
-            polygon16.Fill = new SolidBrush(Color.FromArgb(50, Color.Olive));
-            polygon16.Stroke = new Pen(Color.Olive, 2);
-            polygonOverlay.Polygons.Add(polygon16);
-
-            // ---------------- Polígono irregular de la Comisaría 10ma ----------------
+            // ---------------- Polígono de la Jurisdiccion de la Comisaría 10ma ----------------
             List<PointLatLng> puntosComisaria10 = new List<PointLatLng>()
                 {
                     new PointLatLng(-27.4840413202353, -58.7821125984192),
@@ -1216,13 +1116,9 @@ namespace Operador_911
                     new PointLatLng(-27.4857355064513, -58.7709760665894),
                     new PointLatLng(-27.4840413202353, -58.7821125984192) // cerramos polígono
                 };
+            AgregarPoligono(puntosComisaria10, "Jurisdicción Comisaría 10ma", Color.Purple);
 
-            GMapPolygon polygon10 = new GMapPolygon(puntosComisaria10, "Jurisdicción Comisaría 10ma");
-            polygon10.Fill = new SolidBrush(Color.FromArgb(50, Color.Purple));
-            polygon10.Stroke = new Pen(Color.Purple, 2);
-            polygonOverlay.Polygons.Add(polygon10);
-
-            // ---------------- Polígono irregular de la Comisaría 17ma ----------------
+            // ---------------- Polígono de la Jurisdiccion de la Comisaría 17ma ----------------
             List<PointLatLng> puntosComisaria17 = new List<PointLatLng>()
             {
                 new PointLatLng(-27.4539223366493, -58.7911033630371),
@@ -1239,19 +1135,26 @@ namespace Operador_911
                 new PointLatLng(-27.4488191904972, -58.7879061698914),
                 new PointLatLng(-27.4508566689564, -58.7908887863159),
                 new PointLatLng(-27.4517897072752, -58.7900519371033),
-                new PointLatLng(-27.4539223366493, -58.7911033630371) // cerramos polígono
+                new PointLatLng(-27.4539223366493, -58.7911033630371) 
             };
-
-            GMapPolygon polygon17 = new GMapPolygon(puntosComisaria17, "Jurisdicción Comisaría 17ma");
-            polygon17.Fill = new SolidBrush(Color.FromArgb(50, Color.Blue));
-            polygon17.Stroke = new Pen(Color.Blue, 2);
-            polygonOverlay.Polygons.Add(polygon17);
-
+            AgregarPoligono(puntosComisaria17, "Jurisdicción Comisaría 17ma", Color.Blue);
             // ----------------- AGREGAMOS OVERLAYS AL MAPA -----------------
             gMapControl1.Overlays.Add(polygonOverlay);
         }
 
-        private void CargarMarkers()
+        // Función auxiliar para crear y agregar un polígono al overlay
+        private void AgregarPoligono(List<PointLatLng> puntos, string nombre, Color color)
+        {
+            var poligono = new GMapPolygon(puntos, nombre)
+            {
+                Fill = new SolidBrush(Color.FromArgb(50, color)), 
+                Stroke = new Pen(color, 2)
+            };
+
+            polygonOverlay.Polygons.Add(poligono);
+        }
+
+        private void CargarComisarias()
         {
             // ----------------- OVERLAY PARA MARKERS -----------------
             markerComisarias = new GMapOverlay("markers");
@@ -1408,10 +1311,9 @@ namespace Operador_911
 
             gMapControl1.Overlays.Add(markerComisarias);
         }
+
         private void CargarBomberos()
         {
-            
-
             markerBomberos = new GMapOverlay("bomberos");
             // ---------------- Bomberos de la Policia - Cuartel 2 ----------------
             PointLatLng BomberosCuartel2 = new PointLatLng(-27.489398, -58.785644);
@@ -1450,9 +1352,8 @@ namespace Operador_911
             markerBomberos.Markers.Add(markerBomberosVoluntariosRiachuelo);
 
             gMapControl1.Overlays.Add(markerBomberos);
-
-
         }
+
 
         private void CargarHospitales()
         {
@@ -1501,6 +1402,7 @@ namespace Operador_911
 
             gMapControl1.Overlays.Add(markerHospitales);
         }
+
         private void CargarPatrullas()
         {
             markerPatrullas = new GMapOverlay("Patrullas");
@@ -1511,19 +1413,14 @@ namespace Operador_911
             var marker = new GMarkerGoogle(patrulla1, icono);
             markerPatrullas.Markers.Add(marker);
 
-           
-
-          
             PointLatLng patrulla2 = new PointLatLng(-27.476527, -58.830662);
             var marker2 = new GMarkerGoogle(patrulla2, icono);
             markerPatrullas.Markers.Add(marker2);
 
-
-
             gMapControl1.Overlays.Add(markerPatrullas);
 
-
         }
+
 
         private bool validacionesFormulario()
         {
@@ -1537,7 +1434,6 @@ namespace Operador_911
                 return false;
 
             }
-
 
             // Validar que direccion no tenga caracteres especiales
             if (!Regex.IsMatch(direccion, @"^[a-zA-Z0-9\s]+$"))
@@ -1572,6 +1468,7 @@ namespace Operador_911
 
         private void btnAgregarAlerta_Click(object sender, EventArgs e)
         {
+            //si falla alguna validacion se corta el flujo
             if (!validacionesFormulario()) return;
 
             string direccion = textDireccion.Text.Trim();
@@ -1579,42 +1476,32 @@ namespace Operador_911
             string nombre = textNombre.Text.Trim();
             string delito = ListDelitos.SelectedItem.ToString();
 
-            // Generar ID automático
             int id = dataGridView1.Rows.Count + 1;
 
-            
-
-            // Agregar la fila respetando el orden de las columnas
+            // Agregar nueva fila a la grilla con estado inicial
             int rowIndex = dataGridView1.Rows.Add(id,"No asignada", "En Espera", delito, telefono, nombre, direccion);
+            PintarFila(rowIndex, delito);   // Pintar fila con color según tipo de delito
+            string direccionCompleta = $"{direccion}, Corrientes Capital, Corrientes, Argentina"; //Construir dirección completa para geocodificar
 
-            // Colorear la fila según el tipo de delito
-            PintarFila(rowIndex, delito);
-
-            // Mostrar ubicación en el mapa
-            string direccionCompleta = $"{direccion}, Corrientes Capital, Corrientes, Argentina";
-
+            // Intentar convertir la dirección en coordenadas
             GeoCoderStatusCode status;
             var point = GMapProviders.OpenStreetMap.GetPoint(direccionCompleta, out status);
 
             if(status == GeoCoderStatusCode.G_GEO_SUCCESS && point != null)
             {
-                        gMapControl1.Position = point.Value;
-                        gMapControl1.Zoom = 16;
-
-                      
-                        markerAlertas = new GMapOverlay("alertas");
-                        gMapControl1.Overlays.Add(markerAlertas);
-                        
-
-                        var marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.red);
-
-                        markerAlertas.Markers.Add(marker);
-                    }
+                gMapControl1.Position = point.Value;
+                gMapControl1.Zoom = 16;
+                markerAlertas = new GMapOverlay("alertas");
+                gMapControl1.Overlays.Add(markerAlertas);
+                var marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.red);
+                markerAlertas.Markers.Add(marker);
+            }
             else
-                    {
-                        MessageBox.Show($"No se encontró la dirección. Status: {status}");
-                    }
-                }
+            {
+                MessageBox.Show($"No se encontró la dirección.");
+            }
+        }
+
         private void ListDelitos_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (e.NewValue == CheckState.Checked)
@@ -1630,17 +1517,12 @@ namespace Operador_911
         private void PintarFila(int rowIndex, string delito)
         {
             DataGridViewRow row = dataGridView1.Rows[rowIndex];
-
             delito = delito.Trim();
 
             if (coloresDelitos.ContainsKey(delito))
             {
                 row.DefaultCellStyle.BackColor = coloresDelitos[delito];
                 row.DefaultCellStyle.ForeColor = (coloresDelitos[delito] == Color.Red) ? Color.White : Color.Black;
-            }
-            else
-            {
-               
             }
         }
 
@@ -1656,12 +1538,8 @@ namespace Operador_911
                 CargarBomberos();
                 bomberosVisibles = true;
             }
-
             gMapControl1.Refresh();
-         
         }
-
-       
 
         private void btnHospitales_Click(object sender, EventArgs e)
         {
@@ -1675,7 +1553,6 @@ namespace Operador_911
                 CargarHospitales();
                 hospitalesVisibles = true;
             }
-
             gMapControl1.Refresh();
         }
 

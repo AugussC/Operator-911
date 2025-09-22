@@ -95,7 +95,6 @@
             this.labelDNI.Size = new System.Drawing.Size(234, 14);
             this.labelDNI.TabIndex = 10;
             this.labelDNI.Text = "Documento Nacional de Indentidad (DNI)";
-            this.labelDNI.Click += new System.EventHandler(this.labelCodigo_Click);
             // 
             // labelAdd_user
             // 
@@ -106,7 +105,6 @@
             this.labelAdd_user.Size = new System.Drawing.Size(257, 25);
             this.labelAdd_user.TabIndex = 16;
             this.labelAdd_user.Text = "Agregar Nuevo Usuario";
-            this.labelAdd_user.Click += new System.EventHandler(this.labelTitulo_Click);
             // 
             // textBoxContraseña
             // 
@@ -172,7 +170,7 @@
             this.labelTitulo_Usuarios.Size = new System.Drawing.Size(231, 25);
             this.labelTitulo_Usuarios.TabIndex = 23;
             this.labelTitulo_Usuarios.Text = "Administrar Usuarios";
-            this.labelTitulo_Usuarios.Click += new System.EventHandler(this.label1_Click);
+
             // 
             // textBoxApellido
             // 
@@ -207,7 +205,7 @@
             this.labelNombre.Size = new System.Drawing.Size(50, 14);
             this.labelNombre.TabIndex = 24;
             this.labelNombre.Text = "Nombre";
-            this.labelNombre.Click += new System.EventHandler(this.label3_Click);
+
             // 
             // comboBoxRol
             // 
@@ -229,7 +227,7 @@
             this.textBoxCorreo.Name = "textBoxCorreo";
             this.textBoxCorreo.Size = new System.Drawing.Size(320, 20);
             this.textBoxCorreo.TabIndex = 30;
-            this.textBoxCorreo.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+
             // 
             // label1
             // 
@@ -307,7 +305,7 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(411, 521);
             this.panel2.TabIndex = 37;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+   
             // 
             // checkBoxContraseña2
             // 

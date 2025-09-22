@@ -59,7 +59,7 @@ namespace Operador_911
             this.panelNavegacion.Name = "panelNavegacion";
             this.panelNavegacion.Size = new System.Drawing.Size(1363, 44);
             this.panelNavegacion.TabIndex = 3;
-            this.panelNavegacion.Paint += new System.Windows.Forms.PaintEventHandler(this.panelNavegacion_Paint_1);
+           
             // 
             // btnCerrarSesion
             // 
@@ -73,6 +73,7 @@ namespace Operador_911
             this.btnCerrarSesion.TabIndex = 2;
             this.btnCerrarSesion.Text = "Cerrar Sesion";
             this.btnCerrarSesion.UseVisualStyleBackColor = false;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // tituloPrograma
             // 
@@ -137,6 +138,7 @@ namespace Operador_911
             this.btnUsuarios.TabIndex = 2;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // btnReportes
             // 
@@ -147,6 +149,7 @@ namespace Operador_911
             this.btnReportes.TabIndex = 1;
             this.btnReportes.Text = "Reportes";
             this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // btnInicio_supervisor
             // 
@@ -157,6 +160,7 @@ namespace Operador_911
             this.btnInicio_supervisor.TabIndex = 0;
             this.btnInicio_supervisor.Text = "Inicio";
             this.btnInicio_supervisor.UseVisualStyleBackColor = true;
+            this.btnInicio_supervisor.Click += new System.EventHandler(this.btnInicio_supervisor_Click);
             // 
             // panel_supervisor
             // 
@@ -181,7 +185,7 @@ namespace Operador_911
             this.Name = "FormJefeOperador";
             this.Text = "FormJefeOperador";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.Load += new System.EventHandler(this.FormJefeOperador_Load_1);
+
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

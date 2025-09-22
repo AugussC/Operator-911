@@ -41,7 +41,7 @@
             this.btnAgregarPatrulla = new System.Windows.Forms.Button();
             this.btnEditarPatrulla = new System.Windows.Forms.Button();
             this.btnEliminarPatrulla = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewPolicias = new System.Windows.Forms.DataGridView();
             this.Nro_Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolicias)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,7 +73,6 @@
             this.textBoxNroPlaca.Name = "textBoxNroPlaca";
             this.textBoxNroPlaca.Size = new System.Drawing.Size(349, 20);
             this.textBoxNroPlaca.TabIndex = 1;
-            this.textBoxNroPlaca.TextChanged += new System.EventHandler(this.textBoxNroPlaca_TextChanged);
             // 
             // textBoxNombre
             // 
@@ -88,7 +87,6 @@
             this.textBoxApellido.Name = "textBoxApellido";
             this.textBoxApellido.Size = new System.Drawing.Size(349, 20);
             this.textBoxApellido.TabIndex = 3;
-            this.textBoxApellido.TextChanged += new System.EventHandler(this.textBoxApellido_TextChanged);
             // 
             // labelNombre
             // 
@@ -174,20 +172,20 @@
             this.btnEliminarPatrulla.Text = "Eliminar";
             this.btnEliminarPatrulla.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridViewPolicias
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewPolicias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPolicias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Nro_Placa,
             this.Apellido,
             this.Nombre,
             this.DNI,
             this.Telefono});
-            this.dataGridView1.Location = new System.Drawing.Point(481, 128);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.Size = new System.Drawing.Size(607, 521);
-            this.dataGridView1.TabIndex = 13;
+            this.dataGridViewPolicias.Location = new System.Drawing.Point(481, 128);
+            this.dataGridViewPolicias.Name = "dataGridViewPolicias";
+            this.dataGridViewPolicias.RowHeadersWidth = 62;
+            this.dataGridViewPolicias.Size = new System.Drawing.Size(607, 521);
+            this.dataGridViewPolicias.TabIndex = 13;
             // 
             // Nro_Placa
             // 
@@ -300,12 +298,12 @@
             this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewPolicias);
             this.Controls.Add(this.panel2);
             this.Name = "UCPoliciasComisario";
             this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCPoliciasComisario_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolicias)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
@@ -328,7 +326,7 @@
         private System.Windows.Forms.Button btnAgregarPatrulla;
         private System.Windows.Forms.Button btnEditarPatrulla;
         private System.Windows.Forms.Button btnEliminarPatrulla;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewPolicias;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Placa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;

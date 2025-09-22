@@ -63,7 +63,7 @@
             this.labelCorreo.Size = new System.Drawing.Size(86, 32);
             this.labelCorreo.TabIndex = 1;
             this.labelCorreo.Text = "Correo";
-            this.labelCorreo.Click += new System.EventHandler(this.labelCorreo_Click);
+  
             // 
             // labelContraseña
             // 
@@ -75,7 +75,7 @@
             this.labelContraseña.Size = new System.Drawing.Size(134, 32);
             this.labelContraseña.TabIndex = 2;
             this.labelContraseña.Text = "Contraseña";
-            this.labelContraseña.Click += new System.EventHandler(this.labelContraseña_Click);
+
             // 
             // label3
             // 
@@ -93,7 +93,7 @@
             this.textBoxContraseña.Size = new System.Drawing.Size(305, 26);
             this.textBoxContraseña.TabIndex = 5;
             this.textBoxContraseña.UseSystemPasswordChar = true;
-            this.textBoxContraseña.TextChanged += new System.EventHandler(this.textBoxContraseña_TextChanged);
+      
             // 
             // textBoxCorreo
             // 
@@ -148,7 +148,7 @@
             this.label4.Size = new System.Drawing.Size(323, 24);
             this.label4.TabIndex = 10;
             this.label4.Text = "Ingrese sus Credenciales de Sesion";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+
             // 
             // FormLogin
             // 

@@ -21,33 +21,25 @@ namespace Operador_911
             this.Load += new System.EventHandler(this.FormComisario_Load);
 
         }
-
+        // Cargar el UserControl inicial al cargar el formulario y configurar el PictureBox
         private void FormComisario_Load(object sender, EventArgs e)
         {
 
-            
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             LoadUserControl(new UCInicioComisario());
 
         }
+        // Método para cargar un UserControl en el panel
         private void LoadUserControl(UserControl uc)
         {
-            // Limpia el contenido del panel
             panelComisario.Controls.Clear();
-
-            // Ajusta el user control al tamaño del panel
             uc.Dock = DockStyle.Fill;
-
-            // Agrega el nuevo user control al panel
             panelComisario.Controls.Add(uc);
         }
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-           
             LoadUserControl(new UCInicioComisario());
-        
-
         }
 
         private void btnPatrulla_Click(object sender, EventArgs e)
@@ -64,8 +56,7 @@ namespace Operador_911
         {
             LoadUserControl(new UCPlanilla());
         }
-
-        
+   
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
