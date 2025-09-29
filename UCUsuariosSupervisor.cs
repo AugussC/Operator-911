@@ -53,6 +53,11 @@ namespace Operador_911
             dataGridUsuarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             textBoxContraseña.UseSystemPasswordChar = true;
             textBoxConfirmarContraseña.UseSystemPasswordChar = true;
+
+            btnEditarUsuario.Enabled = false;
+            btnEliminarUsuario.Enabled = false;
+            dataGridUsuarios.ClearSelection();
+            dataGridUsuarios.SelectionChanged += dataGridUsuarios_SelectionChanged;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -119,6 +124,12 @@ namespace Operador_911
                 return;
             }
 
+            if (!correo.Contains("@"))
+            {
+                MessageBox.Show("El correo debe contener un @", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (!dni.All(char.IsDigit))
             {
                 MessageBox.Show("El DNI debe contener solo números.");
@@ -155,7 +166,8 @@ namespace Operador_911
                     cmd.Parameters.AddWithValue("@rol", rol);
 
                     cmd.ExecuteNonQuery();
-                    MessageBox.Show("Usuario agregado correctamente ✅");
+                    MessageBox.Show("Usuario agregado correctamente ");
+                    CargarUsuarios();
                 }
             }
             catch (Exception ex)
@@ -190,6 +202,7 @@ namespace Operador_911
             textBoxContraseña.Text = "";
             textBoxConfirmarContraseña.Text = "";
             btnEditarUsuario.Enabled = false;
+            btnEliminarUsuario.Enabled = false;
         }
 
         private void CargarUsuariosEliminados()
@@ -249,16 +262,17 @@ namespace Operador_911
 
         private void dataGridUsuarios_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dataGridUsuarios.Columns["activo"].Index && e.RowIndex >= 0)
-            {
-                int idUsuario = Convert.ToInt32(dataGridUsuarios.Rows[e.RowIndex].Cells["id_usuario"].Value);
-                bool nuevoEstado = Convert.ToBoolean(dataGridUsuarios.Rows[e.RowIndex].Cells["activo"].Value);
+            
+                if (e.ColumnIndex == dataGridUsuarios.Columns["activo"].Index && e.RowIndex >= 0)
+                {
+                    int idUsuario = Convert.ToInt32(dataGridUsuarios.Rows[e.RowIndex].Cells["id_usuario"].Value);
+                    bool nuevoEstado = Convert.ToBoolean(dataGridUsuarios.Rows[e.RowIndex].Cells["activo"].Value);
 
-                if (nuevoEstado)
-                    ActivarUsuario(idUsuario, e.RowIndex);
-                else
-                    DesactivarUsuario(idUsuario, e.RowIndex);
-            }
+                    if (nuevoEstado)
+                        ActivarUsuario(idUsuario, e.RowIndex);
+                    else
+                        DesactivarUsuario(idUsuario, e.RowIndex);
+                }
         }
 
         private void ActivarUsuario(int idUsuario, int rowIndex)
@@ -333,6 +347,18 @@ namespace Operador_911
                 textBoxCorreo.Text = dataGridUsuarios.CurrentRow.Cells["correo"].Value.ToString();
                 comboBoxRol.Text = dataGridUsuarios.CurrentRow.Cells["rol"].Value.ToString();
             }
+
+            // Si no hay fila seleccionada, deshabilitar botones
+            if (dataGridUsuarios.CurrentRow == null)
+            {
+                btnEditarUsuario.Enabled = false;
+                btnEliminarUsuario.Enabled = false;
+            }
+            else
+            {
+                btnEditarUsuario.Enabled = true;
+                btnEliminarUsuario.Enabled = true;
+            }
         }
 
         private void dataGridUsuarios_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -385,6 +411,12 @@ namespace Operador_911
                 string.IsNullOrEmpty(rol))
             {
                 MessageBox.Show("Todos los campos obligatorios deben estar completos.");
+                return;
+            }
+
+            if (!correo.Contains("@"))
+            {
+                MessageBox.Show("El correo debe contener un @", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -449,7 +481,7 @@ namespace Operador_911
                     }
                 }
 
-                MessageBox.Show("Usuario actualizado correctamente ✅");
+                MessageBox.Show("Usuario actualizado correctamente ");
 
                 
                 CargarUsuarios();

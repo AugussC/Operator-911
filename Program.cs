@@ -5,13 +5,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Operador_911
-{///nunca usar un numererador para un coso de auditoria ejemplo una factura, 
-    //se hace otra tabla donde se guarda el ultimo valor
+{
     internal static class Program
     {
-        /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// </summary>
+        
+        // Punto de entrada principal para la aplicación.
         [STAThread]
         static void Main()
         {

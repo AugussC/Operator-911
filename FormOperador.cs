@@ -2,15 +2,16 @@
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO; 
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.IO; 
 using System.Windows.Forms;
-using Newtonsoft.Json.Linq;
 
 namespace Operador_911
 {
@@ -22,14 +23,28 @@ namespace Operador_911
         private GMapOverlay markerBomberos;
         private GMapOverlay markerAlertas;
         private GMapOverlay polygonOverlay;
-        private GMapOverlay callesOverlay;
+        private GMapOverlay RutasOverlay;
 
         private bool jurisdiccionesVisibles = false;
         private bool bomberosVisibles = false;
         private bool hospitalesVisibles = false;
 
-  
-        private List<Calle> redVial = new List<Calle>();
+        private List<Nodo> nodos = new List<Nodo>();
+        private GMapOverlay overlayRutas = new GMapOverlay("rutas");
+        private GMarkerGoogle markerPatrulla;
+
+        private int indiceRuta = 0;
+        private Timer timerMovimiento;
+
+        PointLatLng origen;
+        private List<PointLatLng> destinos = new List<PointLatLng>(); // Varias alertas
+        private List<PointLatLng> puntosRuta;
+        public class Nodo
+        {
+            public double Lat { get; set; }
+            public double Lng { get; set; }
+            public List<(Nodo vecino, double distancia)> Vecinos { get; set; } = new List<(Nodo, double)>();
+        }
 
         private Dictionary<string, Color> coloresDelitos = new Dictionary<string, Color>()
         {
@@ -84,14 +99,16 @@ namespace Operador_911
             { "otros", Color.LightGreen }
         };
 
-        public class Calle
-        {
-            public List<PointLatLng> Puntos { get; set; }
-        }
-
         public FormOperador()
         {
             InitializeComponent();
+
+            textNombre.KeyPress += textNombre_KeyPress;
+            textTelefono.KeyPress += textTelefono_KeyPress;
+            textDireccion.KeyPress += textDireccion_KeyPress;
+            
+
+
         }
 
         private void FormOperador_Load_1(object sender, EventArgs e)
@@ -133,26 +150,37 @@ namespace Operador_911
             // Cargar calles desde archivo GeoJSON
             string ruta = Path.Combine(Application.StartupPath, @"..\..\Resources\calles.geojson");
             CargarCallesDesdeGeoJSON(ruta);
+
+
+           
+            gMapControl1.OnMarkerClick += GMapControl1_OnMarkerClick;
+
+
+            markerAlertas = new GMapOverlay("Alertas");
+            gMapControl1.Overlays.Add(markerAlertas);
+
         }
 
-        // Carga las calles desde un archivo GeoJSON y las guarda en la lista redVial.
+       
+
+        // ===================== CARGA DE CALLES =====================
         private void CargarCallesDesdeGeoJSON(string rutaArchivo)
         {
-            // Leer contenido del archivo
             string json = File.ReadAllText(rutaArchivo);
             JObject geojson = JObject.Parse(json);
 
-            // Recorrer todas las features
             foreach (var feature in geojson["features"])
             {
                 string geometryType = feature["geometry"]["type"].ToString();
+                var properties = feature["properties"];
+                if (properties == null || properties["highway"] == null)
+                    continue; // ignorar lo que no sea calle
 
                 switch (geometryType)
                 {
                     case "LineString":
                         ProcesarLinea(feature["geometry"]["coordinates"]);
                         break;
-
                     case "MultiLineString":
                         foreach (var line in feature["geometry"]["coordinates"])
                             ProcesarLinea(line);
@@ -160,20 +188,184 @@ namespace Operador_911
                 }
             }
         }
-        // Procesa una línea (array de coordenadas) y la agrega a la red vial.
+
         private void ProcesarLinea(JToken coords)
         {
-            List<PointLatLng> puntos = new List<PointLatLng>();
+            Nodo previo = null;
 
             foreach (var coord in coords)
             {
                 double lon = (double)coord[0];
                 double lat = (double)coord[1];
-                puntos.Add(new PointLatLng(lat, lon));
+                var nodo = ObtenerONuevoNodo(lat, lon);
+
+                if (previo != null)
+                {
+                    double d = Distancia(previo, nodo);
+                    previo.Vecinos.Add((nodo, d));
+                    nodo.Vecinos.Add((previo, d));
+                }
+
+                previo = nodo;
+            }
+        }
+
+        private Nodo ObtenerONuevoNodo(double lat, double lng)
+        {
+            var nodo = nodos.FirstOrDefault(n => Math.Abs(n.Lat - lat) < 1e-6 && Math.Abs(n.Lng - lng) < 1e-6);
+            if (nodo == null)
+            {
+                nodo = new Nodo { Lat = lat, Lng = lng };
+                nodos.Add(nodo);
+            }
+            return nodo;
+        }
+
+        // ===================== DISTANCIAS =====================
+        private double Distancia(Nodo a, Nodo b)
+        {
+            // distancia euclidiana aproximada
+            double dx = a.Lng - b.Lng;
+            double dy = a.Lat - b.Lat;
+            return Math.Sqrt(dx * dx + dy * dy);
+        }
+
+        
+        // ===================== UBICAR NODOS MÁS CERCANOS =====================
+        private Nodo BuscarNodoMasCercano(PointLatLng punto)
+        {
+            Nodo masCercano = null;
+            double minDist = double.MaxValue;
+
+            foreach (var nodo in nodos)
+            {
+                double d = Math.Sqrt(Math.Pow(punto.Lat - nodo.Lat, 2) + Math.Pow(punto.Lng - nodo.Lng, 2));
+                if (d < minDist)
+                {
+                    minDist = d;
+                    masCercano = nodo;
+                }
             }
 
-            redVial.Add(new Calle { Puntos = puntos });
+            return masCercano;
         }
+
+        // ===================== ALGORITMO DE DIJKSTRA =====================
+        private List<Nodo> Dijkstra(Nodo origen, Nodo destino)
+        {
+            var dist = new Dictionary<Nodo, double>();
+            var prev = new Dictionary<Nodo, Nodo>();
+            var pq = new SortedSet<(double, Nodo)>(Comparer<(double, Nodo)>.Create((a, b) =>
+            {
+                int cmp = a.Item1.CompareTo(b.Item1);
+                if (cmp == 0) cmp = a.Item2.GetHashCode().CompareTo(b.Item2.GetHashCode());
+                return cmp;
+            }));
+
+            foreach (var n in nodos)
+                dist[n] = double.MaxValue;
+
+            dist[origen] = 0;
+            pq.Add((0, origen));
+
+            while (pq.Any())
+            {
+                var (d, u) = pq.Min;
+                pq.Remove(pq.Min);
+
+                if (u == destino) break;
+
+                foreach (var (vecino, peso) in u.Vecinos)
+                {
+                    double alt = d + peso;
+                    if (alt < dist[vecino])
+                    {
+                        pq.Remove((dist[vecino], vecino));
+                        dist[vecino] = alt;
+                        prev[vecino] = u;
+                        pq.Add((alt, vecino));
+                    }
+                }
+            }
+
+            // reconstruir camino
+            var camino = new List<Nodo>();
+            var actual = destino;
+            while (actual != null)
+            {
+                camino.Add(actual);
+                prev.TryGetValue(actual, out actual);
+            }
+            camino.Reverse();
+            return camino;
+        }
+
+        // ===================== DIBUJAR RUTA =====================
+        private void DibujarRuta(List<Nodo> camino, string nombreRuta, Color color, PointLatLng patrulla, PointLatLng alerta)
+        {
+            // Convertir nodos intermedios a puntos
+            List<PointLatLng> ruta = camino.Select(n => new PointLatLng(n.Lat, n.Lng)).ToList();
+
+            // Agregar patrulla al inicio (si no es ya el origen del camino)
+            if (ruta.Count == 0 || ruta.First() != patrulla)
+                ruta.Insert(0, patrulla);
+
+            // Agregar alerta al final (si no es ya el destino del camino)
+            if (ruta.Count == 0 || ruta.Last() != alerta)
+                ruta.Add(alerta);
+
+            // Dibujar la ruta
+            GMapRoute gmapRoute = new GMapRoute(ruta, nombreRuta);
+            gmapRoute.Stroke = new Pen(color, 3);
+
+            overlayRutas.Routes.Add(gmapRoute);
+            gMapControl1.Overlays.Add(overlayRutas);
+            gMapControl1.Refresh();
+        }
+
+
+        
+
+        // ===================== EJEMPLO DE USO =====================
+        private void CalcularRuta(PointLatLng posPatrulla, PointLatLng posAlerta, string nombreRuta, Color color)
+        {
+            var nodoPatrulla = BuscarNodoMasCercano(posPatrulla);
+            var nodoAlerta = BuscarNodoMasCercano(posAlerta);
+
+            if (nodoPatrulla != null && nodoAlerta != null)
+            {
+                var camino = Dijkstra(nodoPatrulla, nodoAlerta);
+                DibujarRuta(camino, nombreRuta, color, posPatrulla, posAlerta);
+            }
+        }
+
+        private void GMapControl1_OnMarkerClick(GMapMarker item, MouseEventArgs e)
+        {
+            if (item.Tag != null && item.Tag.ToString() == "Patrulla")
+            {
+                origen = item.Position;
+                destinos.Clear(); // Reinicio selección de alertas
+                MessageBox.Show("Patrulla seleccionada como origen");
+            }
+            else if (item.Tag != null && item.Tag.ToString() == "Alerta")
+            {
+                if (origen == null)
+                {
+                    MessageBox.Show("Primero selecciona una patrulla");
+                    return;
+                }
+
+                destinos.Add(item.Position);
+
+                // Ruta nueva → cada una con color distinto
+                Color[] colores = { Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Purple };
+                int idx = (destinos.Count - 1) % colores.Length;
+                string nombreRuta = $"Ruta {destinos.Count}";
+
+                CalcularRuta(origen, item.Position, nombreRuta, colores[idx]);
+            }
+        }
+
 
         private void btnJurisdicciones_Click(object sender, EventArgs e)
         {
@@ -1411,15 +1603,17 @@ namespace Operador_911
 
             PointLatLng patrulla1 = new PointLatLng(-27.504955, -58.789288);
             var marker = new GMarkerGoogle(patrulla1, icono);
+            marker.Tag = "Patrulla"; // 👈 importante
             markerPatrullas.Markers.Add(marker);
 
             PointLatLng patrulla2 = new PointLatLng(-27.476527, -58.830662);
             var marker2 = new GMarkerGoogle(patrulla2, icono);
+            marker2.Tag = "Patrulla"; // 👈 importante
             markerPatrullas.Markers.Add(marker2);
 
             gMapControl1.Overlays.Add(markerPatrullas);
-
         }
+
 
 
         private bool validacionesFormulario()
@@ -1435,19 +1629,20 @@ namespace Operador_911
 
             }
 
-            // Validar que direccion no tenga caracteres especiales
-            if (!Regex.IsMatch(direccion, @"^[a-zA-Z0-9\s]+$"))
+            // Dirección: letras, números, espacios, ñ y acentos
+            if (!Regex.IsMatch(direccion, @"^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ\s]+$"))
             {
                 MessageBox.Show("La dirección no puede contener caracteres especiales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Validar que nombre (si no está vacío) contenga solo letras
-            if (!string.IsNullOrEmpty(nombre) && !Regex.IsMatch(nombre, @"^[a-zA-Z\s]+$"))
+            // Nombre: solo letras, ñ y acentos
+            if (!string.IsNullOrEmpty(nombre) && !Regex.IsMatch(nombre, @"^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$"))
             {
                 MessageBox.Show("El nombre solo puede contener letras.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
 
             // Validar que teléfono (si no está vacío) contenga solo números
             if (!string.IsNullOrEmpty(telefono) && !Regex.IsMatch(telefono, @"^\d+$"))
@@ -1465,10 +1660,35 @@ namespace Operador_911
 
             return true;
         }
+        private void textNombre_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo letras, espacio y tecla de borrado
+            if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textTelefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Solo números y tecla de borrado
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textDireccion_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Letras, números, espacios y tecla de borrado
+            if (!char.IsLetterOrDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
 
         private void btnAgregarAlerta_Click(object sender, EventArgs e)
         {
-            //si falla alguna validacion se corta el flujo
             if (!validacionesFormulario()) return;
 
             string direccion = textDireccion.Text.Trim();
@@ -1478,29 +1698,34 @@ namespace Operador_911
 
             int id = dataGridView1.Rows.Count + 1;
 
-            // Agregar nueva fila a la grilla con estado inicial
-            int rowIndex = dataGridView1.Rows.Add(id,"No asignada", "En Espera", delito, telefono, nombre, direccion);
-            PintarFila(rowIndex, delito);   // Pintar fila con color según tipo de delito
-            string direccionCompleta = $"{direccion}, Corrientes Capital, Corrientes, Argentina"; //Construir dirección completa para geocodificar
+            // Agregar nueva fila a la grilla
+            int rowIndex = dataGridView1.Rows.Add(id, "No asignada", "En Espera", delito, telefono, nombre, direccion);
+            PintarFila(rowIndex, delito);
 
-            // Intentar convertir la dirección en coordenadas
+            string direccionCompleta = $"{direccion}, Corrientes Capital, Corrientes, Argentina";
+
+            // Geocodificar dirección
             GeoCoderStatusCode status;
             var point = GMapProviders.OpenStreetMap.GetPoint(direccionCompleta, out status);
 
-            if(status == GeoCoderStatusCode.G_GEO_SUCCESS && point != null)
+            if (status == GeoCoderStatusCode.G_GEO_SUCCESS && point != null)
             {
                 gMapControl1.Position = point.Value;
                 gMapControl1.Zoom = 16;
-                markerAlertas = new GMapOverlay("alertas");
-                gMapControl1.Overlays.Add(markerAlertas);
+
                 var marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.red);
+                marker.Tag = "Alerta"; // 👈 IDENTIFICAMOS EL MARCADOR
+                marker.ToolTipText = $"Alerta {id}: {delito}";
+                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+
                 markerAlertas.Markers.Add(marker);
             }
             else
             {
-                MessageBox.Show($"No se encontró la dirección.");
+                MessageBox.Show("No se encontró la dirección.");
             }
         }
+
 
         private void ListDelitos_ItemCheck(object sender, ItemCheckEventArgs e)
         {

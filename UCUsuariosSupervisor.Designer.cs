@@ -149,6 +149,7 @@
             // 
             // dataGridUsuarios
             // 
+            this.dataGridUsuarios.AllowUserToAddRows = false;
             this.dataGridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridUsuarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridUsuarios.Location = new System.Drawing.Point(481, 128);
@@ -170,7 +171,6 @@
             this.labelTitulo_Usuarios.Size = new System.Drawing.Size(231, 25);
             this.labelTitulo_Usuarios.TabIndex = 23;
             this.labelTitulo_Usuarios.Text = "Administrar Usuarios";
-
             // 
             // textBoxApellido
             // 
@@ -205,7 +205,6 @@
             this.labelNombre.Size = new System.Drawing.Size(50, 14);
             this.labelNombre.TabIndex = 24;
             this.labelNombre.Text = "Nombre";
-
             // 
             // comboBoxRol
             // 
@@ -227,7 +226,6 @@
             this.textBoxCorreo.Name = "textBoxCorreo";
             this.textBoxCorreo.Size = new System.Drawing.Size(320, 20);
             this.textBoxCorreo.TabIndex = 30;
-
             // 
             // label1
             // 
@@ -305,7 +303,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(411, 521);
             this.panel2.TabIndex = 37;
-   
             // 
             // checkBoxContraseña2
             // 
