@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,22 +12,30 @@ namespace Operador_911
 {
     public partial class UCPatrullasComisario : UserControl
     {
-
-        private bool mostrandoEliminadosVehiculos = false;
-
         public UCPatrullasComisario()
         {
             InitializeComponent();
-            this.Load += new System.EventHandler(this.FormOperador_Load);
 
             textNroVehiculo.KeyPress += textNroVehiculo_KeyPress;
+
+            CargarPatrullas();
+
+            dataGridViewPatrullas.DataBindingComplete += DataGridViewPatrullas_DataBindingComplete;
         }
 
-        private void FormOperador_Load(object sender, EventArgs e)
+        private void DataGridViewPatrullas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dataGridViewPatrullas.ClearSelection();
+            LimpiarFormulario();
+        }
+
+        private void UCPatrullasComisario_Load(object sender, EventArgs e)
         {
             dataGridViewPatrullas.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            
+            btnEditarPatrulla.Enabled = false;
+            btnEliminarPatrulla.Enabled = false;
+            dataGridViewPatrullas.ClearSelection();
+            dataGridViewPatrullas.SelectionChanged += DataGridViewPatrullas_SelectionChanged;
         }
 
         private void textNroVehiculo_KeyPress(object sender, KeyPressEventArgs e)
@@ -40,78 +46,65 @@ namespace Operador_911
             }
         }
 
-        private void UCPatrullasComisario_Load(object sender, EventArgs e)
-        {
-
-            dataGridViewPatrullas.Rows.Add("V-001", "Auto", "En Servicio");
-            dataGridViewPatrullas.Rows.Add("V-002", "Auto", "En Servicio");
-            dataGridViewPatrullas.Rows.Add("V-003", "Moto", "En Servicio");
-            dataGridViewPatrullas.Rows.Add("V-004", "Auto", "En Base");
-            dataGridViewPatrullas.Rows.Add("V-005", "Auto", "En Base");
-        }
-
         private void btnAgregarPatrulla_Click(object sender, EventArgs e)
         {
-            string nroVehiculo = textNroVehiculo.Text.Trim();
-            string tipoVehiculo = TipoVehiculoBox.SelectedItem != null ? TipoVehiculoBox.SelectedItem.ToString() : "";
-            string estadoVehiculo = EstadoVehiculoBox.SelectedItem != null ? EstadoVehiculoBox.SelectedItem.ToString() : "";
+            string nroPatrulla = textNroVehiculo.Text.Trim();
+            string tipoPatrulla = TipoVehiculoBox.SelectedItem != null ? TipoVehiculoBox.SelectedItem.ToString() : "";
+            string estadoPatrulla = EstadoVehiculoBox.SelectedItem != null ? EstadoVehiculoBox.SelectedItem.ToString() : "";
 
-            if (string.IsNullOrEmpty(nroVehiculo) ||
-                string.IsNullOrEmpty(tipoVehiculo) ||
-                string.IsNullOrEmpty(estadoVehiculo))
+            if (string.IsNullOrEmpty(nroPatrulla) ||
+                string.IsNullOrEmpty(tipoPatrulla) ||
+                string.IsNullOrEmpty(estadoPatrulla))
             {
                 MessageBox.Show("Todos los campos son obligatorios.");
                 return;
             }
 
-            if (!nroVehiculo.All(char.IsDigit))
+            if (!nroPatrulla.All(char.IsDigit))
             {
                 MessageBox.Show("El número de vehículo debe contener solo números.");
                 return;
             }
 
-            string[] TipoVehiculoPermitidos = { "Moto", "Auto" };
-            if (!TipoVehiculoPermitidos.Contains(tipoVehiculo))
+            string[] TipoPatrullaPermitidos = { "Moto", "Auto" };
+            if (!TipoPatrullaPermitidos.Contains(tipoPatrulla))
             {
                 MessageBox.Show("Seleccione un Tipo de vehículo válido (Moto, Auto).");
                 return;
             }
 
-            string[] estadoVehiculoPermitidos = { "En Servicio", "En Base" };
-            if (!estadoVehiculoPermitidos.Contains(estadoVehiculo))
+            string[] estadoPatrullaPermitidos = { "En Servicio", "En Base" };
+            if (!estadoPatrullaPermitidos.Contains(estadoPatrulla))
             {
                 MessageBox.Show("Seleccione estado válido (En Servicio, En Base).");
                 return;
             }
 
             // Generar el código de vehículo
-            string codigoVehiculo = "";
-            if (tipoVehiculo == "Auto")
-                codigoVehiculo = "A-" + nroVehiculo.PadLeft(3, '0'); // ejemplo: A-001
-            else if (tipoVehiculo == "Moto")
-                codigoVehiculo = "M-" + nroVehiculo.PadLeft(3, '0'); // ejemplo: M-005
+            string codigoPatrulla = tipoPatrulla == "Auto"
+                ? "A-" + nroPatrulla.PadLeft(3, '0')
+                : "M-" + nroPatrulla.PadLeft(3, '0');
 
             try
             {
                 using (SqlConnection conn = Database.GetConnection())
                 {
-                    // Obtener id_comisaria del usuario actual
-                    string queryComisaria = "SELECT id_comisaria FROM Usuario WHERE id_usuario = @idUsuario";
+                    string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
                     SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
                     cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
                     int idComisaria = Convert.ToInt32(cmdComisaria.ExecuteScalar());
 
-                    // Insertar el vehículo asociado a la comisaría
-                    string query = "INSERT INTO Vehiculo (codigo, tipo, estado, id_comisaria) VALUES (@codigo, @tipo, @estado, @idComisaria)";
+                    string query = "INSERT INTO Patrulla (codigo_patrulla, tipo, estado, id_comisaria, activo) " +
+                                   "VALUES(@codigo, @tipo, @estado, @idComisaria, 1)";
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@codigo", codigoVehiculo);
-                    cmd.Parameters.AddWithValue("@tipo", tipoVehiculo);
-                    cmd.Parameters.AddWithValue("@estado", estadoVehiculo);
+                    cmd.Parameters.AddWithValue("@codigo", codigoPatrulla);
+                    cmd.Parameters.AddWithValue("@tipo", tipoPatrulla);
+                    cmd.Parameters.AddWithValue("@estado", estadoPatrulla);
                     cmd.Parameters.AddWithValue("@idComisaria", idComisaria);
 
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Vehículo agregado correctamente");
-                    CargarVehiculos();
+                    CargarPatrullas();
                 }
             }
             catch (Exception ex)
@@ -120,14 +113,11 @@ namespace Operador_911
             }
         }
 
-        private void CargarVehiculos()
+        private void CargarPatrullas()
         {
             using (SqlConnection conn = Database.GetConnection())
             {
-                string query = mostrandoEliminadosVehiculos
-                    ? "SELECT id_vehiculo, codigo, tipo, estado, activo FROM Vehiculo WHERE activo = 0"
-                    : "SELECT id_vehiculo, codigo, tipo, estado, activo FROM Vehiculo WHERE activo = 1";
-
+                string query = "SELECT id_patrulla, codigo_patrulla, tipo, estado, activo FROM Patrulla WHERE activo = 1";
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
@@ -136,13 +126,27 @@ namespace Operador_911
             }
 
             dataGridViewPatrullas.ClearSelection();
-            LimpiarFormularioVehiculos();
+            LimpiarFormulario();
         }
 
 
-        private void LimpiarFormularioVehiculos()
+        private void CargarPatrullasEliminadas()
         {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = "SELECT id_patrulla, codigo_patrulla, tipo, estado, activo FROM Patrulla WHERE activo = 0";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
 
+                dataGridViewPatrullas.DataSource = dt;
+            }
+            dataGridViewPatrullas.ClearSelection();
+            LimpiarFormulario();
+        }
+
+        private void LimpiarFormulario()
+        {
             textNroVehiculo.Text = "";
             TipoVehiculoBox.SelectedIndex = -1;
             EstadoVehiculoBox.SelectedIndex = -1;
@@ -150,11 +154,25 @@ namespace Operador_911
             btnEliminarPatrulla.Enabled = false;
         }
 
+        private void btnVehiculosEliminado_Click(object sender, EventArgs e)
+        {
+            if (btnVehiculosEliminado.Text == "Ver Eliminados")
+            {
+                CargarPatrullasEliminadas();
+                btnVehiculosEliminado.Text = "Ver Activos";
+            }
+            else
+            {
+                CargarPatrullas();
+                btnVehiculosEliminado.Text = "Ver Eliminados";
+            }
+        }
+
         private void btnEliminarPatrulla_Click(object sender, EventArgs e)
         {
             if (dataGridViewPatrullas.CurrentRow != null)
             {
-                int idVehiculo = Convert.ToInt32(dataGridViewPatrullas.CurrentRow.Cells["id_vehiculo"].Value);
+                int idPatrulla = Convert.ToInt32(dataGridViewPatrullas.CurrentRow.Cells["id_patrulla"].Value);
 
                 DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar este vehículo?",
                                                       "Confirmación",
@@ -165,13 +183,13 @@ namespace Operador_911
                 {
                     using (SqlConnection conn = Database.GetConnection())
                     {
-                        string query = "UPDATE Vehiculo SET activo = 0 WHERE id_vehiculo = @id";
+                        string query = "UPDATE Patrulla SET activo = 0 WHERE id_patrulla = @id";
                         SqlCommand cmd = new SqlCommand(query, conn);
-                        cmd.Parameters.AddWithValue("@id", idVehiculo);
+                        cmd.Parameters.AddWithValue("@id", idPatrulla);
                         cmd.ExecuteNonQuery();
                     }
                     MessageBox.Show("Vehículo eliminado correctamente.");
-                    CargarVehiculos();
+                    CargarPatrullas();
                 }
             }
         }
@@ -184,43 +202,45 @@ namespace Operador_911
                 return;
             }
 
-            int idVehiculo = Convert.ToInt32(dataGridViewPatrullas.CurrentRow.Cells["id_vehiculo"].Value);
-            string nroVehiculo = textNroVehiculo.Text.Trim();
-            string tipoVehiculo = TipoVehiculoBox.SelectedItem != null ? TipoVehiculoBox.SelectedItem.ToString() : "";
-            string estadoVehiculo = EstadoVehiculoBox.SelectedItem != null ? EstadoVehiculoBox.SelectedItem.ToString() : "";
+            int idPatrulla = Convert.ToInt32(dataGridViewPatrullas.CurrentRow.Cells["id_patrulla"].Value);
+            string nroPatrulla = textNroVehiculo.Text.Trim();
+            string tipoPatrulla = TipoVehiculoBox.SelectedItem != null ? TipoVehiculoBox.SelectedItem.ToString() : "";
+            string estadoPatrulla = EstadoVehiculoBox.SelectedItem != null ? EstadoVehiculoBox.SelectedItem.ToString() : "";
 
-            if (string.IsNullOrEmpty(nroVehiculo) ||
-                string.IsNullOrEmpty(tipoVehiculo) ||
-                string.IsNullOrEmpty(estadoVehiculo))
+            if (string.IsNullOrEmpty(nroPatrulla) ||
+                string.IsNullOrEmpty(tipoPatrulla) ||
+                string.IsNullOrEmpty(estadoPatrulla))
             {
                 MessageBox.Show("Todos los campos son obligatorios.");
                 return;
             }
 
-            if (!nroVehiculo.All(char.IsDigit))
+            if (!nroPatrulla.All(char.IsDigit))
             {
                 MessageBox.Show("El número de vehículo debe contener solo números.");
                 return;
             }
 
-            string codigoVehiculo = tipoVehiculo == "Auto" ? "A-" + nroVehiculo.PadLeft(3, '0') : "M-" + nroVehiculo.PadLeft(3, '0');
+            string codigoPatrulla = tipoPatrulla == "Auto"
+                ? "A-" + nroPatrulla.PadLeft(3, '0')
+                : "M-" + nroPatrulla.PadLeft(3, '0');
 
             try
             {
                 using (SqlConnection conn = Database.GetConnection())
                 {
-                    string query = "UPDATE Vehiculo SET codigo=@codigo, tipo=@tipo, estado=@estado WHERE id_vehiculo=@id";
+                    string query = "UPDATE Patrulla SET codigo_patrulla=@codigo, tipo=@tipo, estado=@estado WHERE id_patrulla=@id";
                     SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@id", idVehiculo);
-                    cmd.Parameters.AddWithValue("@codigo", codigoVehiculo);
-                    cmd.Parameters.AddWithValue("@tipo", tipoVehiculo);
-                    cmd.Parameters.AddWithValue("@estado", estadoVehiculo);
+                    cmd.Parameters.AddWithValue("@id", idPatrulla);
+                    cmd.Parameters.AddWithValue("@codigo", codigoPatrulla);
+                    cmd.Parameters.AddWithValue("@tipo", tipoPatrulla);
+                    cmd.Parameters.AddWithValue("@estado", estadoPatrulla);
 
                     cmd.ExecuteNonQuery();
                 }
 
                 MessageBox.Show("Vehículo actualizado correctamente.");
-                CargarVehiculos();
+                CargarPatrullas();
             }
             catch (Exception ex)
             {
@@ -228,22 +248,18 @@ namespace Operador_911
             }
         }
 
-        private void btnVehiculosEliminado_Click(object sender, EventArgs e)
+        private void DataGridViewPatrullas_SelectionChanged(object sender, EventArgs e)
         {
-            mostrandoEliminadosVehiculos = !mostrandoEliminadosVehiculos;
-
-            if (mostrandoEliminadosVehiculos)
+            if (dataGridViewPatrullas.CurrentRow != null)
             {
-                btnVehiculosEliminado.Text = "Ver Activos";
-                btnEliminarPatrulla.Enabled = false;
-                btnEditarPatrulla.Enabled = false;
-            }
-            else
-            {
-                btnVehiculosEliminado.Text = "Ver Eliminados";
-            }
+                string codigo = dataGridViewPatrullas.CurrentRow.Cells["codigo_patrulla"].Value.ToString();
+                textNroVehiculo.Text = codigo.Substring(2); // quitar prefijo A- o M-
+                TipoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["tipo"].Value.ToString();
+                EstadoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["estado"].Value.ToString();
 
-            CargarVehiculos();
+                btnEditarPatrulla.Enabled = true;
+                btnEliminarPatrulla.Enabled = true;
+            }
         }
     }
 }

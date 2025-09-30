@@ -28,10 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridViewPatrullas = new System.Windows.Forms.DataGridView();
-            this.Nro_Vehiculo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tipo_Patrulla = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelCodigo = new System.Windows.Forms.Label();
             this.btnAgregarPatrulla = new System.Windows.Forms.Button();
             this.btnEditarPatrulla = new System.Windows.Forms.Button();
@@ -48,43 +44,10 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.btnVehiculosEliminado = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatrullas)).BeginInit();
+            this.dataGridViewPatrullas = new System.Windows.Forms.DataGridView();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatrullas)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dataGridViewPatrullas
-            // 
-            this.dataGridViewPatrullas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPatrullas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nro_Vehiculo,
-            this.Tipo_Patrulla,
-            this.Estado});
-            this.dataGridViewPatrullas.Location = new System.Drawing.Point(481, 128);
-            this.dataGridViewPatrullas.Name = "dataGridViewPatrullas";
-            this.dataGridViewPatrullas.RowHeadersWidth = 62;
-            this.dataGridViewPatrullas.Size = new System.Drawing.Size(607, 521);
-            this.dataGridViewPatrullas.TabIndex = 0;
-            // 
-            // Nro_Vehiculo
-            // 
-            this.Nro_Vehiculo.HeaderText = "Nro Vehiculo";
-            this.Nro_Vehiculo.MinimumWidth = 8;
-            this.Nro_Vehiculo.Name = "Nro_Vehiculo";
-            this.Nro_Vehiculo.Width = 150;
-            // 
-            // Tipo_Patrulla
-            // 
-            this.Tipo_Patrulla.HeaderText = "Tipo Patrulla";
-            this.Tipo_Patrulla.MinimumWidth = 8;
-            this.Tipo_Patrulla.Name = "Tipo_Patrulla";
-            this.Tipo_Patrulla.Width = 150;
-            // 
-            // Estado
-            // 
-            this.Estado.HeaderText = "Estado";
-            this.Estado.MinimumWidth = 8;
-            this.Estado.Name = "Estado";
-            this.Estado.Width = 150;
             // 
             // labelCodigo
             // 
@@ -255,6 +218,15 @@
             this.btnVehiculosEliminado.UseVisualStyleBackColor = true;
             this.btnVehiculosEliminado.Click += new System.EventHandler(this.btnVehiculosEliminado_Click);
             // 
+            // dataGridViewPatrullas
+            // 
+            this.dataGridViewPatrullas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewPatrullas.Location = new System.Drawing.Point(481, 128);
+            this.dataGridViewPatrullas.Name = "dataGridViewPatrullas";
+            this.dataGridViewPatrullas.RowHeadersWidth = 62;
+            this.dataGridViewPatrullas.Size = new System.Drawing.Size(607, 521);
+            this.dataGridViewPatrullas.TabIndex = 0;
+            // 
             // UCPatrullasComisario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,17 +241,15 @@
             this.Name = "UCPatrullasComisario";
             this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCPatrullasComisario_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatrullas)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatrullas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dataGridViewPatrullas;
         private System.Windows.Forms.Label labelCodigo;
         private System.Windows.Forms.Button btnAgregarPatrulla;
         private System.Windows.Forms.Button btnEditarPatrulla;
@@ -289,9 +259,6 @@
         private System.Windows.Forms.ComboBox TipoVehiculoBox;
         private System.Windows.Forms.Label labelEstado;
         private System.Windows.Forms.ComboBox EstadoVehiculoBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Vehiculo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tipo_Patrulla;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
         private System.Windows.Forms.Label labelTitulo_Vehiculos;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
@@ -299,5 +266,6 @@
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox textBoxBuscar;
         private System.Windows.Forms.Button btnVehiculosEliminado;
+        private System.Windows.Forms.DataGridView dataGridViewPatrullas;
     }
 }
