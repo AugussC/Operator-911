@@ -47,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
+            this.btnVehiculosEliminado = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPatrullas)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -104,6 +105,7 @@
             this.btnAgregarPatrulla.TabIndex = 2;
             this.btnAgregarPatrulla.Text = "Agregar";
             this.btnAgregarPatrulla.UseVisualStyleBackColor = true;
+            this.btnAgregarPatrulla.Click += new System.EventHandler(this.btnAgregarPatrulla_Click);
             // 
             // btnEditarPatrulla
             // 
@@ -114,6 +116,7 @@
             this.btnEditarPatrulla.TabIndex = 3;
             this.btnEditarPatrulla.Text = "Editar";
             this.btnEditarPatrulla.UseVisualStyleBackColor = true;
+            this.btnEditarPatrulla.Click += new System.EventHandler(this.btnEditarPatrulla_Click);
             // 
             // btnEliminarPatrulla
             // 
@@ -124,6 +127,7 @@
             this.btnEliminarPatrulla.TabIndex = 4;
             this.btnEliminarPatrulla.Text = "Eliminar";
             this.btnEliminarPatrulla.UseVisualStyleBackColor = true;
+            this.btnEliminarPatrulla.Click += new System.EventHandler(this.btnEliminarPatrulla_Click);
             // 
             // textNroVehiculo
             // 
@@ -169,7 +173,7 @@
             this.EstadoVehiculoBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EstadoVehiculoBox.FormattingEnabled = true;
             this.EstadoVehiculoBox.Items.AddRange(new object[] {
-            "Patrulla",
+            "En Servicio",
             "En Base"});
             this.EstadoVehiculoBox.Location = new System.Drawing.Point(34, 294);
             this.EstadoVehiculoBox.Name = "EstadoVehiculoBox";
@@ -226,7 +230,7 @@
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(991, 99);
+            this.btnBuscar.Location = new System.Drawing.Point(808, 100);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(97, 23);
             this.btnBuscar.TabIndex = 32;
@@ -235,15 +239,27 @@
             // 
             // textBoxBuscar
             // 
-            this.textBoxBuscar.Location = new System.Drawing.Point(665, 102);
+            this.textBoxBuscar.Location = new System.Drawing.Point(481, 102);
             this.textBoxBuscar.Name = "textBoxBuscar";
             this.textBoxBuscar.Size = new System.Drawing.Size(320, 20);
             this.textBoxBuscar.TabIndex = 31;
+            // 
+            // btnVehiculosEliminado
+            // 
+            this.btnVehiculosEliminado.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVehiculosEliminado.Location = new System.Drawing.Point(939, 87);
+            this.btnVehiculosEliminado.Name = "btnVehiculosEliminado";
+            this.btnVehiculosEliminado.Size = new System.Drawing.Size(149, 36);
+            this.btnVehiculosEliminado.TabIndex = 36;
+            this.btnVehiculosEliminado.Text = "Ver Eliminados";
+            this.btnVehiculosEliminado.UseVisualStyleBackColor = true;
+            this.btnVehiculosEliminado.Click += new System.EventHandler(this.btnVehiculosEliminado_Click);
             // 
             // UCPatrullasComisario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnVehiculosEliminado);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.label1);
@@ -282,5 +298,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox textBoxBuscar;
+        private System.Windows.Forms.Button btnVehiculosEliminado;
     }
 }

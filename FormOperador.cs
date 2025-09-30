@@ -324,7 +324,6 @@ namespace Operador_911
         }
 
 
-        
 
         // ===================== EJEMPLO DE USO =====================
         private void CalcularRuta(PointLatLng posPatrulla, PointLatLng posAlerta, string nombreRuta, Color color)

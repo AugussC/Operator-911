@@ -15,6 +15,15 @@ namespace Operador_911
 {
     public partial class FormLogin : Form
     {
+
+        public static class Sesion
+        {
+            public static int IdUsuario { get; set; }
+            public static string Nombre { get; set; }
+            public static string Rol { get; set; }
+        }
+
+
         public FormLogin()
         {
             InitializeComponent();
@@ -22,7 +31,14 @@ namespace Operador_911
             textBoxContraseña.KeyPress += textBoxContraseña_KeyPress;
         }
 
-       
+        // Método para limpiar la sesión
+        public static void CerrarSesion()
+        {
+            Sesion.IdUsuario = 0;
+            Sesion.Nombre = null;
+            Sesion.Rol = null;
+        }
+
         private void textBoxContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Se verifica que la letra no sea un espacio en blanco y que tampco sea una tecla de control (como Backspace)
@@ -62,7 +78,7 @@ namespace Operador_911
             {
                 using (SqlConnection conn = Database.GetConnection())
                 {
-                    string query = "SELECT contraseña, rol FROM Usuario WHERE correo = @correo AND activo = 1";
+                    string query = "SELECT id_usuario, nombre, contraseña, rol FROM Usuario WHERE correo = @correo AND activo = 1";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@correo", correo);
 
@@ -70,13 +86,20 @@ namespace Operador_911
 
                     if (reader.Read())
                     {
+                        int idUsuarioEncontrado = Convert.ToInt32(reader["id_usuario"]);
+                        string nombreUsuario = reader["nombre"].ToString();
                         string contraseñaHash = reader["contraseña"].ToString();
                         string rol = reader["rol"].ToString();
 
                         // Verificar la contraseña ingresada con la hasheada
                         if (contraseñaHash == HashPassword(contraseña))
                         {
-                            MessageBox.Show($"Bienvenido {rol}, Ha iniciado sesion Correctamente.");
+                            MessageBox.Show($"Bienvenido {rol}, ha iniciado sesión correctamente.");
+
+                            // Guardar datos en la clase estática Sesion
+                            Sesion.IdUsuario = idUsuarioEncontrado;
+                            Sesion.Nombre = nombreUsuario;
+                            Sesion.Rol = rol;
 
                             Form nextForm = null;
                             switch (rol)
@@ -94,10 +117,12 @@ namespace Operador_911
                                     MessageBox.Show("Rol desconocido.");
                                     return;
                             }
-                            // Cuando se cierre el form, se limpia y reaparece el login
+
+                            // Cuando se cierre el form, limpiar sesión y volver al login
                             nextForm.FormClosed += (s, args) =>
                             {
-                                this.Show(); 
+                                CerrarSesion(); // Limpia los datos
+                                this.Show();
                                 textBoxContraseña.Clear();
                                 textBoxCorreo.Clear();
                             };
@@ -121,6 +146,7 @@ namespace Operador_911
                 MessageBox.Show("Error en la conexión: " + ex.Message);
             }
         }
+
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
