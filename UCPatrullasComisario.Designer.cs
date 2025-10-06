@@ -220,12 +220,16 @@
             // 
             // dataGridViewPatrullas
             // 
+            this.dataGridViewPatrullas.AllowUserToAddRows = false;
             this.dataGridViewPatrullas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPatrullas.Location = new System.Drawing.Point(481, 128);
             this.dataGridViewPatrullas.Name = "dataGridViewPatrullas";
             this.dataGridViewPatrullas.RowHeadersWidth = 62;
             this.dataGridViewPatrullas.Size = new System.Drawing.Size(607, 521);
             this.dataGridViewPatrullas.TabIndex = 0;
+            this.dataGridViewPatrullas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatrullas_CellValueChanged);
+            this.dataGridViewPatrullas.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridUsuarios_CurrentCellDirtyStateChanged);
+            this.dataGridViewPatrullas.SelectionChanged += new System.EventHandler(this.DataGridViewPatrullas_SelectionChanged);
             // 
             // UCPatrullasComisario
             // 

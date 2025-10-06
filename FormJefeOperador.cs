@@ -54,41 +54,63 @@ namespace Operador_911
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Archivos de Backup (*.bak)|*.bak"; // Solo mostrar .bak
-            openFileDialog.Title = "Seleccionar archivo de backup";
+            DialogResult confirm = MessageBox.Show(
+                "¿Está seguro que quiere cargar una copia de seguridad?\n\n⚠️ Se pisarán los datos actuales.",
+                "Confirmar restauración",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (confirm == DialogResult.Yes)
             {
-                // Obtenemos la ruta del archivo seleccionado
-                string rutaBackup = openFileDialog.FileName;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Archivos de Backup (*.bak)|*.bak"; // Solo mostrar .bak
+                openFileDialog.Title = "Seleccionar archivo de backup";
 
-                try
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    Database.RestoreBackup(rutaBackup); // Restaurar backup
-                    MessageBox.Show("Backup restaurado correctamente.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al restaurar el backup: " + ex.Message);
+                    string rutaBackup = openFileDialog.FileName;
+
+                    try
+                    {
+                        Database.RestoreBackup(rutaBackup); // Restaurar backup
+                        MessageBox.Show("Backup restaurado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadUserControl(new UCInicioSupervisor());
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error al restaurar el backup: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
 
         private void btnBackup_Click(object sender, EventArgs e)
         {
-            string fechaHora = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-            string ruta = $@"C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\Backup\Operador911_{fechaHora}.bak";
-            try
+            DialogResult confirm = MessageBox.Show(
+                "¿Está seguro que quiere crear una copia de seguridad?",
+                "Confirmar copia de seguridad",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirm == DialogResult.Yes)
             {
-                Database.HacerBackup(ruta); // Crear backup
-                MessageBox.Show("Copia de seguridad creada con éxito.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al crear el backup: " + ex.Message);
+                string fechaHora = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+                string ruta = $@"C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\Backup\Operador911_{fechaHora}.bak";
+
+                try
+                {
+                    Database.HacerBackup(ruta); // Crear backup
+                    MessageBox.Show("Copia de seguridad creada con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al crear el backup: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
+
 
         private void btnCerrarSesion_Click(object sender, EventArgs e)
         {

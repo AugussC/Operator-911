@@ -19,6 +19,7 @@ namespace Operador_911
             textNroVehiculo.KeyPress += textNroVehiculo_KeyPress;
 
             CargarPatrullas();
+            
 
             dataGridViewPatrullas.DataBindingComplete += DataGridViewPatrullas_DataBindingComplete;
         }
@@ -117,33 +118,73 @@ namespace Operador_911
         {
             using (SqlConnection conn = Database.GetConnection())
             {
-                string query = "SELECT id_patrulla, codigo_patrulla, tipo, estado, activo FROM Patrulla WHERE activo = 1";
+                // primero obtenemos la comisaría del usuario logueado
+                string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
+                SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
+                cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
+
+                object result = cmdComisaria.ExecuteScalar();
+
+                if (result == null)
+                {
+                    MessageBox.Show("No se encontró una comisaría asociada a este usuario.");
+                    return;
+                }
+
+                int idComisaria = Convert.ToInt32(result);
+
+                // ahora cargamos solo las patrullas de esa comisaría
+                string query = @"SELECT id_patrulla, codigo_patrulla, tipo, estado, activo 
+                         FROM Patrulla 
+                         WHERE activo = 1 AND id_comisaria = @idComisaria";
+
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@idComisaria", idComisaria);
+
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-
                 dataGridViewPatrullas.DataSource = dt;
             }
 
             dataGridViewPatrullas.ClearSelection();
             LimpiarFormulario();
         }
+
 
 
         private void CargarPatrullasEliminadas()
         {
             using (SqlConnection conn = Database.GetConnection())
             {
-                string query = "SELECT id_patrulla, codigo_patrulla, tipo, estado, activo FROM Patrulla WHERE activo = 0";
+                string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
+                SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
+                cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
+
+                object result = cmdComisaria.ExecuteScalar();
+                if (result == null)
+                {
+                    MessageBox.Show("No se encontró una comisaría asociada a este usuario.");
+                    return;
+                }
+
+                int idComisaria = Convert.ToInt32(result);
+
+                string query = @"SELECT id_patrulla, codigo_patrulla, tipo, estado, activo 
+                         FROM Patrulla 
+                         WHERE activo = 0 AND id_comisaria = @idComisaria";
+
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@idComisaria", idComisaria);
+
                 DataTable dt = new DataTable();
                 da.Fill(dt);
-
                 dataGridViewPatrullas.DataSource = dt;
             }
+
             dataGridViewPatrullas.ClearSelection();
             LimpiarFormulario();
         }
+
 
         private void LimpiarFormulario()
         {
@@ -241,6 +282,19 @@ namespace Operador_911
 
                 MessageBox.Show("Vehículo actualizado correctamente.");
                 CargarPatrullas();
+                LimpiarFormulario();
+                dataGridViewPatrullas.ClearSelection();
+
+                if (btnVehiculosEliminado.Text == "Ver Eliminados")
+                {
+                    CargarPatrullasEliminadas();
+                    
+                }
+                else
+                {
+                    CargarPatrullas();
+                }
+
             }
             catch (Exception ex)
             {
@@ -260,6 +314,105 @@ namespace Operador_911
                 btnEditarPatrulla.Enabled = true;
                 btnEliminarPatrulla.Enabled = true;
             }
+
+            if (dataGridViewPatrullas.CurrentRow == null)
+            {
+                btnEditarPatrulla.Enabled = false;
+                btnEliminarPatrulla.Enabled = false;
+            }
+            else
+            {
+                btnEditarPatrulla.Enabled = true;
+                btnEliminarPatrulla.Enabled = true;
+            }
+
         }
+
+        private void dataGridViewPatrullas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewPatrullas.Columns["activo"].Index && e.RowIndex >= 0)
+            {
+                int idPatrulla = Convert.ToInt32(dataGridViewPatrullas.Rows[e.RowIndex].Cells["id_patrulla"].Value);
+                bool nuevoEstado = Convert.ToBoolean(dataGridViewPatrullas.Rows[e.RowIndex].Cells["activo"].Value);
+
+                if (nuevoEstado)
+                    ActivarPatrulla(idPatrulla, e.RowIndex);
+                else
+                    DesactivarPatrulla(idPatrulla, e.RowIndex);
+            }
+        }
+
+        private void ActivarPatrulla(int idPatrulla, int rowIndex)
+        {
+            DialogResult result = MessageBox.Show(
+                "¿Desea activar esta patrulla?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string query = "UPDATE Patrulla SET activo = 1 WHERE id_patrulla = @id";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idPatrulla);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Patrulla activada correctamente.");
+                CargarPatrullasEliminadas(); // igual que en tu lógica original
+            }
+            else
+            {
+                dataGridViewPatrullas.CellValueChanged -= dataGridViewPatrullas_CellValueChanged;
+                dataGridViewPatrullas.Rows[rowIndex].Cells["activo"].Value = false;
+                dataGridViewPatrullas.CellValueChanged += dataGridViewPatrullas_CellValueChanged;
+            }
+        }
+
+        private void DesactivarPatrulla(int idPatrulla, int rowIndex)
+        {
+            DialogResult result = MessageBox.Show(
+                "¿Desea desactivar esta patrulla?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string query = "UPDATE Patrulla SET activo = 0 WHERE id_patrulla = @id";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@id", idPatrulla);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Patrulla desactivada correctamente.");
+                CargarPatrullas();
+            }
+            else
+            {
+                dataGridViewPatrullas.CellValueChanged -= dataGridViewPatrullas_CellValueChanged;
+                dataGridViewPatrullas.Rows[rowIndex].Cells["activo"].Value = true;
+                dataGridViewPatrullas.CellValueChanged += dataGridViewPatrullas_CellValueChanged;
+            }
+        }
+
+        private void dataGridUsuarios_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewPatrullas.IsCurrentCellDirty)
+            {
+                dataGridViewPatrullas.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+
+
     }
 }

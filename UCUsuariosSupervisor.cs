@@ -492,11 +492,12 @@ namespace Operador_911
 
                 if (btnUsuarioEliminado.Text == "Ver Usuarios Eliminados")
                 {
-                    CargarUsuarios();
+                    CargarUsuariosEliminados();
                 }
                 else
                 {
-                    CargarUsuariosEliminados();
+                    CargarUsuarios();
+                    
                 }
             }
             catch (Exception ex)
