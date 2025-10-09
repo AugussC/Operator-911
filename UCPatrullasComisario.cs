@@ -118,13 +118,11 @@ namespace Operador_911
         {
             using (SqlConnection conn = Database.GetConnection())
             {
-                // primero obtenemos la comisaría del usuario logueado
                 string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
                 SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
                 cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
 
                 object result = cmdComisaria.ExecuteScalar();
-
                 if (result == null)
                 {
                     MessageBox.Show("No se encontró una comisaría asociada a este usuario.");
@@ -133,10 +131,16 @@ namespace Operador_911
 
                 int idComisaria = Convert.ToInt32(result);
 
-                // ahora cargamos solo las patrullas de esa comisaría
-                string query = @"SELECT id_patrulla, codigo_patrulla, tipo, estado, activo 
-                         FROM Patrulla 
-                         WHERE activo = 1 AND id_comisaria = @idComisaria";
+                // ⚠️ Incluimos id_patrulla (necesario para editar/eliminar) pero lo ocultamos después
+                string query = @"
+            SELECT 
+                id_patrulla,
+                codigo_patrulla AS 'Código Patrulla',
+                tipo AS 'Tipo de Vehículo',
+                estado AS 'Estado',
+                activo AS 'Activo'
+            FROM Patrulla 
+            WHERE activo = 1 AND id_comisaria = @idComisaria";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 da.SelectCommand.Parameters.AddWithValue("@idComisaria", idComisaria);
@@ -146,11 +150,13 @@ namespace Operador_911
                 dataGridViewPatrullas.DataSource = dt;
             }
 
+            // Ocultamos la columna id_patrulla
+            if (dataGridViewPatrullas.Columns.Contains("id_patrulla"))
+                dataGridViewPatrullas.Columns["id_patrulla"].Visible = false;
+
             dataGridViewPatrullas.ClearSelection();
             LimpiarFormulario();
         }
-
-
 
         private void CargarPatrullasEliminadas()
         {
@@ -169,9 +175,15 @@ namespace Operador_911
 
                 int idComisaria = Convert.ToInt32(result);
 
-                string query = @"SELECT id_patrulla, codigo_patrulla, tipo, estado, activo 
-                         FROM Patrulla 
-                         WHERE activo = 0 AND id_comisaria = @idComisaria";
+                string query = @"
+            SELECT 
+                id_patrulla,
+                codigo_patrulla AS 'Código Patrulla',
+                tipo AS 'Tipo de Vehículo',
+                estado AS 'Estado',
+                activo AS 'Activo'
+            FROM Patrulla 
+            WHERE activo = 0 AND id_comisaria = @idComisaria";
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 da.SelectCommand.Parameters.AddWithValue("@idComisaria", idComisaria);
@@ -181,9 +193,14 @@ namespace Operador_911
                 dataGridViewPatrullas.DataSource = dt;
             }
 
+            // Ocultamos la columna id_patrulla
+            if (dataGridViewPatrullas.Columns.Contains("id_patrulla"))
+                dataGridViewPatrullas.Columns["id_patrulla"].Visible = false;
+
             dataGridViewPatrullas.ClearSelection();
             LimpiarFormulario();
         }
+
 
 
         private void LimpiarFormulario()
@@ -287,12 +304,13 @@ namespace Operador_911
 
                 if (btnVehiculosEliminado.Text == "Ver Eliminados")
                 {
-                    CargarPatrullasEliminadas();
                     
+                    CargarPatrullas();
+
                 }
                 else
                 {
-                    CargarPatrullas();
+                    CargarPatrullasEliminadas();
                 }
 
             }
@@ -306,10 +324,10 @@ namespace Operador_911
         {
             if (dataGridViewPatrullas.CurrentRow != null)
             {
-                string codigo = dataGridViewPatrullas.CurrentRow.Cells["codigo_patrulla"].Value.ToString();
+                string codigo = dataGridViewPatrullas.CurrentRow.Cells["Código Patrulla"].Value.ToString();
                 textNroVehiculo.Text = codigo.Substring(2); // quitar prefijo A- o M-
-                TipoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["tipo"].Value.ToString();
-                EstadoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["estado"].Value.ToString();
+                TipoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["Tipo de Vehículo"].Value.ToString();
+                EstadoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["Estado"].Value.ToString();
 
                 btnEditarPatrulla.Enabled = true;
                 btnEliminarPatrulla.Enabled = true;
@@ -412,7 +430,67 @@ namespace Operador_911
             }
         }
 
+        
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string textoBuscado = textBoxBuscar.Text.Trim();
 
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                // Obtener la comisaría del usuario logueado
+                string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
+                SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
+                cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
+                object result = cmdComisaria.ExecuteScalar();
+
+                if (result == null)
+                {
+                    MessageBox.Show("No se encontró una comisaría asociada a este usuario.");
+                    return;
+                }
+
+                int idComisaria = Convert.ToInt32(result);
+
+                // Definir el query según si se están viendo activos o eliminados
+                string query;
+                if (btnVehiculosEliminado.Text == "Ver Eliminados")
+                {
+                    // Mostrando activos
+                    query = @"SELECT id_patrulla, codigo_patrulla, tipo, estado, activo 
+                      FROM Patrulla 
+                      WHERE activo = 1 AND id_comisaria = @idComisaria
+                      AND (codigo_patrulla LIKE @texto OR tipo LIKE @texto OR estado LIKE @texto)";
+                }
+                else
+                {
+                    // Mostrando eliminados
+                    query = @"SELECT id_patrulla, codigo_patrulla, tipo, estado, activo 
+                      FROM Patrulla 
+                      WHERE activo = 0 AND id_comisaria = @idComisaria
+                      AND (codigo_patrulla LIKE @texto OR tipo LIKE @texto OR estado LIKE @texto)";
+                }
+
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@texto", "%" + textoBuscado + "%");
+                da.SelectCommand.Parameters.AddWithValue("@idComisaria", idComisaria);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridViewPatrullas.DataSource = dt;
+            }
+
+            dataGridViewPatrullas.ClearSelection();
+        }
+
+       
+
+        private void textBoxBuscar_TextChanged(object sender, EventArgs e)
+        {
+            btnBuscar_Click(sender, e);
+        }
     }
+
 }
+

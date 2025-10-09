@@ -28,62 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.labelNroPlaca = new System.Windows.Forms.Label();
-            this.textBoxNroPlaca = new System.Windows.Forms.TextBox();
             this.textBoxNombre = new System.Windows.Forms.TextBox();
             this.textBoxApellido = new System.Windows.Forms.TextBox();
             this.labelNombre = new System.Windows.Forms.Label();
             this.labelApellido = new System.Windows.Forms.Label();
             this.labelDNI = new System.Windows.Forms.Label();
             this.textBoxDNI = new System.Windows.Forms.TextBox();
-            this.textBoxTelefono = new System.Windows.Forms.TextBox();
             this.labelTelefono = new System.Windows.Forms.Label();
-            this.btnAgregarPatrulla = new System.Windows.Forms.Button();
-            this.btnEditarPatrulla = new System.Windows.Forms.Button();
-            this.btnEliminarPatrulla = new System.Windows.Forms.Button();
+            this.btnAgregarPolicia = new System.Windows.Forms.Button();
+            this.btnEditarPolicia = new System.Windows.Forms.Button();
+            this.btnEliminarPolicia = new System.Windows.Forms.Button();
             this.dataGridViewPolicias = new System.Windows.Forms.DataGridView();
-            this.Nro_Placa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DNI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelTitulo_Patrullas = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnPoliciasEliminado = new System.Windows.Forms.Button();
+            this.comboBoxGenero = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolicias)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // labelNroPlaca
-            // 
-            this.labelNroPlaca.AutoSize = true;
-            this.labelNroPlaca.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNroPlaca.Location = new System.Drawing.Point(25, 122);
-            this.labelNroPlaca.Name = "labelNroPlaca";
-            this.labelNroPlaca.Size = new System.Drawing.Size(75, 14);
-            this.labelNroPlaca.TabIndex = 0;
-            this.labelNroPlaca.Text = "Nro de Placa";
-            // 
-            // textBoxNroPlaca
-            // 
-            this.textBoxNroPlaca.Location = new System.Drawing.Point(27, 139);
-            this.textBoxNroPlaca.Name = "textBoxNroPlaca";
-            this.textBoxNroPlaca.Size = new System.Drawing.Size(349, 20);
-            this.textBoxNroPlaca.TabIndex = 1;
-            // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(27, 192);
+            this.textBoxNombre.Location = new System.Drawing.Point(28, 138);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(349, 20);
             this.textBoxNombre.TabIndex = 2;
             // 
             // textBoxApellido
             // 
-            this.textBoxApellido.Location = new System.Drawing.Point(27, 247);
+            this.textBoxApellido.Location = new System.Drawing.Point(28, 193);
             this.textBoxApellido.Name = "textBoxApellido";
             this.textBoxApellido.Size = new System.Drawing.Size(349, 20);
             this.textBoxApellido.TabIndex = 3;
@@ -92,7 +69,7 @@
             // 
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombre.Location = new System.Drawing.Point(25, 175);
+            this.labelNombre.Location = new System.Drawing.Point(26, 121);
             this.labelNombre.Name = "labelNombre";
             this.labelNombre.Size = new System.Drawing.Size(50, 14);
             this.labelNombre.TabIndex = 4;
@@ -102,7 +79,7 @@
             // 
             this.labelApellido.AutoSize = true;
             this.labelApellido.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(25, 229);
+            this.labelApellido.Location = new System.Drawing.Point(26, 175);
             this.labelApellido.Name = "labelApellido";
             this.labelApellido.Size = new System.Drawing.Size(49, 14);
             this.labelApellido.TabIndex = 5;
@@ -112,7 +89,7 @@
             // 
             this.labelDNI.AutoSize = true;
             this.labelDNI.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDNI.Location = new System.Drawing.Point(25, 287);
+            this.labelDNI.Location = new System.Drawing.Point(26, 233);
             this.labelDNI.Name = "labelDNI";
             this.labelDNI.Size = new System.Drawing.Size(234, 14);
             this.labelDNI.TabIndex = 6;
@@ -120,107 +97,62 @@
             // 
             // textBoxDNI
             // 
-            this.textBoxDNI.Location = new System.Drawing.Point(27, 305);
+            this.textBoxDNI.Location = new System.Drawing.Point(28, 251);
             this.textBoxDNI.Name = "textBoxDNI";
             this.textBoxDNI.Size = new System.Drawing.Size(349, 20);
             this.textBoxDNI.TabIndex = 7;
-            // 
-            // textBoxTelefono
-            // 
-            this.textBoxTelefono.Location = new System.Drawing.Point(27, 361);
-            this.textBoxTelefono.Name = "textBoxTelefono";
-            this.textBoxTelefono.Size = new System.Drawing.Size(349, 20);
-            this.textBoxTelefono.TabIndex = 8;
             // 
             // labelTelefono
             // 
             this.labelTelefono.AutoSize = true;
             this.labelTelefono.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTelefono.Location = new System.Drawing.Point(25, 344);
+            this.labelTelefono.Location = new System.Drawing.Point(26, 290);
             this.labelTelefono.Name = "labelTelefono";
-            this.labelTelefono.Size = new System.Drawing.Size(56, 14);
+            this.labelTelefono.Size = new System.Drawing.Size(47, 14);
             this.labelTelefono.TabIndex = 9;
-            this.labelTelefono.Text = "Telefono";
+            this.labelTelefono.Text = "Genero";
             // 
-            // btnAgregarPatrulla
+            // btnAgregarPolicia
             // 
-            this.btnAgregarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarPatrulla.Location = new System.Drawing.Point(63, 422);
-            this.btnAgregarPatrulla.Name = "btnAgregarPatrulla";
-            this.btnAgregarPatrulla.Size = new System.Drawing.Size(84, 30);
-            this.btnAgregarPatrulla.TabIndex = 10;
-            this.btnAgregarPatrulla.Text = "Agregar";
-            this.btnAgregarPatrulla.UseVisualStyleBackColor = true;
+            this.btnAgregarPolicia.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAgregarPolicia.Location = new System.Drawing.Point(63, 422);
+            this.btnAgregarPolicia.Name = "btnAgregarPolicia";
+            this.btnAgregarPolicia.Size = new System.Drawing.Size(84, 30);
+            this.btnAgregarPolicia.TabIndex = 10;
+            this.btnAgregarPolicia.Text = "Agregar";
+            this.btnAgregarPolicia.UseVisualStyleBackColor = true;
+            this.btnAgregarPolicia.Click += new System.EventHandler(this.btnAgregarPolicia_Click);
             // 
-            // btnEditarPatrulla
+            // btnEditarPolicia
             // 
-            this.btnEditarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPatrulla.Location = new System.Drawing.Point(160, 422);
-            this.btnEditarPatrulla.Name = "btnEditarPatrulla";
-            this.btnEditarPatrulla.Size = new System.Drawing.Size(84, 30);
-            this.btnEditarPatrulla.TabIndex = 11;
-            this.btnEditarPatrulla.Text = "Editar";
-            this.btnEditarPatrulla.UseVisualStyleBackColor = true;
+            this.btnEditarPolicia.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarPolicia.Location = new System.Drawing.Point(160, 422);
+            this.btnEditarPolicia.Name = "btnEditarPolicia";
+            this.btnEditarPolicia.Size = new System.Drawing.Size(84, 30);
+            this.btnEditarPolicia.TabIndex = 11;
+            this.btnEditarPolicia.Text = "Editar";
+            this.btnEditarPolicia.UseVisualStyleBackColor = true;
+            this.btnEditarPolicia.Click += new System.EventHandler(this.btnEditarPolicia_Click);
             // 
-            // btnEliminarPatrulla
+            // btnEliminarPolicia
             // 
-            this.btnEliminarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPatrulla.Location = new System.Drawing.Point(259, 422);
-            this.btnEliminarPatrulla.Name = "btnEliminarPatrulla";
-            this.btnEliminarPatrulla.Size = new System.Drawing.Size(84, 30);
-            this.btnEliminarPatrulla.TabIndex = 12;
-            this.btnEliminarPatrulla.Text = "Eliminar";
-            this.btnEliminarPatrulla.UseVisualStyleBackColor = true;
+            this.btnEliminarPolicia.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarPolicia.Location = new System.Drawing.Point(259, 422);
+            this.btnEliminarPolicia.Name = "btnEliminarPolicia";
+            this.btnEliminarPolicia.Size = new System.Drawing.Size(84, 30);
+            this.btnEliminarPolicia.TabIndex = 12;
+            this.btnEliminarPolicia.Text = "Eliminar";
+            this.btnEliminarPolicia.UseVisualStyleBackColor = true;
+            this.btnEliminarPolicia.Click += new System.EventHandler(this.btnEliminarPolicia_Click);
             // 
             // dataGridViewPolicias
             // 
             this.dataGridViewPolicias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPolicias.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nro_Placa,
-            this.Apellido,
-            this.Nombre,
-            this.DNI,
-            this.Telefono});
             this.dataGridViewPolicias.Location = new System.Drawing.Point(481, 128);
             this.dataGridViewPolicias.Name = "dataGridViewPolicias";
             this.dataGridViewPolicias.RowHeadersWidth = 62;
             this.dataGridViewPolicias.Size = new System.Drawing.Size(607, 521);
             this.dataGridViewPolicias.TabIndex = 13;
-            // 
-            // Nro_Placa
-            // 
-            this.Nro_Placa.HeaderText = "Nro Placa";
-            this.Nro_Placa.MinimumWidth = 8;
-            this.Nro_Placa.Name = "Nro_Placa";
-            this.Nro_Placa.Width = 150;
-            // 
-            // Apellido
-            // 
-            this.Apellido.HeaderText = "Apellido";
-            this.Apellido.MinimumWidth = 8;
-            this.Apellido.Name = "Apellido";
-            this.Apellido.Width = 150;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 8;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 150;
-            // 
-            // DNI
-            // 
-            this.DNI.HeaderText = "DNI";
-            this.DNI.MinimumWidth = 8;
-            this.DNI.Name = "DNI";
-            this.DNI.Width = 150;
-            // 
-            // Telefono
-            // 
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.MinimumWidth = 8;
-            this.Telefono.Name = "Telefono";
-            this.Telefono.Width = 150;
             // 
             // labelTitulo_Patrullas
             // 
@@ -244,17 +176,15 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Controls.Add(this.labelNroPlaca);
+            this.panel2.Controls.Add(this.comboBoxGenero);
             this.panel2.Controls.Add(this.labelTitulo_Patrullas);
-            this.panel2.Controls.Add(this.textBoxNroPlaca);
             this.panel2.Controls.Add(this.labelNombre);
-            this.panel2.Controls.Add(this.btnEliminarPatrulla);
+            this.panel2.Controls.Add(this.btnEliminarPolicia);
             this.panel2.Controls.Add(this.textBoxNombre);
-            this.panel2.Controls.Add(this.btnEditarPatrulla);
+            this.panel2.Controls.Add(this.btnEditarPolicia);
             this.panel2.Controls.Add(this.labelApellido);
-            this.panel2.Controls.Add(this.btnAgregarPatrulla);
+            this.panel2.Controls.Add(this.btnAgregarPolicia);
             this.panel2.Controls.Add(this.textBoxApellido);
-            this.panel2.Controls.Add(this.textBoxTelefono);
             this.panel2.Controls.Add(this.labelTelefono);
             this.panel2.Controls.Add(this.labelDNI);
             this.panel2.Controls.Add(this.textBoxDNI);
@@ -276,24 +206,45 @@
             // 
             // textBoxBuscar
             // 
-            this.textBoxBuscar.Location = new System.Drawing.Point(665, 105);
+            this.textBoxBuscar.Location = new System.Drawing.Point(481, 105);
             this.textBoxBuscar.Name = "textBoxBuscar";
             this.textBoxBuscar.Size = new System.Drawing.Size(320, 20);
             this.textBoxBuscar.TabIndex = 29;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(991, 102);
+            this.btnBuscar.Location = new System.Drawing.Point(807, 105);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(97, 23);
             this.btnBuscar.TabIndex = 30;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
+            // btnPoliciasEliminado
+            // 
+            this.btnPoliciasEliminado.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPoliciasEliminado.Location = new System.Drawing.Point(939, 89);
+            this.btnPoliciasEliminado.Name = "btnPoliciasEliminado";
+            this.btnPoliciasEliminado.Size = new System.Drawing.Size(149, 36);
+            this.btnPoliciasEliminado.TabIndex = 37;
+            this.btnPoliciasEliminado.Text = "Ver Eliminados";
+            this.btnPoliciasEliminado.UseVisualStyleBackColor = true;
+            this.btnPoliciasEliminado.Click += new System.EventHandler(this.btnPoliciasEliminado_Click);
+            // 
+            // comboBoxGenero
+            // 
+            this.comboBoxGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGenero.FormattingEnabled = true;
+            this.comboBoxGenero.Location = new System.Drawing.Point(28, 307);
+            this.comboBoxGenero.Name = "comboBoxGenero";
+            this.comboBoxGenero.Size = new System.Drawing.Size(343, 21);
+            this.comboBoxGenero.TabIndex = 25;
+            // 
             // UCPoliciasComisario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnPoliciasEliminado);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.textBoxBuscar);
             this.Controls.Add(this.label1);
@@ -312,31 +263,24 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label labelNroPlaca;
-        private System.Windows.Forms.TextBox textBoxNroPlaca;
         private System.Windows.Forms.TextBox textBoxNombre;
         private System.Windows.Forms.TextBox textBoxApellido;
         private System.Windows.Forms.Label labelNombre;
         private System.Windows.Forms.Label labelApellido;
         private System.Windows.Forms.Label labelDNI;
         private System.Windows.Forms.TextBox textBoxDNI;
-        private System.Windows.Forms.TextBox textBoxTelefono;
         private System.Windows.Forms.Label labelTelefono;
-        private System.Windows.Forms.Button btnAgregarPatrulla;
-        private System.Windows.Forms.Button btnEditarPatrulla;
-        private System.Windows.Forms.Button btnEliminarPatrulla;
+        private System.Windows.Forms.Button btnAgregarPolicia;
+        private System.Windows.Forms.Button btnEditarPolicia;
+        private System.Windows.Forms.Button btnEliminarPolicia;
         private System.Windows.Forms.DataGridView dataGridViewPolicias;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nro_Placa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DNI;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.Label labelTitulo_Patrullas;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxBuscar;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnPoliciasEliminado;
+        private System.Windows.Forms.ComboBox comboBoxGenero;
     }
 }
