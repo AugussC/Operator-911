@@ -42,11 +42,11 @@
             this.labelTitulo_Patrullas = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBoxGenero = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnPoliciasEliminado = new System.Windows.Forms.Button();
-            this.comboBoxGenero = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPolicias)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -147,12 +147,16 @@
             // 
             // dataGridViewPolicias
             // 
+            this.dataGridViewPolicias.AllowUserToAddRows = false;
             this.dataGridViewPolicias.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewPolicias.Location = new System.Drawing.Point(481, 128);
             this.dataGridViewPolicias.Name = "dataGridViewPolicias";
             this.dataGridViewPolicias.RowHeadersWidth = 62;
             this.dataGridViewPolicias.Size = new System.Drawing.Size(607, 521);
             this.dataGridViewPolicias.TabIndex = 13;
+            this.dataGridViewPolicias.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPolicias_CellValueChanged);
+            this.dataGridViewPolicias.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridViewPolicias_CurrentCellDirtyStateChanged);
+            this.dataGridViewPolicias.SelectionChanged += new System.EventHandler(this.DataGridViewPolicias_SelectionChanged);
             // 
             // labelTitulo_Patrullas
             // 
@@ -194,6 +198,15 @@
             this.panel2.Size = new System.Drawing.Size(411, 521);
             this.panel2.TabIndex = 27;
             // 
+            // comboBoxGenero
+            // 
+            this.comboBoxGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGenero.FormattingEnabled = true;
+            this.comboBoxGenero.Location = new System.Drawing.Point(28, 307);
+            this.comboBoxGenero.Name = "comboBoxGenero";
+            this.comboBoxGenero.Size = new System.Drawing.Size(343, 21);
+            this.comboBoxGenero.TabIndex = 25;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -210,6 +223,7 @@
             this.textBoxBuscar.Name = "textBoxBuscar";
             this.textBoxBuscar.Size = new System.Drawing.Size(320, 20);
             this.textBoxBuscar.TabIndex = 29;
+            this.textBoxBuscar.TextChanged += new System.EventHandler(this.textBoxBuscar_TextChanged);
             // 
             // btnBuscar
             // 
@@ -230,15 +244,6 @@
             this.btnPoliciasEliminado.Text = "Ver Eliminados";
             this.btnPoliciasEliminado.UseVisualStyleBackColor = true;
             this.btnPoliciasEliminado.Click += new System.EventHandler(this.btnPoliciasEliminado_Click);
-            // 
-            // comboBoxGenero
-            // 
-            this.comboBoxGenero.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxGenero.FormattingEnabled = true;
-            this.comboBoxGenero.Location = new System.Drawing.Point(28, 307);
-            this.comboBoxGenero.Name = "comboBoxGenero";
-            this.comboBoxGenero.Size = new System.Drawing.Size(343, 21);
-            this.comboBoxGenero.TabIndex = 25;
             // 
             // UCPoliciasComisario
             // 

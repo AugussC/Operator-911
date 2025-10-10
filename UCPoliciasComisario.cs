@@ -13,16 +13,15 @@ namespace Operador_911
         {
             InitializeComponent();
 
-            CargarPolicias();
-            dataGridViewPolicias.DataBindingComplete += DataGridViewPolicias_DataBindingComplete;
-            dataGridViewPolicias.SelectionChanged += DataGridViewPolicias_SelectionChanged;
-
             textBoxNombre.KeyPress += SoloLetras_KeyPress;
             textBoxApellido.KeyPress += SoloLetras_KeyPress;
             textBoxDNI.KeyPress += SoloNumeros_KeyPress;
 
-            // Cargar opciones de género en el ComboBox
-            comboBoxGenero.Items.AddRange(new string[] { "M", "F"});
+            comboBoxGenero.Items.AddRange(new string[] { "M", "F" });
+
+            CargarPolicias();
+            dataGridViewPolicias.DataBindingComplete += DataGridViewPolicias_DataBindingComplete;
+           
         }
 
         private void UCPoliciasComisario_Load(object sender, EventArgs e)
@@ -31,10 +30,10 @@ namespace Operador_911
             btnEditarPolicia.Enabled = false;
             btnEliminarPolicia.Enabled = false;
             dataGridViewPolicias.ClearSelection();
+            dataGridViewPolicias.SelectionChanged += DataGridViewPolicias_SelectionChanged;
         }
 
         // ================== VALIDACIONES ==================
-
         private void SoloLetras_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsLetter(e.KeyChar) && !char.IsControl(e.KeyChar) && !char.IsWhiteSpace(e.KeyChar))
@@ -48,7 +47,6 @@ namespace Operador_911
         }
 
         // ================== CARGA DE DATOS ==================
-
         private void CargarPolicias()
         {
             using (SqlConnection conn = Database.GetConnection())
@@ -129,6 +127,8 @@ namespace Operador_911
             LimpiarFormulario();
         }
 
+        
+
         private void DataGridViewPolicias_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dataGridViewPolicias.ClearSelection();
@@ -136,7 +136,6 @@ namespace Operador_911
         }
 
         // ================== BOTONES ==================
-
         private void btnAgregarPolicia_Click(object sender, EventArgs e)
         {
             string nombre = textBoxNombre.Text.Trim();
@@ -150,30 +149,33 @@ namespace Operador_911
                 MessageBox.Show("Todos los campos son obligatorios.");
                 return;
             }
-
-            using (SqlConnection conn = Database.GetConnection())
+            try
             {
-                string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
-                SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
-                cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
-                int idComisaria = Convert.ToInt32(cmdComisaria.ExecuteScalar());
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
+                    SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
+                    cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
+                    int idComisaria = Convert.ToInt32(cmdComisaria.ExecuteScalar());
 
-                string query = @"INSERT INTO Policia (apellido, nombre, dni, genero, id_comisaria, activo)
-                                 VALUES (@apellido, @nombre, @dni, @genero, @idComisaria, 1);
-                                 SELECT SCOPE_IDENTITY();";
+                    string query = @"INSERT INTO Policia (apellido, nombre, dni, genero, id_comisaria, activo)
+                                     VALUES (@apellido, @nombre, @dni, @genero, @idComisaria, 1)";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@apellido", apellido);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@dni", dni);
+                    cmd.Parameters.AddWithValue("@genero", genero);
+                    cmd.Parameters.AddWithValue("@idComisaria", idComisaria);
+                    cmd.ExecuteNonQuery();
+                }
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@apellido", apellido);
-                cmd.Parameters.AddWithValue("@nombre", nombre);
-                cmd.Parameters.AddWithValue("@dni", dni);
-                cmd.Parameters.AddWithValue("@genero", genero);
-                cmd.Parameters.AddWithValue("@idComisaria", idComisaria);
-
-                int nuevoNroPlaca = Convert.ToInt32(cmd.ExecuteScalar());
-                
+                MessageBox.Show("Policía agregado correctamente.");
+                CargarPolicias();
             }
-
-            CargarPolicias();
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al agregar Policia: " + ex.Message);
+            }
         }
 
         private void btnEliminarPolicia_Click(object sender, EventArgs e)
@@ -182,7 +184,7 @@ namespace Operador_911
             {
                 int nroPlaca = Convert.ToInt32(dataGridViewPolicias.CurrentRow.Cells["N° Placa"].Value);
 
-                DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar este policía?",
+                DialogResult result = MessageBox.Show("¿Está seguro que desea desactivar este policía?",
                     "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Yes)
@@ -195,7 +197,7 @@ namespace Operador_911
                         cmd.ExecuteNonQuery();
                     }
 
-                    MessageBox.Show("Policía eliminado correctamente.");
+                    MessageBox.Show("Policía desactivado correctamente.");
                     CargarPolicias();
                 }
             }
@@ -221,23 +223,43 @@ namespace Operador_911
                 MessageBox.Show("Todos los campos son obligatorios.");
                 return;
             }
-
-            using (SqlConnection conn = Database.GetConnection())
+            try
             {
-                string query = @"UPDATE Policia 
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string query = @"UPDATE Policia 
                                  SET apellido=@apellido, nombre=@nombre, dni=@dni, genero=@genero
                                  WHERE nro_placa=@placa";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@placa", nroPlaca);
-                cmd.Parameters.AddWithValue("@apellido", apellido);
-                cmd.Parameters.AddWithValue("@nombre", nombre);
-                cmd.Parameters.AddWithValue("@dni", dni);
-                cmd.Parameters.AddWithValue("@genero", genero);
-                cmd.ExecuteNonQuery();
-            }
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@placa", nroPlaca);
+                    cmd.Parameters.AddWithValue("@apellido", apellido);
+                    cmd.Parameters.AddWithValue("@nombre", nombre);
+                    cmd.Parameters.AddWithValue("@dni", dni);
+                    cmd.Parameters.AddWithValue("@genero", genero);
+                    cmd.ExecuteNonQuery();
+                }
 
-            MessageBox.Show("Datos del policía actualizados correctamente.");
-            CargarPolicias();
+                MessageBox.Show("Datos del policía actualizados correctamente.");
+                CargarPolicias();
+                LimpiarFormulario();
+                dataGridViewPolicias.ClearSelection();
+
+                if (btnPoliciasEliminado.Text == "Ver Eliminados")
+                {
+
+                    CargarPolicias();
+
+                }
+                else
+                {
+                    CargarPoliciasEliminadas();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar policia: " + ex.Message);
+            }
         }
 
         private void btnPoliciasEliminado_Click(object sender, EventArgs e)
@@ -254,6 +276,170 @@ namespace Operador_911
             }
         }
 
+        // ================== ACTIVAR / DESACTIVAR ==================
+        private void dataGridViewPolicias_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dataGridViewPolicias.Columns["Activo"].Index && e.RowIndex >= 0)
+            {
+                int nroPlaca = Convert.ToInt32(dataGridViewPolicias.Rows[e.RowIndex].Cells["N° Placa"].Value);
+                bool nuevoEstado = Convert.ToBoolean(dataGridViewPolicias.Rows[e.RowIndex].Cells["Activo"].Value);
+
+                if (nuevoEstado)
+                    ActivarPolicia(nroPlaca, e.RowIndex);
+                else
+                    DesactivarPolicia(nroPlaca, e.RowIndex);
+            }
+        }
+
+        private void dataGridViewPolicias_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dataGridViewPolicias.IsCurrentCellDirty)
+            {
+                dataGridViewPolicias.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void ActivarPolicia(int nroPlaca, int rowIndex)
+        {
+            DialogResult result = MessageBox.Show(
+                "¿Desea activar este policía?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string query = "UPDATE Policia SET activo = 1 WHERE nro_placa = @nroPlaca";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nroPlaca", nroPlaca);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Policía activado correctamente.");
+                CargarPoliciasEliminadas(); // 👈 igual que en patrullas
+            }
+            else
+            {
+                // Si el usuario cancela, revertimos el cambio sin disparar nuevamente el evento
+                dataGridViewPolicias.CellValueChanged -= dataGridViewPolicias_CellValueChanged;
+                dataGridViewPolicias.Rows[rowIndex].Cells["Activo"].Value = false;
+                dataGridViewPolicias.CellValueChanged += dataGridViewPolicias_CellValueChanged;
+            }
+        }
+
+        private void DesactivarPolicia(int nroPlaca, int rowIndex)
+        {
+            DialogResult result = MessageBox.Show(
+                "¿Desea desactivar este policía?",
+                "Confirmación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string query = "UPDATE Policia SET activo = 0 WHERE nro_placa = @nroPlaca";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nroPlaca", nroPlaca);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Policía desactivado correctamente.");
+                CargarPolicias(); // 👈 igual que en patrullas
+            }
+            else
+            {
+                // Si el usuario cancela, revertimos el cambio sin disparar nuevamente el evento
+                dataGridViewPolicias.CellValueChanged -= dataGridViewPolicias_CellValueChanged;
+                dataGridViewPolicias.Rows[rowIndex].Cells["Activo"].Value = true;
+                dataGridViewPolicias.CellValueChanged += dataGridViewPolicias_CellValueChanged;
+            }
+        }
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string textoBuscado = textBoxBuscar.Text.Trim();
+
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
+                SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
+                cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
+
+                object result = cmdComisaria.ExecuteScalar();
+                if (result == null)
+                {
+                    MessageBox.Show("No se encontró una comisaría asociada a este usuario.");
+                    return;
+                }
+
+                int idComisaria = Convert.ToInt32(result);
+
+                string query;
+                if (btnPoliciasEliminado.Text == "Ver Eliminados")
+                {
+                    query = @"
+                        SELECT 
+                            nro_placa AS 'N° Placa',
+                            apellido AS 'Apellido',
+                            nombre AS 'Nombre',
+                            dni AS 'DNI',
+                            genero AS 'Género',
+                            activo AS 'Activo'
+                        FROM Policia 
+                        WHERE activo = 1 AND id_comisaria = @idComisaria
+                        AND (nro_placa LIKE @texto OR apellido LIKE @texto OR nombre LIKE @texto OR dni LIKE @texto OR genero LIKE @texto)";
+                }
+                else
+                {
+                    query = @"
+                        SELECT 
+                            nro_placa AS 'N° Placa',
+                            apellido AS 'Apellido',
+                            nombre AS 'Nombre',
+                            dni AS 'DNI',
+                            genero AS 'Género',
+                            activo AS 'Activo'
+                        FROM Policia 
+                        WHERE activo = 0 AND id_comisaria = @idComisaria
+                        AND (nro_placa LIKE @texto OR apellido LIKE @texto OR nombre LIKE @texto OR dni LIKE @texto OR genero LIKE @texto)";
+                }
+
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@texto", "%" + textoBuscado + "%");
+                da.SelectCommand.Parameters.AddWithValue("@idComisaria", idComisaria);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                dataGridViewPolicias.DataSource = dt;
+            }
+
+            dataGridViewPolicias.ClearSelection();
+        }
+
+        private void textBoxBuscar_TextChanged(object sender, EventArgs e)
+        {
+            btnBuscar_Click(sender, e);
+        }
+
+        // ================== AUXILIARES ==================
+        private void LimpiarFormulario()
+        {
+            textBoxApellido.Text = "";
+            textBoxNombre.Text = "";
+            textBoxDNI.Text = "";
+            comboBoxGenero.SelectedIndex = -1;
+            btnEditarPolicia.Enabled = false;
+            btnEliminarPolicia.Enabled = false;
+        }
+
         private void DataGridViewPolicias_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridViewPolicias.CurrentRow != null)
@@ -266,18 +452,6 @@ namespace Operador_911
                 btnEditarPolicia.Enabled = true;
                 btnEliminarPolicia.Enabled = true;
             }
-        }
-
-        // ================== AUXILIARES ==================
-
-        private void LimpiarFormulario()
-        {
-            textBoxApellido.Text = "";
-            textBoxNombre.Text = "";
-            textBoxDNI.Text = "";
-            comboBoxGenero.SelectedIndex = -1;
-            btnEditarPolicia.Enabled = false;
-            btnEliminarPolicia.Enabled = false;
         }
     }
 }

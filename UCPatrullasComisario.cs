@@ -19,7 +19,7 @@ namespace Operador_911
             textNroVehiculo.KeyPress += textNroVehiculo_KeyPress;
 
             CargarPatrullas();
-            
+
 
             dataGridViewPatrullas.DataBindingComplete += DataGridViewPatrullas_DataBindingComplete;
         }
@@ -304,7 +304,7 @@ namespace Operador_911
 
                 if (btnVehiculosEliminado.Text == "Ver Eliminados")
                 {
-                    
+
                     CargarPatrullas();
 
                 }
@@ -338,11 +338,7 @@ namespace Operador_911
                 btnEditarPatrulla.Enabled = false;
                 btnEliminarPatrulla.Enabled = false;
             }
-            else
-            {
-                btnEditarPatrulla.Enabled = true;
-                btnEliminarPatrulla.Enabled = true;
-            }
+            
 
         }
 
@@ -430,7 +426,6 @@ namespace Operador_911
             }
         }
 
-        
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -484,7 +479,7 @@ namespace Operador_911
             dataGridViewPatrullas.ClearSelection();
         }
 
-       
+
 
         private void textBoxBuscar_TextChanged(object sender, EventArgs e)
         {
