@@ -95,14 +95,6 @@
             // 
             this.patrullaBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.patrullaBox.FormattingEnabled = true;
-            this.patrullaBox.Items.AddRange(new object[] {
-            "Patrulla 1",
-            "Patrulla 2",
-            "Patrulla 3",
-            "Patrulla 4",
-            "Patrulla 5",
-            "Patrulla 6",
-            "Patrulla 7"});
             this.patrullaBox.Location = new System.Drawing.Point(64, 127);
             this.patrullaBox.Name = "patrullaBox";
             this.patrullaBox.Size = new System.Drawing.Size(287, 21);
@@ -112,23 +104,6 @@
             // 
             this.policia1Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.policia1Box.FormattingEnabled = true;
-            this.policia1Box.Items.AddRange(new object[] {
-            "Romero Franco",
-            "Fernandez Nahuel",
-            "Gon Victoria",
-            "Chamorro Esteban ",
-            "Gomez Francisco",
-            "Jimenez Nancy",
-            "Romero Franco",
-            "Juarez Luis",
-            "Fernandez Pablo",
-            "Diaz Martin",
-            "Sosa Ariel",
-            "Sosa Maximiliano",
-            "Marques Miguel",
-            "Acosta Lara",
-            "",
-            ""});
             this.policia1Box.Location = new System.Drawing.Point(64, 196);
             this.policia1Box.Name = "policia1Box";
             this.policia1Box.Size = new System.Drawing.Size(287, 21);
@@ -138,22 +113,6 @@
             // 
             this.policia2Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.policia2Box.FormattingEnabled = true;
-            this.policia2Box.Items.AddRange(new object[] {
-            "Romero Franco",
-            "Fernandez Nahuel",
-            "Gon Victoria",
-            "Chamorro Esteban ",
-            "Gomez Francisco",
-            "Jimenez Nancy",
-            "Romero Franco",
-            "Juarez Luis",
-            "Fernandez Pablo",
-            "Diaz Martin",
-            "Sosa Ariel",
-            "Sosa Maximiliano",
-            "Marques Miguel",
-            "Acosta Lara",
-            ""});
             this.policia2Box.Location = new System.Drawing.Point(64, 260);
             this.policia2Box.Name = "policia2Box";
             this.policia2Box.Size = new System.Drawing.Size(287, 21);
@@ -163,9 +122,6 @@
             // 
             this.horarioBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.horarioBox.FormattingEnabled = true;
-            this.horarioBox.Items.AddRange(new object[] {
-            "06:00 - 18:00",
-            "18:00 - 06:00"});
             this.horarioBox.Location = new System.Drawing.Point(64, 325);
             this.horarioBox.Name = "horarioBox";
             this.horarioBox.Size = new System.Drawing.Size(287, 21);
@@ -226,14 +182,6 @@
             // 
             this.DiaBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DiaBox.FormattingEnabled = true;
-            this.DiaBox.Items.AddRange(new object[] {
-            "Lunes",
-            "Martes",
-            "Miercoles",
-            "Jueves",
-            "Viernes",
-            "Sabado",
-            "Domingo"});
             this.DiaBox.Location = new System.Drawing.Point(64, 391);
             this.DiaBox.Name = "DiaBox";
             this.DiaBox.Size = new System.Drawing.Size(287, 21);
