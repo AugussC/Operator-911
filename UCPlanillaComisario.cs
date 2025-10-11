@@ -8,39 +8,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Operador_911.FormLogin;
 
 namespace Operador_911
 {
     public partial class UCPlanilla : UserControl
     {
+        private int idComisaria;
         public UCPlanilla()
         {
             InitializeComponent();
             CargarComboBox();
-            this.Load += new System.EventHandler(this.FormOperador_Load);
+            CargarPlanilla();
+            
+           dataGridHorarios.SelectionChanged += dataGridHorarios_SelectionChanged;
         }
 
         private void FormOperador_Load(object sender, EventArgs e)
         {
-            string[] dias = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" };
-            foreach (string dia in dias)
-            {
-                dataGridHorarios.Columns.Add(dia, dia);
-            }
 
-            dataGridHorarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            dataGridHorarios.RowHeadersWidth = 150; 
-            dataGridHorarios.AllowUserToAddRows = false;
-            dataGridHorarios.AllowUserToResizeRows = false;
-
-            CrearPatrulla("Patrulla 1");
-            CrearPatrulla("Patrulla 2");
-
-            // Ejemplo: asignar policías
-            dataGridHorarios["Lunes", 1].Value = "GÓMEZ FRANCISCO - ROMERO FRANCO"; 
-            dataGridHorarios["Martes", 2].Value = "JUÁREZ LUIS - FERNÁNDEZ PABLO";  
-            dataGridHorarios["Lunes", 4].Value = "DÍAZ MARTÍN - SOSA ARIEL";        
         }
 
         private void CargarComboBox()
@@ -103,44 +89,132 @@ namespace Operador_911
             DiaBox.SelectedIndex = -1;
         }
 
-        private void CrearPatrulla(string nombrePatrulla)
+        private void CargarPlanilla()
         {
-            // Fila de título (solo muestra el nombre de la patrulla)
-            int filaTitulo = dataGridHorarios.Rows.Add();
-            dataGridHorarios.Rows[filaTitulo].DefaultCellStyle.BackColor = Color.LightGray;
-            dataGridHorarios.Rows[filaTitulo].DefaultCellStyle.Font = new Font(dataGridHorarios.Font, FontStyle.Bold);
-            dataGridHorarios.Rows[filaTitulo].Cells[0].Value = nombrePatrulla;
-            dataGridHorarios.Rows[filaTitulo].ReadOnly = true;
+            try
+            {
+                dataGridHorarios.Columns.Clear();
+                dataGridHorarios.Rows.Clear();
 
-            // Turno 06-18
-            int filaTurno1 = dataGridHorarios.Rows.Add();
-            dataGridHorarios.Rows[filaTurno1].HeaderCell.Value = "06-18";
+                // --- Crear columnas de días ---
+                string[] dias = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" };
+                foreach (string dia in dias)
+                {
+                    dataGridHorarios.Columns.Add(dia, dia);
+                }
 
-            // Turno 18-06
-            int filaTurno2 = dataGridHorarios.Rows.Add();
-            dataGridHorarios.Rows[filaTurno2].HeaderCell.Value = "18-06";
+                dataGridHorarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridHorarios.RowHeadersWidth = 150;
+                dataGridHorarios.AllowUserToAddRows = false;
+                dataGridHorarios.AllowUserToResizeRows = false;
+
+                using (SqlConnection conn = Database.GetConnection())
+                {
+
+                    // --- 1️⃣ Buscar la comisaría del usuario ---
+                    string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
+                    SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
+                    cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
+
+                    object result = cmdComisaria.ExecuteScalar();
+                    if (result == null)
+                    {
+                        MessageBox.Show("No se encontró una comisaría asociada a este usuario.");
+                        return;
+                    }
+
+                    int idComisaria = Convert.ToInt32(result);
+
+                    // --- 2️⃣ Obtener patrullas en servicio de esa comisaría ---
+                    string queryPatrullas = @"
+                SELECT id_patrulla, codigo_patrulla
+                FROM Patrulla
+                WHERE estado = 'En servicio' AND id_comisaria = @idComisaria";
+
+                    SqlCommand cmdPatrullas = new SqlCommand(queryPatrullas, conn);
+                    cmdPatrullas.Parameters.AddWithValue("@idComisaria", idComisaria);
+
+                    DataTable dtPatrullas = new DataTable();
+                    SqlDataAdapter daP = new SqlDataAdapter(cmdPatrullas);
+                    daP.Fill(dtPatrullas);
+
+                    // --- 3️⃣ Obtener datos actuales de la tabla Tiene ---
+                    string qTiene = @"
+                SELECT T.id_patrulla, T.nro_placa, T.dia_semana, T.turno,
+                       (Pol.apellido + ', ' + Pol.nombre) AS Policia
+                FROM Tiene T
+                INNER JOIN Policia Pol ON T.nro_placa = Pol.nro_placa
+                INNER JOIN Patrulla Pa ON T.id_patrulla = Pa.id_patrulla
+                WHERE Pa.id_comisaria = @idComisaria AND Pa.estado = 'En servicio'";
+
+                    SqlCommand cmdTiene = new SqlCommand(qTiene, conn);
+                    cmdTiene.Parameters.AddWithValue("@idComisaria", idComisaria);
+
+                    DataTable dtTiene = new DataTable();
+                    SqlDataAdapter daT = new SqlDataAdapter(cmdTiene);
+                    daT.Fill(dtTiene);
+
+                    // --- 4️⃣ Construir la planilla completa ---
+                    foreach (DataRow patrulla in dtPatrullas.Rows)
+                    {
+                        string nombrePatrulla = patrulla["codigo_patrulla"].ToString();
+                        int idPatrulla = Convert.ToInt32(patrulla["id_patrulla"]);
+
+                        // Fila título (nombre patrulla)
+                        int filaTitulo = dataGridHorarios.Rows.Add();
+                        dataGridHorarios.Rows[filaTitulo].DefaultCellStyle.BackColor = Color.LightGray;
+                        dataGridHorarios.Rows[filaTitulo].DefaultCellStyle.Font = new Font(dataGridHorarios.Font, FontStyle.Bold);
+                        dataGridHorarios.Rows[filaTitulo].HeaderCell.Value = "";
+                        dataGridHorarios.Rows[filaTitulo].Cells[0].Value = nombrePatrulla;
+                        dataGridHorarios.Rows[filaTitulo].ReadOnly = true;
+
+                        // Fila de turno mañana
+                        int filaManiana = dataGridHorarios.Rows.Add();
+                        dataGridHorarios.Rows[filaManiana].HeaderCell.Value = "06-18";
+
+                        // Fila de turno noche
+                        int filaNoche = dataGridHorarios.Rows.Add();
+                        dataGridHorarios.Rows[filaNoche].HeaderCell.Value = "18-06";
+
+                        // Buscar registros de esta patrulla
+                        var registros = dtTiene.AsEnumerable()
+                            .Where(r => r.Field<int>("id_patrulla") == idPatrulla);
+
+                        foreach (var registro in registros)
+                        {
+                            string dia = registro.Field<string>("dia_semana");
+                            string turno = registro.Field<string>("turno");
+                            string policia = registro.Field<string>("Policia");
+
+                            // Determinar fila según turno
+                            int fila = (turno == "06-18") ? filaManiana : filaNoche;
+
+                            // Si el día existe como columna
+                            if (dataGridHorarios.Columns.Contains(dia))
+                            {
+                                if (dataGridHorarios[dia, fila].Value != null)
+                                    dataGridHorarios[dia, fila].Value += " - " + policia;
+                                else
+                                    dataGridHorarios[dia, fila].Value = policia;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la planilla: " + ex.Message);
+            }
         }
 
-        private void btnLimpiar_Click(object sender, EventArgs e)
+        private void btnEditarPatrullas_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void UCPlanilla_Load(object sender, EventArgs e)
+        private void btnEliminarPatrullas_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void DiaBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        
     }
- }
+}

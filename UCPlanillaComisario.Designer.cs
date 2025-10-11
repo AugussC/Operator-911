@@ -146,6 +146,7 @@
             this.btnEditarPatrullas.TabIndex = 9;
             this.btnEditarPatrullas.Text = "Editar";
             this.btnEditarPatrullas.UseVisualStyleBackColor = true;
+            this.btnEditarPatrullas.Click += new System.EventHandler(this.btnEditarPatrullas_Click);
             // 
             // btnLimpiar
             // 
@@ -156,7 +157,6 @@
             this.btnLimpiar.TabIndex = 10;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // btnEliminarPatrullas
             // 
@@ -167,6 +167,7 @@
             this.btnEliminarPatrullas.TabIndex = 11;
             this.btnEliminarPatrullas.Text = "Eliminar";
             this.btnEliminarPatrullas.UseVisualStyleBackColor = true;
+            this.btnEliminarPatrullas.Click += new System.EventHandler(this.btnEliminarPatrullas_Click);
             // 
             // labelDia
             // 
@@ -186,7 +187,6 @@
             this.DiaBox.Name = "DiaBox";
             this.DiaBox.Size = new System.Drawing.Size(287, 21);
             this.DiaBox.TabIndex = 13;
-            this.DiaBox.SelectedIndexChanged += new System.EventHandler(this.DiaBox_SelectedIndexChanged);
             // 
             // labelTitulo_Usuarios
             // 
@@ -228,7 +228,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(411, 521);
             this.panel2.TabIndex = 27;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // label1
             // 
@@ -269,7 +268,6 @@
             this.Controls.Add(this.panel2);
             this.Name = "UCPlanilla";
             this.Size = new System.Drawing.Size(1162, 699);
-            this.Load += new System.EventHandler(this.UCPlanilla_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHorarios)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
