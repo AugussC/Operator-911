@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Operador_911.FormLogin;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Operador_911
 {
@@ -21,7 +22,7 @@ namespace Operador_911
             CargarComboBox();
             CargarPlanilla();
             
-           dataGridHorarios.SelectionChanged += dataGridHorarios_SelectionChanged;
+           
         }
 
         private void FormOperador_Load(object sender, EventArgs e)
@@ -104,7 +105,7 @@ namespace Operador_911
                 }
 
                 dataGridHorarios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dataGridHorarios.RowHeadersWidth = 150;
+                dataGridHorarios.RowHeadersWidth = 100;
                 dataGridHorarios.AllowUserToAddRows = false;
                 dataGridHorarios.AllowUserToResizeRows = false;
 
@@ -207,14 +208,360 @@ namespace Operador_911
             }
         }
 
+        private bool ValidarAsignacion(int? policia1, int? policia2, string dia, string turno)
+        {
+            // 🚫 Mismo policía dos veces
+            if (policia1.HasValue && policia2.HasValue && policia1 == policia2)
+            {
+                MessageBox.Show("El mismo policía no puede ser asignado como Policía 1 y Policía 2.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Lista de días
+            string[] dias = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" };
+            int indiceDia = Array.IndexOf(dias, dia);
+
+            string turnoAnterior = (turno == "06-18") ? "18-06" : "06-18";
+            string diaAnterior = dia;
+
+            // 🔹 Si el turno actual es de mañana, el anterior es la noche del día anterior
+            if (turno == "06-18" && indiceDia > 0)
+                diaAnterior = dias[indiceDia - 1];
+            else if (turno == "06-18" && indiceDia == 0)
+                diaAnterior = null; // Lunes no tiene anterior
+
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                bool PoliciaTieneTurno(int nroPlaca, string diaBuscar, string turnoBuscar)
+                {
+                    if (diaBuscar == null) return false; // si no hay día anterior, se salta
+
+                    string q = @"SELECT COUNT(*) FROM Tiene 
+                         WHERE nro_placa = @nroPlaca 
+                         AND dia_semana = @dia 
+                         AND turno = @turno";
+                    using (SqlCommand cmd = new SqlCommand(q, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nroPlaca", nroPlaca);
+                        cmd.Parameters.AddWithValue("@dia", diaBuscar);
+                        cmd.Parameters.AddWithValue("@turno", turnoBuscar);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count > 0;
+                    }
+                }
+
+                // 🚫 Validar turno anterior en el mismo día o el anterior
+                if (policia1.HasValue && PoliciaTieneTurno(policia1.Value, diaAnterior, turnoAnterior))
+                {
+                    MessageBox.Show($"El policía {policia1Box.Text} no puede ingresar porque trabajó el turno anterior ({turnoAnterior}) del día {diaAnterior ?? dia}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                if (policia2.HasValue && PoliciaTieneTurno(policia2.Value, diaAnterior, turnoAnterior))
+                {
+                    MessageBox.Show($"El policía {policia2Box.Text} no puede ingresar porque trabajó el turno anterior ({turnoAnterior}) del día {diaAnterior ?? dia}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+
+            return true; // ✅ Todo OK
+        }
+
+
+
+
         private void btnEditarPatrullas_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (patrullaBox.SelectedValue == null ||
+                    horarioBox.SelectedItem == null ||
+                    DiaBox.SelectedItem == null ||
+                    (policia1Box.SelectedValue == null && policia2Box.SelectedValue == null))
+                {
+                    MessageBox.Show("Por favor, seleccione patrulla, turno, día y al menos un policía.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
+                int idPatrulla = Convert.ToInt32(patrullaBox.SelectedValue);
+                string turno = horarioBox.SelectedItem.ToString();
+                string dia = DiaBox.SelectedItem.ToString();
+
+                int? policia1 = policia1Box.SelectedValue as int?;
+                int? policia2 = policia2Box.SelectedValue as int?;
+
+                // ✅ Llamamos a la función de validación
+                if (!ValidarAsignacion(policia1, policia2, dia, turno))
+                    return; // Si devuelve false, se corta la ejecución
+
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    // 🔹 Eliminar registros previos de esa patrulla / día / turno
+                    string deleteQuery = @"
+                DELETE FROM Tiene
+                WHERE id_patrulla = @idPatrulla AND dia_semana = @dia AND turno = @turno";
+
+                    SqlCommand cmdDelete = new SqlCommand(deleteQuery, conn);
+                    cmdDelete.Parameters.AddWithValue("@idPatrulla", idPatrulla);
+                    cmdDelete.Parameters.AddWithValue("@dia", dia);
+                    cmdDelete.Parameters.AddWithValue("@turno", turno);
+                    cmdDelete.ExecuteNonQuery();
+
+                    // 🔹 Insertar los nuevos policías
+                    string insertQuery = @"
+                INSERT INTO Tiene (id_patrulla, nro_placa, dia_semana, turno)
+                VALUES (@id_patrulla, @nro_placa, @dia, @turno)";
+
+                    if (policia1.HasValue)
+                    {
+                        SqlCommand cmdInsert1 = new SqlCommand(insertQuery, conn);
+                        cmdInsert1.Parameters.AddWithValue("@id_patrulla", idPatrulla);
+                        cmdInsert1.Parameters.AddWithValue("@nro_placa", policia1.Value);
+                        cmdInsert1.Parameters.AddWithValue("@dia", dia);
+                        cmdInsert1.Parameters.AddWithValue("@turno", turno);
+                        cmdInsert1.ExecuteNonQuery();
+                    }
+
+                    if (policia2.HasValue && policia2 != policia1)
+                    {
+                        SqlCommand cmdInsert2 = new SqlCommand(insertQuery, conn);
+                        cmdInsert2.Parameters.AddWithValue("@id_patrulla", idPatrulla);
+                        cmdInsert2.Parameters.AddWithValue("@nro_placa", policia2.Value);
+                        cmdInsert2.Parameters.AddWithValue("@dia", dia);
+                        cmdInsert2.Parameters.AddWithValue("@turno", turno);
+                        cmdInsert2.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Los policías fueron actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // 🔄 Refrescar la planilla visual
+                CargarPlanilla();
+                dataGridHorarios.ClearSelection();
+
+                // Deshabilitar botones hasta una nueva selección
+                btnEditarPatrullas.Enabled = false;
+                btnEliminarPatrullas.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar los policías: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
 
         private void btnEliminarPatrullas_Click(object sender, EventArgs e)
         {
+            try
+            {
+                // Validar que haya una selección válida
+                if (patrullaBox.SelectedValue == null ||
+                    horarioBox.SelectedItem == null ||
+                    DiaBox.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar una patrulla, un día y un turno para eliminar.",
+                                    "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
+                // Obtener valores seleccionados
+                int idPatrulla = Convert.ToInt32(patrullaBox.SelectedValue);
+                string turno = horarioBox.SelectedItem.ToString();
+                string dia = DiaBox.SelectedItem.ToString();
+
+                // Confirmar con el usuario
+                DialogResult confirm = MessageBox.Show(
+                    $"¿Desea eliminar las asignaciones de la patrulla seleccionada ({patrullaBox.Text}) " +
+                    $"para el día {dia} y turno {turno}?",
+                    "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (confirm != DialogResult.Yes)
+                    return;
+
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string deleteQuery = @"
+                DELETE FROM Tiene
+                WHERE id_patrulla = @idPatrulla AND dia_semana = @dia AND turno = @turno";
+
+                    SqlCommand cmdDelete = new SqlCommand(deleteQuery, conn);
+                    cmdDelete.Parameters.AddWithValue("@idPatrulla", idPatrulla);
+                    cmdDelete.Parameters.AddWithValue("@dia", dia);
+                    cmdDelete.Parameters.AddWithValue("@turno", turno);
+
+                    int filasAfectadas = cmdDelete.ExecuteNonQuery();
+
+                    if (filasAfectadas > 0)
+                        MessageBox.Show("Las asignaciones fueron eliminadas correctamente.",
+                                        "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("No se encontraron asignaciones para eliminar.",
+                                        "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                // 🔄 Refrescar visualmente la planilla
+                CargarPlanilla();
+                dataGridHorarios.ClearSelection();
+
+                // 🔒 Deshabilitar botones hasta nueva selección
+                btnEditarPatrullas.Enabled = false;
+                btnEliminarPatrullas.Enabled = false;
+
+                // Limpiar los combos
+                patrullaBox.Enabled = true;
+                horarioBox.Enabled = true;
+                DiaBox.Enabled = true;
+                policia1Box.SelectedIndex = -1;
+                policia2Box.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al eliminar las asignaciones: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        private void UCPlanilla_Load(object sender, EventArgs e)
+        {
+            btnEditarPatrullas.Enabled = false;
+            btnEliminarPatrullas.Enabled = false;
+            dataGridHorarios.ClearSelection();
+            dataGridHorarios.SelectionChanged += DataGridHorario_SelectionChanged;
+        }
+
+        private void DataGridHorario_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dataGridHorarios.CurrentRow == null)
+            {
+                btnEditarPatrullas.Enabled = false;
+                btnEliminarPatrullas.Enabled = false;
+                return;
+            }
+
+            DataGridViewRow fila = dataGridHorarios.CurrentRow;
+
+            // Evitar filas "título" (las grises con el nombre de la patrulla)
+            if (fila.DefaultCellStyle.BackColor == Color.LightGray || fila.HeaderCell.Value == null)
+            {
+                btnEditarPatrullas.Enabled = false;
+                btnEliminarPatrullas.Enabled = false;
+                return;
+            }
+
+            // Habilitar los botones si es una fila de turno
+            btnEditarPatrullas.Enabled = true;
+            btnEliminarPatrullas.Enabled = true;
+
+            // --- Cargar datos en los combos ---
+            // Obtener el turno desde el encabezado de la fila
+            string turnoSeleccionado = fila.HeaderCell.Value?.ToString();
+
+            // Determinar qué columna (día) se seleccionó
+            if (dataGridHorarios.CurrentCell == null)
+                return;
+
+            string diaSeleccionado = dataGridHorarios.Columns[dataGridHorarios.CurrentCell.ColumnIndex].HeaderText;
+            
+            
+            // Buscar la patrulla a la que pertenece esta fila
+            string patrullaSeleccionada = ObtenerNombrePatrullaDesdeFila(fila.Index);
+
+            // Cargar los valores en los combos
+            horarioBox.SelectedItem = turnoSeleccionado;
+            horarioBox.Enabled = false;
+            DiaBox.SelectedItem = diaSeleccionado;
+            DiaBox.Enabled = false;
+
+            // Seleccionar la patrulla correspondiente en el combo
+            if (patrullaBox.FindStringExact(patrullaSeleccionada) != -1)
+                patrullaBox.SelectedIndex = patrullaBox.FindStringExact(patrullaSeleccionada);
+            patrullaBox.Enabled = false;
+            // Los policías están en la celda seleccionada (puede haber 1 o 2 separados por “-”)
+            string valorCelda = dataGridHorarios.CurrentCell.Value?.ToString();
+
+            if (!string.IsNullOrEmpty(valorCelda))
+            {
+                string[] policias = valorCelda.Split(new string[] { " - " }, StringSplitOptions.RemoveEmptyEntries);
+
+                if (policias.Length > 0)
+                {
+                    // Seleccionar el primer policía si existe
+                    int index1 = policia1Box.FindStringExact(policias[0].Trim());
+                    if (index1 != -1)
+                        policia1Box.SelectedIndex = index1;
+                }
+
+                if (policias.Length > 1)
+                {
+                    // Seleccionar el segundo policía si existe
+                    int index2 = policia2Box.FindStringExact(policias[1].Trim());
+                    if (index2 != -1)
+                        policia2Box.SelectedIndex = index2;
+                }
+            }
+        }
+
+
+        private string ObtenerNombrePatrullaDesdeFila(int filaIndex)
+        {
+            // Recorremos hacia arriba hasta encontrar la fila gris (la del nombre de patrulla)
+            for (int i = filaIndex; i >= 0; i--)
+            {
+                var fila = dataGridHorarios.Rows[i];
+                if (fila.DefaultCellStyle.BackColor == Color.LightGray)
+                {
+                    return fila.Cells[0].Value?.ToString();
+                }
+            }
+            return null;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult confirm = MessageBox.Show(
+                    "¿Está seguro de que desea eliminar TODOS los registros de la planilla?\n\n" +
+                    "Esta acción no se puede deshacer.",
+                    "Confirmar limpieza total",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirm != DialogResult.Yes)
+                    return;
+
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    // 🔥 Elimina absolutamente todos los registros
+                    string deleteAllQuery = "DELETE FROM Tiene";
+                    SqlCommand cmd = new SqlCommand(deleteAllQuery, conn);
+                    int filasEliminadas = cmd.ExecuteNonQuery();
+
+                    
+                }
+
+                // 🔄 Refrescar la grilla visual
+                CargarPlanilla();
+                dataGridHorarios.ClearSelection();
+
+                // 🔒 Deshabilitar botones hasta nueva selección
+                btnEditarPatrullas.Enabled = false;
+                btnEliminarPatrullas.Enabled = false;
+
+                // 🔧 Limpiar combos
+                patrullaBox.Enabled = true;
+                horarioBox.Enabled = true;
+                DiaBox.Enabled = true;
+                policia1Box.SelectedIndex = -1;
+                policia2Box.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al limpiar la planilla: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+       
     }
 }
