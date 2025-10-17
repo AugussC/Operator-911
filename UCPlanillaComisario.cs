@@ -112,7 +112,7 @@ namespace Operador_911
                 using (SqlConnection conn = Database.GetConnection())
                 {
 
-                    // --- 1️⃣ Buscar la comisaría del usuario ---
+                    // --- Buscar la comisaría del usuario ---
                     string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
                     SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
                     cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
@@ -126,11 +126,11 @@ namespace Operador_911
 
                     int idComisaria = Convert.ToInt32(result);
 
-                    // --- 2️⃣ Obtener patrullas en servicio de esa comisaría ---
+                    // --- Obtener patrullas en servicio de esa comisaría ---
                     string queryPatrullas = @"
                 SELECT id_patrulla, codigo_patrulla
                 FROM Patrulla
-                WHERE estado = 'En servicio' AND id_comisaria = @idComisaria";
+                WHERE estado = 'En servicio' AND id_comisaria = @idComisaria AND activo = 1";
 
                     SqlCommand cmdPatrullas = new SqlCommand(queryPatrullas, conn);
                     cmdPatrullas.Parameters.AddWithValue("@idComisaria", idComisaria);
