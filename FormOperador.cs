@@ -11,11 +11,11 @@ using System.Drawing;
 using System.IO; 
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Windows;
 using System.Windows.Forms;
 
 namespace Operador_911
 {
+
     public partial class FormOperador : Form
     {
         private GMapOverlay markerPatrullas;
@@ -24,22 +24,20 @@ namespace Operador_911
         private GMapOverlay markerBomberos;
         private GMapOverlay markerAlertas;
         private GMapOverlay polygonOverlay;
-        private GMapOverlay RutasOverlay;
+        private GMapOverlay overlayRutas = new GMapOverlay("rutas");
 
         private bool jurisdiccionesVisibles = false;
         private bool bomberosVisibles = false;
         private bool hospitalesVisibles = false;
+        private string patrullaSeleccionada = null;
+        private string valorAnteriorPatrulla = null;
 
         private List<Nodo> nodos = new List<Nodo>();
-        private GMapOverlay overlayRutas = new GMapOverlay("rutas");
-        private GMarkerGoogle markerPatrulla;
-
-        private int indiceRuta = 0;
-        private Timer timerMovimiento;
+       
 
         PointLatLng origen;
         private List<PointLatLng> destinos = new List<PointLatLng>(); // Varias alertas
-        private List<PointLatLng> puntosRuta;
+        
         public class Nodo
         {
             public double Lat { get; set; }
@@ -47,6 +45,7 @@ namespace Operador_911
             public List<(Nodo vecino, double distancia)> Vecinos { get; set; } = new List<(Nodo, double)>();
         }
 
+        
         private Dictionary<string, Color> coloresDelitos = new Dictionary<string, Color>()
         {
             // Rojo (Emergencia)
@@ -107,9 +106,20 @@ namespace Operador_911
             textNombre.KeyPress += textNombre_KeyPress;
             textTelefono.KeyPress += textTelefono_KeyPress;
             textDireccion.KeyPress += textDireccion_KeyPress;
-            
 
 
+        }
+
+        
+
+
+        private void dataGridViewAlertas_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            for (int i = 0; i < dataGridViewAlertas.Rows.Count; i++)
+            {
+                string tipoIncidente = dataGridViewAlertas.Rows[i].Cells["Incidente"].Value?.ToString() ?? "";
+                PintarFila(i, tipoIncidente);
+            }
         }
 
         private void FormOperador_Load_1(object sender, EventArgs e)
@@ -124,7 +134,7 @@ namespace Operador_911
 
             // Panel mapa a la izquierda
             panelMapa.Dock = DockStyle.Left;
-            panelMapa.Width = 960; // ancho fijo para el mapa
+            panelMapa.Width = 940; // ancho fijo para el mapa
 
             // Panel formulario a la derecha (ocupa lo que sobra)
             panelForm.Dock = DockStyle.Fill;
@@ -143,8 +153,13 @@ namespace Operador_911
             gMapControl1.MaxZoom = 19;
             gMapControl1.Zoom = 14;
 
+            markerAlertas = new GMapOverlay("alertas");
+            gMapControl1.Overlays.Add(markerAlertas);
+
             // ===== Datos iniciales =====
             CargarPatrullas();
+       
+            CargarAlertas();
 
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
 
@@ -155,16 +170,13 @@ namespace Operador_911
 
            
             gMapControl1.OnMarkerClick += GMapControl1_OnMarkerClick;
+            dataGridViewAlertas.DataBindingComplete += dataGridViewAlertas_DataBindingComplete;
+            
 
-
-            markerAlertas = new GMapOverlay("Alertas");
-            gMapControl1.Overlays.Add(markerAlertas);
+            
 
         }
 
-       
-
-        // ===================== CARGA DE CALLES =====================
         private void CargarCallesDesdeGeoJSON(string rutaArchivo)
         {
             string json = File.ReadAllText(rutaArchivo);
@@ -190,24 +202,25 @@ namespace Operador_911
             }
         }
 
-        private void ProcesarLinea(JToken coords)
+        private void ProcesarLinea(JToken coordenadas)
         {
-            Nodo previo = null;
+            Nodo nodoAnterior = null;
 
-            foreach (var coord in coords)
+            foreach (var coord in coordenadas)
             {
-                double lon = (double)coord[0];
+                double lng = (double)coord[0];
                 double lat = (double)coord[1];
-                var nodo = ObtenerONuevoNodo(lat, lon);
+                Nodo nodoActual = ObtenerONuevoNodo(lat, lng);
 
-                if (previo != null)
+                // Conecta el nodo actual con el anterior (grafo bidireccional)
+                if (nodoAnterior != null)
                 {
-                    double d = Distancia(previo, nodo);
-                    previo.Vecinos.Add((nodo, d));
-                    nodo.Vecinos.Add((previo, d));
+                    double distancia = Distancia(nodoAnterior, nodoActual);
+                    nodoAnterior.Vecinos.Add((nodoActual, distancia));
+                    nodoActual.Vecinos.Add((nodoAnterior, distancia));
                 }
 
-                previo = nodo;
+                nodoAnterior = nodoActual;
             }
         }
 
@@ -225,13 +238,13 @@ namespace Operador_911
         // ===================== DISTANCIAS =====================
         private double Distancia(Nodo a, Nodo b)
         {
-            // distancia euclidiana aproximada
             double dx = a.Lng - b.Lng;
             double dy = a.Lat - b.Lat;
             return Math.Sqrt(dx * dx + dy * dy);
         }
 
-        
+
+
         // ===================== UBICAR NODOS MÁS CERCANOS =====================
         private Nodo BuscarNodoMasCercano(PointLatLng punto)
         {
@@ -252,81 +265,75 @@ namespace Operador_911
         }
 
         // ===================== ALGORITMO DE DIJKSTRA =====================
-        private List<Nodo> Dijkstra(Nodo origen, Nodo destino)
+        private List<Nodo> Dijkstra(Nodo nodoOrigen, Nodo nodoDestino)
         {
-            var dist = new Dictionary<Nodo, double>();
-            var prev = new Dictionary<Nodo, Nodo>();
-            var pq = new SortedSet<(double, Nodo)>(Comparer<(double, Nodo)>.Create((a, b) =>
-            {
-                int cmp = a.Item1.CompareTo(b.Item1);
-                if (cmp == 0) cmp = a.Item2.GetHashCode().CompareTo(b.Item2.GetHashCode());
-                return cmp;
-            }));
+            // Distancias mínimas conocidas desde el origen
+            var distanciaMinima = new Dictionary<Nodo, double>();
 
-            foreach (var n in nodos)
-                dist[n] = double.MaxValue;
+            // Nodo previo para reconstruir el camino
+            var nodoAnterior = new Dictionary<Nodo, Nodo>();
 
-            dist[origen] = 0;
-            pq.Add((0, origen));
-
-            while (pq.Any())
-            {
-                var (d, u) = pq.Min;
-                pq.Remove(pq.Min);
-
-                if (u == destino) break;
-
-                foreach (var (vecino, peso) in u.Vecinos)
+            // Cola de prioridad (nodo con menor distancia estimada al inicio)
+            var colaPrioridad = new SortedSet<(double distancia, Nodo nodo)>(
+                Comparer<(double distancia, Nodo nodo)>.Create((primero, segundo) =>
                 {
-                    double alt = d + peso;
-                    if (alt < dist[vecino])
+                    int comparacion = primero.distancia.CompareTo(segundo.distancia);
+                    if (comparacion == 0) // si distancia es igual, usar hash para evitar duplicados
+                        comparacion = primero.nodo.GetHashCode().CompareTo(segundo.nodo.GetHashCode());
+                    return comparacion;
+                })
+            );
+
+            // Inicializar todas las distancias como infinitas
+            foreach (var nodo in nodos)
+                distanciaMinima[nodo] = double.MaxValue;
+
+            // La distancia al origen es 0
+            distanciaMinima[nodoOrigen] = 0;
+            colaPrioridad.Add((0, nodoOrigen));
+
+            while (colaPrioridad.Any())
+            {
+                // Extraer el nodo con la menor distancia conocida
+                var (distanciaActual, nodoActual) = colaPrioridad.Min;
+                colaPrioridad.Remove(colaPrioridad.Min);
+
+                // Si llegamos al destino, podemos terminar
+                if (nodoActual == nodoDestino)
+                    break;
+
+                // Revisar conexiones del nodo actual
+                foreach (var (nodoVecino, pesoConexion) in nodoActual.Vecinos)
+                {
+                    double nuevaDistancia = distanciaActual + pesoConexion;
+
+                    // Si encontramos un camino más corto hacia el vecino
+                    if (nuevaDistancia < distanciaMinima[nodoVecino])
                     {
-                        pq.Remove((dist[vecino], vecino));
-                        dist[vecino] = alt;
-                        prev[vecino] = u;
-                        pq.Add((alt, vecino));
+                        // Actualizar la distancia en la cola de prioridad
+                        colaPrioridad.Remove((distanciaMinima[nodoVecino], nodoVecino));
+                        distanciaMinima[nodoVecino] = nuevaDistancia;
+                        nodoAnterior[nodoVecino] = nodoActual;
+                        colaPrioridad.Add((nuevaDistancia, nodoVecino));
                     }
                 }
             }
 
-            // reconstruir camino
+            // Reconstruir el camino desde el destino hacia el origen
             var camino = new List<Nodo>();
-            var actual = destino;
-            while (actual != null)
+            var nodoEnRecorrido = nodoDestino;
+
+            while (nodoEnRecorrido != null)
             {
-                camino.Add(actual);
-                prev.TryGetValue(actual, out actual);
+                camino.Add(nodoEnRecorrido);
+                nodoAnterior.TryGetValue(nodoEnRecorrido, out nodoEnRecorrido);
             }
-            camino.Reverse();
+
+            camino.Reverse(); // invertir para que el camino empiece en el origen
             return camino;
         }
 
         // ===================== DIBUJAR RUTA =====================
-        private void DibujarRuta(List<Nodo> camino, string nombreRuta, Color color, PointLatLng patrulla, PointLatLng alerta)
-        {
-            // Convertir nodos intermedios a puntos
-            List<PointLatLng> ruta = camino.Select(n => new PointLatLng(n.Lat, n.Lng)).ToList();
-
-            // Agregar patrulla al inicio (si no es ya el origen del camino)
-            if (ruta.Count == 0 || ruta.First() != patrulla)
-                ruta.Insert(0, patrulla);
-
-            // Agregar alerta al final (si no es ya el destino del camino)
-            if (ruta.Count == 0 || ruta.Last() != alerta)
-                ruta.Add(alerta);
-
-            // Dibujar la ruta
-            GMapRoute gmapRoute = new GMapRoute(ruta, nombreRuta);
-            gmapRoute.Stroke = new Pen(color, 3);
-
-            overlayRutas.Routes.Add(gmapRoute);
-            gMapControl1.Overlays.Add(overlayRutas);
-            gMapControl1.Refresh();
-        }
-
-
-
-        // ===================== EJEMPLO DE USO =====================
         private void CalcularRuta(PointLatLng posPatrulla, PointLatLng posAlerta, string nombreRuta, Color color)
         {
             var nodoPatrulla = BuscarNodoMasCercano(posPatrulla);
@@ -339,33 +346,354 @@ namespace Operador_911
             }
         }
 
+
+        private void DibujarRuta(List<Nodo> camino, string nombreRuta, Color color, PointLatLng patrulla, PointLatLng alerta)
+        {
+            if (overlayRutas == null)
+                overlayRutas = new GMapOverlay("rutas");
+
+            // Convertir nodos intermedios a puntos
+            List<PointLatLng> ruta = camino.Select(n => new PointLatLng(n.Lat, n.Lng)).ToList();
+
+            // Agregar patrulla al inicio si no está
+            if (ruta.Count == 0 || ruta.First() != patrulla)
+                ruta.Insert(0, patrulla);
+
+            // Agregar alerta al final si no está
+            if (ruta.Count == 0 || ruta.Last() != alerta)
+                ruta.Add(alerta);
+
+            // Crear la ruta visual
+            GMapRoute gmapRoute = new GMapRoute(ruta, nombreRuta);
+            gmapRoute.Stroke = new Pen(color, 3);
+
+            // Evitar rutas duplicadas con el mismo nombre
+            var rutaExistente = overlayRutas.Routes.FirstOrDefault(r => r.Name == nombreRuta);
+            if (rutaExistente != null)
+                overlayRutas.Routes.Remove(rutaExistente);
+
+            overlayRutas.Routes.Add(gmapRoute);
+
+            if (!gMapControl1.Overlays.Contains(overlayRutas))
+                gMapControl1.Overlays.Add(overlayRutas);
+
+            gMapControl1.Update();
+            CargarAlertas();
+        }
+
+        private PointLatLng ObtenerCoordenadasPatrulla(int idPatrulla)
+        {
+            using (SqlConnection conexion = Database.GetConnection())
+            {
+                string sql = "SELECT latitud, longitud FROM Ubicacion WHERE id_patrulla = @id";
+                SqlCommand comando = new SqlCommand(sql, conexion);
+                comando.Parameters.AddWithValue("@id", idPatrulla);
+
+                using (SqlDataReader lector = comando.ExecuteReader())
+                {
+                    if (lector.Read())
+                    {
+                        double lat = Convert.ToDouble(lector["latitud"]);
+                        double lng = Convert.ToDouble(lector["longitud"]);
+                        return new PointLatLng(lat, lng);
+                    }
+                }
+            }
+
+            // Si no se encuentra, retornamos coordenada neutra
+            return new PointLatLng(0, 0);
+        }
+
+        private PointLatLng ObtenerCoordenadasAlerta(int idAlerta)
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = "SELECT direccion FROM Alerta WHERE id_alerta = @id";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", idAlerta);
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        string direccionCompleta = $"{dr["direccion"].ToString()}, Corrientes Capital, Corrientes, Argentina";
+
+                        GeoCoderStatusCode status;
+                        var point = GMapProviders.OpenStreetMap.GetPoint(direccionCompleta, out status);
+
+                        if (status == GeoCoderStatusCode.G_GEO_SUCCESS && point != null)
+                        {
+                            return point.Value; // Devuelve la coordenada válida
+                        }
+                    }
+                }
+            }
+
+            // Si no encontró dirección o falló el geocoder, devuelve (0,0)
+            return new PointLatLng(0, 0);
+        }
+
+        private void EliminarRutaPorNombre(string nombreRuta)
+        {
+            if (string.IsNullOrEmpty(nombreRuta)) return;
+
+            if (gMapControl1.InvokeRequired)
+            {
+                gMapControl1.Invoke(new Action(() => EliminarRutaPorNombre(nombreRuta)));
+                return;
+            }
+
+            var overlay = gMapControl1.Overlays.FirstOrDefault(o => o.Id == "rutas");
+            if (overlay == null) return;
+
+            var rutasAEliminar = overlay.Routes
+                .Where(r => string.Equals(r.Name, nombreRuta, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            foreach (var r in rutasAEliminar)
+                overlay.Routes.Remove(r);
+
+            gMapControl1.Update();
+        }
+
+        
+
         private void GMapControl1_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
-            if (item.Tag != null && item.Tag.ToString() == "Patrulla")
+            // Si el marcador clickeado es una PATRULLA
+            if (item.Tag?.ToString() == "Patrulla")
             {
-                origen = item.Position;
-                destinos.Clear(); // Reinicio selección de alertas
-                MessageBox.Show("Patrulla seleccionada como origen");
-            }
-            else if (item.Tag != null && item.Tag.ToString() == "Alerta")
-            {
-                if (origen == null)
+                string codigoPatrulla = item.ToolTipText.Replace("Patrulla ", "").Trim();
+                int idPatrulla = ObtenerIdPatrullaPorCodigo(codigoPatrulla);
+
+                // Verificamos si está ocupada
+                if (PatrullaOcupada(idPatrulla))
                 {
-                    MessageBox.Show("Primero selecciona una patrulla");
+                    MessageBox.Show($"La patrulla {codigoPatrulla} ya está asignada a una alerta.",
+                                    "Patrulla ocupada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                destinos.Add(item.Position);
+                // Guardamos selección para el siguiente clic (en alerta)
+                patrullaSeleccionada = codigoPatrulla;
+                origen = item.Position;
 
-                // Ruta nueva → cada una con color distinto
-                Color[] colores = { Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Purple };
-                int idx = (destinos.Count - 1) % colores.Length;
-                string nombreRuta = $"Ruta {destinos.Count}";
+                MessageBox.Show($"Patrulla {codigoPatrulla} seleccionada como origen.",
+                                "Seleccionar patrulla", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
-                CalcularRuta(origen, item.Position, nombreRuta, colores[idx]);
+            // Si el marcador clickeado es una ALERTA
+            if (item.Tag?.ToString() == "Alerta")
+            {
+                if (string.IsNullOrEmpty(patrullaSeleccionada))
+                {
+                    MessageBox.Show("Seleccioná primero una patrulla disponible.",
+                                    "Asignar alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string[] partes = item.ToolTipText.Split(new[] { ", " }, 2, StringSplitOptions.None);
+                string delito = partes[0];
+                string direccion = partes.Length > 1 ? partes[1] : "";
+                int idAlerta = ObtenerIdAlertaPorDireccion(direccion);
+                int idPatrulla = ObtenerIdPatrullaPorCodigo(patrullaSeleccionada);
+
+                // Si la patrulla ya fue asignada entre el tiempo de clics
+                if (PatrullaOcupada(idPatrulla))
+                {
+                    MessageBox.Show($"La patrulla {patrullaSeleccionada} ya fue asignada.",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    patrullaSeleccionada = null;
+                    return;
+                }
+
+
+                // 🔹 Asignar en base
+                AsignarPatrullaAlerta(idPatrulla, idAlerta);
+
+                // 🔹 Eliminar posibles rutas anteriores de esa patrulla
+                EliminarRutaPorNombre($"Ruta_P{idPatrulla}_A{idAlerta}");
+
+                // 🔹 Obtener coordenadas y dibujar nueva ruta
+                PointLatLng posPatrulla = ObtenerCoordenadasPatrulla(idPatrulla);
+                PointLatLng posAlerta = item.Position;
+                string nombreRuta = $"Ruta_P{idPatrulla}_A{idAlerta}";
+                CalcularRuta(posPatrulla, posAlerta, nombreRuta, Color.Blue);
+                CargarAlertas();
+                gMapControl1.Update();
+
+                // Reset selección
+                patrullaSeleccionada = null;
+                origen = PointLatLng.Empty;
             }
         }
 
+        private void dataGridViewAlertas_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridViewAlertas.Columns[e.ColumnIndex].Name == "Patrulla")
+            {
+                valorAnteriorPatrulla = dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+            }
+        }
+
+        private void dataGridViewAlertas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            var grid = dataGridViewAlertas;
+            if (grid.Columns[e.ColumnIndex].Name != "Patrulla") return;
+
+            // 📌 Datos base
+            string codigoNuevo = grid.Rows[e.RowIndex].Cells["Patrulla"].Value?.ToString() ?? "Sin Asignar";
+            string direccionAlerta = grid.Rows[e.RowIndex].Cells["Direccion"].Value?.ToString();
+            int idAlerta = ObtenerIdAlertaPorDireccion(direccionAlerta);
+
+            if (idAlerta <= 0)
+            {
+                MessageBox.Show("No se encontró el ID de la alerta seleccionada.");
+                return;
+            }
+
+            // 🔹 Caso: "Sin Asignar" → eliminar ruta y liberar
+            if (codigoNuevo == "Sin Asignar")
+            {
+                if (!string.IsNullOrEmpty(valorAnteriorPatrulla) && valorAnteriorPatrulla != "Sin Asignar")
+                {
+                    int idPatrullaAnterior = ObtenerIdPatrullaPorCodigo(valorAnteriorPatrulla);
+                    EliminarRutaPorNombre($"Ruta_P{idPatrullaAnterior}_A{idAlerta}");
+                    LiberarPatrullaDeAlerta(idAlerta);
+                }
+
+                CargarAlertas();
+                valorAnteriorPatrulla = null;
+                return;
+            }
+
+            // 🔹 Caso: nueva patrulla asignada
+            int idPatrullaNueva = ObtenerIdPatrullaPorCodigo(codigoNuevo);
+
+            // 🚫 Verificar si ya está asignada a otra alerta en la BDD
+            if (PatrullaOcupada(idPatrullaNueva))
+            {
+                MessageBox.Show($"La patrulla {codigoNuevo} ya está cumpliendo una alerta.",
+                    "Patrulla ocupada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                grid.Rows[e.RowIndex].Cells["Patrulla"].Value = valorAnteriorPatrulla ?? "Sin Asignar";
+                return;
+            }
+
+            // 🔹 Si tenía patrulla anterior distinta → liberar y borrar ruta vieja
+            if (!string.IsNullOrEmpty(valorAnteriorPatrulla) &&
+                valorAnteriorPatrulla != "Sin Asignar" &&
+                valorAnteriorPatrulla != codigoNuevo)
+            {
+                int idPatrullaAnterior = ObtenerIdPatrullaPorCodigo(valorAnteriorPatrulla);
+                EliminarRutaPorNombre($"Ruta_P{idPatrullaAnterior}_A{idAlerta}");
+                LiberarPatrullaDeAlerta(idAlerta);
+            }
+
+            // 🔹 Asignar nueva patrulla
+            AsignarPatrullaAlerta(idPatrullaNueva, idAlerta);
+
+            // 🔹 Obtener coordenadas
+            PointLatLng posPatrulla = ObtenerCoordenadasPatrulla(idPatrullaNueva);
+            PointLatLng posAlerta = ObtenerCoordenadasAlerta(idAlerta);
+
+            if (posPatrulla.Lat == 0 && posPatrulla.Lng == 0)
+            {
+                MessageBox.Show("No se encontraron coordenadas para la patrulla.");
+                return;
+            }
+
+            if (posAlerta.Lat == 0 && posAlerta.Lng == 0)
+            {
+                MessageBox.Show("No se encontraron coordenadas para la alerta.");
+                return;
+            }
+
+            // 🔹 Dibujar nueva ruta
+            string nombreRuta = $"Ruta_P{idPatrullaNueva}_A{idAlerta}";
+            CalcularRuta(posPatrulla, posAlerta, nombreRuta, Color.Blue);
+
+            // 🔹 Refrescar grilla
+            CargarAlertas();
+            valorAnteriorPatrulla = null;
+        }
+
+        private int ObtenerIdAlertaPorDireccion(string direccion)
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = "SELECT id_alerta FROM Alerta WHERE direccion = @dir";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@dir", direccion);
+
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : -1;
+            }
+        }
+
+        private int ObtenerIdPatrullaPorCodigo(string codigo)
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = "SELECT id_patrulla FROM Patrulla WHERE codigo_patrulla = @cod";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@cod", codigo);
+
+                object result = cmd.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : -1;
+            }
+        }
+
+        private bool PatrullaOcupada(int idPatrulla)
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = "SELECT COUNT(*) FROM Alerta WHERE id_patrulla = @id AND estado = 'Asignada'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", idPatrulla);
+
+                int count = (int)cmd.ExecuteScalar();
+                return count > 0;
+            }
+        }
+
+        private void AsignarPatrullaAlerta(int idPatrulla, int idAlerta)
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = "UPDATE Alerta SET id_patrulla = @patrulla, estado = 'Asignada' WHERE id_alerta = @alerta";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@patrulla", idPatrulla);
+                    cmd.Parameters.AddWithValue("@alerta", idAlerta);
+
+                    int filas = cmd.ExecuteNonQuery();
+
+                    // Opcional: ver si realmente se modificó algo
+                    if (filas == 0)
+                    {
+                        MessageBox.Show("⚠️ No se encontró la alerta o no se actualizó ninguna fila.");
+                    }
+                }
+            }
+        }
+
+        private void LiberarPatrullaDeAlerta(int idAlerta)
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = @"
+            UPDATE Alerta 
+            SET id_patrulla = NULL, estado = 'En Espera'
+            WHERE id_alerta = @alerta AND estado = 'Asignada'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@alerta", idAlerta);
+                cmd.ExecuteNonQuery();
+            }
+        }
 
         private void btnJurisdicciones_Click(object sender, EventArgs e)
         {
@@ -380,13 +708,165 @@ namespace Operador_911
             else
             {
                 // Volver a cargar las jurisdicciones y marcadores
-                CargarJurisdicciones(); 
-                CargarComisarias();       
-                
+                CargarJurisdicciones();
+                CargarComisarias();
+
                 jurisdiccionesVisibles = true;
 
             }
             gMapControl1.Refresh(); // refresca el mapa
+        }
+
+        private void CargarAlertas()
+        {
+            try
+            {
+                using (SqlConnection conn = Database.GetConnection())
+                {
+
+                    string query = @"
+                SELECT 
+                    COALESCE(p.codigo_patrulla, 'Sin Asignar') AS Patrulla,
+                    a.estado AS Estado,
+                    a.tipo_incidencia AS Incidente,
+                    l.telefono AS Telefono,
+                    l.nombre AS Nombre,
+                    a.direccion AS Direccion
+                FROM Alerta AS a
+                LEFT JOIN Patrulla AS p ON a.id_patrulla = p.id_patrulla
+                LEFT JOIN Llamada AS l ON a.id_alerta = l.id_alerta
+            ";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    // 🔹 Limpio columnas previas
+                    dataGridViewAlertas.Columns.Clear();
+                    dataGridViewAlertas.AutoGenerateColumns = false;
+
+                    // 🔹 Columna Patrulla (ComboBox)
+                    DataGridViewComboBoxColumn colPatrulla = new DataGridViewComboBoxColumn();
+                    colPatrulla.HeaderText = "Patrulla";
+                    colPatrulla.DataPropertyName = "Patrulla";
+                    colPatrulla.Name = "Patrulla";
+                    colPatrulla.DisplayMember = "codigo_patrulla";
+                    colPatrulla.FlatStyle = FlatStyle.Popup;
+                    colPatrulla.ValueMember = "codigo_patrulla";
+                    colPatrulla.DataSource = ObtenerPatrullas();
+                    dataGridViewAlertas.Columns.Add(colPatrulla);
+
+                    // 🔹 Columna Estado (ComboBox)
+                    DataGridViewComboBoxColumn colEstado = new DataGridViewComboBoxColumn();
+                    colEstado.HeaderText = "Estado";
+                    colEstado.DataPropertyName = "Estado";
+                    colEstado.FlatStyle = FlatStyle.Popup;
+                    colEstado.Name = "Estado";
+                    colEstado.Items.Add("En Espera");
+                    colEstado.Items.Add("Asignada");
+                    colEstado.Items.Add("Atendida");
+                    dataGridViewAlertas.Columns.Add(colEstado);
+
+                    DataGridViewTextBoxColumn colIncidente = new DataGridViewTextBoxColumn();
+                    colIncidente.DataPropertyName = "Incidente";
+                    colIncidente.HeaderText = "Incidente";
+                    colIncidente.Name = "Incidente";
+                    dataGridViewAlertas.Columns.Add(colIncidente);
+
+                    DataGridViewTextBoxColumn colTelefono = new DataGridViewTextBoxColumn();
+                    colTelefono.DataPropertyName = "Telefono";
+                    colTelefono.HeaderText = "Telefono";
+                    colTelefono.Name = "Telefono";
+                    dataGridViewAlertas.Columns.Add(colTelefono);
+
+                    DataGridViewTextBoxColumn colNombre = new DataGridViewTextBoxColumn();
+                    colNombre.DataPropertyName = "Nombre";
+                    colNombre.HeaderText = "Nombre";
+                    colNombre.Name = "Nombre";
+                    dataGridViewAlertas.Columns.Add(colNombre);
+
+                    DataGridViewTextBoxColumn colDireccion = new DataGridViewTextBoxColumn();
+                    colDireccion.DataPropertyName = "Direccion";
+                    colDireccion.HeaderText = "Direccion";
+                    colDireccion.Name = "Direccion";
+                    dataGridViewAlertas.Columns.Add(colDireccion);
+
+
+                    dataGridViewAlertas.DataSource = dt;
+
+                    markerAlertas.Markers.Clear();
+
+                    foreach (DataGridViewRow row in dataGridViewAlertas.Rows)
+                    {
+                        string direccion = row.Cells["Direccion"].Value?.ToString();
+                        string incidente = row.Cells["Incidente"].Value?.ToString();
+
+                        if (!string.IsNullOrWhiteSpace(direccion))
+                        {
+                            string direccionCompleta = $"{direccion}, Corrientes Capital, Corrientes, Argentina";
+                            GeoCoderStatusCode status;
+                            var point = GMapProviders.OpenStreetMap.GetPoint(direccionCompleta, out status);
+
+                            if (status == GeoCoderStatusCode.G_GEO_SUCCESS && point != null)
+                            {
+                                var marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.red)
+                                {
+                                    Tag = "Alerta",
+                                    ToolTipText = $"{incidente}" + ", " + $"{direccion}",
+                                    ToolTipMode = MarkerTooltipMode.OnMouseOver
+                                };
+
+                                markerAlertas.Markers.Add(marker);
+                            }
+                        }
+                    }
+
+                    for (int i = 0; i < dataGridViewAlertas.Rows.Count; i++)
+                    {
+                        string tipoIncidente = dataGridViewAlertas.Rows[i].Cells["Incidente"].Value?.ToString() ?? "";
+                        PintarFila(i, tipoIncidente);
+                    }
+
+                    dataGridViewAlertas.CellValueChanged -= dataGridViewAlertas_CellValueChanged;
+                    dataGridViewAlertas.CellValueChanged += dataGridViewAlertas_CellValueChanged;
+                    dataGridViewAlertas.CurrentCellDirtyStateChanged += (s, e) =>
+                    {
+                        if (dataGridViewAlertas.IsCurrentCellDirty)
+                            dataGridViewAlertas.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                    };
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar las alertas: " + ex.Message);
+            }
+        }
+
+        private DataTable ObtenerPatrullas()
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = @"
+            SELECT 
+                p.id_patrulla, 
+                p.codigo_patrulla
+            FROM Patrulla AS p
+            INNER JOIN Ubicacion AS u ON p.id_patrulla = u.id_patrulla
+            WHERE p.activo = 1 AND p.estado = 'En Servicio'
+        ";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                DataRow filaSinAsignar = dt.NewRow();
+                filaSinAsignar["id_patrulla"] = DBNull.Value;
+                filaSinAsignar["codigo_patrulla"] = "Sin Asignar";
+                dt.Rows.InsertAt(filaSinAsignar, 0);
+                return dt;
+            }
+
         }
 
         private void CargarJurisdicciones()
@@ -1477,15 +1957,15 @@ namespace Operador_911
 
         private void CargarPatrullas()
         {
-
+            // Crear overlay para patrullas
             markerPatrullas = new GMapOverlay("Patrullas");
+
+            // Cargar ícono
             string ruta = Path.Combine(Application.StartupPath, @"..\..\Resources\iconoPatrulla.png");
             Bitmap icono = new Bitmap(ruta);
 
             using (SqlConnection conn = Database.GetConnection())
             {
-
-                // Trae patrullas que tengan ubicaciones registradas
                 string query = @"
             SELECT 
                 p.id_patrulla,
@@ -1504,25 +1984,35 @@ namespace Operador_911
                     {
                         double lat = Convert.ToDouble(reader["latitud"]);
                         double lng = Convert.ToDouble(reader["longitud"]);
-                        string nombre = reader["codigo_patrulla"].ToString();
+                        string codigo = reader["codigo_patrulla"].ToString();
+                        int idPatrulla = Convert.ToInt32(reader["id_patrulla"]);
 
                         PointLatLng punto = new PointLatLng(lat, lng);
+
+                        // Crear marcador
                         var marker = new GMarkerGoogle(punto, icono)
                         {
-                            Tag = nombre,// 👈 Muestra el nombre o código de la patrulla
-                            ToolTipText = nombre, // 👈 muestra el nombre de la patrulla
+                            Tag = "Patrulla",  // 👈 Importante para el evento OnMarkerClick
+                            ToolTipText = $"Patrulla {codigo}",
                             ToolTipMode = MarkerTooltipMode.OnMouseOver,
                         };
+
+                        // Ajustar posición del icono
                         marker.Offset = new System.Drawing.Point(-icono.Width / 2, -(int)(icono.Height * 0.5));
                         marker.ToolTip.Offset = new System.Drawing.Point(0, -icono.Height + 5);
 
+
+                        // Agregar al overlay
                         markerPatrullas.Markers.Add(marker);
                     }
                 }
             }
 
+            // Agregar al mapa
             gMapControl1.Overlays.Add(markerPatrullas);
+            gMapControl1.Refresh();
         }
+
 
 
 
@@ -1598,6 +2088,10 @@ namespace Operador_911
             }
         }
 
+        // -----------------------------
+        // Cambios al agregar nueva alerta: boton btnAgregarAlerta_Click
+        // - Capturamos el id_insertado y colocamos en el marker.Tag: "Alerta|{id}"
+        // -----------------------------
         private void btnAgregarAlerta_Click(object sender, EventArgs e)
         {
             if (!validacionesFormulario()) return;
@@ -1606,13 +2100,12 @@ namespace Operador_911
             string telefono = textTelefono.Text.Trim();
             string nombre = textNombre.Text.Trim();
             string delito = ListDelitos.SelectedItem.ToString();
-
-            int id = dataGridView1.Rows.Count + 1;
-
-            // Agregar nueva fila a la grilla
-            int rowIndex = dataGridView1.Rows.Add(id, "No asignada", "En Espera", delito, telefono, nombre, direccion);
-            PintarFila(rowIndex, delito);
-
+            DateTime fechaCreacion = DateTime.Now;
+            string estado = "En Espera";
+            string tipoIncidencia = delito;
+            int idUsuario = FormLogin.Sesion.IdUsuario;
+            int idCanal = 2;
+            string importancia = ObtenerImportanciaPorColor(delito);
             string direccionCompleta = $"{direccion}, Corrientes Capital, Corrientes, Argentina";
 
             // Geocodificar dirección
@@ -1621,14 +2114,54 @@ namespace Operador_911
 
             if (status == GeoCoderStatusCode.G_GEO_SUCCESS && point != null)
             {
+                int idAlerta;
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string insertAlertaQuery = @"
+                INSERT INTO Alerta (estado, importancia, tipo_incidencia, direccion, fecha_cierre, id_usuario, id_canal)
+                OUTPUT INSERTED.id_alerta
+                VALUES (@estado, @importancia, @tipo_incidencia, @direccion, NULL, @id_usuario, @id_canal)";
+
+                    using (SqlCommand cmdAlerta = new SqlCommand(insertAlertaQuery, conn))
+                    {
+                        cmdAlerta.Parameters.AddWithValue("@estado", estado);
+                        cmdAlerta.Parameters.AddWithValue("@importancia", importancia);
+                        cmdAlerta.Parameters.AddWithValue("@tipo_incidencia", tipoIncidencia);
+                        cmdAlerta.Parameters.AddWithValue("@direccion", direccion);
+                        cmdAlerta.Parameters.AddWithValue("@id_usuario", idUsuario);
+                        cmdAlerta.Parameters.AddWithValue("@id_canal", idCanal);
+
+                        idAlerta = (int)cmdAlerta.ExecuteScalar();
+                    }
+
+                    string insertLlamadaQuery = @"
+                INSERT INTO Llamada (fecha_creacion, nombre, telefono, id_alerta)
+                VALUES (@fecha_creacion, @nombre, @telefono, @id_alerta)";
+
+                    using (SqlCommand cmdLlamada = new SqlCommand(insertLlamadaQuery, conn))
+                    {
+                        cmdLlamada.Parameters.AddWithValue("@fecha_creacion", fechaCreacion);
+                        cmdLlamada.Parameters.AddWithValue("@nombre", nombre);
+                        cmdLlamada.Parameters.AddWithValue("@telefono", telefono);
+                        cmdLlamada.Parameters.AddWithValue("@id_alerta", idAlerta);
+                        cmdLlamada.ExecuteNonQuery();
+                    }
+                }
+
+                // Refrescar grilla (asegúrate que CargarAlertas rellene una columna oculta "id_alerta")
+                CargarAlertas();
+
+                // Mostrar en el mapa y marcar el id en Tag
                 gMapControl1.Position = point.Value;
                 gMapControl1.Zoom = 16;
 
-                var marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.red);
-                marker.Tag = "Alerta"; // 👈 IDENTIFICAMOS EL MARCADOR
-                marker.ToolTipText = $"Alerta {id}: {delito}";
-                marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
-
+                var marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.red)
+                {
+                    // Guardamos el id real en el Tag para evitar buscar por texto
+                    Tag = $"Alerta|{idAlerta}",
+                    ToolTipText = $"{delito}, {direccion}",
+                    ToolTipMode = MarkerTooltipMode.OnMouseOver
+                };
                 markerAlertas.Markers.Add(marker);
             }
             else
@@ -1652,13 +2185,42 @@ namespace Operador_911
 
         private void PintarFila(int rowIndex, string delito)
         {
-            DataGridViewRow row = dataGridView1.Rows[rowIndex];
-            delito = delito.Trim();
-
-            if (coloresDelitos.ContainsKey(delito))
+            
+            if (rowIndex < 0 || rowIndex >= dataGridViewAlertas.Rows.Count)
             {
-                row.DefaultCellStyle.BackColor = coloresDelitos[delito];
-                row.DefaultCellStyle.ForeColor = (coloresDelitos[delito] == Color.Red) ? Color.White : Color.Black;
+                return;
+            }
+            DataGridViewRow filaActual = dataGridViewAlertas.Rows[rowIndex];
+
+            string delitoLimpio = delito.Trim();
+            if (coloresDelitos.ContainsKey(delitoLimpio))
+            {
+                Color colorDeFondo = coloresDelitos[delitoLimpio];
+                filaActual.DefaultCellStyle.BackColor = colorDeFondo;
+                Color colorDeTexto = (colorDeFondo == Color.Red) ? Color.White : Color.Black;
+                filaActual.DefaultCellStyle.ForeColor = colorDeTexto;
+            }
+            else
+            { 
+                filaActual.DefaultCellStyle.BackColor = Color.White;
+                filaActual.DefaultCellStyle.ForeColor = Color.Black;
+            }
+        }
+
+        private string ObtenerImportanciaPorColor(string delito)
+        {
+            string delitoLimpio = delito.Trim();
+            Color colorDeFondo = coloresDelitos[delitoLimpio];
+            if (colorDeFondo == Color.Red)
+            {
+                return "Alta";
+            }
+            else if (colorDeFondo == Color.Yellow)
+            {
+                return "Media";
+            }
+            else { 
+                return "Baja";
             }
         }
 

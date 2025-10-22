@@ -41,14 +41,7 @@
             this.btnBomberos = new System.Windows.Forms.Button();
             this.btnHospitales = new System.Windows.Forms.Button();
             this.panelForm = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.id_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Patrulla = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.incidente_alerta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewAlertas = new System.Windows.Forms.DataGridView();
             this.ListDelitos = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textTelefono = new System.Windows.Forms.TextBox();
@@ -59,7 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMapa.SuspendLayout();
             this.panelForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlertas)).BeginInit();
             this.SuspendLayout();
             // 
             // gMapControl1
@@ -97,7 +90,7 @@
             this.panelNavegacion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelNavegacion.Location = new System.Drawing.Point(-1, 0);
             this.panelNavegacion.Name = "panelNavegacion";
-            this.panelNavegacion.Size = new System.Drawing.Size(1355, 44);
+            this.panelNavegacion.Size = new System.Drawing.Size(1369, 44);
             this.panelNavegacion.TabIndex = 1;
             // 
             // btnCerrarSesion
@@ -105,8 +98,8 @@
             this.btnCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCerrarSesion.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(1223, 8);
-            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(1251, 10);
+            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(2);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(109, 27);
             this.btnCerrarSesion.TabIndex = 3;
@@ -136,7 +129,7 @@
             // 
             this.textDireccion.Location = new System.Drawing.Point(12, 55);
             this.textDireccion.Name = "textDireccion";
-            this.textDireccion.Size = new System.Drawing.Size(370, 20);
+            this.textDireccion.Size = new System.Drawing.Size(399, 20);
             this.textDireccion.TabIndex = 2;
             // 
             // txtLongitud
@@ -150,7 +143,7 @@
             // 
             // btnAgregarAlerta
             // 
-            this.btnAgregarAlerta.Location = new System.Drawing.Point(134, 297);
+            this.btnAgregarAlerta.Location = new System.Drawing.Point(154, 297);
             this.btnAgregarAlerta.Name = "btnAgregarAlerta";
             this.btnAgregarAlerta.Size = new System.Drawing.Size(137, 34);
             this.btnAgregarAlerta.TabIndex = 6;
@@ -211,7 +204,7 @@
             // panelForm
             // 
             this.panelForm.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panelForm.Controls.Add(this.dataGridView1);
+            this.panelForm.Controls.Add(this.dataGridViewAlertas);
             this.panelForm.Controls.Add(this.ListDelitos);
             this.panelForm.Controls.Add(this.label2);
             this.panelForm.Controls.Add(this.textTelefono);
@@ -223,90 +216,22 @@
             this.panelForm.Controls.Add(this.txtLongitud);
             this.panelForm.Location = new System.Drawing.Point(943, 45);
             this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(408, 688);
+            this.panelForm.Size = new System.Drawing.Size(425, 688);
             this.panelForm.TabIndex = 8;
             // 
-            // dataGridView1
+            // dataGridViewAlertas
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.CadetBlue;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id_alerta,
-            this.Patrulla,
-            this.Estado,
-            this.incidente_alerta,
-            this.Telefono,
-            this.Nombre,
-            this.direccion});
-            this.dataGridView1.Location = new System.Drawing.Point(13, 350);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 62;
-            this.dataGridView1.Size = new System.Drawing.Size(370, 270);
-            this.dataGridView1.TabIndex = 12;
-            // 
-            // id_alerta
-            // 
-            this.id_alerta.HeaderText = "ID";
-            this.id_alerta.MinimumWidth = 3;
-            this.id_alerta.Name = "id_alerta";
-            this.id_alerta.Width = 35;
-            // 
-            // Patrulla
-            // 
-            this.Patrulla.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Patrulla.HeaderText = "Patrulla ";
-            this.Patrulla.Items.AddRange(new object[] {
-            "Patrulla 1",
-            "Patrulla 2",
-            "Patrulla 3",
-            "Patrulla 4",
-            "Patrulla 5",
-            "Patrulla 6",
-            "Patrulla 7",
-            "Patrulla 8",
-            "No asignada"});
-            this.Patrulla.MinimumWidth = 8;
-            this.Patrulla.Name = "Patrulla";
-            this.Patrulla.Width = 150;
-            // 
-            // Estado
-            // 
-            this.Estado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Estado.HeaderText = "Estado";
-            this.Estado.Items.AddRange(new object[] {
-            "En Espera",
-            "Atendido"});
-            this.Estado.MinimumWidth = 8;
-            this.Estado.Name = "Estado";
-            this.Estado.Width = 75;
-            // 
-            // incidente_alerta
-            // 
-            this.incidente_alerta.HeaderText = "Incidente";
-            this.incidente_alerta.MinimumWidth = 8;
-            this.incidente_alerta.Name = "incidente_alerta";
-            this.incidente_alerta.Width = 75;
-            // 
-            // Telefono
-            // 
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.MinimumWidth = 8;
-            this.Telefono.Name = "Telefono";
-            this.Telefono.Width = 75;
-            // 
-            // Nombre
-            // 
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 8;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.Width = 90;
-            // 
-            // direccion
-            // 
-            this.direccion.HeaderText = "Direccion";
-            this.direccion.MinimumWidth = 8;
-            this.direccion.Name = "direccion";
-            this.direccion.Width = 90;
+            this.dataGridViewAlertas.AllowUserToAddRows = false;
+            this.dataGridViewAlertas.AllowUserToDeleteRows = false;
+            this.dataGridViewAlertas.BackgroundColor = System.Drawing.Color.CadetBlue;
+            this.dataGridViewAlertas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewAlertas.Location = new System.Drawing.Point(13, 350);
+            this.dataGridViewAlertas.Name = "dataGridViewAlertas";
+            this.dataGridViewAlertas.RowHeadersVisible = false;
+            this.dataGridViewAlertas.RowHeadersWidth = 62;
+            this.dataGridViewAlertas.Size = new System.Drawing.Size(398, 270);
+            this.dataGridViewAlertas.TabIndex = 12;
+            this.dataGridViewAlertas.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewAlertas_CellBeginEdit);
             // 
             // ListDelitos
             // 
@@ -359,7 +284,7 @@
             "otros"});
             this.ListDelitos.Location = new System.Drawing.Point(13, 182);
             this.ListDelitos.Name = "ListDelitos";
-            this.ListDelitos.Size = new System.Drawing.Size(370, 109);
+            this.ListDelitos.Size = new System.Drawing.Size(398, 109);
             this.ListDelitos.TabIndex = 11;
             this.ListDelitos.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.ListDelitos_ItemCheck);
             // 
@@ -376,14 +301,14 @@
             // 
             this.textTelefono.Location = new System.Drawing.Point(12, 108);
             this.textTelefono.Name = "textTelefono";
-            this.textTelefono.Size = new System.Drawing.Size(370, 20);
+            this.textTelefono.Size = new System.Drawing.Size(399, 20);
             this.textTelefono.TabIndex = 9;
             // 
             // textNombre
             // 
             this.textNombre.Location = new System.Drawing.Point(12, 156);
             this.textNombre.Name = "textNombre";
-            this.textNombre.Size = new System.Drawing.Size(370, 20);
+            this.textNombre.Size = new System.Drawing.Size(399, 20);
             this.textNombre.TabIndex = 8;
             // 
             // label1
@@ -423,7 +348,7 @@
             this.panelMapa.ResumeLayout(false);
             this.panelForm.ResumeLayout(false);
             this.panelForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewAlertas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -446,15 +371,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textTelefono;
         private System.Windows.Forms.CheckedListBox ListDelitos;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewAlertas;
         private System.Windows.Forms.Button btnBomberos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_alerta;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Patrulla;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn incidente_alerta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn direccion;
         private System.Windows.Forms.Button btnHospitales;
         private System.Windows.Forms.Button btnCerrarSesion;
     }

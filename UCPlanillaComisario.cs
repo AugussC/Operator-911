@@ -213,7 +213,8 @@ namespace Operador_911
             // 🚫 Mismo policía dos veces
             if (policia1.HasValue && policia2.HasValue && policia1 == policia2)
             {
-                MessageBox.Show("El mismo policía no puede ser asignado como Policía 1 y Policía 2.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El mismo policía no puede ser asignado como Policía 1 y Policía 2.",
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
@@ -221,20 +222,20 @@ namespace Operador_911
             string[] dias = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" };
             int indiceDia = Array.IndexOf(dias, dia);
 
+            // Turnos complementarios
             string turnoAnterior = (turno == "06-18") ? "18-06" : "06-18";
-            string diaAnterior = dia;
+            string turnoSiguiente = turnoAnterior;
 
-            // 🔹 Si el turno actual es de mañana, el anterior es la noche del día anterior
-            if (turno == "06-18" && indiceDia > 0)
-                diaAnterior = dias[indiceDia - 1];
-            else if (turno == "06-18" && indiceDia == 0)
-                diaAnterior = null; // Lunes no tiene anterior
+            // Día anterior y siguiente
+            string diaAnterior = (turno == "06-18") ? (indiceDia > 0 ? dias[indiceDia - 1] : null) : dia;
+            string diaSiguiente = (turno == "18-06") ? (indiceDia < dias.Length - 1 ? dias[indiceDia + 1] : null) : dia;
 
             using (SqlConnection conn = Database.GetConnection())
             {
+                
                 bool PoliciaTieneTurno(int nroPlaca, string diaBuscar, string turnoBuscar)
                 {
-                    if (diaBuscar == null) return false; // si no hay día anterior, se salta
+                    if (diaBuscar == null) return false;
 
                     string q = @"SELECT COUNT(*) FROM Tiene 
                          WHERE nro_placa = @nroPlaca 
@@ -250,22 +251,72 @@ namespace Operador_911
                     }
                 }
 
-                // 🚫 Validar turno anterior en el mismo día o el anterior
+                // 🚫 Descanso obligatorio: no puede venir de un turno anterior
                 if (policia1.HasValue && PoliciaTieneTurno(policia1.Value, diaAnterior, turnoAnterior))
                 {
-                    MessageBox.Show($"El policía {policia1Box.Text} no puede ingresar porque trabajó el turno anterior ({turnoAnterior}) del día {diaAnterior ?? dia}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"El policía {policia1Box.Text} no puede ingresar porque trabajó el turno anterior ({turnoAnterior}) del día {diaAnterior ?? dia}.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
                 if (policia2.HasValue && PoliciaTieneTurno(policia2.Value, diaAnterior, turnoAnterior))
                 {
-                    MessageBox.Show($"El policía {policia2Box.Text} no puede ingresar porque trabajó el turno anterior ({turnoAnterior}) del día {diaAnterior ?? dia}.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"El policía {policia2Box.Text} no puede ingresar porque trabajó el turno anterior ({turnoAnterior}) del día {diaAnterior ?? dia}.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                // 🚫 Descanso obligatorio: no puede trabajar y luego el turno siguiente
+                if (policia1.HasValue && PoliciaTieneTurno(policia1.Value, diaSiguiente, turnoSiguiente))
+                {
+                    MessageBox.Show($"El policía {policia1Box.Text} no puede ingresar porque ya está asignado al turno siguiente ({turnoSiguiente}) del día {diaSiguiente ?? dia}.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                if (policia2.HasValue && PoliciaTieneTurno(policia2.Value, diaSiguiente, turnoSiguiente))
+                {
+                    MessageBox.Show($"El policía {policia2Box.Text} no puede ingresar porque ya está asignado al turno siguiente ({turnoSiguiente}) del día {diaSiguiente ?? dia}.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                // 🚫 Ya asignado al mismo día y turno
+                bool PoliciaYaAsignado(int nroPlaca, string diaBuscar, string turnoBuscar)
+                {
+                    string q = @"SELECT COUNT(*) FROM Tiene 
+                         WHERE nro_placa = @nroPlaca 
+                         AND dia_semana = @dia 
+                         AND turno = @turno";
+                    using (SqlCommand cmd = new SqlCommand(q, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nroPlaca", nroPlaca);
+                        cmd.Parameters.AddWithValue("@dia", diaBuscar);
+                        cmd.Parameters.AddWithValue("@turno", turnoBuscar);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        return count > 0;
+                    }
+                }
+
+                if (policia1.HasValue && PoliciaYaAsignado(policia1.Value, dia, turno))
+                {
+                    MessageBox.Show($"El policía {policia1Box.Text} ya está asignado a otra patrulla en el día {dia} y turno {turno}.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                if (policia2.HasValue && PoliciaYaAsignado(policia2.Value, dia, turno))
+                {
+                    MessageBox.Show($"El policía {policia2Box.Text} ya está asignado a otra patrulla en el día {dia} y turno {turno}.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
 
             return true; // ✅ Todo OK
         }
+
+
 
 
 
