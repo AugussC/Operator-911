@@ -46,6 +46,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnVerPlanilla = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHorarios)).BeginInit();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -149,6 +150,7 @@
             // 
             // btnLimpiar
             // 
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLimpiar.Location = new System.Drawing.Point(977, 89);
             this.btnLimpiar.Name = "btnLimpiar";
@@ -239,10 +241,24 @@
             this.label1.TabIndex = 28;
             this.label1.Text = "Lista de Horarios";
             // 
+            // btnVerPlanilla
+            // 
+            this.btnVerPlanilla.BackColor = System.Drawing.SystemColors.Control;
+            this.btnVerPlanilla.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnVerPlanilla.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerPlanilla.Location = new System.Drawing.Point(481, 88);
+            this.btnVerPlanilla.Name = "btnVerPlanilla";
+            this.btnVerPlanilla.Size = new System.Drawing.Size(139, 33);
+            this.btnVerPlanilla.TabIndex = 29;
+            this.btnVerPlanilla.Text = "Ver Planilla";
+            this.btnVerPlanilla.UseVisualStyleBackColor = false;
+            this.btnVerPlanilla.Click += new System.EventHandler(this.btnVerPlanilla_Click_1);
+            // 
             // UCPlanilla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnVerPlanilla);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnLimpiar);
@@ -279,5 +295,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnVerPlanilla;
     }
 }

@@ -48,6 +48,7 @@
             this.textNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLatitud = new System.Windows.Forms.Label();
+            this.btnActualizarMapa = new System.Windows.Forms.Button();
             this.panelNavegacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMapa.SuspendLayout();
@@ -84,6 +85,7 @@
             // panelNavegacion
             // 
             this.panelNavegacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.panelNavegacion.Controls.Add(this.btnActualizarMapa);
             this.panelNavegacion.Controls.Add(this.btnCerrarSesion);
             this.panelNavegacion.Controls.Add(this.tituloPrograma);
             this.panelNavegacion.Controls.Add(this.pictureBox1);
@@ -96,6 +98,7 @@
             // btnCerrarSesion
             // 
             this.btnCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnCerrarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCerrarSesion.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCerrarSesion.Location = new System.Drawing.Point(1251, 10);
@@ -330,6 +333,21 @@
             this.txtLatitud.TabIndex = 4;
             this.txtLatitud.Text = "Direccion";
             // 
+            // btnActualizarMapa
+            // 
+            this.btnActualizarMapa.BackColor = System.Drawing.Color.DarkGray;
+            this.btnActualizarMapa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnActualizarMapa.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnActualizarMapa.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnActualizarMapa.Location = new System.Drawing.Point(1138, 11);
+            this.btnActualizarMapa.Margin = new System.Windows.Forms.Padding(2);
+            this.btnActualizarMapa.Name = "btnActualizarMapa";
+            this.btnActualizarMapa.Size = new System.Drawing.Size(109, 27);
+            this.btnActualizarMapa.TabIndex = 4;
+            this.btnActualizarMapa.Text = "Actualizar Mapa";
+            this.btnActualizarMapa.UseVisualStyleBackColor = false;
+            this.btnActualizarMapa.Click += new System.EventHandler(this.btnActualizarMapa_Click);
+            // 
             // FormOperador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -375,6 +393,7 @@
         private System.Windows.Forms.Button btnBomberos;
         private System.Windows.Forms.Button btnHospitales;
         private System.Windows.Forms.Button btnCerrarSesion;
+        private System.Windows.Forms.Button btnActualizarMapa;
     }
 }
 

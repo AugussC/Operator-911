@@ -30,7 +30,9 @@ namespace Operador_911
         private bool bomberosVisibles = false;
         private bool hospitalesVisibles = false;
         private string patrullaSeleccionada = null;
+        private int idPatrullaSeleccionada = 0;
         private string valorAnteriorPatrulla = null;
+        private int ordenActual = 1;
 
         private List<Nodo> nodos = new List<Nodo>();
        
@@ -456,77 +458,143 @@ namespace Operador_911
             gMapControl1.Update();
         }
 
-        
+
 
         private void GMapControl1_OnMarkerClick(GMapMarker item, MouseEventArgs e)
         {
-            // Si el marcador clickeado es una PATRULLA
-            if (item.Tag?.ToString() == "Patrulla")
+            try
             {
-                string codigoPatrulla = item.ToolTipText.Replace("Patrulla ", "").Trim();
-                int idPatrulla = ObtenerIdPatrullaPorCodigo(codigoPatrulla);
-
-                // Verificamos si está ocupada
-                if (PatrullaOcupada(idPatrulla))
+                // =================== 📍 Clic en una patrulla ===================
+                if (item.Tag is int idPatrulla)
                 {
-                    MessageBox.Show($"La patrulla {codigoPatrulla} ya está asignada a una alerta.",
-                                    "Patrulla ocupada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    string codigoPatrulla = ObtenerCodigoPatrullaPorId(idPatrulla);
+
+                    if (idPatrulla <= 0 || string.IsNullOrEmpty(codigoPatrulla))
+                    {
+                        MessageBox.Show("No se pudo obtener la información de la patrulla seleccionada.",
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // 🚫 Verificar si ya está ocupada
+                    if (PatrullaOcupada(idPatrulla))
+                    {
+                        MessageBox.Show($"La patrulla {codigoPatrulla} ya está asignada a una alerta.",
+                                        "Patrulla ocupada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // ✅ Guardamos selección para el siguiente clic (en alerta)
+                    patrullaSeleccionada = codigoPatrulla;
+                    idPatrullaSeleccionada = idPatrulla;
+
+                    // 🔹 Guardamos posición actual (orden = 1)
+                    origen = item.Position;
+
+                    MessageBox.Show($"Patrulla {codigoPatrulla} seleccionada como origen.",
+                                    "Seleccionar patrulla", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
 
-                // Guardamos selección para el siguiente clic (en alerta)
-                patrullaSeleccionada = codigoPatrulla;
-                origen = item.Position;
-
-                MessageBox.Show($"Patrulla {codigoPatrulla} seleccionada como origen.",
-                                "Seleccionar patrulla", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            // Si el marcador clickeado es una ALERTA
-            if (item.Tag?.ToString() == "Alerta")
-            {
-                if (string.IsNullOrEmpty(patrullaSeleccionada))
+                // =================== 🚨 Clic en una alerta ===================
+                if (item.Tag?.ToString() == "Alerta")
                 {
-                    MessageBox.Show("Seleccioná primero una patrulla disponible.",
-                                    "Asignar alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    return;
-                }
+                    if (string.IsNullOrEmpty(patrullaSeleccionada) || idPatrullaSeleccionada <= 0)
+                    {
+                        MessageBox.Show("Seleccioná primero una patrulla disponible.",
+                                        "Asignar alerta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
 
-                string[] partes = item.ToolTipText.Split(new[] { ", " }, 2, StringSplitOptions.None);
-                string delito = partes[0];
-                string direccion = partes.Length > 1 ? partes[1] : "";
-                int idAlerta = ObtenerIdAlertaPorDireccion(direccion);
-                int idPatrulla = ObtenerIdPatrullaPorCodigo(patrullaSeleccionada);
+                    // 🧭 Obtenemos los datos base
+                    string[] partes = item.ToolTipText.Split(new[] { ", " }, 2, StringSplitOptions.None);
+                    string delito = partes[0];
+                    string direccion = partes.Length > 1 ? partes[1] : "";
 
-                // Si la patrulla ya fue asignada entre el tiempo de clics
-                if (PatrullaOcupada(idPatrulla))
-                {
-                    MessageBox.Show($"La patrulla {patrullaSeleccionada} ya fue asignada.",
-                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    int idAlerta = ObtenerIdAlertaPorDireccion(direccion);
+                    idPatrulla = idPatrullaSeleccionada;
+
+                    if (idAlerta <= 0)
+                    {
+                        MessageBox.Show("No se pudo obtener la información de la alerta.",
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        patrullaSeleccionada = null;
+                        idPatrullaSeleccionada = 0;
+                        return;
+                    }
+
+                    // 🚫 Si la patrulla fue asignada mientras tanto
+                    if (PatrullaOcupada(idPatrulla))
+                    {
+                        MessageBox.Show($"La patrulla {patrullaSeleccionada} ya fue asignada.",
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        patrullaSeleccionada = null;
+                        idPatrullaSeleccionada = 0;
+                        return;
+                    }
+
+                    // ✅ Asignar en base de datos
+                    AsignarPatrullaAlerta(idPatrulla, idAlerta);
+
+                    // 🔹 Borrar ruta anterior (por si existía)
+                    EliminarRutaPorNombre($"Ruta_P{idPatrulla}_A{idAlerta}");
+
+                    // 🔹 Obtener coordenadas actualizadas de la patrulla (orden = 1)
+                    PointLatLng posPatrulla = ObtenerCoordenadasPrimeraUbicacion(idPatrulla);
+                    PointLatLng posAlerta = item.Position;
+
+                    if (posPatrulla.Lat == 0 && posPatrulla.Lng == 0)
+                    {
+                        MessageBox.Show("No se encontró una ubicación válida para la patrulla.",
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    // 🔹 Dibujar nueva ruta
+                    string nombreRuta = $"Ruta_P{idPatrulla}_A{idAlerta}";
+                    CalcularRuta(posPatrulla, posAlerta, nombreRuta, Color.Blue);
+
+                    // 🔄 Actualizar mapa y alertas
+                    CargarAlertas();
+                    gMapControl1.Update();
+
+                    // ✅ Reset selección
                     patrullaSeleccionada = null;
-                    return;
+                    idPatrullaSeleccionada = 0;
+                    origen = PointLatLng.Empty;
                 }
-
-
-                // 🔹 Asignar en base
-                AsignarPatrullaAlerta(idPatrulla, idAlerta);
-
-                // 🔹 Eliminar posibles rutas anteriores de esa patrulla
-                EliminarRutaPorNombre($"Ruta_P{idPatrulla}_A{idAlerta}");
-
-                // 🔹 Obtener coordenadas y dibujar nueva ruta
-                PointLatLng posPatrulla = ObtenerCoordenadasPatrulla(idPatrulla);
-                PointLatLng posAlerta = item.Position;
-                string nombreRuta = $"Ruta_P{idPatrulla}_A{idAlerta}";
-                CalcularRuta(posPatrulla, posAlerta, nombreRuta, Color.Blue);
-                CargarAlertas();
-                gMapControl1.Update();
-
-                // Reset selección
-                patrullaSeleccionada = null;
-                origen = PointLatLng.Empty;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al procesar el clic en el mapa: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string ObtenerCodigoPatrullaPorId(int idPatrulla)
+        {
+            try
+            {
+                using (SqlConnection conn = Database.GetConnection())
+                {
+                    string query = "SELECT codigo_patrulla FROM Patrulla WHERE id_patrulla = @idPatrulla";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@idPatrulla", idPatrulla);
+
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                            return result.ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener el código de la patrulla: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return string.Empty;
         }
 
         private void dataGridViewAlertas_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
@@ -619,6 +687,31 @@ namespace Operador_911
             // 🔹 Refrescar grilla
             CargarAlertas();
             valorAnteriorPatrulla = null;
+        }
+        private PointLatLng ObtenerCoordenadasPrimeraUbicacion(int idPatrulla)
+        {
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = @"
+            SELECT TOP 1 latitud, longitud
+            FROM Ubicacion
+            WHERE id_patrulla = @id AND orden = 1
+        ";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", idPatrulla);
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        double lat = Convert.ToDouble(reader["latitud"]);
+                        double lng = Convert.ToDouble(reader["longitud"]);
+                        return new PointLatLng(lat, lng);
+                    }
+                }
+            }
+
+            return new PointLatLng(0, 0);
         }
 
         private int ObtenerIdAlertaPorDireccion(string direccion)
@@ -849,17 +942,19 @@ namespace Operador_911
             using (SqlConnection conn = Database.GetConnection())
             {
                 string query = @"
-            SELECT 
-                p.id_patrulla, 
-                p.codigo_patrulla
-            FROM Patrulla AS p
-            INNER JOIN Ubicacion AS u ON p.id_patrulla = u.id_patrulla
-            WHERE p.activo = 1 AND p.estado = 'En Servicio'
+        SELECT DISTINCT 
+            p.id_patrulla, 
+            p.codigo_patrulla
+        FROM Patrulla AS p
+        INNER JOIN Ubicacion AS u ON p.id_patrulla = u.id_patrulla
+        WHERE p.activo = 1 AND p.estado = 'En Servicio';
         ";
+
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
+                // Agregar la opción "Sin Asignar"
                 DataRow filaSinAsignar = dt.NewRow();
                 filaSinAsignar["id_patrulla"] = DBNull.Value;
                 filaSinAsignar["codigo_patrulla"] = "Sin Asignar";
@@ -1957,25 +2052,28 @@ namespace Operador_911
 
         private void CargarPatrullas()
         {
-            // Crear overlay para patrullas
+            // Limpiar overlay anterior si existe
+            if (markerPatrullas != null)
+                gMapControl1.Overlays.Remove(markerPatrullas);
+
             markerPatrullas = new GMapOverlay("Patrullas");
 
-            // Cargar ícono
             string ruta = Path.Combine(Application.StartupPath, @"..\..\Resources\iconoPatrulla.png");
             Bitmap icono = new Bitmap(ruta);
 
             using (SqlConnection conn = Database.GetConnection())
             {
                 string query = @"
-            SELECT 
-                p.id_patrulla,
-                p.codigo_patrulla,
-                u.latitud,
-                u.longitud
-            FROM Patrulla p
-            INNER JOIN Ubicacion u ON p.id_patrulla = u.id_patrulla
-            WHERE p.activo = 1 AND p.estado = 'En Servicio'
-        ";
+        SELECT 
+            p.id_patrulla,
+            p.codigo_patrulla,
+            u.latitud,
+            u.longitud,
+            u.orden
+        FROM Patrulla p
+        INNER JOIN Ubicacion u ON p.id_patrulla = u.id_patrulla
+        WHERE p.activo = 1 AND p.estado = 'En Servicio'
+          AND u.orden = 1;"; 
 
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 using (SqlDataReader reader = cmd.ExecuteReader())
@@ -1989,31 +2087,90 @@ namespace Operador_911
 
                         PointLatLng punto = new PointLatLng(lat, lng);
 
-                        // Crear marcador
                         var marker = new GMarkerGoogle(punto, icono)
                         {
-                            Tag = "Patrulla",  // 👈 Importante para el evento OnMarkerClick
+                            Tag = idPatrulla, // 👈 Guardamos el id para actualizar luego
                             ToolTipText = $"Patrulla {codigo}",
-                            ToolTipMode = MarkerTooltipMode.OnMouseOver,
+                            ToolTipMode = MarkerTooltipMode.OnMouseOver
                         };
 
-                        // Ajustar posición del icono
                         marker.Offset = new System.Drawing.Point(-icono.Width / 2, -(int)(icono.Height * 0.5));
                         marker.ToolTip.Offset = new System.Drawing.Point(0, -icono.Height + 5);
 
-
-                        // Agregar al overlay
                         markerPatrullas.Markers.Add(marker);
                     }
                 }
             }
 
-            // Agregar al mapa
             gMapControl1.Overlays.Add(markerPatrullas);
             gMapControl1.Refresh();
         }
 
+        private void ActualizarUbicacionesYAlertas()
+        {
+            ordenActual++;
+            if (ordenActual > 5) ordenActual = 1; // 🔁 vuelve al 1 después del último
 
+            using (SqlConnection conn = Database.GetConnection())
+            {
+                string query = @"
+        SELECT 
+            p.id_patrulla,
+            p.codigo_patrulla,
+            u.latitud AS latPatrulla,
+            u.longitud AS lngPatrulla,
+            a.id_alerta,
+            a.direccion
+        FROM Patrulla p
+        INNER JOIN Ubicacion u ON p.id_patrulla = u.id_patrulla
+        LEFT JOIN Alerta a ON a.id_patrulla = p.id_patrulla AND a.estado = 'Asignada'
+        WHERE p.activo = 1 AND p.estado = 'En Servicio'
+          AND u.orden = @orden;";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orden", ordenActual);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int idPatrulla = Convert.ToInt32(reader["id_patrulla"]);
+                            string codigo = reader["codigo_patrulla"].ToString();
+                            double latPatrulla = Convert.ToDouble(reader["latPatrulla"]);
+                            double lngPatrulla = Convert.ToDouble(reader["lngPatrulla"]);
+                            PointLatLng nuevaPos = new PointLatLng(latPatrulla, lngPatrulla);
+
+                            // 1️⃣ Mover el marcador de la patrulla
+                            var marker = markerPatrullas.Markers
+                                .FirstOrDefault(m => m.ToolTipText.Contains(codigo));
+
+                            if (marker != null)
+                                marker.Position = nuevaPos;
+
+                            // 2️⃣ Si tiene alerta asignada → actualizar ruta
+                            if (reader["id_alerta"] != DBNull.Value)
+                            {
+                                int idAlerta = Convert.ToInt32(reader["id_alerta"]);
+                                string direccion = reader["direccion"].ToString();
+
+                                // Eliminar ruta vieja
+                                string nombreRuta = $"Ruta_P{idPatrulla}_A{idAlerta}";
+                                EliminarRutaPorNombre(nombreRuta);
+
+                                // Obtener nueva posición de alerta (usa tu función)
+                                PointLatLng posAlerta = ObtenerCoordenadasAlerta(idAlerta);
+
+                                // Recalcular ruta con tu algoritmo de Dijkstra
+                                CalcularRuta(nuevaPos, posAlerta, nombreRuta, Color.Blue);
+                            }
+                        }
+                    }
+                }
+            }
+
+            gMapControl1.Update();
+        }
 
 
 
@@ -2267,6 +2424,11 @@ namespace Operador_911
             {
                 this.Close();
             }
+        }
+
+        private void btnActualizarMapa_Click(object sender, EventArgs e)
+        {
+            ActualizarUbicacionesYAlertas();
         }
     }
 }

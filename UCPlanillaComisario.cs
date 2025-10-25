@@ -42,8 +42,31 @@ namespace Operador_911
         {
             using (SqlConnection conn = Database.GetConnection())
             {
-                string query = "SELECT id_patrulla, codigo_patrulla FROM Patrulla";
+                // 1️⃣ Obtener el ID de la comisaría del comisario logueado
+                string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
+                SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
+                cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
+
+                object result = cmdComisaria.ExecuteScalar();
+                if (result == null)
+                {
+                    MessageBox.Show("No se encontró una comisaría asociada a este usuario.");
+                    return;
+                }
+
+                int idComisaria = Convert.ToInt32(result);
+                this.idComisaria = idComisaria; // 👈 guardamos para reutilizar
+
+                // 2️⃣ Traer solo patrullas activas y en servicio de esa comisaría
+                string query = @"SELECT id_patrulla, codigo_patrulla
+                         FROM Patrulla
+                         WHERE id_comisaria = @idComisaria 
+                         AND estado = 'En servicio'
+                         AND activo = 1";
+
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@idComisaria", idComisaria);
+
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
@@ -57,11 +80,35 @@ namespace Operador_911
         {
             using (SqlConnection conn = Database.GetConnection())
             {
-                string query = "SELECT nro_placa, (apellido + ', ' + nombre) AS NombreCompleto FROM Policia";
+                // Si no se cargó antes, obtener id_comisaria del usuario
+                if (idComisaria == 0)
+                {
+                    string queryComisaria = "SELECT id_comisaria FROM Comisaria WHERE id_usuario_comisario = @idUsuario";
+                    SqlCommand cmdComisaria = new SqlCommand(queryComisaria, conn);
+                    cmdComisaria.Parameters.AddWithValue("@idUsuario", Sesion.IdUsuario);
+                    object result = cmdComisaria.ExecuteScalar();
+
+                    if (result == null)
+                    {
+                        MessageBox.Show("No se encontró una comisaría asociada a este usuario.");
+                        return;
+                    }
+
+                    idComisaria = Convert.ToInt32(result);
+                }
+
+                // 1️⃣ Traer solo policías de esa comisaría (activos, si existe ese campo)
+                string query = @"SELECT nro_placa, (apellido + ', ' + nombre) AS NombreCompleto
+                         FROM Policia
+                         WHERE id_comisaria = @idComisaria";
+
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@idComisaria", idComisaria);
+
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
+                // 2️⃣ Asignar a los dos ComboBox
                 policia1Box.DisplayMember = "NombreCompleto";
                 policia1Box.ValueMember = "nro_placa";
                 policia1Box.DataSource = dt.Copy();
@@ -71,6 +118,7 @@ namespace Operador_911
                 policia2Box.DataSource = dt;
             }
         }
+
 
         private void CargarComboHorarios()
         {
@@ -613,6 +661,11 @@ namespace Operador_911
             }
         }
 
-       
+        private void btnVerPlanilla_Click_1(object sender, EventArgs e)
+        {
+            FormPlanilla planilla = new FormPlanilla();
+            planilla.StartPosition = FormStartPosition.CenterParent;
+            planilla.ShowDialog(); // 👈 Esto la abre como modal
+        }
     }
 }
