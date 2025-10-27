@@ -33,6 +33,7 @@ namespace Operador_911
         private int idPatrullaSeleccionada = 0;
         private string valorAnteriorPatrulla = null;
         private int ordenActual = 1;
+        private string estadoAnterior = "";
 
         private List<Nodo> nodos = new List<Nodo>();
        
@@ -600,9 +601,20 @@ namespace Operador_911
 
         private void dataGridViewAlertas_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (e.RowIndex >= 0 && dataGridViewAlertas.Columns[e.ColumnIndex].Name == "Patrulla")
+            if (e.RowIndex < 0) return;
+
+            string colName = dataGridViewAlertas.Columns[e.ColumnIndex].Name;
+
+            // ✅ Guardar patrulla anterior (ya lo tenías)
+            if (colName == "Patrulla")
             {
                 valorAnteriorPatrulla = dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+            }
+
+            // ✅ Guardar estado anterior (lo agregamos)
+            if (colName == "Estado")
+            {
+                estadoAnterior = dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
             }
         }
 
@@ -688,7 +700,42 @@ namespace Operador_911
             // 🔹 Refrescar grilla
             CargarAlertas();
             valorAnteriorPatrulla = null;
+
+            // ------------------------------------------------------------------
+            // ✅ Control de cambios en columna ESTADO
+            // ------------------------------------------------------------------
+            if (dataGridViewAlertas.Columns[e.ColumnIndex].Name == "Estado")
+            {
+                string nuevoEstado = dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+
+                // ❌ No permitir En Espera → Atendida directo
+                if (estadoAnterior == "En Espera" && nuevoEstado == "Atendida")
+                {
+                    MessageBox.Show("No se puede pasar de 'En Espera' directamente a 'Atendida'. Debe estar primero 'Asignada'.",
+                        "Cambio inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = estadoAnterior;
+                    return;
+                }
+
+                if (nuevoEstado == "Atendida")
+                {
+                    idAlerta = Convert.ToInt32(
+                        dataGridViewAlertas.Rows[e.RowIndex].Cells["IdAlerta"].Value
+                    );
+
+                    FormReporte frm = new FormReporte(idAlerta);
+                    DialogResult result = frm.ShowDialog();
+
+                    if (result == DialogResult.Cancel)
+                    {
+                        dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "Asignada";
+                    }
+                }
+            }
+
         }
+        
         private PointLatLng ObtenerCoordenadasPrimeraUbicacion(int idPatrulla)
         {
             using (SqlConnection conn = Database.GetConnection())
@@ -2446,21 +2493,11 @@ namespace Operador_911
 
         }
 
-        private void btnGenerarReporte_Click(object sender, EventArgs e)
+        private void panelForm_Paint(object sender, PaintEventArgs e)
         {
-            if (dataGridViewAlertas.SelectedRows.Count == 0) return;
 
-            int idAlerta = Convert.ToInt32(
-                dataGridViewAlertas.SelectedRows[0].Cells["id_alerta"].Value
-            );
-
-            FormReporte reporte = new FormReporte(idAlerta);
-            reporte.ShowDialog();
-
-            // Recargar alertas al cerrar
-            CargarAlertas();
         }
-
     }
+
 }
 

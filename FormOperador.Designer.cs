@@ -49,7 +49,6 @@
             this.textNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtLatitud = new System.Windows.Forms.Label();
-            this.btnGenerarReporte = new System.Windows.Forms.Button();
             this.panelNavegacion.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelMapa.SuspendLayout();
@@ -230,7 +229,6 @@
             // panelForm
             // 
             this.panelForm.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panelForm.Controls.Add(this.btnGenerarReporte);
             this.panelForm.Controls.Add(this.dataGridViewAlertas);
             this.panelForm.Controls.Add(this.ListDelitos);
             this.panelForm.Controls.Add(this.label2);
@@ -246,6 +244,7 @@
             this.panelForm.Name = "panelForm";
             this.panelForm.Size = new System.Drawing.Size(638, 1058);
             this.panelForm.TabIndex = 8;
+            this.panelForm.Paint += new System.Windows.Forms.PaintEventHandler(this.panelForm_Paint);
             // 
             // dataGridViewAlertas
             // 
@@ -366,18 +365,6 @@
             this.txtLatitud.TabIndex = 4;
             this.txtLatitud.Text = "Direccion";
             // 
-            // btnGenerarReporte
-            // 
-            this.btnGenerarReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerarReporte.Location = new System.Drawing.Point(208, 969);
-            this.btnGenerarReporte.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnGenerarReporte.Name = "btnGenerarReporte";
-            this.btnGenerarReporte.Size = new System.Drawing.Size(259, 52);
-            this.btnGenerarReporte.TabIndex = 13;
-            this.btnGenerarReporte.Text = "Generar Reporte";
-            this.btnGenerarReporte.UseVisualStyleBackColor = true;
-            this.btnGenerarReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
-            // 
             // FormOperador
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -425,7 +412,6 @@
         private System.Windows.Forms.Button btnHospitales;
         private System.Windows.Forms.Button btnCerrarSesion;
         private System.Windows.Forms.Button btnActualizarMapa;
-        private System.Windows.Forms.Button btnGenerarReporte;
     }
 }
 

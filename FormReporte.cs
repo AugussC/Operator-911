@@ -31,21 +31,25 @@ namespace Operador_911
                 SqlDataReader dr = cmd.ExecuteReader();
                 if (dr.Read())
                 {
-                    textBoxIdAlerta.Text = dr["id_alerta"].ToString();
                     textBoxDireccion.Text = dr["direccion"].ToString();
                     textBoxIncidente.Text = dr["tipo_incidencia"].ToString();
-                    textBoxNombre.Text = dr["nombre"].ToString();
-                    textBoxTelefono.Text = dr["telefono"].ToString();
                 }
             }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
