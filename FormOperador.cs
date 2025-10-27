@@ -173,9 +173,10 @@ namespace Operador_911
            
             gMapControl1.OnMarkerClick += GMapControl1_OnMarkerClick;
             dataGridViewAlertas.DataBindingComplete += dataGridViewAlertas_DataBindingComplete;
-            
+            dataGridViewAlertas.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewAlertas.MultiSelect = false;
 
-            
+
 
         }
 
@@ -818,17 +819,18 @@ namespace Operador_911
                 {
 
                     string query = @"
-                SELECT 
-                    COALESCE(p.codigo_patrulla, 'Sin Asignar') AS Patrulla,
-                    a.estado AS Estado,
-                    a.tipo_incidencia AS Incidente,
-                    l.telefono AS Telefono,
-                    l.nombre AS Nombre,
-                    a.direccion AS Direccion
-                FROM Alerta AS a
-                LEFT JOIN Patrulla AS p ON a.id_patrulla = p.id_patrulla
-                LEFT JOIN Llamada AS l ON a.id_alerta = l.id_alerta
-            ";
+                        SELECT 
+                            a.id_alerta,
+                            COALESCE(p.codigo_patrulla, 'Sin Asignar') AS Patrulla,
+                            a.estado AS Estado,
+                            a.tipo_incidencia AS Incidente,
+                            l.telefono AS Telefono,
+                            l.nombre AS Nombre,
+                            a.direccion AS Direccion
+                        FROM Alerta AS a
+                        LEFT JOIN Patrulla AS p ON a.id_patrulla = p.id_patrulla
+                        LEFT JOIN Llamada AS l ON a.id_alerta = l.id_alerta
+                     ";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -838,6 +840,14 @@ namespace Operador_911
                     // 🔹 Limpio columnas previas
                     dataGridViewAlertas.Columns.Clear();
                     dataGridViewAlertas.AutoGenerateColumns = false;
+
+                    // 🔹 Columna oculta para id_alerta para despues leerla y generar reporte
+                    DataGridViewTextBoxColumn colIdAlerta = new DataGridViewTextBoxColumn();
+                    colIdAlerta.Name = "id_alerta";
+                    colIdAlerta.DataPropertyName = "id_alerta";
+                    colIdAlerta.HeaderText = "ID Alerta";
+                    colIdAlerta.Visible = false; // oculta en la UI
+                    dataGridViewAlertas.Columns.Add(colIdAlerta);
 
                     // 🔹 Columna Patrulla (ComboBox)
                     DataGridViewComboBoxColumn colPatrulla = new DataGridViewComboBoxColumn();
@@ -2430,6 +2440,27 @@ namespace Operador_911
         {
             ActualizarUbicacionesYAlertas();
         }
+
+        private void dataGridViewAlertas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnGenerarReporte_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewAlertas.SelectedRows.Count == 0) return;
+
+            int idAlerta = Convert.ToInt32(
+                dataGridViewAlertas.SelectedRows[0].Cells["id_alerta"].Value
+            );
+
+            FormReporte reporte = new FormReporte(idAlerta);
+            reporte.ShowDialog();
+
+            // Recargar alertas al cerrar
+            CargarAlertas();
+        }
+
     }
 }
 

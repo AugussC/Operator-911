@@ -667,5 +667,10 @@ namespace Operador_911
             planilla.StartPosition = FormStartPosition.CenterParent;
             planilla.ShowDialog(); // 👈 Esto la abre como modal
         }
+
+        private void labelTitulo_Usuarios_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
