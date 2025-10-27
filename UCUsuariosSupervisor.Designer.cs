@@ -63,10 +63,9 @@
             // 
             this.labelPass.AutoSize = true;
             this.labelPass.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPass.Location = new System.Drawing.Point(53, 413);
-            this.labelPass.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPass.Location = new System.Drawing.Point(35, 268);
             this.labelPass.Name = "labelPass";
-            this.labelPass.Size = new System.Drawing.Size(98, 22);
+            this.labelPass.Size = new System.Drawing.Size(68, 14);
             this.labelPass.TabIndex = 14;
             this.labelPass.Text = "Contraseña";
             // 
@@ -74,29 +73,26 @@
             // 
             this.labelRol.AutoSize = true;
             this.labelRol.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelRol.Location = new System.Drawing.Point(53, 630);
-            this.labelRol.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRol.Location = new System.Drawing.Point(35, 410);
             this.labelRol.Name = "labelRol";
-            this.labelRol.Size = new System.Drawing.Size(35, 22);
+            this.labelRol.Size = new System.Drawing.Size(23, 14);
             this.labelRol.TabIndex = 12;
             this.labelRol.Text = "Rol";
             // 
             // textBoxDNI
             // 
-            this.textBoxDNI.Location = new System.Drawing.Point(49, 281);
-            this.textBoxDNI.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxDNI.Location = new System.Drawing.Point(33, 183);
             this.textBoxDNI.Name = "textBoxDNI";
-            this.textBoxDNI.Size = new System.Drawing.Size(393, 26);
+            this.textBoxDNI.Size = new System.Drawing.Size(263, 20);
             this.textBoxDNI.TabIndex = 11;
             // 
             // labelDNI
             // 
             this.labelDNI.AutoSize = true;
             this.labelDNI.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDNI.Location = new System.Drawing.Point(53, 254);
-            this.labelDNI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDNI.Location = new System.Drawing.Point(35, 165);
             this.labelDNI.Name = "labelDNI";
-            this.labelDNI.Size = new System.Drawing.Size(339, 22);
+            this.labelDNI.Size = new System.Drawing.Size(234, 14);
             this.labelDNI.TabIndex = 10;
             this.labelDNI.Text = "Documento Nacional de Indentidad (DNI)";
             // 
@@ -104,29 +100,26 @@
             // 
             this.labelAdd_user.AutoSize = true;
             this.labelAdd_user.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelAdd_user.Location = new System.Drawing.Point(59, 37);
-            this.labelAdd_user.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelAdd_user.Location = new System.Drawing.Point(39, 24);
             this.labelAdd_user.Name = "labelAdd_user";
-            this.labelAdd_user.Size = new System.Drawing.Size(374, 37);
+            this.labelAdd_user.Size = new System.Drawing.Size(257, 25);
             this.labelAdd_user.TabIndex = 16;
             this.labelAdd_user.Text = "Agregar Nuevo Usuario";
             // 
             // textBoxContraseña
             // 
-            this.textBoxContraseña.Location = new System.Drawing.Point(49, 441);
-            this.textBoxContraseña.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxContraseña.Location = new System.Drawing.Point(33, 287);
             this.textBoxContraseña.Name = "textBoxContraseña";
-            this.textBoxContraseña.Size = new System.Drawing.Size(393, 26);
+            this.textBoxContraseña.Size = new System.Drawing.Size(263, 20);
             this.textBoxContraseña.TabIndex = 18;
             this.textBoxContraseña.UseSystemPasswordChar = true;
             // 
             // btnEliminarUsuario
             // 
             this.btnEliminarUsuario.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarUsuario.Location = new System.Drawing.Point(336, 719);
-            this.btnEliminarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEliminarUsuario.Location = new System.Drawing.Point(224, 467);
             this.btnEliminarUsuario.Name = "btnEliminarUsuario";
-            this.btnEliminarUsuario.Size = new System.Drawing.Size(126, 46);
+            this.btnEliminarUsuario.Size = new System.Drawing.Size(84, 30);
             this.btnEliminarUsuario.TabIndex = 21;
             this.btnEliminarUsuario.Text = "Eliminar";
             this.btnEliminarUsuario.UseVisualStyleBackColor = true;
@@ -135,10 +128,9 @@
             // btnEditarUsuario
             // 
             this.btnEditarUsuario.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarUsuario.Location = new System.Drawing.Point(188, 719);
-            this.btnEditarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEditarUsuario.Location = new System.Drawing.Point(125, 467);
             this.btnEditarUsuario.Name = "btnEditarUsuario";
-            this.btnEditarUsuario.Size = new System.Drawing.Size(126, 46);
+            this.btnEditarUsuario.Size = new System.Drawing.Size(84, 30);
             this.btnEditarUsuario.TabIndex = 20;
             this.btnEditarUsuario.Text = "Editar";
             this.btnEditarUsuario.UseVisualStyleBackColor = true;
@@ -147,10 +139,9 @@
             // btnAgregarUsuario
             // 
             this.btnAgregarUsuario.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarUsuario.Location = new System.Drawing.Point(36, 719);
-            this.btnAgregarUsuario.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAgregarUsuario.Location = new System.Drawing.Point(24, 467);
             this.btnAgregarUsuario.Name = "btnAgregarUsuario";
-            this.btnAgregarUsuario.Size = new System.Drawing.Size(126, 46);
+            this.btnAgregarUsuario.Size = new System.Drawing.Size(84, 30);
             this.btnAgregarUsuario.TabIndex = 19;
             this.btnAgregarUsuario.Text = "Agregar";
             this.btnAgregarUsuario.UseVisualStyleBackColor = true;
@@ -159,13 +150,15 @@
             // dataGridUsuarios
             // 
             this.dataGridUsuarios.AllowUserToAddRows = false;
+            this.dataGridUsuarios.AllowUserToDeleteRows = false;
+            this.dataGridUsuarios.AllowUserToOrderColumns = true;
             this.dataGridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridUsuarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridUsuarios.Location = new System.Drawing.Point(610, 197);
-            this.dataGridUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridUsuarios.Location = new System.Drawing.Point(407, 128);
             this.dataGridUsuarios.Name = "dataGridUsuarios";
+            this.dataGridUsuarios.RowHeadersVisible = false;
             this.dataGridUsuarios.RowHeadersWidth = 62;
-            this.dataGridUsuarios.Size = new System.Drawing.Size(1022, 802);
+            this.dataGridUsuarios.Size = new System.Drawing.Size(681, 521);
             this.dataGridUsuarios.TabIndex = 22;
             this.dataGridUsuarios.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsuarios_CellClick);
             this.dataGridUsuarios.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridUsuarios_CellValueChanged);
@@ -176,37 +169,33 @@
             // 
             this.labelTitulo_Usuarios.AutoSize = true;
             this.labelTitulo_Usuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo_Usuarios.Location = new System.Drawing.Point(1000, 65);
-            this.labelTitulo_Usuarios.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitulo_Usuarios.Location = new System.Drawing.Point(667, 42);
             this.labelTitulo_Usuarios.Name = "labelTitulo_Usuarios";
-            this.labelTitulo_Usuarios.Size = new System.Drawing.Size(337, 37);
+            this.labelTitulo_Usuarios.Size = new System.Drawing.Size(231, 25);
             this.labelTitulo_Usuarios.TabIndex = 23;
             this.labelTitulo_Usuarios.Text = "Administrar Usuarios";
             // 
             // textBoxApellido
             // 
-            this.textBoxApellido.Location = new System.Drawing.Point(49, 202);
-            this.textBoxApellido.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxApellido.Location = new System.Drawing.Point(33, 131);
             this.textBoxApellido.Name = "textBoxApellido";
-            this.textBoxApellido.Size = new System.Drawing.Size(393, 26);
+            this.textBoxApellido.Size = new System.Drawing.Size(263, 20);
             this.textBoxApellido.TabIndex = 27;
             // 
             // textBoxNombre
             // 
-            this.textBoxNombre.Location = new System.Drawing.Point(49, 125);
-            this.textBoxNombre.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxNombre.Location = new System.Drawing.Point(33, 81);
             this.textBoxNombre.Name = "textBoxNombre";
-            this.textBoxNombre.Size = new System.Drawing.Size(393, 26);
+            this.textBoxNombre.Size = new System.Drawing.Size(263, 20);
             this.textBoxNombre.TabIndex = 26;
             // 
             // labelApellido
             // 
             this.labelApellido.AutoSize = true;
             this.labelApellido.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelApellido.Location = new System.Drawing.Point(53, 174);
-            this.labelApellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelApellido.Location = new System.Drawing.Point(35, 113);
             this.labelApellido.Name = "labelApellido";
-            this.labelApellido.Size = new System.Drawing.Size(72, 22);
+            this.labelApellido.Size = new System.Drawing.Size(49, 14);
             this.labelApellido.TabIndex = 25;
             this.labelApellido.Text = "Apellido";
             // 
@@ -214,10 +203,9 @@
             // 
             this.labelNombre.AutoSize = true;
             this.labelNombre.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNombre.Location = new System.Drawing.Point(53, 97);
-            this.labelNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNombre.Location = new System.Drawing.Point(35, 63);
             this.labelNombre.Name = "labelNombre";
-            this.labelNombre.Size = new System.Drawing.Size(72, 22);
+            this.labelNombre.Size = new System.Drawing.Size(50, 14);
             this.labelNombre.TabIndex = 24;
             this.labelNombre.Text = "Nombre";
             // 
@@ -229,36 +217,34 @@
             "Jefe Operador",
             "Operador",
             "Comisario"});
-            this.comboBoxRol.Location = new System.Drawing.Point(49, 653);
+            this.comboBoxRol.Location = new System.Drawing.Point(33, 424);
+            this.comboBoxRol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.comboBoxRol.Name = "comboBoxRol";
-            this.comboBoxRol.Size = new System.Drawing.Size(393, 28);
+            this.comboBoxRol.Size = new System.Drawing.Size(263, 21);
             this.comboBoxRol.TabIndex = 28;
             // 
             // textBoxCorreo
             // 
-            this.textBoxCorreo.Location = new System.Drawing.Point(49, 359);
-            this.textBoxCorreo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxCorreo.Location = new System.Drawing.Point(33, 233);
             this.textBoxCorreo.Name = "textBoxCorreo";
-            this.textBoxCorreo.Size = new System.Drawing.Size(393, 26);
+            this.textBoxCorreo.Size = new System.Drawing.Size(263, 20);
             this.textBoxCorreo.TabIndex = 30;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(53, 331);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(35, 215);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 22);
+            this.label1.Size = new System.Drawing.Size(43, 14);
             this.label1.TabIndex = 29;
             this.label1.Text = "Correo";
             // 
             // textBoxConfirmarContraseña
             // 
-            this.textBoxConfirmarContraseña.Location = new System.Drawing.Point(49, 550);
-            this.textBoxConfirmarContraseña.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxConfirmarContraseña.Location = new System.Drawing.Point(33, 358);
             this.textBoxConfirmarContraseña.Name = "textBoxConfirmarContraseña";
-            this.textBoxConfirmarContraseña.Size = new System.Drawing.Size(393, 26);
+            this.textBoxConfirmarContraseña.Size = new System.Drawing.Size(263, 20);
             this.textBoxConfirmarContraseña.TabIndex = 32;
             this.textBoxConfirmarContraseña.UseSystemPasswordChar = true;
             // 
@@ -266,20 +252,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(53, 522);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(35, 339);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(181, 22);
+            this.label2.Size = new System.Drawing.Size(123, 14);
             this.label2.TabIndex = 31;
             this.label2.Text = "Confirmar Contraseña";
             // 
             // btnUsuarioEliminado
             // 
             this.btnUsuarioEliminado.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarioEliminado.Location = new System.Drawing.Point(1383, 133);
-            this.btnUsuarioEliminado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUsuarioEliminado.Location = new System.Drawing.Point(922, 86);
             this.btnUsuarioEliminado.Name = "btnUsuarioEliminado";
-            this.btnUsuarioEliminado.Size = new System.Drawing.Size(224, 55);
+            this.btnUsuarioEliminado.Size = new System.Drawing.Size(149, 36);
             this.btnUsuarioEliminado.TabIndex = 35;
             this.btnUsuarioEliminado.Text = "Ver Usuarios Eliminados";
             this.btnUsuarioEliminado.UseVisualStyleBackColor = true;
@@ -288,9 +272,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Location = new System.Drawing.Point(1676, 0);
+            this.panel1.Location = new System.Drawing.Point(1117, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(117, 1075);
+            this.panel1.Size = new System.Drawing.Size(78, 699);
             this.panel1.TabIndex = 36;
             // 
             // panel2
@@ -316,18 +301,20 @@
             this.panel2.Controls.Add(this.labelPass);
             this.panel2.Controls.Add(this.btnAgregarUsuario);
             this.panel2.Controls.Add(this.labelRol);
-            this.panel2.Location = new System.Drawing.Point(68, 197);
+            this.panel2.Location = new System.Drawing.Point(45, 128);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(499, 802);
+            this.panel2.Size = new System.Drawing.Size(333, 521);
             this.panel2.TabIndex = 37;
             // 
             // checkBoxContraseña2
             // 
             this.checkBoxContraseña2.AutoSize = true;
             this.checkBoxContraseña2.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxContraseña2.Location = new System.Drawing.Point(57, 584);
+            this.checkBoxContraseña2.Location = new System.Drawing.Point(38, 380);
+            this.checkBoxContraseña2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxContraseña2.Name = "checkBoxContraseña2";
-            this.checkBoxContraseña2.Size = new System.Drawing.Size(172, 23);
+            this.checkBoxContraseña2.Size = new System.Drawing.Size(122, 17);
             this.checkBoxContraseña2.TabIndex = 36;
             this.checkBoxContraseña2.Text = "Mostrar Contraseña";
             this.checkBoxContraseña2.UseVisualStyleBackColor = true;
@@ -337,9 +324,10 @@
             // 
             this.checkBoxContraseña1.AutoSize = true;
             this.checkBoxContraseña1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxContraseña1.Location = new System.Drawing.Point(57, 474);
+            this.checkBoxContraseña1.Location = new System.Drawing.Point(38, 308);
+            this.checkBoxContraseña1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.checkBoxContraseña1.Name = "checkBoxContraseña1";
-            this.checkBoxContraseña1.Size = new System.Drawing.Size(172, 23);
+            this.checkBoxContraseña1.Size = new System.Drawing.Size(122, 17);
             this.checkBoxContraseña1.TabIndex = 35;
             this.checkBoxContraseña1.Text = "Mostrar Contraseña";
             this.checkBoxContraseña1.UseVisualStyleBackColor = true;
@@ -347,19 +335,17 @@
             // 
             // textBoxBuscar
             // 
-            this.textBoxBuscar.Location = new System.Drawing.Point(642, 147);
-            this.textBoxBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxBuscar.Location = new System.Drawing.Point(428, 96);
             this.textBoxBuscar.Name = "textBoxBuscar";
-            this.textBoxBuscar.Size = new System.Drawing.Size(478, 26);
+            this.textBoxBuscar.Size = new System.Drawing.Size(320, 20);
             this.textBoxBuscar.TabIndex = 38;
             this.textBoxBuscar.TextChanged += new System.EventHandler(this.textBoxBuscar_TextChanged);
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(1141, 143);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnBuscar.Location = new System.Drawing.Point(761, 93);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(146, 35);
+            this.btnBuscar.Size = new System.Drawing.Size(97, 23);
             this.btnBuscar.TabIndex = 39;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -367,7 +353,7 @@
             // 
             // UCUsuariosSupervisor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.btnBuscar);
@@ -377,8 +363,9 @@
             this.Controls.Add(this.labelTitulo_Usuarios);
             this.Controls.Add(this.dataGridUsuarios);
             this.Controls.Add(this.panel2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "UCUsuariosSupervisor";
-            this.Size = new System.Drawing.Size(1743, 1075);
+            this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCUsuariosSupervisor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).EndInit();
             this.panel2.ResumeLayout(false);

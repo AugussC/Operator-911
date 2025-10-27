@@ -54,22 +54,21 @@
             // dataGridHorarios
             // 
             this.dataGridHorarios.AllowUserToAddRows = false;
+            this.dataGridHorarios.AllowUserToDeleteRows = false;
             this.dataGridHorarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridHorarios.Location = new System.Drawing.Point(610, 197);
-            this.dataGridHorarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridHorarios.Location = new System.Drawing.Point(407, 128);
             this.dataGridHorarios.Name = "dataGridHorarios";
             this.dataGridHorarios.RowHeadersWidth = 62;
-            this.dataGridHorarios.Size = new System.Drawing.Size(1022, 802);
+            this.dataGridHorarios.Size = new System.Drawing.Size(681, 521);
             this.dataGridHorarios.TabIndex = 0;
             // 
             // labelPatrulla
             // 
             this.labelPatrulla.AutoSize = true;
             this.labelPatrulla.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPatrulla.Location = new System.Drawing.Point(50, 169);
-            this.labelPatrulla.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPatrulla.Location = new System.Drawing.Point(33, 110);
             this.labelPatrulla.Name = "labelPatrulla";
-            this.labelPatrulla.Size = new System.Drawing.Size(68, 22);
+            this.labelPatrulla.Size = new System.Drawing.Size(46, 14);
             this.labelPatrulla.TabIndex = 1;
             this.labelPatrulla.Text = "Patrulla";
             // 
@@ -77,10 +76,9 @@
             // 
             this.labelPolicia1.AutoSize = true;
             this.labelPolicia1.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPolicia1.Location = new System.Drawing.Point(50, 276);
-            this.labelPolicia1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPolicia1.Location = new System.Drawing.Point(33, 179);
             this.labelPolicia1.Name = "labelPolicia1";
-            this.labelPolicia1.Size = new System.Drawing.Size(75, 22);
+            this.labelPolicia1.Size = new System.Drawing.Size(50, 14);
             this.labelPolicia1.TabIndex = 2;
             this.labelPolicia1.Text = "Policia 1";
             // 
@@ -88,10 +86,9 @@
             // 
             this.labelPolicia2.AutoSize = true;
             this.labelPolicia2.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPolicia2.Location = new System.Drawing.Point(50, 373);
-            this.labelPolicia2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelPolicia2.Location = new System.Drawing.Point(33, 242);
             this.labelPolicia2.Name = "labelPolicia2";
-            this.labelPolicia2.Size = new System.Drawing.Size(75, 22);
+            this.labelPolicia2.Size = new System.Drawing.Size(50, 14);
             this.labelPolicia2.TabIndex = 3;
             this.labelPolicia2.Text = "Policia 2";
             // 
@@ -99,60 +96,54 @@
             // 
             this.patrullaBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.patrullaBox.FormattingEnabled = true;
-            this.patrullaBox.Location = new System.Drawing.Point(54, 196);
-            this.patrullaBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.patrullaBox.Location = new System.Drawing.Point(36, 127);
             this.patrullaBox.Name = "patrullaBox";
-            this.patrullaBox.Size = new System.Drawing.Size(393, 28);
+            this.patrullaBox.Size = new System.Drawing.Size(263, 21);
             this.patrullaBox.TabIndex = 4;
             // 
             // policia1Box
             // 
             this.policia1Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.policia1Box.FormattingEnabled = true;
-            this.policia1Box.Location = new System.Drawing.Point(54, 303);
-            this.policia1Box.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.policia1Box.Location = new System.Drawing.Point(36, 197);
             this.policia1Box.Name = "policia1Box";
-            this.policia1Box.Size = new System.Drawing.Size(393, 28);
+            this.policia1Box.Size = new System.Drawing.Size(263, 21);
             this.policia1Box.TabIndex = 5;
             // 
             // policia2Box
             // 
             this.policia2Box.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.policia2Box.FormattingEnabled = true;
-            this.policia2Box.Location = new System.Drawing.Point(54, 401);
-            this.policia2Box.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.policia2Box.Location = new System.Drawing.Point(36, 261);
             this.policia2Box.Name = "policia2Box";
-            this.policia2Box.Size = new System.Drawing.Size(393, 28);
+            this.policia2Box.Size = new System.Drawing.Size(263, 21);
             this.policia2Box.TabIndex = 6;
             // 
             // horarioBox
             // 
             this.horarioBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.horarioBox.FormattingEnabled = true;
-            this.horarioBox.Location = new System.Drawing.Point(54, 501);
-            this.horarioBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.horarioBox.Location = new System.Drawing.Point(36, 326);
             this.horarioBox.Name = "horarioBox";
-            this.horarioBox.Size = new System.Drawing.Size(393, 28);
+            this.horarioBox.Size = new System.Drawing.Size(263, 21);
             this.horarioBox.TabIndex = 7;
             // 
             // labelHorario
             // 
             this.labelHorario.AutoSize = true;
             this.labelHorario.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelHorario.Location = new System.Drawing.Point(50, 473);
-            this.labelHorario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelHorario.Location = new System.Drawing.Point(33, 307);
             this.labelHorario.Name = "labelHorario";
-            this.labelHorario.Size = new System.Drawing.Size(67, 22);
+            this.labelHorario.Size = new System.Drawing.Size(45, 14);
             this.labelHorario.TabIndex = 8;
             this.labelHorario.Text = "Horario";
             // 
             // btnEditarPatrullas
             // 
             this.btnEditarPatrullas.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPatrullas.Location = new System.Drawing.Point(74, 697);
-            this.btnEditarPatrullas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEditarPatrullas.Location = new System.Drawing.Point(49, 453);
             this.btnEditarPatrullas.Name = "btnEditarPatrullas";
-            this.btnEditarPatrullas.Size = new System.Drawing.Size(166, 48);
+            this.btnEditarPatrullas.Size = new System.Drawing.Size(111, 31);
             this.btnEditarPatrullas.TabIndex = 9;
             this.btnEditarPatrullas.Text = "Editar";
             this.btnEditarPatrullas.UseVisualStyleBackColor = true;
@@ -162,10 +153,9 @@
             // 
             this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(1457, 133);
-            this.btnLimpiar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnLimpiar.Location = new System.Drawing.Point(971, 86);
             this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(166, 51);
+            this.btnLimpiar.Size = new System.Drawing.Size(111, 33);
             this.btnLimpiar.TabIndex = 10;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
@@ -174,10 +164,9 @@
             // btnEliminarPatrullas
             // 
             this.btnEliminarPatrullas.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPatrullas.Location = new System.Drawing.Point(262, 697);
-            this.btnEliminarPatrullas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEliminarPatrullas.Location = new System.Drawing.Point(175, 453);
             this.btnEliminarPatrullas.Name = "btnEliminarPatrullas";
-            this.btnEliminarPatrullas.Size = new System.Drawing.Size(166, 48);
+            this.btnEliminarPatrullas.Size = new System.Drawing.Size(111, 31);
             this.btnEliminarPatrullas.TabIndex = 11;
             this.btnEliminarPatrullas.Text = "Eliminar";
             this.btnEliminarPatrullas.UseVisualStyleBackColor = true;
@@ -187,10 +176,9 @@
             // 
             this.labelDia.AutoSize = true;
             this.labelDia.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDia.Location = new System.Drawing.Point(50, 576);
-            this.labelDia.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelDia.Location = new System.Drawing.Point(33, 374);
             this.labelDia.Name = "labelDia";
-            this.labelDia.Size = new System.Drawing.Size(35, 22);
+            this.labelDia.Size = new System.Drawing.Size(23, 14);
             this.labelDia.TabIndex = 12;
             this.labelDia.Text = "Dia";
             // 
@@ -198,20 +186,18 @@
             // 
             this.DiaBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.DiaBox.FormattingEnabled = true;
-            this.DiaBox.Location = new System.Drawing.Point(54, 603);
-            this.DiaBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.DiaBox.Location = new System.Drawing.Point(36, 392);
             this.DiaBox.Name = "DiaBox";
-            this.DiaBox.Size = new System.Drawing.Size(393, 28);
+            this.DiaBox.Size = new System.Drawing.Size(263, 21);
             this.DiaBox.TabIndex = 13;
             // 
             // labelTitulo_Usuarios
             // 
             this.labelTitulo_Usuarios.AutoSize = true;
             this.labelTitulo_Usuarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo_Usuarios.Location = new System.Drawing.Point(28, 74);
-            this.labelTitulo_Usuarios.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitulo_Usuarios.Location = new System.Drawing.Point(19, 48);
             this.labelTitulo_Usuarios.Name = "labelTitulo_Usuarios";
-            this.labelTitulo_Usuarios.Size = new System.Drawing.Size(442, 37);
+            this.labelTitulo_Usuarios.Size = new System.Drawing.Size(307, 25);
             this.labelTitulo_Usuarios.TabIndex = 24;
             this.labelTitulo_Usuarios.Text = "Gestion Planilla de Horarios";
             this.labelTitulo_Usuarios.Click += new System.EventHandler(this.labelTitulo_Usuarios_Click);
@@ -219,9 +205,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Location = new System.Drawing.Point(1682, 0);
+            this.panel1.Location = new System.Drawing.Point(1121, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(117, 1075);
+            this.panel1.Size = new System.Drawing.Size(78, 699);
             this.panel1.TabIndex = 26;
             // 
             // panel2
@@ -240,19 +227,19 @@
             this.panel2.Controls.Add(this.labelPolicia2);
             this.panel2.Controls.Add(this.DiaBox);
             this.panel2.Controls.Add(this.horarioBox);
-            this.panel2.Location = new System.Drawing.Point(68, 197);
+            this.panel2.Location = new System.Drawing.Point(45, 128);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(499, 802);
+            this.panel2.Size = new System.Drawing.Size(333, 521);
             this.panel2.TabIndex = 27;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1000, 65);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(667, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(277, 37);
+            this.label1.Size = new System.Drawing.Size(192, 25);
             this.label1.TabIndex = 28;
             this.label1.Text = "Lista de Horarios";
             // 
@@ -261,10 +248,9 @@
             this.btnVerPlanilla.BackColor = System.Drawing.SystemColors.Control;
             this.btnVerPlanilla.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVerPlanilla.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerPlanilla.Location = new System.Drawing.Point(621, 133);
-            this.btnVerPlanilla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnVerPlanilla.Location = new System.Drawing.Point(414, 86);
             this.btnVerPlanilla.Name = "btnVerPlanilla";
-            this.btnVerPlanilla.Size = new System.Drawing.Size(208, 51);
+            this.btnVerPlanilla.Size = new System.Drawing.Size(139, 33);
             this.btnVerPlanilla.TabIndex = 29;
             this.btnVerPlanilla.Text = "Ver Planilla";
             this.btnVerPlanilla.UseVisualStyleBackColor = false;
@@ -272,7 +258,7 @@
             // 
             // UCPlanilla
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnVerPlanilla);
             this.Controls.Add(this.label1);
@@ -280,9 +266,8 @@
             this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.dataGridHorarios);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UCPlanilla";
-            this.Size = new System.Drawing.Size(1743, 1075);
+            this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCPlanilla_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridHorarios)).EndInit();
             this.panel2.ResumeLayout(false);

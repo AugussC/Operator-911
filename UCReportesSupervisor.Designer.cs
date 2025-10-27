@@ -52,6 +52,8 @@
             // 
             // dataGridReportes
             // 
+            this.dataGridReportes.AllowUserToAddRows = false;
+            this.dataGridReportes.AllowUserToDeleteRows = false;
             this.dataGridReportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridReportes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -64,10 +66,10 @@
             this.dataGridViewTextBoxColumn5});
             this.dataGridReportes.Location = new System.Drawing.Point(124, 216);
             this.dataGridReportes.Name = "dataGridReportes";
+            this.dataGridReportes.RowHeadersVisible = false;
             this.dataGridReportes.RowHeadersWidth = 62;
             this.dataGridReportes.Size = new System.Drawing.Size(843, 424);
             this.dataGridReportes.TabIndex = 14;
-     
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -208,7 +210,7 @@
             this.labelHasta.TabIndex = 36;
             this.labelHasta.Text = "Hasta";
             // 
-            // UCResportesSupervisor
+            // UCReportesSupervisor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -224,7 +226,7 @@
             this.Controls.Add(this.dataGridReportes);
             this.Controls.Add(this.pictureBoxReporte);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "UCResportesSupervisor";
+            this.Name = "UCReportesSupervisor";
             this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCResportesSupervisor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReportes)).EndInit();
