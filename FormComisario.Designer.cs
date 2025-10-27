@@ -55,7 +55,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnHorarios);
             this.panel1.Controls.Add(this.btnPolicias);
             this.panel1.Controls.Add(this.btnPatrulla);
@@ -69,7 +68,7 @@
             // btnHorarios
             // 
             this.btnHorarios.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHorarios.Location = new System.Drawing.Point(20, 642);
+            this.btnHorarios.Location = new System.Drawing.Point(20, 423);
             this.btnHorarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnHorarios.Name = "btnHorarios";
             this.btnHorarios.Size = new System.Drawing.Size(226, 77);
@@ -81,7 +80,7 @@
             // btnPolicias
             // 
             this.btnPolicias.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPolicias.Location = new System.Drawing.Point(20, 517);
+            this.btnPolicias.Location = new System.Drawing.Point(20, 298);
             this.btnPolicias.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPolicias.Name = "btnPolicias";
             this.btnPolicias.Size = new System.Drawing.Size(226, 77);
@@ -93,7 +92,7 @@
             // btnPatrulla
             // 
             this.btnPatrulla.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPatrulla.Location = new System.Drawing.Point(20, 392);
+            this.btnPatrulla.Location = new System.Drawing.Point(20, 173);
             this.btnPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnPatrulla.Name = "btnPatrulla";
             this.btnPatrulla.Size = new System.Drawing.Size(226, 77);
@@ -105,7 +104,7 @@
             // btnInicio
             // 
             this.btnInicio.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInicio.Location = new System.Drawing.Point(20, 275);
+            this.btnInicio.Location = new System.Drawing.Point(20, 56);
             this.btnInicio.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnInicio.Name = "btnInicio";
             this.btnInicio.Size = new System.Drawing.Size(226, 77);
@@ -117,9 +116,9 @@
             // panelNavegacion
             // 
             this.panelNavegacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.panelNavegacion.BackgroundImage = global::Operador_911.Properties.Resources.foto_policia_621;
-            this.panelNavegacion.Controls.Add(this.btnCerrarSesion);
             this.panelNavegacion.Controls.Add(this.tituloPrograma);
+            this.panelNavegacion.Controls.Add(this.pictureBox1);
+            this.panelNavegacion.Controls.Add(this.btnCerrarSesion);
             this.panelNavegacion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelNavegacion.Location = new System.Drawing.Point(0, 0);
             this.panelNavegacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -144,23 +143,22 @@
             // tituloPrograma
             // 
             this.tituloPrograma.AutoSize = true;
-            this.tituloPrograma.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.tituloPrograma.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tituloPrograma.Location = new System.Drawing.Point(76, 22);
+            this.tituloPrograma.Location = new System.Drawing.Point(138, 26);
             this.tituloPrograma.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tituloPrograma.Name = "tituloPrograma";
             this.tituloPrograma.Size = new System.Drawing.Size(119, 22);
-            this.tituloPrograma.TabIndex = 1;
+            this.tituloPrograma.TabIndex = 4;
             this.tituloPrograma.Text = "911 Operador";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
-            this.pictureBox1.Location = new System.Drawing.Point(20, 21);
+            this.pictureBox1.Location = new System.Drawing.Point(20, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(225, 227);
-            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.Size = new System.Drawing.Size(110, 80);
+            this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // FormComisario
@@ -186,7 +184,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelNavegacion;
-        private System.Windows.Forms.Label tituloPrograma;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnPatrulla;
         private System.Windows.Forms.Button btnInicio;
@@ -194,6 +191,7 @@
         private System.Windows.Forms.Button btnHorarios;
         private System.Windows.Forms.Button btnPolicias;
         private System.Windows.Forms.Button btnCerrarSesion;
+        private System.Windows.Forms.Label tituloPrograma;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

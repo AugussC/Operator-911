@@ -33,6 +33,7 @@ namespace Operador_911
         private int idPatrullaSeleccionada = 0;
         private string valorAnteriorPatrulla = null;
         private int ordenActual = 1;
+        private string estadoAnterior = "";
 
         private List<Nodo> nodos = new List<Nodo>();
        
@@ -684,6 +685,40 @@ namespace Operador_911
             // 🔹 Dibujar nueva ruta
             string nombreRuta = $"Ruta_P{idPatrullaNueva}_A{idAlerta}";
             CalcularRuta(posPatrulla, posAlerta, nombreRuta, Color.Blue);
+
+            // ------------------------------------------------------------------
+            // ✅ Control de cambios en columna ESTADO
+            // ------------------------------------------------------------------
+            if (dataGridViewAlertas.Columns[e.ColumnIndex].Name == "Estado")
+            {
+                string nuevoEstado = dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+
+                // ❌ No permitir En Espera → Atendida directo
+                if (estadoAnterior == "En Espera" && nuevoEstado == "Atendida")
+                {
+                    MessageBox.Show("No se puede pasar de 'En Espera' directamente a 'Atendida'. Debe estar primero 'Asignada'.",
+                        "Cambio inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = estadoAnterior;
+                    return;
+                }
+
+                if (nuevoEstado == "Atendida")
+                {
+                    idAlerta = Convert.ToInt32(
+                        dataGridViewAlertas.Rows[e.RowIndex].Cells["IdAlerta"].Value
+                    );
+
+                    FormReporte Reporte = new FormReporte(idAlerta);
+                    DialogResult result = Reporte.ShowDialog();
+
+                    if (result == DialogResult.Cancel)
+                    {
+                        dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "Asignada";
+                    }
+                }
+            }
+
 
             // 🔹 Refrescar grilla
             CargarAlertas();
@@ -2448,7 +2483,8 @@ namespace Operador_911
 
         private void btnGenerarReporte_Click(object sender, EventArgs e)
         {
-            if (dataGridViewAlertas.SelectedRows.Count == 0) return;
+            if (dataGridViewAlertas.SelectedRows.Count == 0)
+            return;
 
             int idAlerta = Convert.ToInt32(
                 dataGridViewAlertas.SelectedRows[0].Cells["id_alerta"].Value
