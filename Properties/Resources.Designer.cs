@@ -143,6 +143,26 @@ namespace Operador_911.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Escudo_de_la_Provincia_de_Corrientes__variante_3__svg_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("Escudo_de_la_Provincia_de_Corrientes__variante_3_.svg-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Escudo_de_la_Provincia_de_Corrientes__variante_3_1 {
+            get {
+                object obj = ResourceManager.GetObject("Escudo_de_la_Provincia_de_Corrientes__variante_3_1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap fondo_de_policia {
             get {
                 object obj = ResourceManager.GetObject("fondo de policia", resourceCulture);
@@ -246,6 +266,16 @@ namespace Operador_911.Properties {
         internal static System.Drawing.Bitmap Reporte_Policial {
             get {
                 object obj = ResourceManager.GetObject("Reporte Policial", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WhatsApp_Image_2025_09_12_at_22_07_25_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("WhatsApp_Image_2025-09-12_at_22.07.25-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -15,8 +15,6 @@ namespace Operador_911
         public UCReportesSupervisor()
         {
             InitializeComponent();
-            pictureBoxReporte.Visible = false;
-            btnOcultarReporte.Visible = false;
             CargarDatosEjemplo();
         }
 
@@ -27,16 +25,11 @@ namespace Operador_911
 
         private void btnVerReporte_Click(object sender, EventArgs e)
         {
-            pictureBoxReporte.Visible = true;
-            pictureBoxReporte.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBoxReporte.BringToFront();
-            btnOcultarReporte.Visible = true;
+            FormReporteGenerado VerReporte = new FormReporteGenerado();
+            VerReporte.StartPosition = FormStartPosition.CenterParent;
+            VerReporte.ShowDialog(); // 👈 Esto la abre como modal
         }
-        private void btnOcultarReporte_Click(object sender, EventArgs e)
-        {
-            pictureBoxReporte.Visible = false;
-            btnOcultarReporte.Visible = false;
-        }
+        
 
         private void CargarDatosEjemplo()
         {

@@ -39,15 +39,12 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.btnVerReporte = new System.Windows.Forms.Button();
-            this.pictureBoxReporte = new System.Windows.Forms.PictureBox();
-            this.btnOcultarReporte = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.labelDesde = new System.Windows.Forms.Label();
             this.labelHasta = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReportes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReporte)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridReportes
@@ -148,27 +145,6 @@
             this.btnVerReporte.UseVisualStyleBackColor = true;
             this.btnVerReporte.Click += new System.EventHandler(this.btnVerReporte_Click);
             // 
-            // pictureBoxReporte
-            // 
-            this.pictureBoxReporte.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBoxReporte.Image = global::Operador_911.Properties.Resources.Reporte_Policial;
-            this.pictureBoxReporte.Location = new System.Drawing.Point(117, 68);
-            this.pictureBoxReporte.Name = "pictureBoxReporte";
-            this.pictureBoxReporte.Size = new System.Drawing.Size(857, 562);
-            this.pictureBoxReporte.TabIndex = 25;
-            this.pictureBoxReporte.TabStop = false;
-            // 
-            // btnOcultarReporte
-            // 
-            this.btnOcultarReporte.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOcultarReporte.Location = new System.Drawing.Point(427, 14);
-            this.btnOcultarReporte.Name = "btnOcultarReporte";
-            this.btnOcultarReporte.Size = new System.Drawing.Size(228, 47);
-            this.btnOcultarReporte.TabIndex = 26;
-            this.btnOcultarReporte.Text = "Ocultar Reporte";
-            this.btnOcultarReporte.UseVisualStyleBackColor = true;
-            this.btnOcultarReporte.Click += new System.EventHandler(this.btnOcultarReporte_Click);
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -220,17 +196,14 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.dateTimePicker2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnOcultarReporte);
             this.Controls.Add(this.btnVerReporte);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridReportes);
-            this.Controls.Add(this.pictureBoxReporte);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UCReportesSupervisor";
             this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCResportesSupervisor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReportes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxReporte)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,8 +221,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.PictureBox pictureBoxReporte;
-        private System.Windows.Forms.Button btnOcultarReporte;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;

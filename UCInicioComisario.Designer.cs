@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.labelEficienciaJurisdiccion = new System.Windows.Forms.Label();
             this.labelAlertasAtendidas = new System.Windows.Forms.Label();
@@ -48,10 +48,12 @@
             this.dateTimeHasta = new System.Windows.Forms.DateTimePicker();
             this.labelDesde = new System.Windows.Forms.Label();
             this.labelHasta = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTitulo
@@ -67,7 +69,7 @@
             // labelEficienciaJurisdiccion
             // 
             this.labelEficienciaJurisdiccion.AutoSize = true;
-            this.labelEficienciaJurisdiccion.Location = new System.Drawing.Point(618, 147);
+            this.labelEficienciaJurisdiccion.Location = new System.Drawing.Point(548, 13);
             this.labelEficienciaJurisdiccion.Name = "labelEficienciaJurisdiccion";
             this.labelEficienciaJurisdiccion.Size = new System.Drawing.Size(53, 13);
             this.labelEficienciaJurisdiccion.TabIndex = 9;
@@ -76,7 +78,7 @@
             // labelAlertasAtendidas
             // 
             this.labelAlertasAtendidas.AutoSize = true;
-            this.labelAlertasAtendidas.Location = new System.Drawing.Point(321, 147);
+            this.labelAlertasAtendidas.Location = new System.Drawing.Point(230, 13);
             this.labelAlertasAtendidas.Name = "labelAlertasAtendidas";
             this.labelAlertasAtendidas.Size = new System.Drawing.Size(84, 13);
             this.labelAlertasAtendidas.TabIndex = 8;
@@ -85,7 +87,7 @@
             // labelPatrullas
             // 
             this.labelPatrullas.AutoSize = true;
-            this.labelPatrullas.Location = new System.Drawing.Point(844, 147);
+            this.labelPatrullas.Location = new System.Drawing.Point(803, 13);
             this.labelPatrullas.Name = "labelPatrullas";
             this.labelPatrullas.Size = new System.Drawing.Size(47, 13);
             this.labelPatrullas.TabIndex = 7;
@@ -94,7 +96,7 @@
             // labelPolicias
             // 
             this.labelPolicias.AutoSize = true;
-            this.labelPolicias.Location = new System.Drawing.Point(142, 147);
+            this.labelPolicias.Location = new System.Drawing.Point(45, 13);
             this.labelPolicias.Name = "labelPolicias";
             this.labelPolicias.Size = new System.Drawing.Size(43, 13);
             this.labelPolicias.TabIndex = 6;
@@ -121,17 +123,17 @@
             // 
             // chart2
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chart2.Legends.Add(legend7);
+            chartArea1.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart2.Legends.Add(legend1);
             this.chart2.Location = new System.Drawing.Point(21, 26);
             this.chart2.Name = "chart2";
             this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series7.ChartArea = "ChartArea1";
-            series7.Legend = "Legend1";
-            series7.Name = "Series1";
-            this.chart2.Series.Add(series7);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart2.Series.Add(series1);
             this.chart2.Size = new System.Drawing.Size(418, 286);
             this.chart2.TabIndex = 6;
             this.chart2.Text = "chart2";
@@ -148,16 +150,16 @@
             // 
             // chart1
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chart1.Legends.Add(legend8);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(24, 26);
             this.chart1.Name = "chart1";
-            series8.ChartArea = "ChartArea1";
-            series8.Legend = "Legend1";
-            series8.Name = "Series1";
-            this.chart1.Series.Add(series8);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart1.Series.Add(series2);
             this.chart1.Size = new System.Drawing.Size(418, 286);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
@@ -194,6 +196,19 @@
             this.labelHasta.TabIndex = 34;
             this.labelHasta.Text = "Hasta";
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel4.Controls.Add(this.labelPolicias);
+            this.panel4.Controls.Add(this.labelAlertasAtendidas);
+            this.panel4.Controls.Add(this.labelEficienciaJurisdiccion);
+            this.panel4.Controls.Add(this.labelPatrullas);
+            this.panel4.Location = new System.Drawing.Point(91, 97);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(947, 123);
+            this.panel4.TabIndex = 30;
+            // 
             // UCInicioComisario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,11 +220,8 @@
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.labelEficienciaJurisdiccion);
-            this.Controls.Add(this.labelAlertasAtendidas);
-            this.Controls.Add(this.labelPatrullas);
-            this.Controls.Add(this.labelPolicias);
             this.Controls.Add(this.labelTitulo);
+            this.Controls.Add(this.panel4);
             this.Name = "UCInicioComisario";
             this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCInicioComisario_Load);
@@ -217,6 +229,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,5 +252,6 @@
         private System.Windows.Forms.DateTimePicker dateTimeHasta;
         private System.Windows.Forms.Label labelDesde;
         private System.Windows.Forms.Label labelHasta;
+        private System.Windows.Forms.Panel panel4;
     }
 }

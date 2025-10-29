@@ -34,7 +34,6 @@ namespace Operador_911
         private string valorAnteriorPatrulla = null;
         private int ordenActual = 1;
         private string estadoAnterior = "";
-
         private List<Nodo> nodos = new List<Nodo>();
        
 
@@ -601,9 +600,20 @@ namespace Operador_911
 
         private void dataGridViewAlertas_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            if (e.RowIndex >= 0 && dataGridViewAlertas.Columns[e.ColumnIndex].Name == "Patrulla")
+            if (e.RowIndex < 0) return;
+
+            var grid = dataGridViewAlertas;
+
+            // 🔹 Guardar valor anterior de patrulla
+            if (grid.Columns[e.ColumnIndex].Name == "Patrulla")
             {
-                valorAnteriorPatrulla = dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+                valorAnteriorPatrulla = grid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+            }
+
+            // 🔹 Guardar estado anterior
+            if (grid.Columns[e.ColumnIndex].Name == "Estado")
+            {
+                estadoAnterior = grid.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
             }
         }
 
@@ -612,118 +622,149 @@ namespace Operador_911
             if (e.RowIndex < 0) return;
 
             var grid = dataGridViewAlertas;
-            if (grid.Columns[e.ColumnIndex].Name != "Patrulla") return;
+            string nombreColumna = grid.Columns[e.ColumnIndex].Name;
 
-            // 📌 Datos base
-            string codigoNuevo = grid.Rows[e.RowIndex].Cells["Patrulla"].Value?.ToString() ?? "Sin Asignar";
-            string direccionAlerta = grid.Rows[e.RowIndex].Cells["Direccion"].Value?.ToString();
-            int idAlerta = ObtenerIdAlertaPorDireccion(direccionAlerta);
-
-            if (idAlerta <= 0)
+            // ==================================================================
+            // 🔹 CAMBIO DE PATRULLA
+            // ==================================================================
+            if (nombreColumna == "Patrulla")
             {
-                MessageBox.Show("No se encontró el ID de la alerta seleccionada.");
-                return;
-            }
+                string codigoNuevo = grid.Rows[e.RowIndex].Cells["Patrulla"].Value?.ToString() ?? "Sin Asignar";
+                string direccionAlerta = grid.Rows[e.RowIndex].Cells["Direccion"].Value?.ToString();
+                int idAlerta = ObtenerIdAlertaPorDireccion(direccionAlerta);
 
-            // 🔹 Caso: "Sin Asignar" → eliminar ruta y liberar
-            if (codigoNuevo == "Sin Asignar")
-            {
-                if (!string.IsNullOrEmpty(valorAnteriorPatrulla) && valorAnteriorPatrulla != "Sin Asignar")
+                if (idAlerta <= 0)
+                {
+                    MessageBox.Show("No se encontró el ID de la alerta seleccionada.");
+                    return;
+                }
+
+                // 📌 Caso: "Sin Asignar" → eliminar ruta y liberar
+                if (codigoNuevo == "Sin Asignar")
+                {
+                    if (!string.IsNullOrEmpty(valorAnteriorPatrulla) && valorAnteriorPatrulla != "Sin Asignar")
+                    {
+                        int idPatrullaAnterior = ObtenerIdPatrullaPorCodigo(valorAnteriorPatrulla);
+                        EliminarRutaPorNombre($"Ruta_P{idPatrullaAnterior}_A{idAlerta}");
+                        LiberarPatrullaDeAlerta(idAlerta);
+                    }
+
+                    CargarAlertas();
+                    valorAnteriorPatrulla = null;
+                    return;
+                }
+
+                // 📌 Caso: nueva patrulla asignada
+                int idPatrullaNueva = ObtenerIdPatrullaPorCodigo(codigoNuevo);
+
+                // 🚫 Verificar si ya está asignada
+                if (PatrullaOcupada(idPatrullaNueva))
+                {
+                    MessageBox.Show(
+                        $"La patrulla {codigoNuevo} ya está cumpliendo una alerta.",
+                        "Patrulla ocupada",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+
+                    grid.Rows[e.RowIndex].Cells["Patrulla"].Value = valorAnteriorPatrulla ?? "Sin Asignar";
+                    return;
+                }
+
+                // 📌 Si tenía patrulla anterior distinta → liberar y borrar ruta vieja
+                if (!string.IsNullOrEmpty(valorAnteriorPatrulla) &&
+                    valorAnteriorPatrulla != "Sin Asignar" &&
+                    valorAnteriorPatrulla != codigoNuevo)
                 {
                     int idPatrullaAnterior = ObtenerIdPatrullaPorCodigo(valorAnteriorPatrulla);
                     EliminarRutaPorNombre($"Ruta_P{idPatrullaAnterior}_A{idAlerta}");
                     LiberarPatrullaDeAlerta(idAlerta);
                 }
 
+                // 📌 Asignar nueva patrulla
+                AsignarPatrullaAlerta(idPatrullaNueva, idAlerta);
+
+                // 📌 Obtener coordenadas
+                PointLatLng posPatrulla = ObtenerCoordenadasPatrulla(idPatrullaNueva);
+                PointLatLng posAlerta = ObtenerCoordenadasAlerta(idAlerta);
+
+                if (posPatrulla.Lat == 0 && posPatrulla.Lng == 0)
+                {
+                    MessageBox.Show("No se encontraron coordenadas para la patrulla.");
+                    return;
+                }
+
+                if (posAlerta.Lat == 0 && posAlerta.Lng == 0)
+                {
+                    MessageBox.Show("No se encontraron coordenadas para la alerta.");
+                    return;
+                }
+
+                // 📌 Dibujar nueva ruta
+                string nombreRuta = $"Ruta_P{idPatrullaNueva}_A{idAlerta}";
+                CalcularRuta(posPatrulla, posAlerta, nombreRuta, Color.Blue);
+
                 CargarAlertas();
                 valorAnteriorPatrulla = null;
                 return;
             }
 
-            // 🔹 Caso: nueva patrulla asignada
-            int idPatrullaNueva = ObtenerIdPatrullaPorCodigo(codigoNuevo);
-
-            // 🚫 Verificar si ya está asignada a otra alerta en la BDD
-            if (PatrullaOcupada(idPatrullaNueva))
+            // ==================================================================
+            // 🔹 CAMBIO DE ESTADO
+            // ==================================================================
+            if (nombreColumna == "Estado")
             {
-                MessageBox.Show($"La patrulla {codigoNuevo} ya está cumpliendo una alerta.",
-                    "Patrulla ocupada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                string nuevoEstado = grid.Rows[e.RowIndex].Cells["Estado"].Value?.ToString();
+                int idAlerta = Convert.ToInt32(grid.Rows[e.RowIndex].Cells["id_alerta"].Value);
 
-                grid.Rows[e.RowIndex].Cells["Patrulla"].Value = valorAnteriorPatrulla ?? "Sin Asignar";
-                return;
-            }
+                // Verificar si tiene patrulla
+                bool tienePatrullaAsignada = grid.Rows[e.RowIndex].Cells["Patrulla"].Value?.ToString() != "Sin Asignar";
 
-            // 🔹 Si tenía patrulla anterior distinta → liberar y borrar ruta vieja
-            if (!string.IsNullOrEmpty(valorAnteriorPatrulla) &&
-                valorAnteriorPatrulla != "Sin Asignar" &&
-                valorAnteriorPatrulla != codigoNuevo)
-            {
-                int idPatrullaAnterior = ObtenerIdPatrullaPorCodigo(valorAnteriorPatrulla);
-                EliminarRutaPorNombre($"Ruta_P{idPatrullaAnterior}_A{idAlerta}");
-                LiberarPatrullaDeAlerta(idAlerta);
-            }
-
-            // 🔹 Asignar nueva patrulla
-            AsignarPatrullaAlerta(idPatrullaNueva, idAlerta);
-
-            // 🔹 Obtener coordenadas
-            PointLatLng posPatrulla = ObtenerCoordenadasPatrulla(idPatrullaNueva);
-            PointLatLng posAlerta = ObtenerCoordenadasAlerta(idAlerta);
-
-            if (posPatrulla.Lat == 0 && posPatrulla.Lng == 0)
-            {
-                MessageBox.Show("No se encontraron coordenadas para la patrulla.");
-                return;
-            }
-
-            if (posAlerta.Lat == 0 && posAlerta.Lng == 0)
-            {
-                MessageBox.Show("No se encontraron coordenadas para la alerta.");
-                return;
-            }
-
-            // 🔹 Dibujar nueva ruta
-            string nombreRuta = $"Ruta_P{idPatrullaNueva}_A{idAlerta}";
-            CalcularRuta(posPatrulla, posAlerta, nombreRuta, Color.Blue);
-
-            // ------------------------------------------------------------------
-            // ✅ Control de cambios en columna ESTADO
-            // ------------------------------------------------------------------
-            if (dataGridViewAlertas.Columns[e.ColumnIndex].Name == "Estado")
-            {
-                string nuevoEstado = dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
-
-                // ❌ No permitir En Espera → Atendida directo
-                if (estadoAnterior == "En Espera" && nuevoEstado == "Atendida")
+                // ❌ Caso: En Espera → Atendida sin patrulla
+                if (estadoAnterior == "En Espera" && nuevoEstado == "Atendida" && !tienePatrullaAsignada)
                 {
-                    MessageBox.Show("No se puede pasar de 'En Espera' directamente a 'Atendida'. Debe estar primero 'Asignada'.",
-                        "Cambio inválido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                    dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = estadoAnterior;
+                    MessageBox.Show("No se puede marcar como 'Atendida' sin patrulla asignada.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    grid.Rows[e.RowIndex].Cells["Estado"].Value = estadoAnterior;
                     return;
                 }
 
-                if (nuevoEstado == "Atendida")
+                // ❌ Caso: Asignada → En Espera con patrulla
+                if (estadoAnterior == "Asignada" && nuevoEstado == "En Espera" && tienePatrullaAsignada)
                 {
-                    idAlerta = Convert.ToInt32(
-                        dataGridViewAlertas.Rows[e.RowIndex].Cells["IdAlerta"].Value
-                    );
+                    MessageBox.Show("No se puede volver a 'En Espera' mientras tiene una patrulla asignada.",
+                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    grid.Rows[e.RowIndex].Cells["Estado"].Value = estadoAnterior;
+                    return;
+                }
 
-                    FormReporte Reporte = new FormReporte(idAlerta);
-                    DialogResult result = Reporte.ShowDialog();
+                // ✅ Caso: Asignada → Atendida (válido) → abrir reporte
+                if (estadoAnterior == "Asignada" && nuevoEstado == "Atendida")
+                {   
 
+                    FormReporte reporte = new FormReporte(idAlerta);
+                    DialogResult result = reporte.ShowDialog();
+
+                    // Si cancela, volver a estado anterior
                     if (result == DialogResult.Cancel)
                     {
-                        dataGridViewAlertas.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = "Asignada";
+                        grid.Rows[e.RowIndex].Cells["Estado"].Value = "Asignada";
+                        return;
                     }
+                    DataGridViewRow fila = dataGridViewAlertas.Rows[e.RowIndex];
+                    string nuevaPatrulla = fila.Cells["Patrulla"].Value?.ToString() ?? "";
+                    int idPatrulla = ObtenerIdPatrullaPorCodigo(nuevaPatrulla);
+                    string nombreRuta = $"Ruta_P{idPatrulla}_A{idAlerta}";
+                    EliminarRutaPorNombre(nombreRuta);
+                    CargarAlertas();
                 }
+
+                estadoAnterior = nuevoEstado; // Guardar nuevo estado
             }
-
-
-            // 🔹 Refrescar grilla
-            CargarAlertas();
-            valorAnteriorPatrulla = null;
         }
+
+
+
         private PointLatLng ObtenerCoordenadasPrimeraUbicacion(int idPatrulla)
         {
             using (SqlConnection conn = Database.GetConnection())
@@ -865,6 +906,8 @@ namespace Operador_911
                         FROM Alerta AS a
                         LEFT JOIN Patrulla AS p ON a.id_patrulla = p.id_patrulla
                         LEFT JOIN Llamada AS l ON a.id_alerta = l.id_alerta
+                        WHERE (a.estado <> 'Atendida' OR a.estado IS NULL)
+                        AND (a.fecha_cierre IS NULL OR a.fecha_cierre = '')
                      ";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -880,8 +923,8 @@ namespace Operador_911
                     DataGridViewTextBoxColumn colIdAlerta = new DataGridViewTextBoxColumn();
                     colIdAlerta.Name = "id_alerta";
                     colIdAlerta.DataPropertyName = "id_alerta";
-                    colIdAlerta.HeaderText = "ID Alerta";
-                    colIdAlerta.Visible = false; // oculta en la UI
+                    colIdAlerta.HeaderText = "Alerta";
+                    colIdAlerta.Width = 50;
                     dataGridViewAlertas.Columns.Add(colIdAlerta);
 
                     // 🔹 Columna Patrulla (ComboBox)
@@ -2476,27 +2519,7 @@ namespace Operador_911
             ActualizarUbicacionesYAlertas();
         }
 
-        private void dataGridViewAlertas_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void btnGenerarReporte_Click(object sender, EventArgs e)
-        {
-            if (dataGridViewAlertas.SelectedRows.Count == 0)
-            return;
-
-            int idAlerta = Convert.ToInt32(
-                dataGridViewAlertas.SelectedRows[0].Cells["id_alerta"].Value
-            );
-
-            FormReporte reporte = new FormReporte(idAlerta);
-            reporte.ShowDialog();
-
-            // Recargar alertas al cerrar
-            CargarAlertas();
-        }
-
+       
     }
 }
 

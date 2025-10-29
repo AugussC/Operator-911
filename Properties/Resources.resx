@@ -121,17 +121,23 @@
   <data name="Reporte Policial" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Reporte Policial.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="bombero (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\bombero (2).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="franja foto policia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\franja foto policia.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="istockphoto-599271426-612x612 (1) (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\istockphoto-599271426-612x612 (1) (1).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Escudo_de_la_Provincia_de_Corrientes__variante_3_.svg-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Escudo_de_la_Provincia_de_Corrientes__variante_3_.svg-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="ambulanciaLogo2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ambulanciaLogo2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="istockphoto-599271426-612x612" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\istockphoto-599271426-612x612.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="foto policia 62" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\foto policia 62.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="iconoPatrulla" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconoPatrulla.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -145,9 +151,6 @@
   <data name="4fTAsWOK_400x400 (1) (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4fTAsWOK_400x400 (1) (1).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="foto policia 62" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\foto policia 62.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="istockphoto-599271426-612x612 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\istockphoto-599271426-612x612 (1).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -157,22 +160,28 @@
   <data name="iconoChorro" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\iconoChorro.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="istockphoto-599271426-612x612" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\istockphoto-599271426-612x612.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="4fTAsWOK_400x400" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4fTAsWOK_400x400.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="foto policia franja 272" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\foto policia franja 272.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="bombero (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bombero (2).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="foto policia 621" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\foto policia 621.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ambulanciaLogo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ambulanciaLogo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Escudo_de_la_Provincia_de_Corrientes__variante_3_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Escudo_de_la_Provincia_de_Corrientes__variante_3_.svg-removebg-preview1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="fondo de policia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fondo de policia.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="foto policia 621" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\foto policia 621.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="WhatsApp_Image_2025-09-12_at_22.07.25-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WhatsApp_Image_2025-09-12_at_22.07.25-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
