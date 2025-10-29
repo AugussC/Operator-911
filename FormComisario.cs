@@ -25,7 +25,7 @@ namespace Operador_911
         private void FormComisario_Load(object sender, EventArgs e)
         {
 
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             LoadUserControl(new UCInicioComisario());
 
         }

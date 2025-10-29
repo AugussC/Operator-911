@@ -102,7 +102,7 @@
             this.btnActualizarMapa.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnActualizarMapa.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnActualizarMapa.Location = new System.Drawing.Point(1138, 11);
-            this.btnActualizarMapa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnActualizarMapa.Margin = new System.Windows.Forms.Padding(2);
             this.btnActualizarMapa.Name = "btnActualizarMapa";
             this.btnActualizarMapa.Size = new System.Drawing.Size(109, 27);
             this.btnActualizarMapa.TabIndex = 4;
@@ -117,7 +117,7 @@
             this.btnCerrarSesion.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnCerrarSesion.Location = new System.Drawing.Point(1251, 10);
-            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(2);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(109, 27);
             this.btnCerrarSesion.TabIndex = 3;
@@ -237,7 +237,6 @@
             this.panelForm.Name = "panelForm";
             this.panelForm.Size = new System.Drawing.Size(425, 688);
             this.panelForm.TabIndex = 8;
-            this.panelForm.Paint += new System.Windows.Forms.PaintEventHandler(this.panelForm_Paint);
             // 
             // dataGridViewAlertas
             // 
@@ -354,7 +353,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 749);
+            this.ClientSize = new System.Drawing.Size(1320, 749);
             this.Controls.Add(this.panelForm);
             this.Controls.Add(this.panelMapa);
             this.Controls.Add(this.panelNavegacion);
