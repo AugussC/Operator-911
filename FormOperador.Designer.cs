@@ -237,6 +237,7 @@
             this.panelForm.Name = "panelForm";
             this.panelForm.Size = new System.Drawing.Size(425, 688);
             this.panelForm.TabIndex = 8;
+            this.panelForm.Paint += new System.Windows.Forms.PaintEventHandler(this.panelForm_Paint);
             // 
             // dataGridViewAlertas
             // 
