@@ -2519,7 +2519,10 @@ namespace Operador_911
             ActualizarUbicacionesYAlertas();
         }
 
-       
+        private void panelNavegacion_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 

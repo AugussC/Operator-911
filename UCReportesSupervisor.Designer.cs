@@ -29,14 +29,6 @@
         private void InitializeComponent()
         {
             this.dataGridReportes = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_patrulla = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.btnVerReporte = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -52,94 +44,32 @@
             this.dataGridReportes.AllowUserToAddRows = false;
             this.dataGridReportes.AllowUserToDeleteRows = false;
             this.dataGridReportes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridReportes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.Column1,
-            this.Column2,
-            this.dataGridViewTextBoxColumn2,
-            this.id_patrulla,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5});
-            this.dataGridReportes.Location = new System.Drawing.Point(124, 216);
+            this.dataGridReportes.Location = new System.Drawing.Point(186, 332);
+            this.dataGridReportes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridReportes.Name = "dataGridReportes";
             this.dataGridReportes.RowHeadersVisible = false;
             this.dataGridReportes.RowHeadersWidth = 62;
-            this.dataGridReportes.Size = new System.Drawing.Size(843, 424);
+            this.dataGridReportes.Size = new System.Drawing.Size(1264, 652);
             this.dataGridReportes.TabIndex = 14;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "ID_Reporte";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 3;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 150;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Fecha Inicio";
-            this.Column1.MinimumWidth = 8;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 150;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Fecha Fin";
-            this.Column2.MinimumWidth = 8;
-            this.Column2.Name = "Column2";
-            this.Column2.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "ID_Alerta";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 150;
-            // 
-            // id_patrulla
-            // 
-            this.id_patrulla.HeaderText = "ID_Patrulla";
-            this.id_patrulla.MinimumWidth = 8;
-            this.id_patrulla.Name = "id_patrulla";
-            this.id_patrulla.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Direccion";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Nombre";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Descripcion";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 8;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 150;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(434, 96);
+            this.label1.Location = new System.Drawing.Point(651, 148);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(226, 27);
+            this.label1.Size = new System.Drawing.Size(325, 39);
             this.label1.TabIndex = 16;
             this.label1.Text = "Reportes Recibidos";
             // 
             // btnVerReporte
             // 
             this.btnVerReporte.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerReporte.Location = new System.Drawing.Point(782, 174);
+            this.btnVerReporte.Location = new System.Drawing.Point(1173, 268);
+            this.btnVerReporte.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnVerReporte.Name = "btnVerReporte";
-            this.btnVerReporte.Size = new System.Drawing.Size(185, 36);
+            this.btnVerReporte.Size = new System.Drawing.Size(278, 55);
             this.btnVerReporte.TabIndex = 23;
             this.btnVerReporte.Text = "Visualizar Detalle de Reporte";
             this.btnVerReporte.UseVisualStyleBackColor = true;
@@ -148,47 +78,50 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Location = new System.Drawing.Point(1117, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2);
+            this.panel1.Location = new System.Drawing.Point(1676, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(78, 699);
+            this.panel1.Size = new System.Drawing.Size(117, 1075);
             this.panel1.TabIndex = 27;
             // 
             // dateTimePicker2
             // 
-            this.dateTimePicker2.Location = new System.Drawing.Point(229, 190);
+            this.dateTimePicker2.Location = new System.Drawing.Point(344, 292);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker2.Size = new System.Drawing.Size(298, 26);
             this.dateTimePicker2.TabIndex = 33;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(229, 158);
+            this.dateTimePicker1.Location = new System.Drawing.Point(344, 243);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.Size = new System.Drawing.Size(298, 26);
             this.dateTimePicker1.TabIndex = 34;
             // 
             // labelDesde
             // 
             this.labelDesde.AutoSize = true;
-            this.labelDesde.Location = new System.Drawing.Point(173, 164);
+            this.labelDesde.Location = new System.Drawing.Point(260, 252);
+            this.labelDesde.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDesde.Name = "labelDesde";
-            this.labelDesde.Size = new System.Drawing.Size(38, 13);
+            this.labelDesde.Size = new System.Drawing.Size(56, 20);
             this.labelDesde.TabIndex = 35;
             this.labelDesde.Text = "Desde";
             // 
             // labelHasta
             // 
             this.labelHasta.AutoSize = true;
-            this.labelHasta.Location = new System.Drawing.Point(173, 190);
+            this.labelHasta.Location = new System.Drawing.Point(260, 292);
+            this.labelHasta.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelHasta.Name = "labelHasta";
-            this.labelHasta.Size = new System.Drawing.Size(35, 13);
+            this.labelHasta.Size = new System.Drawing.Size(52, 20);
             this.labelHasta.TabIndex = 36;
             this.labelHasta.Text = "Hasta";
             // 
             // UCReportesSupervisor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.labelHasta);
@@ -199,9 +132,8 @@
             this.Controls.Add(this.btnVerReporte);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridReportes);
-            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UCReportesSupervisor";
-            this.Size = new System.Drawing.Size(1162, 699);
+            this.Size = new System.Drawing.Size(1743, 1075);
             this.Load += new System.EventHandler(this.UCResportesSupervisor_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridReportes)).EndInit();
             this.ResumeLayout(false);
@@ -213,14 +145,6 @@
         private System.Windows.Forms.DataGridView dataGridReportes;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnVerReporte;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_patrulla;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DateTimePicker dateTimePicker2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;

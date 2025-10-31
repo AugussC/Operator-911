@@ -56,20 +56,19 @@ namespace Operador_911
             this.panelNavegacion.Controls.Add(this.pictureBox1);
             this.panelNavegacion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.panelNavegacion.Location = new System.Drawing.Point(0, 0);
+            this.panelNavegacion.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelNavegacion.Name = "panelNavegacion";
-            this.panelNavegacion.Size = new System.Drawing.Size(1363, 44);
+            this.panelNavegacion.Size = new System.Drawing.Size(2044, 68);
             this.panelNavegacion.TabIndex = 3;
-           
             // 
             // btnCerrarSesion
             // 
             this.btnCerrarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnCerrarSesion.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(1216, 8);
-            this.btnCerrarSesion.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(1824, 12);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(109, 27);
+            this.btnCerrarSesion.Size = new System.Drawing.Size(164, 42);
             this.btnCerrarSesion.TabIndex = 2;
             this.btnCerrarSesion.Text = "Cerrar Sesion";
             this.btnCerrarSesion.UseVisualStyleBackColor = false;
@@ -79,18 +78,20 @@ namespace Operador_911
             // 
             this.tituloPrograma.AutoSize = true;
             this.tituloPrograma.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tituloPrograma.Location = new System.Drawing.Point(92, 17);
+            this.tituloPrograma.Location = new System.Drawing.Point(138, 26);
+            this.tituloPrograma.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.tituloPrograma.Name = "tituloPrograma";
-            this.tituloPrograma.Size = new System.Drawing.Size(83, 14);
+            this.tituloPrograma.Size = new System.Drawing.Size(119, 22);
             this.tituloPrograma.TabIndex = 1;
             this.tituloPrograma.Text = "911 Operador";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
-            this.pictureBox1.Location = new System.Drawing.Point(13, 0);
+            this.pictureBox1.Location = new System.Drawing.Point(20, 0);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(73, 52);
+            this.pictureBox1.Size = new System.Drawing.Size(110, 80);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -102,17 +103,19 @@ namespace Operador_911
             this.panel1.Controls.Add(this.btnUsuarios);
             this.panel1.Controls.Add(this.btnReportes);
             this.panel1.Controls.Add(this.btnInicio_supervisor);
-            this.panel1.Location = new System.Drawing.Point(0, 44);
+            this.panel1.Location = new System.Drawing.Point(0, 68);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(174, 699);
+            this.panel1.Size = new System.Drawing.Size(261, 1075);
             this.panel1.TabIndex = 4;
             // 
             // btnBackup
             // 
             this.btnBackup.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBackup.Location = new System.Drawing.Point(13, 260);
+            this.btnBackup.Location = new System.Drawing.Point(20, 400);
+            this.btnBackup.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBackup.Name = "btnBackup";
-            this.btnBackup.Size = new System.Drawing.Size(151, 50);
+            this.btnBackup.Size = new System.Drawing.Size(226, 77);
             this.btnBackup.TabIndex = 4;
             this.btnBackup.Text = "Crear Copia Seguridad";
             this.btnBackup.UseVisualStyleBackColor = true;
@@ -121,9 +124,10 @@ namespace Operador_911
             // btnRestore
             // 
             this.btnRestore.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRestore.Location = new System.Drawing.Point(12, 330);
+            this.btnRestore.Location = new System.Drawing.Point(18, 508);
+            this.btnRestore.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRestore.Name = "btnRestore";
-            this.btnRestore.Size = new System.Drawing.Size(151, 50);
+            this.btnRestore.Size = new System.Drawing.Size(226, 77);
             this.btnRestore.TabIndex = 3;
             this.btnRestore.Text = "Cargar Copia de Seguridad";
             this.btnRestore.UseVisualStyleBackColor = true;
@@ -132,9 +136,10 @@ namespace Operador_911
             // btnUsuarios
             // 
             this.btnUsuarios.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.Location = new System.Drawing.Point(13, 188);
+            this.btnUsuarios.Location = new System.Drawing.Point(20, 289);
+            this.btnUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUsuarios.Name = "btnUsuarios";
-            this.btnUsuarios.Size = new System.Drawing.Size(151, 50);
+            this.btnUsuarios.Size = new System.Drawing.Size(226, 77);
             this.btnUsuarios.TabIndex = 2;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = true;
@@ -143,9 +148,10 @@ namespace Operador_911
             // btnReportes
             // 
             this.btnReportes.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReportes.Location = new System.Drawing.Point(13, 114);
+            this.btnReportes.Location = new System.Drawing.Point(20, 175);
+            this.btnReportes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(151, 50);
+            this.btnReportes.Size = new System.Drawing.Size(226, 77);
             this.btnReportes.TabIndex = 1;
             this.btnReportes.Text = "Reportes";
             this.btnReportes.UseVisualStyleBackColor = true;
@@ -154,9 +160,10 @@ namespace Operador_911
             // btnInicio_supervisor
             // 
             this.btnInicio_supervisor.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInicio_supervisor.Location = new System.Drawing.Point(13, 38);
+            this.btnInicio_supervisor.Location = new System.Drawing.Point(20, 58);
+            this.btnInicio_supervisor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnInicio_supervisor.Name = "btnInicio_supervisor";
-            this.btnInicio_supervisor.Size = new System.Drawing.Size(151, 50);
+            this.btnInicio_supervisor.Size = new System.Drawing.Size(226, 77);
             this.btnInicio_supervisor.TabIndex = 0;
             this.btnInicio_supervisor.Text = "Inicio";
             this.btnInicio_supervisor.UseVisualStyleBackColor = true;
@@ -164,10 +171,9 @@ namespace Operador_911
             // 
             // panel_supervisor
             // 
-            this.panel_supervisor.Location = new System.Drawing.Point(169, 44);
-            this.panel_supervisor.Margin = new System.Windows.Forms.Padding(2);
+            this.panel_supervisor.Location = new System.Drawing.Point(254, 68);
             this.panel_supervisor.Name = "panel_supervisor";
-            this.panel_supervisor.Size = new System.Drawing.Size(1194, 697);
+            this.panel_supervisor.Size = new System.Drawing.Size(1791, 1072);
             this.panel_supervisor.TabIndex = 5;
             // 
             // openFileDialog1
@@ -176,16 +182,17 @@ namespace Operador_911
             // 
             // FormJefeOperador
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1370, 487);
+            this.ClientSize = new System.Drawing.Size(2055, 749);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelNavegacion);
             this.Controls.Add(this.panel_supervisor);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormJefeOperador";
             this.Text = "FormJefeOperador";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-
+            this.Load += new System.EventHandler(this.FormJefeOperador_Load_1);
             this.panelNavegacion.ResumeLayout(false);
             this.panelNavegacion.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
