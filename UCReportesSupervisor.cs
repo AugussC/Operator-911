@@ -53,6 +53,7 @@ namespace Operador_911
                     da.Fill(dt);
 
                     dataGridReportes.DataSource = dt;
+                    dataGridReportes.Columns["Descripcion"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -108,6 +109,80 @@ El caso fue remitido a la {comisaria}, donde se dará continuidad a la investiga
             }
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (SqlConnection con = Database.GetConnection())
+                {
+                    string query = @"
+                SELECT 
+                    r.id_reporte AS [Numero Reporte],
+                    l.fecha_creacion AS [Fecha Llamada],
+                    a.fecha_cierre AS [Fecha Reporte],
+                    a.tipo_incidencia AS Incidente,
+                    a.direccion AS Direccion,
+                    p.codigo_patrulla AS [Codigo Patrulla],
+                    t.nro_placa AS [Nro Placa],
+                    r.descripcion AS Descripcion,
+                    c.nombre AS Comisaria
+                FROM Reporte r
+                JOIN Alerta a ON r.id_alerta = a.id_alerta
+                JOIN Llamada l ON a.id_alerta = l.id_alerta
+                JOIN Tiene t ON r.id_planilla = t.id_planilla
+                JOIN Patrulla p ON r.id_patrulla = p.id_patrulla
+                JOIN Comisaria c ON p.id_comisaria = c.id_comisaria
+                WHERE l.fecha_creacion BETWEEN @desde AND @hasta;";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@desde", dtpDesde.Value.Date);
+                    cmd.Parameters.AddWithValue("@hasta", dtpHasta.Value.Date.AddDays(1).AddSeconds(-1));
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dataGridReportes.DataSource = dt;
+
+                    // Ocultar columna Descripción
+                    if (dataGridReportes.Columns.Contains("Descripcion"))
+                        dataGridReportes.Columns["Descripcion"].Visible = false;
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No se encontraron reportes entre las fechas seleccionadas.",
+                                        "Sin resultados",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar reportes: " + ex.Message);
+            }
+        }
+
+        private void btnReiniciar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Reiniciar los DateTimePicker a la fecha actual o a un valor predeterminado
+                dtpDesde.Value = DateTime.Now.AddDays(-7); // por ejemplo, hace 7 días
+                dtpHasta.Value = DateTime.Now;
+
+                // Volver a cargar todos los reportes (sin filtros)
+                CargarReportes();
+
+                MessageBox.Show("Filtros reiniciados correctamente.", "Reinicio",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al reiniciar filtros: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
     }
 }

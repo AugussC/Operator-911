@@ -32,7 +32,8 @@ namespace Operador_911
 
         private void FormReporteGenerado_Load(object sender, EventArgs e)
         {
-
+            textReporte.SelectionLength = 0;
+            textReporte.SelectionStart = 0;
         }
 
         private void labelPrimeraParte_Click(object sender, EventArgs e)
