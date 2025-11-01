@@ -58,29 +58,49 @@ namespace Operador_911
 
         private void btnVerReporte_Click(object sender, EventArgs e)
         {
-            if (dataGridReportes.SelectedRows.Count == 0)
+            if (dataGridReportes.CurrentRow != null)
             {
-                MessageBox.Show("Seleccione un reporte para ver los detalles.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                DataGridViewRow fila = dataGridReportes.CurrentRow;
+
+                // Obtener los valores con los nombres exactos de tu consulta
+                string fechaReporte = fila.Cells["FechaReporte"].Value?.ToString() ?? "Sin fecha";
+                string incidente = fila.Cells["Incidente"].Value?.ToString() ?? "No especificado";
+                string direccion = fila.Cells["Direccion"].Value?.ToString() ?? "Sin dirección";
+                string codigoPatrulla = fila.Cells["id_patrulla"].Value?.ToString() ?? "Desconocida";
+                string nroPlaca = fila.Cells["NroPlaca"].Value?.ToString() ?? "Sin placa";
+                string oficial = "Oficial asignado"; // Si tenés otro campo, después lo reemplazamos
+                string comisaria = "Comisaría correspondiente"; // lo mismo
+                string descripcion = "Descripción no disponible"; // si la querés después, la agregamos
+
+                // Crear el texto del reporte
+                string textoReporte = $@"
+                La Policía de Corrientes informa que:
+
+                Siendo el día {fechaReporte}, a través de la línea telefónica de emergencias 911 se recibió un aviso de {incidente} ocurrido en {direccion}.
+
+                De inmediato, se desplegó a la patrulla {codigoPatrulla}, de número de placa {nroPlaca}, para acudir a la emergencia.
+
+                Una vez normalizada la situación, el oficial a cargo constató:
+                {descripcion}
+
+                El caso fue remitido a la {comisaria}, donde se dará continuidad a la investigación y se determinarán las respectivas responsabilidades conforme a la ley.
+
+                {fechaReporte}
+                ";
+
+                // Mostrar el formulario
+                FormReporteGenerado verReporte = new FormReporteGenerado(textoReporte);
+                verReporte.StartPosition = FormStartPosition.CenterParent;
+                verReporte.textReporte.Text = textoReporte; // 👈 asegurate que txtReporte sea público o tenga un setter
+                verReporte.ShowDialog();
             }
-
-            DataGridViewRow fila = dataGridReportes.SelectedRows[0];
-
-            // 📦 Extraemos los valores de la fila seleccionada
-            string fechaCierre = fila.Cells["FechaCierre"].Value?.ToString() ?? "Sin fecha";
-            string ubicacion = fila.Cells["Ubicacion"].Value?.ToString() ?? "Sin ubicación";
-            string nroPlaca = fila.Cells["NroPlaca"].Value?.ToString() ?? "Desconocida";
-            string incidente = fila.Cells["Incidente"].Value?.ToString() ?? "No especificado";
-
-            // 📄 Generamos el texto automático del reporte
-            string textoGenerado = $"En el día de la fecha {fechaCierre}, se registró un incidente de tipo {incidente} en {ubicacion}. " +
-                                   $"El hecho fue atendido por la patrulla con número de placa {nroPlaca}.";
-
-            // 🧱 Abrimos el nuevo formulario y le pasamos el texto generado
-            FormReporteGenerado frm = new FormReporteGenerado(textoGenerado);
-            frm.StartPosition = FormStartPosition.CenterParent;
-            frm.ShowDialog();
+            else
+            {
+                MessageBox.Show("Por favor, seleccioná un reporte de la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
+
+
     }
 }
 
