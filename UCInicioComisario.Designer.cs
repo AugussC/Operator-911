@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.labelEficienciaJurisdiccion = new System.Windows.Forms.Label();
             this.labelAlertasAtendidas = new System.Windows.Forms.Label();
@@ -44,16 +44,28 @@
             this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.NroPolicias = new System.Windows.Forms.Label();
             this.dateTimeDesde = new System.Windows.Forms.DateTimePicker();
             this.dateTimeHasta = new System.Windows.Forms.DateTimePicker();
             this.labelDesde = new System.Windows.Forms.Label();
             this.labelHasta = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.Eficiencia = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.AlertasAtendidas = new System.Windows.Forms.Label();
+            this.NroPatrullas = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelTitulo
@@ -69,36 +81,40 @@
             // labelEficienciaJurisdiccion
             // 
             this.labelEficienciaJurisdiccion.AutoSize = true;
-            this.labelEficienciaJurisdiccion.Location = new System.Drawing.Point(548, 13);
+            this.labelEficienciaJurisdiccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelEficienciaJurisdiccion.Location = new System.Drawing.Point(32, 13);
             this.labelEficienciaJurisdiccion.Name = "labelEficienciaJurisdiccion";
-            this.labelEficienciaJurisdiccion.Size = new System.Drawing.Size(53, 13);
+            this.labelEficienciaJurisdiccion.Size = new System.Drawing.Size(91, 24);
             this.labelEficienciaJurisdiccion.TabIndex = 9;
             this.labelEficienciaJurisdiccion.Text = "Eficiencia";
             // 
             // labelAlertasAtendidas
             // 
             this.labelAlertasAtendidas.AutoSize = true;
-            this.labelAlertasAtendidas.Location = new System.Drawing.Point(230, 13);
+            this.labelAlertasAtendidas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelAlertasAtendidas.Location = new System.Drawing.Point(16, 13);
             this.labelAlertasAtendidas.Name = "labelAlertasAtendidas";
-            this.labelAlertasAtendidas.Size = new System.Drawing.Size(84, 13);
+            this.labelAlertasAtendidas.Size = new System.Drawing.Size(147, 24);
             this.labelAlertasAtendidas.TabIndex = 8;
             this.labelAlertasAtendidas.Text = "Alerta Atendidas";
             // 
             // labelPatrullas
             // 
             this.labelPatrullas.AutoSize = true;
-            this.labelPatrullas.Location = new System.Drawing.Point(803, 13);
+            this.labelPatrullas.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPatrullas.Location = new System.Drawing.Point(43, 13);
             this.labelPatrullas.Name = "labelPatrullas";
-            this.labelPatrullas.Size = new System.Drawing.Size(47, 13);
+            this.labelPatrullas.Size = new System.Drawing.Size(80, 24);
             this.labelPatrullas.TabIndex = 7;
             this.labelPatrullas.Text = "Patrullas";
             // 
             // labelPolicias
             // 
             this.labelPolicias.AutoSize = true;
-            this.labelPolicias.Location = new System.Drawing.Point(45, 13);
+            this.labelPolicias.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPolicias.Location = new System.Drawing.Point(46, 13);
             this.labelPolicias.Name = "labelPolicias";
-            this.labelPolicias.Size = new System.Drawing.Size(43, 13);
+            this.labelPolicias.Size = new System.Drawing.Size(74, 24);
             this.labelPolicias.TabIndex = 6;
             this.labelPolicias.Text = "Policias";
             // 
@@ -123,17 +139,17 @@
             // 
             // chart2
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart2.Legends.Add(legend1);
+            chartArea5.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chart2.Legends.Add(legend5);
             this.chart2.Location = new System.Drawing.Point(21, 26);
             this.chart2.Name = "chart2";
             this.chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Bright;
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart2.Series.Add(series1);
+            series5.ChartArea = "ChartArea1";
+            series5.Legend = "Legend1";
+            series5.Name = "Series1";
+            this.chart2.Series.Add(series5);
             this.chart2.Size = new System.Drawing.Size(418, 286);
             this.chart2.TabIndex = 6;
             this.chart2.Text = "chart2";
@@ -150,30 +166,51 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea6.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chart1.Legends.Add(legend6);
             this.chart1.Location = new System.Drawing.Point(24, 26);
             this.chart1.Name = "chart1";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart1.Series.Add(series2);
+            series6.ChartArea = "ChartArea1";
+            series6.Legend = "Legend1";
+            series6.Name = "Series1";
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(418, 286);
             this.chart1.TabIndex = 3;
             this.chart1.Text = "chart1";
             // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel5.Controls.Add(this.NroPolicias);
+            this.panel5.Controls.Add(this.labelPolicias);
+            this.panel5.Location = new System.Drawing.Point(18, 13);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(176, 102);
+            this.panel5.TabIndex = 30;
+            // 
+            // NroPolicias
+            // 
+            this.NroPolicias.AutoSize = true;
+            this.NroPolicias.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NroPolicias.Location = new System.Drawing.Point(55, 67);
+            this.NroPolicias.Name = "NroPolicias";
+            this.NroPolicias.Size = new System.Drawing.Size(51, 20);
+            this.NroPolicias.TabIndex = 10;
+            this.NroPolicias.Text = "label1";
+            // 
             // dateTimeDesde
             // 
-            this.dateTimeDesde.Location = new System.Drawing.Point(205, 275);
+            this.dateTimeDesde.Location = new System.Drawing.Point(195, 241);
             this.dateTimeDesde.Name = "dateTimeDesde";
             this.dateTimeDesde.Size = new System.Drawing.Size(200, 20);
             this.dateTimeDesde.TabIndex = 31;
             // 
             // dateTimeHasta
             // 
-            this.dateTimeHasta.Location = new System.Drawing.Point(205, 241);
+            this.dateTimeHasta.Location = new System.Drawing.Point(195, 280);
             this.dateTimeHasta.Name = "dateTimeHasta";
             this.dateTimeHasta.Size = new System.Drawing.Size(200, 20);
             this.dateTimeHasta.TabIndex = 32;
@@ -199,15 +236,78 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel4.Controls.Add(this.labelPolicias);
-            this.panel4.Controls.Add(this.labelAlertasAtendidas);
-            this.panel4.Controls.Add(this.labelEficienciaJurisdiccion);
-            this.panel4.Controls.Add(this.labelPatrullas);
-            this.panel4.Location = new System.Drawing.Point(91, 97);
+            this.panel4.Controls.Add(this.panel8);
+            this.panel4.Controls.Add(this.panel7);
+            this.panel4.Controls.Add(this.panel6);
+            this.panel4.Controls.Add(this.panel5);
+            this.panel4.Location = new System.Drawing.Point(91, 91);
             this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(947, 123);
+            this.panel4.Size = new System.Drawing.Size(947, 128);
             this.panel4.TabIndex = 30;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel8.Controls.Add(this.Eficiencia);
+            this.panel8.Controls.Add(this.labelEficienciaJurisdiccion);
+            this.panel8.Location = new System.Drawing.Point(508, 13);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(176, 102);
+            this.panel8.TabIndex = 33;
+            // 
+            // Eficiencia
+            // 
+            this.Eficiencia.AutoSize = true;
+            this.Eficiencia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Eficiencia.Location = new System.Drawing.Point(55, 67);
+            this.Eficiencia.Name = "Eficiencia";
+            this.Eficiencia.Size = new System.Drawing.Size(51, 20);
+            this.Eficiencia.TabIndex = 12;
+            this.Eficiencia.Text = "label1";
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel7.Controls.Add(this.labelPatrullas);
+            this.panel7.Controls.Add(this.NroPatrullas);
+            this.panel7.Location = new System.Drawing.Point(734, 13);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(176, 102);
+            this.panel7.TabIndex = 32;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.panel6.Controls.Add(this.labelAlertasAtendidas);
+            this.panel6.Controls.Add(this.AlertasAtendidas);
+            this.panel6.Location = new System.Drawing.Point(222, 13);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(176, 102);
+            this.panel6.TabIndex = 31;
+            // 
+            // AlertasAtendidas
+            // 
+            this.AlertasAtendidas.AutoSize = true;
+            this.AlertasAtendidas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AlertasAtendidas.Location = new System.Drawing.Point(52, 67);
+            this.AlertasAtendidas.Name = "AlertasAtendidas";
+            this.AlertasAtendidas.Size = new System.Drawing.Size(51, 20);
+            this.AlertasAtendidas.TabIndex = 11;
+            this.AlertasAtendidas.Text = "label1";
+            // 
+            // NroPatrullas
+            // 
+            this.NroPatrullas.AutoSize = true;
+            this.NroPatrullas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NroPatrullas.Location = new System.Drawing.Point(55, 67);
+            this.NroPatrullas.Name = "NroPatrullas";
+            this.NroPatrullas.Size = new System.Drawing.Size(51, 20);
+            this.NroPatrullas.TabIndex = 13;
+            this.NroPatrullas.Text = "label1";
             // 
             // UCInicioComisario
             // 
@@ -229,8 +329,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,5 +360,13 @@
         private System.Windows.Forms.Label labelDesde;
         private System.Windows.Forms.Label labelHasta;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label NroPatrullas;
+        private System.Windows.Forms.Label Eficiencia;
+        private System.Windows.Forms.Label AlertasAtendidas;
+        private System.Windows.Forms.Label NroPolicias;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel6;
     }
 }

@@ -32,13 +32,13 @@ namespace Operador_911
                 {
                     string query = @"
                         SELECT 
-                            r.id_reporte AS NumeroReporte,
-                            l.fecha_creacion AS FechaLlamada,
-                            a.fecha_cierre AS FechaReporte,
+                            r.id_reporte AS [Numero Reporte],
+                            l.fecha_creacion AS [Fecha Llamada],
+                            a.fecha_cierre AS [Fecha Reporte],
                             a.tipo_incidencia AS Incidente,
                             a.direccion AS Direccion,
-                            p.codigo_patrulla AS CodigoPatrulla,
-                            t.nro_placa AS NroPlaca,
+                            p.codigo_patrulla AS [Codigo Patrulla],
+                            t.nro_placa AS [Nro Placa],
                             r.descripcion AS Descripcion,
                             c.nombre AS Comisaria
                         FROM Reporte r
@@ -68,19 +68,19 @@ namespace Operador_911
                 DataGridViewRow fila = dataGridReportes.CurrentRow;
 
                 // Obtener los valores con los nombres exactos de tu consulta
-                string fechaReporte = fila.Cells["FechaReporte"].Value?.ToString() ?? "Sin fecha";
+                string fechaReporte = fila.Cells["Fecha Reporte"].Value?.ToString() ?? "Sin fecha";
                 string incidente = fila.Cells["Incidente"].Value?.ToString() ?? "No especificado";
                 string direccion = fila.Cells["Direccion"].Value?.ToString() ?? "Sin dirección";
-                string codigoPatrulla = fila.Cells["CodigoPatrulla"].Value?.ToString() ?? "Desconocida";
-                string nroPlaca = fila.Cells["NroPlaca"].Value?.ToString() ?? "Sin placa";
+                string codigoPatrulla = fila.Cells["Codigo Patrulla"].Value?.ToString() ?? "Desconocida";
+                string nroPlaca = fila.Cells["Nro Placa"].Value?.ToString() ?? "Sin placa";
                 string comisaria = fila.Cells["Comisaria"].Value?.ToString() ?? "Comisaría no definida";
                 string descripcion = fila.Cells["Descripcion"].Value?.ToString() ?? "Descripción no disponible";
-                string fechaLlamada = fila.Cells["FechaLlamada"].Value?.ToString() ?? "Sin fecha";
-                string numeroReporte = fila.Cells["NumeroReporte"].Value?.ToString() ?? "Desconocido";    
+                string fechaLlamada = fila.Cells["Fecha Llamada"].Value?.ToString() ?? "Sin fecha";
+                string numeroReporte = fila.Cells["Numero Reporte"].Value?.ToString() ?? "Desconocido";    
 
                 // Crear el texto del reporte
                 string textoReporte = $@"
-        La Policía de Corrientes informa que: {Environment.NewLine} Siendo el día {fechaLlamada}, a través de la línea telefónica de emergencias 911, se recibió un aviso de {incidente} ocurrido en {direccion}.
+La Policía de Corrientes informa que: {Environment.NewLine} Siendo el día {fechaLlamada}, a través de la línea telefónica de emergencias 911, se recibió un aviso de {incidente} ocurrido en {direccion}.
 
 De inmediato, se desplegó a la patrulla {codigoPatrulla}, de número de placa {nroPlaca}, para acudir a la emergencia.
 
