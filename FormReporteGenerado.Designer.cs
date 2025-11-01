@@ -32,12 +32,13 @@
             this.labelTituloReporte = new System.Windows.Forms.Label();
             this.labelEncabezado = new System.Windows.Forms.Label();
             this.labelSubEncabezado = new System.Windows.Forms.Label();
-            this.labelFecha = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textReporte = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.textFecha = new System.Windows.Forms.TextBox();
+            this.textNumeroReporte = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -47,12 +48,12 @@
             // 
             this.labelTituloReporte.AutoSize = true;
             this.labelTituloReporte.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTituloReporte.Location = new System.Drawing.Point(543, 206);
+            this.labelTituloReporte.Location = new System.Drawing.Point(464, 185);
             this.labelTituloReporte.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTituloReporte.Name = "labelTituloReporte";
-            this.labelTituloReporte.Size = new System.Drawing.Size(145, 39);
+            this.labelTituloReporte.Size = new System.Drawing.Size(191, 39);
             this.labelTituloReporte.TabIndex = 17;
-            this.labelTituloReporte.Text = "Reporte";
+            this.labelTituloReporte.Text = "Reporte n°";
             this.labelTituloReporte.Click += new System.EventHandler(this.labelTituloReporte_Click);
             // 
             // labelEncabezado
@@ -77,22 +78,10 @@
             this.labelSubEncabezado.TabIndex = 20;
             this.labelSubEncabezado.Text = "Policia de la Provincia de Corrientes";
             // 
-            // labelFecha
-            // 
-            this.labelFecha.AutoSize = true;
-            this.labelFecha.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFecha.Location = new System.Drawing.Point(209, 875);
-            this.labelFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelFecha.Name = "labelFecha";
-            this.labelFecha.Size = new System.Drawing.Size(148, 29);
-            this.labelFecha.TabIndex = 28;
-            this.labelFecha.Text = "Dia/Mes/Año";
-            this.labelFecha.Click += new System.EventHandler(this.labelFecha_Click);
-            // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Operador_911.Properties.Resources.WhatsApp_Image_2025_09_12_at_22_07_25_removebg_preview;
-            this.pictureBox3.Location = new System.Drawing.Point(550, 792);
+            this.pictureBox3.Location = new System.Drawing.Point(538, 729);
             this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(580, 211);
@@ -124,12 +113,14 @@
             // 
             // textReporte
             // 
-            this.textReporte.Location = new System.Drawing.Point(127, 291);
+            this.textReporte.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textReporte.Location = new System.Drawing.Point(157, 250);
+            this.textReporte.Margin = new System.Windows.Forms.Padding(0);
             this.textReporte.Multiline = true;
             this.textReporte.Name = "textReporte";
             this.textReporte.ReadOnly = true;
-            this.textReporte.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textReporte.Size = new System.Drawing.Size(980, 467);
+            this.textReporte.Size = new System.Drawing.Size(914, 463);
             this.textReporte.TabIndex = 29;
             // 
             // contextMenuStrip1
@@ -138,13 +129,33 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // textFecha
+            // 
+            this.textFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textFecha.Location = new System.Drawing.Point(198, 807);
+            this.textFecha.Name = "textFecha";
+            this.textFecha.ReadOnly = true;
+            this.textFecha.Size = new System.Drawing.Size(210, 48);
+            this.textFecha.TabIndex = 30;
+            this.textFecha.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // textNumeroReporte
+            // 
+            this.textNumeroReporte.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textNumeroReporte.Location = new System.Drawing.Point(662, 182);
+            this.textNumeroReporte.Name = "textNumeroReporte";
+            this.textNumeroReporte.ReadOnly = true;
+            this.textNumeroReporte.Size = new System.Drawing.Size(171, 46);
+            this.textNumeroReporte.TabIndex = 31;
+            // 
             // FormReporteGenerado
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1230, 1017);
+            this.ClientSize = new System.Drawing.Size(1230, 955);
+            this.Controls.Add(this.textNumeroReporte);
+            this.Controls.Add(this.textFecha);
             this.Controls.Add(this.textReporte);
-            this.Controls.Add(this.labelFecha);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.labelSubEncabezado);
@@ -171,8 +182,9 @@
         private System.Windows.Forms.Label labelSubEncabezado;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label labelFecha;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        public System.Windows.Forms.TextBox textFecha;
         public System.Windows.Forms.TextBox textReporte;
+        public System.Windows.Forms.TextBox textNumeroReporte;
     }
 }

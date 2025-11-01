@@ -31,17 +31,22 @@ namespace Operador_911
                 using (SqlConnection con = Database.GetConnection())
                 {
                     string query = @"
-                    SELECT 
-                    r.id_reporte,
-                    a.fecha_cierre AS FechaReporte,
-                    r.id_alerta,
-                    r.id_patrulla,
-                    p.nro_placa AS NroPlaca,
-                    a.tipo_incidencia AS Incidente,
-                    a.direccion AS Direccion
-                FROM Reporte r
-                JOIN Alerta a ON r.id_alerta = a.id_alerta
-                JOIN Tiene p ON r.id_planilla = p.id_planilla;";
+                        SELECT 
+                            r.id_reporte AS NumeroReporte,
+                            l.fecha_creacion AS FechaLlamada,
+                            a.fecha_cierre AS FechaReporte,
+                            a.tipo_incidencia AS Incidente,
+                            a.direccion AS Direccion,
+                            p.codigo_patrulla AS CodigoPatrulla,
+                            t.nro_placa AS NroPlaca,
+                            r.descripcion AS Descripcion,
+                            c.nombre AS Comisaria
+                        FROM Reporte r
+                        JOIN Alerta a ON r.id_alerta = a.id_alerta
+                        JOIN Llamada l ON a.id_alerta = l.id_alerta
+                        JOIN Tiene t ON r.id_planilla = t.id_planilla
+                        JOIN Patrulla p ON r.id_patrulla = p.id_patrulla
+                        JOIN Comisaria c ON p.id_comisaria = c.id_comisaria;";
 
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
@@ -66,32 +71,35 @@ namespace Operador_911
                 string fechaReporte = fila.Cells["FechaReporte"].Value?.ToString() ?? "Sin fecha";
                 string incidente = fila.Cells["Incidente"].Value?.ToString() ?? "No especificado";
                 string direccion = fila.Cells["Direccion"].Value?.ToString() ?? "Sin dirección";
-                string codigoPatrulla = fila.Cells["id_patrulla"].Value?.ToString() ?? "Desconocida";
+                string codigoPatrulla = fila.Cells["CodigoPatrulla"].Value?.ToString() ?? "Desconocida";
                 string nroPlaca = fila.Cells["NroPlaca"].Value?.ToString() ?? "Sin placa";
-                string oficial = "Oficial asignado"; // Si tenés otro campo, después lo reemplazamos
-                string comisaria = "Comisaría correspondiente"; // lo mismo
-                string descripcion = "Descripción no disponible"; // si la querés después, la agregamos
+                string comisaria = fila.Cells["Comisaria"].Value?.ToString() ?? "Comisaría no definida";
+                string descripcion = fila.Cells["Descripcion"].Value?.ToString() ?? "Descripción no disponible";
+                string fechaLlamada = fila.Cells["FechaLlamada"].Value?.ToString() ?? "Sin fecha";
+                string numeroReporte = fila.Cells["NumeroReporte"].Value?.ToString() ?? "Desconocido";    
 
                 // Crear el texto del reporte
                 string textoReporte = $@"
-                La Policía de Corrientes informa que:
+        La Policía de Corrientes informa que: {Environment.NewLine} Siendo el día {fechaLlamada}, a través de la línea telefónica de emergencias 911, se recibió un aviso de {incidente} ocurrido en {direccion}.
 
-                Siendo el día {fechaReporte}, a través de la línea telefónica de emergencias 911 se recibió un aviso de {incidente} ocurrido en {direccion}.
+De inmediato, se desplegó a la patrulla {codigoPatrulla}, de número de placa {nroPlaca}, para acudir a la emergencia.
 
-                De inmediato, se desplegó a la patrulla {codigoPatrulla}, de número de placa {nroPlaca}, para acudir a la emergencia.
+Una vez normalizada la situación, el oficial a cargo constató: {Environment.NewLine} {descripcion}
 
-                Una vez normalizada la situación, el oficial a cargo constató:
-                {descripcion}
-
-                El caso fue remitido a la {comisaria}, donde se dará continuidad a la investigación y se determinarán las respectivas responsabilidades conforme a la ley.
-
-                {fechaReporte}
+El caso fue remitido a la {comisaria}, donde se dará continuidad a la investigación y se determinarán las respectivas responsabilidades conforme a la ley.
                 ";
+                
+                string FechaReporte = $@"{fechaReporte}";
+
+
+                string NumeroReporte = $@"{numeroReporte}";
 
                 // Mostrar el formulario
-                FormReporteGenerado verReporte = new FormReporteGenerado(textoReporte);
+                FormReporteGenerado verReporte = new FormReporteGenerado(textoReporte, FechaReporte, NumeroReporte);
                 verReporte.StartPosition = FormStartPosition.CenterParent;
                 verReporte.textReporte.Text = textoReporte; // 👈 asegurate que txtReporte sea público o tenga un setter
+                verReporte.textFecha.Text = FechaReporte;
+                verReporte.textNumeroReporte.Text = NumeroReporte;
                 verReporte.ShowDialog();
             }
             else

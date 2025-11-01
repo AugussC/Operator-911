@@ -12,7 +12,7 @@ namespace Operador_911
 {
     public partial class FormReporteGenerado : Form
     {
-        public FormReporteGenerado(string textoReporte)
+        public FormReporteGenerado(string textoReporte, string FechaReporte, string NumeroReporte)
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -21,6 +21,8 @@ namespace Operador_911
             this.StartPosition = FormStartPosition.CenterParent;
             this.ShowInTaskbar = false;
             textReporte.Text = textoReporte;
+            textFecha.Text = FechaReporte;
+            textNumeroReporte.Text = NumeroReporte;
         }
 
         private void labelTituloReporte_Click(object sender, EventArgs e)
@@ -39,6 +41,11 @@ namespace Operador_911
         }
 
         private void labelFecha_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
