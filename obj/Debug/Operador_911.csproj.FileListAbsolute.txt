@@ -84,3 +84,7 @@ C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\obj\Debug\Operador_911.Fo
 C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.FormReporte.resources
 C:\Users\HP\source\repos\Operator-911\obj\Debug\Operador_911.FormReporteGenerado.resources
 C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\obj\Debug\Operador_911.FormReporteGenerado.resources
+C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\bin\Debug\itextsharp.dll
+C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\Joaqu\OneDrive\Documentos\GitHub\Operator-911\bin\Debug\itextsharp.xml

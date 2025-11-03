@@ -163,6 +163,7 @@
             this.btnImprimir.TabIndex = 39;
             this.btnImprimir.Text = "Imprimir Reporte";
             this.btnImprimir.UseVisualStyleBackColor = false;
+            this.btnImprimir.Click += new System.EventHandler(this.btnImprimirReporte_Click);
             // 
             // panel1
             // 
