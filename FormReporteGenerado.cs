@@ -1,15 +1,10 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Font = System.Drawing.Font;
 
 namespace Operador_911
 {
@@ -23,20 +18,38 @@ namespace Operador_911
             this.MinimizeBox = false;
             this.StartPosition = FormStartPosition.CenterParent;
             this.ShowInTaskbar = false;
+
             textReporte.Text = textoReporte;
             textFecha.Text = FechaReporte;
             textNumeroReporte.Text = NumeroReporte;
+
+            textReporte.Multiline = true;
+            textReporte.ScrollBars = ScrollBars.None; // para que no se vean barras
+            
+            AplicarEstiloTextBox(textReporte);
+            
+           
+
         }
 
-        private void labelTituloReporte_Click(object sender, EventArgs e)
+        private void AplicarEstiloTextBox(TextBox textBox)
         {
-
+            textBox.BorderStyle = BorderStyle.None; // sin borde duro
+            textBox.Font = new Font("Comic Sans MS", 11, FontStyle.Italic); // fuente manuscrita
+            textBox.ForeColor = Color.FromArgb(50, 50, 50); // gris oscuro
+            textBox.Multiline = true;
+            
         }
+
+        
+
 
         private void FormReporteGenerado_Load(object sender, EventArgs e)
         {
             textReporte.SelectionLength = 0;
             textReporte.SelectionStart = 0;
+            AplicarEstiloTextBox(textReporte);
+
         }
 
         private void btnImprimirReporte_Click(object sender, EventArgs e)

@@ -54,36 +54,44 @@ namespace Operador_911
 
         private void btnRestore_Click(object sender, EventArgs e)
         {
-            DialogResult confirm = MessageBox.Show(
-                "¿Está seguro que quiere cargar una copia de seguridad?\n\n⚠️ Se pisarán los datos actuales.",
-                "Confirmar restauración",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-
-            if (confirm == DialogResult.Yes)
+            
+            FormContraseña formPass = new FormContraseña();
+            if (formPass.ShowDialog() == DialogResult.OK && formPass.ContraseñaValida)
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Archivos de Backup (*.bak)|*.bak"; // Solo mostrar .bak
-                openFileDialog.Title = "Seleccionar archivo de backup";
+                // 2️⃣ Confirmar la acción después de validar la contraseña
+                DialogResult confirm = MessageBox.Show(
+                    "¿Está seguro que quiere cargar una copia de seguridad?\n\n⚠️ Se pisarán los datos actuales.",
+                    "Confirmar restauración",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (confirm == DialogResult.Yes)
                 {
-                    string rutaBackup = openFileDialog.FileName;
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    openFileDialog.Filter = "Archivos de Backup (*.bak)|*.bak";
+                    openFileDialog.Title = "Seleccionar archivo de backup";
 
-                    try
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        Database.RestoreBackup(rutaBackup); // Restaurar backup
-                        MessageBox.Show("Backup restaurado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadUserControl(new UCInicioSupervisor());
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error al restaurar el backup: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        string rutaBackup = openFileDialog.FileName;
+
+                        try
+                        {
+                            Database.RestoreBackup(rutaBackup);
+                            MessageBox.Show("Backup restaurado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadUserControl(new UCInicioSupervisor());
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error al restaurar el backup: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
+            
         }
+
 
         private void btnBackup_Click(object sender, EventArgs e)
         {

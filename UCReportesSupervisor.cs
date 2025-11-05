@@ -184,6 +184,59 @@ El caso fue remitido a la {comisaria}, donde se dará continuidad a la investiga
             }
         }
 
+        private void btnAlertas_Reportes_Click(object sender, EventArgs e)
+        {
+            if (btnAlertas_Reportes.Text == "Ver Alertas sin Atender")
+            {
+                CargarAlertasPendientes();
+                btnAlertas_Reportes.Text = "Ver Reportes";
+            }
+            else
+            {
+                CargarReportes();
+                btnAlertas_Reportes.Text = "Ver Alertas sin Atender";
+            }
+        }
+
+        private void CargarAlertasPendientes()
+        {
+            try
+            {
+                using (SqlConnection con = Database.GetConnection())
+                {
+                    string query = @"
+                SELECT 
+                    a.id_alerta AS [ID Alerta],
+                    a.estado AS Estado,
+                    a.tipo_incidencia AS Incidente,
+                    a.importancia AS Importancia,
+                    a.direccion AS Dirección,
+                    ISNULL(p.codigo_patrulla, 'Sin asignar') AS [Patrulla Asignada]
+                FROM Alerta a
+                LEFT JOIN Patrulla p ON a.id_patrulla = p.id_patrulla
+                WHERE a.estado IN ('En Espera', 'Asignada');";
+
+                    SqlDataAdapter da = new SqlDataAdapter(query, con);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    dataGridReportes.DataSource = dt;
+
+                    if (dt.Rows.Count == 0)
+                    {
+                        MessageBox.Show("No hay alertas pendientes o asignadas actualmente.",
+                                        "Sin resultados",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar alertas pendientes: " + ex.Message);
+            }
+        }
+
     }
 }
 

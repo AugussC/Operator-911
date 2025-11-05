@@ -51,22 +51,19 @@
             // 
             this.labelTituloReporte.AutoSize = true;
             this.labelTituloReporte.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTituloReporte.Location = new System.Drawing.Point(464, 185);
-            this.labelTituloReporte.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTituloReporte.Location = new System.Drawing.Point(309, 120);
             this.labelTituloReporte.Name = "labelTituloReporte";
-            this.labelTituloReporte.Size = new System.Drawing.Size(191, 39);
+            this.labelTituloReporte.Size = new System.Drawing.Size(132, 27);
             this.labelTituloReporte.TabIndex = 17;
             this.labelTituloReporte.Text = "Reporte n°";
-            this.labelTituloReporte.Click += new System.EventHandler(this.labelTituloReporte_Click);
             // 
             // labelEncabezado
             // 
             this.labelEncabezado.AutoSize = true;
             this.labelEncabezado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEncabezado.Location = new System.Drawing.Point(465, 49);
-            this.labelEncabezado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelEncabezado.Location = new System.Drawing.Point(310, 43);
             this.labelEncabezado.Name = "labelEncabezado";
-            this.labelEncabezado.Size = new System.Drawing.Size(296, 33);
+            this.labelEncabezado.Size = new System.Drawing.Size(200, 24);
             this.labelEncabezado.TabIndex = 19;
             this.labelEncabezado.Text = "Republica Argentina";
             // 
@@ -74,20 +71,18 @@
             // 
             this.labelSubEncabezado.AutoSize = true;
             this.labelSubEncabezado.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSubEncabezado.Location = new System.Drawing.Point(370, 125);
-            this.labelSubEncabezado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelSubEncabezado.Location = new System.Drawing.Point(247, 81);
             this.labelSubEncabezado.Name = "labelSubEncabezado";
-            this.labelSubEncabezado.Size = new System.Drawing.Size(522, 33);
+            this.labelSubEncabezado.Size = new System.Drawing.Size(348, 24);
             this.labelSubEncabezado.TabIndex = 20;
             this.labelSubEncabezado.Text = "Policia de la Provincia de Corrientes";
             // 
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Operador_911.Properties.Resources.WhatsApp_Image_2025_09_12_at_22_07_25_removebg_preview;
-            this.pictureBox3.Location = new System.Drawing.Point(471, 760);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox3.Location = new System.Drawing.Point(379, 577);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(630, 198);
+            this.pictureBox3.Size = new System.Drawing.Size(352, 119);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox3.TabIndex = 27;
             this.pictureBox3.TabStop = false;
@@ -96,10 +91,9 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::Operador_911.Properties.Resources.Escudo_de_la_Provincia_de_Corrientes__variante_3_1;
-            this.pictureBox2.Location = new System.Drawing.Point(925, 49);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox2.Location = new System.Drawing.Point(622, 43);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(208, 198);
+            this.pictureBox2.Size = new System.Drawing.Size(120, 108);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 21;
             this.pictureBox2.TabStop = false;
@@ -107,10 +101,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Operador_911.Properties.Resources._4fTAsWOK_400x400__1___1_;
-            this.pictureBox1.Location = new System.Drawing.Point(113, 49);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(85, 43);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(208, 198);
+            this.pictureBox1.Size = new System.Drawing.Size(129, 104);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
@@ -119,12 +112,12 @@
             // 
             this.textReporte.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.textReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textReporte.Location = new System.Drawing.Point(159, 251);
+            this.textReporte.Location = new System.Drawing.Point(106, 154);
             this.textReporte.Margin = new System.Windows.Forms.Padding(0);
             this.textReporte.Multiline = true;
             this.textReporte.Name = "textReporte";
             this.textReporte.ReadOnly = true;
-            this.textReporte.Size = new System.Drawing.Size(914, 504);
+            this.textReporte.Size = new System.Drawing.Size(611, 446);
             this.textReporte.TabIndex = 29;
             // 
             // contextMenuStrip1
@@ -136,56 +129,59 @@
             // textFecha
             // 
             this.textFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textFecha.Location = new System.Drawing.Point(184, 869);
+            this.textFecha.Location = new System.Drawing.Point(73, 637);
+            this.textFecha.Margin = new System.Windows.Forms.Padding(2);
             this.textFecha.Name = "textFecha";
             this.textFecha.ReadOnly = true;
-            this.textFecha.Size = new System.Drawing.Size(210, 48);
+            this.textFecha.Size = new System.Drawing.Size(141, 35);
             this.textFecha.TabIndex = 30;
             this.textFecha.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textNumeroReporte
             // 
             this.textNumeroReporte.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textNumeroReporte.Location = new System.Drawing.Point(662, 182);
+            this.textNumeroReporte.Location = new System.Drawing.Point(441, 118);
+            this.textNumeroReporte.Margin = new System.Windows.Forms.Padding(2);
             this.textNumeroReporte.Name = "textNumeroReporte";
             this.textNumeroReporte.ReadOnly = true;
-            this.textNumeroReporte.Size = new System.Drawing.Size(170, 46);
+            this.textNumeroReporte.Size = new System.Drawing.Size(115, 33);
             this.textNumeroReporte.TabIndex = 31;
             // 
             // btnImprimir
             // 
             this.btnImprimir.BackColor = System.Drawing.Color.Transparent;
             this.btnImprimir.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImprimir.Location = new System.Drawing.Point(184, 793);
-            this.btnImprimir.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnImprimir.Location = new System.Drawing.Point(86, 5);
             this.btnImprimir.Name = "btnImprimir";
-            this.btnImprimir.Size = new System.Drawing.Size(210, 50);
+            this.btnImprimir.Size = new System.Drawing.Size(140, 32);
             this.btnImprimir.TabIndex = 39;
-            this.btnImprimir.Text = "Imprimir Reporte";
+            this.btnImprimir.Text = "Exportar Reporte";
             this.btnImprimir.UseVisualStyleBackColor = false;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimirReporte_Click);
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Location = new System.Drawing.Point(1121, -42);
+            this.panel1.Location = new System.Drawing.Point(747, -27);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(108, 1075);
+            this.panel1.Size = new System.Drawing.Size(72, 723);
             this.panel1.TabIndex = 40;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel2.Location = new System.Drawing.Point(0, -42);
+            this.panel2.Location = new System.Drawing.Point(0, -27);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(108, 1075);
+            this.panel2.Size = new System.Drawing.Size(72, 723);
             this.panel2.TabIndex = 41;
             // 
             // FormReporteGenerado
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1228, 991);
+            this.ClientSize = new System.Drawing.Size(818, 689);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnImprimir);
@@ -198,7 +194,6 @@
             this.Controls.Add(this.labelEncabezado);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.labelTituloReporte);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormReporteGenerado";
             this.Text = "FormReporteGenerado";
             this.Load += new System.EventHandler(this.FormReporteGenerado_Load);

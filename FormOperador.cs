@@ -35,7 +35,8 @@ namespace Operador_911
         private int ordenActual = 1;
         private string estadoAnterior = "";
         private List<Nodo> nodos = new List<Nodo>();
-       
+        private bool suppressCellValueChanged = false;
+
 
         PointLatLng origen;
         private List<PointLatLng> destinos = new List<PointLatLng>(); // Varias alertas
@@ -629,6 +630,9 @@ namespace Operador_911
             // ==================================================================
             if (nombreColumna == "Patrulla")
             {
+                // evita reentrada si estamos cambiando el valor por código
+                if (suppressCellValueChanged) return;
+
                 string codigoNuevo = grid.Rows[e.RowIndex].Cells["Patrulla"].Value?.ToString() ?? "Sin Asignar";
                 string direccionAlerta = grid.Rows[e.RowIndex].Cells["Direccion"].Value?.ToString();
                 int idAlerta = ObtenerIdAlertaPorDireccion(direccionAlerta);
@@ -639,7 +643,7 @@ namespace Operador_911
                     return;
                 }
 
-                // 📌 Caso: "Sin Asignar" → eliminar ruta y liberar
+                // Caso "Sin Asignar" (lo manejás bien)
                 if (codigoNuevo == "Sin Asignar")
                 {
                     if (!string.IsNullOrEmpty(valorAnteriorPatrulla) && valorAnteriorPatrulla != "Sin Asignar")
@@ -654,10 +658,10 @@ namespace Operador_911
                     return;
                 }
 
-                // 📌 Caso: nueva patrulla asignada
+                // nueva patrulla asignada
                 int idPatrullaNueva = ObtenerIdPatrullaPorCodigo(codigoNuevo);
 
-                // 🚫 Verificar si ya está asignada
+                // Verificar si ya está asignada
                 if (PatrullaOcupada(idPatrullaNueva))
                 {
                     MessageBox.Show(
@@ -667,7 +671,36 @@ namespace Operador_911
                         MessageBoxIcon.Warning
                     );
 
-                    grid.Rows[e.RowIndex].Cells["Patrulla"].Value = valorAnteriorPatrulla ?? "Sin Asignar";
+                    // --- Obtener un valor de restauración válido ---
+                    string restaurarValor;
+
+                    // 1) preferimos valorAnteriorPatrulla si estaba guardado
+                    if (!string.IsNullOrEmpty(valorAnteriorPatrulla))
+                    {
+                        restaurarValor = valorAnteriorPatrulla;
+                    }
+                    else
+                    {
+                        // 2) intentar leer desde la fuente de verdad (BD)
+                        // Implementá o usá la función que devuelva el código actual de patrulla para la alerta.
+                        // Si no la tenés, devolvemos "Sin Asignar" como fallback.
+                        string codigoEnBD = ObtenerCodigoPatrullaPorId(idAlerta); // crea/usa esta función si la tenés
+                        restaurarValor = string.IsNullOrEmpty(codigoEnBD) ? "Sin Asignar" : codigoEnBD;
+                    }
+
+                    // --- Evitar que se vuelva a entrar en CellValueChanged ---
+                    try
+                    {
+                        suppressCellValueChanged = true;
+                        grid.Rows[e.RowIndex].Cells["Patrulla"].Value = restaurarValor;
+                    }
+                    finally
+                    {
+                        suppressCellValueChanged = false;
+                    }
+
+                    // Si necesitás refrescar data desde BD para mantener consistencia, podés llamar:
+                    // CargarAlertas();
                     return;
                 }
 
@@ -719,6 +752,18 @@ namespace Operador_911
 
                 // Verificar si tiene patrulla
                 bool tienePatrullaAsignada = grid.Rows[e.RowIndex].Cells["Patrulla"].Value?.ToString() != "Sin Asignar";
+
+
+                // ❌ Caso: En Espera → Asignada sin patrulla
+                if (estadoAnterior == "En Espera" && nuevoEstado == "Asignada" && !tienePatrullaAsignada)
+                {
+                    MessageBox.Show("No se puede asignar la alerta sin una patrulla asignada.",
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    // volver al estado anterior
+                    grid.Rows[e.RowIndex].Cells["Estado"].Value = estadoAnterior;
+                    return;
+                }
 
                 // ❌ Caso: En Espera → Atendida sin patrulla
                 if (estadoAnterior == "En Espera" && nuevoEstado == "Atendida" && !tienePatrullaAsignada)
