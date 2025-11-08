@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormReporteGenerado));
             this.labelTituloReporte = new System.Windows.Forms.Label();
             this.labelEncabezado = new System.Windows.Forms.Label();
             this.labelSubEncabezado = new System.Windows.Forms.Label();
@@ -79,7 +80,7 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::Operador_911.Properties.Resources.WhatsApp_Image_2025_09_12_at_22_07_25_removebg_preview;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.Location = new System.Drawing.Point(379, 577);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(352, 119);

@@ -23,7 +23,7 @@ namespace Operador_911
         {
             // Ajustamos fechas iniciales
             dateTimeHasta.Value = DateTime.Today;
-            dateTimeDesde.Value = DateTime.Today.AddDays(-1); // 🔹 Un día antes
+            dateTimeDesde.Value = DateTime.Today.AddDays(-7); // 🔹 Una semana antes
 
             // Vinculamos el evento de cambio de fecha
             dateTimeDesde.ValueChanged += DatePicker_ValueChanged;

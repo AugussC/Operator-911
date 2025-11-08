@@ -252,7 +252,7 @@
             this.dataGridViewAlertas.Size = new System.Drawing.Size(398, 270);
             this.dataGridViewAlertas.TabIndex = 12;
             this.dataGridViewAlertas.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.dataGridViewAlertas_CellBeginEdit);
-          
+            this.dataGridViewAlertas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewAlertas_CellValueChanged);
             // 
             // ListDelitos
             // 

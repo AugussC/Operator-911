@@ -634,8 +634,15 @@ namespace Operador_911
                 if (suppressCellValueChanged) return;
 
                 string codigoNuevo = grid.Rows[e.RowIndex].Cells["Patrulla"].Value?.ToString() ?? "Sin Asignar";
-                string direccionAlerta = grid.Rows[e.RowIndex].Cells["Direccion"].Value?.ToString();
-                int idAlerta = ObtenerIdAlertaPorDireccion(direccionAlerta);
+                object valorCelda = grid.Rows[e.RowIndex].Cells["id_alerta"].Value;
+                if (valorCelda == null || valorCelda == DBNull.Value)
+                {
+                    MessageBox.Show("No se encontró el ID de la alerta seleccionada.");
+                    return;
+                }
+
+                int idAlerta = Convert.ToInt32(valorCelda);
+
 
                 if (idAlerta <= 0)
                 {

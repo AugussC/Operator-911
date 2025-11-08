@@ -20,7 +20,7 @@ namespace Operador_911
         {
 
             dateTimeHasta.Value = DateTime.Today;
-            dateTimeDesde.Value = DateTime.Today.AddDays(-1); // 🔹 Un día antes
+            dateTimeDesde.Value = DateTime.Today.AddDays(-7); // 🔹 Una semana antes
 
             dateTimeDesde.ValueChanged += DatePicker_ValueChanged;
             dateTimeHasta.ValueChanged += DatePicker_ValueChanged;
