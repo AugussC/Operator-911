@@ -8,7 +8,7 @@ public static class Database
 {
     // Cadena de conexión (ajustar servidor, base de datos, usuario y contraseña)
     private static readonly string connectionString =
-    "Server=localhost\\SQLEXPRESS;Database=Operador911;Trusted_Connection=True";
+    "Server=localhost;Database=Operador911;Trusted_Connection=True";
 
 
     // Método para obtener la conexión abierta
@@ -39,7 +39,7 @@ public static class Database
 
     public static void RestoreBackup(string ruta)
     {
-      string conexion = "Server=localhost\\SQLEXPRESS;Database=master;Trusted_Connection=True;";
+      string conexion = "Server=localhost;Database=master;Trusted_Connection=True;";
 
         using (SqlConnection con = new SqlConnection(conexion))
         {

@@ -28,25 +28,36 @@ namespace Operador_911
         {
             try
             {
+
+                btnVerReporte.Enabled = true;
+
                 using (SqlConnection con = Database.GetConnection())
                 {
                     string query = @"
-                        SELECT 
-                            r.id_reporte AS [Numero Reporte],
-                            l.fecha_creacion AS [Fecha Llamada],
-                            a.fecha_cierre AS [Fecha Reporte],
-                            a.tipo_incidencia AS Incidente,
-                            a.direccion AS Direccion,
-                            p.codigo_patrulla AS [Codigo Patrulla],
-                            t.nro_placa AS [Nro Placa],
-                            r.descripcion AS Descripcion,
-                            c.nombre AS Comisaria
-                        FROM Reporte r
-                        JOIN Alerta a ON r.id_alerta = a.id_alerta
-                        JOIN Llamada l ON a.id_alerta = l.id_alerta
-                        JOIN Tiene t ON r.id_planilla = t.id_planilla
-                        JOIN Patrulla p ON r.id_patrulla = p.id_patrulla
-                        JOIN Comisaria c ON p.id_comisaria = c.id_comisaria;";
+                    SELECT 
+                        r.id_reporte AS [Numero Reporte],
+                        l.fecha_creacion AS [Fecha Llamada],
+                        a.fecha_cierre AS [Fecha Reporte],
+                        a.tipo_incidencia AS Incidente,
+                        a.direccion AS Direccion,
+                        p.codigo_patrulla AS [Codigo Patrulla],
+                
+                        STRING_AGG(CONCAT(pol.nombre, ' ', pol.apellido, ' (Placa: ', pol.nro_placa, ')'), ', ') 
+                            WITHIN GROUP (ORDER BY pol.apellido) AS Policias,
+                
+                        r.descripcion AS Descripcion,
+                        c.nombre AS Comisaria
+                    FROM Reporte r
+                    JOIN Alerta a ON r.id_alerta = a.id_alerta
+                    JOIN Llamada l ON a.id_alerta = l.id_alerta
+                    JOIN Tiene t ON r.id_planilla = t.id_planilla
+                    JOIN Policia pol ON t.nro_placa = pol.nro_placa
+                    JOIN Patrulla p ON r.id_patrulla = p.id_patrulla
+                    JOIN Comisaria c ON p.id_comisaria = c.id_comisaria
+                    GROUP BY 
+                        r.id_reporte, l.fecha_creacion, a.fecha_cierre, a.tipo_incidencia,
+                        a.direccion, p.codigo_patrulla, r.descripcion, c.nombre;";
+
 
                     SqlDataAdapter da = new SqlDataAdapter(query, con);
                     DataTable dt = new DataTable();
@@ -54,6 +65,7 @@ namespace Operador_911
 
                     dataGridReportes.DataSource = dt;
                     dataGridReportes.Columns["Descripcion"].Visible = false;
+                    dataGridReportes.Columns["Policias"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -73,17 +85,18 @@ namespace Operador_911
                 string incidente = fila.Cells["Incidente"].Value?.ToString() ?? "No especificado";
                 string direccion = fila.Cells["Direccion"].Value?.ToString() ?? "Sin dirección";
                 string codigoPatrulla = fila.Cells["Codigo Patrulla"].Value?.ToString() ?? "Desconocida";
-                string nroPlaca = fila.Cells["Nro Placa"].Value?.ToString() ?? "Sin placa";
+                string policias = fila.Cells["Policias"].Value?.ToString() ?? "Sin personal asignado";
                 string comisaria = fila.Cells["Comisaria"].Value?.ToString() ?? "Comisaría no definida";
                 string descripcion = fila.Cells["Descripcion"].Value?.ToString() ?? "Descripción no disponible";
                 string fechaLlamada = fila.Cells["Fecha Llamada"].Value?.ToString() ?? "Sin fecha";
-                string numeroReporte = fila.Cells["Numero Reporte"].Value?.ToString() ?? "Desconocido";    
+                string numeroReporte = fila.Cells["Numero Reporte"].Value?.ToString() ?? "Desconocido";
+                string nroPlaca = dataGridReportes.Columns.Contains("Nro Placa") ? fila.Cells["Nro Placa"].Value?.ToString() : "Sin placa";
 
                 // Crear el texto del reporte
                 string textoReporte = $@"
 La Policía de Corrientes informa que: {Environment.NewLine} Siendo el día {fechaLlamada}, a través de la línea telefónica de emergencias 911, se recibió un aviso de {incidente} ocurrido en {direccion}.
 
-De inmediato, se desplegó a la patrulla {codigoPatrulla}, de número de placa {nroPlaca}, para acudir a la emergencia.
+De inmediato, se desplegó a la patrulla {codigoPatrulla}, a cargo del/la policia: {policias}, para acudir a la emergencia.
 
 Una vez normalizada la situación, el oficial a cargo constató: {Environment.NewLine} {descripcion}
 
@@ -116,23 +129,28 @@ El caso fue remitido a la {comisaria}, donde se dará continuidad a la investiga
                 using (SqlConnection con = Database.GetConnection())
                 {
                     string query = @"
-                SELECT 
-                    r.id_reporte AS [Numero Reporte],
-                    l.fecha_creacion AS [Fecha Llamada],
-                    a.fecha_cierre AS [Fecha Reporte],
-                    a.tipo_incidencia AS Incidente,
-                    a.direccion AS Direccion,
-                    p.codigo_patrulla AS [Codigo Patrulla],
-                    t.nro_placa AS [Nro Placa],
-                    r.descripcion AS Descripcion,
-                    c.nombre AS Comisaria
-                FROM Reporte r
-                JOIN Alerta a ON r.id_alerta = a.id_alerta
-                JOIN Llamada l ON a.id_alerta = l.id_alerta
-                JOIN Tiene t ON r.id_planilla = t.id_planilla
-                JOIN Patrulla p ON r.id_patrulla = p.id_patrulla
-                JOIN Comisaria c ON p.id_comisaria = c.id_comisaria
-                WHERE l.fecha_creacion BETWEEN @desde AND @hasta;";
+                    SELECT 
+                        r.id_reporte AS [Numero Reporte],
+                        l.fecha_creacion AS [Fecha Llamada],
+                        a.fecha_cierre AS [Fecha Reporte],
+                        a.tipo_incidencia AS Incidente,
+                        a.direccion AS Direccion,
+                        p.codigo_patrulla AS [Codigo Patrulla],
+                        STRING_AGG(CONCAT(pol.nombre, ' ', pol.apellido, ' (Placa: ', pol.nro_placa, ')'), ', ') 
+                            WITHIN GROUP (ORDER BY pol.apellido) AS Policias,
+                        r.descripcion AS Descripcion,
+                        c.nombre AS Comisaria
+                    FROM Reporte r
+                    JOIN Alerta a ON r.id_alerta = a.id_alerta
+                    JOIN Llamada l ON a.id_alerta = l.id_alerta
+                    JOIN Tiene t ON r.id_planilla = t.id_planilla
+                    JOIN Policia pol ON t.nro_placa = pol.nro_placa
+                    JOIN Patrulla p ON r.id_patrulla = p.id_patrulla
+                    JOIN Comisaria c ON p.id_comisaria = c.id_comisaria
+                    WHERE l.fecha_creacion BETWEEN @desde AND @hasta
+                    GROUP BY 
+                        r.id_reporte, l.fecha_creacion, a.fecha_cierre, a.tipo_incidencia,
+                        a.direccion, p.codigo_patrulla, r.descripcion, c.nombre;";
 
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@desde", dtpDesde.Value.Date);
@@ -202,6 +220,9 @@ El caso fue remitido a la {comisaria}, donde se dará continuidad a la investiga
         {
             try
             {
+
+                btnVerReporte.Enabled = false;
+
                 using (SqlConnection con = Database.GetConnection())
                 {
                     string query = @"
