@@ -17,6 +17,7 @@ namespace Operador_911
             InitializeComponent();
 
             textNroVehiculo.KeyPress += textNroVehiculo_KeyPress;
+            textBoxBuscar.KeyPress += textBoxBuscar_KeyPress;
 
             CargarPatrullas();
 
@@ -46,6 +47,16 @@ namespace Operador_911
                 e.Handled = true;
             }
         }
+
+        private void textBoxBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y teclas de control (como Backspace)
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true; // bloquea la entrada
+            }
+        }
+
 
         private void btnAgregarPatrulla_Click(object sender, EventArgs e)
         {
@@ -346,25 +357,24 @@ namespace Operador_911
 
         private void DataGridViewPatrullas_SelectionChanged(object sender, EventArgs e)
         {
-            if (dataGridViewPatrullas.CurrentRow != null)
-            {
-                string codigo = dataGridViewPatrullas.CurrentRow.Cells["Código Patrulla"].Value.ToString();
-                textNroVehiculo.Text = codigo.Substring(2); // quitar prefijo A- o M-
-                TipoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["Tipo de Vehículo"].Value.ToString();
-                EstadoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["Estado"].Value.ToString();
-
-                btnEditarPatrulla.Enabled = true;
-                btnEliminarPatrulla.Enabled = true;
-            }
-
-            if (dataGridViewPatrullas.CurrentRow == null)
-            {
-                btnEditarPatrulla.Enabled = false;
-                btnEliminarPatrulla.Enabled = false;
-            }
             
+                if (dataGridViewPatrullas.CurrentRow != null)
+                {
+                    string codigo = dataGridViewPatrullas.CurrentRow.Cells["Código Patrulla"].Value.ToString();
+                    textNroVehiculo.Text = codigo.Substring(2); // quitar prefijo A- o M-
+                    TipoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["Tipo de Vehículo"].Value.ToString();
+                    EstadoVehiculoBox.Text = dataGridViewPatrullas.CurrentRow.Cells["Estado"].Value.ToString();
 
-        }
+                    btnEditarPatrulla.Enabled = true;
+                    btnEliminarPatrulla.Enabled = true;
+                }
+
+                if (dataGridViewPatrullas.CurrentRow == null)
+                {
+                    btnEditarPatrulla.Enabled = false;
+                    btnEliminarPatrulla.Enabled = false;
+                }
+            }
 
         private void dataGridViewPatrullas_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -455,6 +465,17 @@ namespace Operador_911
         {
             string textoBuscado = textBoxBuscar.Text.Trim();
 
+            // Si no se escribió nada, mostrar todo
+            if (string.IsNullOrWhiteSpace(textoBuscado))
+            {
+                if (btnVehiculosEliminado.Text == "Ver Eliminados")
+                    CargarPatrullas();
+                else
+                    CargarPatrullasEliminadas();
+
+                return;
+            }
+
             using (SqlConnection conn = Database.GetConnection())
             {
                 // Obtener la comisaría del usuario logueado
@@ -471,23 +492,33 @@ namespace Operador_911
 
                 int idComisaria = Convert.ToInt32(result);
 
-                // Definir el query según si se están viendo activos o eliminados
+                // Determinar si mostramos activos o eliminados
                 string query;
                 if (btnVehiculosEliminado.Text == "Ver Eliminados")
                 {
-                    // Mostrando activos
-                    query = @"SELECT id_patrulla, codigo_patrulla, tipo, estado, activo 
-                      FROM Patrulla 
-                      WHERE activo = 1 AND id_comisaria = @idComisaria
-                      AND (codigo_patrulla LIKE @texto OR tipo LIKE @texto OR estado LIKE @texto)";
+                    // Activos
+                    query = @"
+                SELECT id_patrulla, codigo_patrulla AS 'Código Patrulla', tipo AS 'Tipo de Vehículo', estado AS 'Estado', activo AS 'Activo'
+                FROM Patrulla 
+                WHERE activo = 1 AND id_comisaria = @idComisaria
+                AND (
+                    SUBSTRING(codigo_patrulla, 3, LEN(codigo_patrulla)) LIKE @texto
+                    OR tipo LIKE @texto
+                    OR estado LIKE @texto
+                )";
                 }
                 else
                 {
-                    // Mostrando eliminados
-                    query = @"SELECT id_patrulla, codigo_patrulla, tipo, estado, activo 
-                      FROM Patrulla 
-                      WHERE activo = 0 AND id_comisaria = @idComisaria
-                      AND (codigo_patrulla LIKE @texto OR tipo LIKE @texto OR estado LIKE @texto)";
+                    // Eliminados
+                    query = @"
+                SELECT id_patrulla, codigo_patrulla AS 'Código Patrulla', tipo AS 'Tipo de Vehículo', estado AS 'Estado', activo AS 'Activo'
+                FROM Patrulla 
+                WHERE activo = 0 AND id_comisaria = @idComisaria
+                AND (
+                    SUBSTRING(codigo_patrulla, 3, LEN(codigo_patrulla)) LIKE @texto
+                    OR tipo LIKE @texto
+                    OR estado LIKE @texto
+                )";
                 }
 
                 SqlDataAdapter da = new SqlDataAdapter(query, conn);
