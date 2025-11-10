@@ -108,9 +108,21 @@ namespace Operador_911
                     CargarPatrullas();
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Error al agregar Vehículo: " + ex.Message);
+                // Manejo específico de errores de SQL
+                switch (ex.Number)
+                {
+                    case 2627: // violación de clave única
+                        MessageBox.Show("Ya existe un vehículo con ese código.");
+                        break;
+                    case -1: // servidor no encontrado
+                        MessageBox.Show("No se pudo conectar al servidor de base de datos.");
+                        break;
+                    default:
+                        MessageBox.Show("Error de base de datos: " + ex.Message);
+                        break;
+                }
             }
         }
 
@@ -314,9 +326,21 @@ namespace Operador_911
                 }
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Error al actualizar vehículo: " + ex.Message);
+                // Manejo específico de errores de SQL
+                switch (ex.Number)
+                {
+                    case 2627: // violación de clave única
+                        MessageBox.Show("Ya existe un vehículo con ese código.");
+                        break;
+                    case -1: // servidor no encontrado
+                        MessageBox.Show("No se pudo conectar al servidor de base de datos.");
+                        break;
+                    default:
+                        MessageBox.Show("Error de base de datos: " + ex.Message);
+                        break;
+                }
             }
         }
 

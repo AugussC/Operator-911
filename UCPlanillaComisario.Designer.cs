@@ -38,7 +38,6 @@
             this.horarioBox = new System.Windows.Forms.ComboBox();
             this.labelHorario = new System.Windows.Forms.Label();
             this.btnEditarPatrullas = new System.Windows.Forms.Button();
-            this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnEliminarPatrullas = new System.Windows.Forms.Button();
             this.labelDia = new System.Windows.Forms.Label();
             this.DiaBox = new System.Windows.Forms.ComboBox();
@@ -149,18 +148,6 @@
             this.btnEditarPatrullas.UseVisualStyleBackColor = true;
             this.btnEditarPatrullas.Click += new System.EventHandler(this.btnEditarPatrullas_Click);
             // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnLimpiar.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.Location = new System.Drawing.Point(971, 86);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(111, 33);
-            this.btnLimpiar.TabIndex = 10;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
             // btnEliminarPatrullas
             // 
             this.btnEliminarPatrullas.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -206,7 +193,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Location = new System.Drawing.Point(1121, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(78, 699);
             this.panel1.TabIndex = 26;
@@ -228,7 +215,7 @@
             this.panel2.Controls.Add(this.DiaBox);
             this.panel2.Controls.Add(this.horarioBox);
             this.panel2.Location = new System.Drawing.Point(45, 128);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(333, 521);
             this.panel2.TabIndex = 27;
@@ -263,7 +250,6 @@
             this.Controls.Add(this.btnVerPlanilla);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnLimpiar);
             this.Controls.Add(this.dataGridHorarios);
             this.Controls.Add(this.panel2);
             this.Name = "UCPlanilla";
@@ -289,7 +275,6 @@
         private System.Windows.Forms.ComboBox horarioBox;
         private System.Windows.Forms.Label labelHorario;
         private System.Windows.Forms.Button btnEditarPatrullas;
-        private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.Button btnEliminarPatrullas;
         private System.Windows.Forms.Label labelDia;
         private System.Windows.Forms.ComboBox DiaBox;

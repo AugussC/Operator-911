@@ -151,7 +151,6 @@
             // 
             this.dataGridUsuarios.AllowUserToAddRows = false;
             this.dataGridUsuarios.AllowUserToDeleteRows = false;
-            this.dataGridUsuarios.AllowUserToOrderColumns = true;
             this.dataGridUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridUsuarios.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dataGridUsuarios.Location = new System.Drawing.Point(407, 128);
@@ -218,7 +217,7 @@
             "Operador",
             "Comisario"});
             this.comboBoxRol.Location = new System.Drawing.Point(33, 424);
-            this.comboBoxRol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxRol.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxRol.Name = "comboBoxRol";
             this.comboBoxRol.Size = new System.Drawing.Size(263, 21);
             this.comboBoxRol.TabIndex = 28;
@@ -273,7 +272,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Location = new System.Drawing.Point(1117, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(78, 699);
             this.panel1.TabIndex = 36;
@@ -302,7 +301,7 @@
             this.panel2.Controls.Add(this.btnAgregarUsuario);
             this.panel2.Controls.Add(this.labelRol);
             this.panel2.Location = new System.Drawing.Point(45, 128);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(333, 521);
             this.panel2.TabIndex = 37;
@@ -312,7 +311,7 @@
             this.checkBoxContraseña2.AutoSize = true;
             this.checkBoxContraseña2.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxContraseña2.Location = new System.Drawing.Point(38, 380);
-            this.checkBoxContraseña2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxContraseña2.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxContraseña2.Name = "checkBoxContraseña2";
             this.checkBoxContraseña2.Size = new System.Drawing.Size(122, 17);
             this.checkBoxContraseña2.TabIndex = 36;
@@ -325,7 +324,7 @@
             this.checkBoxContraseña1.AutoSize = true;
             this.checkBoxContraseña1.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBoxContraseña1.Location = new System.Drawing.Point(38, 308);
-            this.checkBoxContraseña1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxContraseña1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxContraseña1.Name = "checkBoxContraseña1";
             this.checkBoxContraseña1.Size = new System.Drawing.Size(122, 17);
             this.checkBoxContraseña1.TabIndex = 35;
@@ -363,7 +362,7 @@
             this.Controls.Add(this.labelTitulo_Usuarios);
             this.Controls.Add(this.dataGridUsuarios);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "UCUsuariosSupervisor";
             this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCUsuariosSupervisor_Load);

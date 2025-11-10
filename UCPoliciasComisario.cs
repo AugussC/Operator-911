@@ -172,9 +172,21 @@ namespace Operador_911
                 MessageBox.Show("Policía agregado correctamente.");
                 CargarPolicias();
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Error al agregar Policia: " + ex.Message);
+                // Manejo específico de errores de SQL
+                switch (ex.Number)
+                {
+                    case 2627: // violación de clave única
+                        MessageBox.Show("Ya existe un policia con esa placa.");
+                        break;
+                    case -1: // servidor no encontrado
+                        MessageBox.Show("No se pudo conectar al servidor de base de datos.");
+                        break;
+                    default:
+                        MessageBox.Show("Error al agregar policia en la base de datos: " + ex.Message);
+                        break;
+                }
             }
         }
 
@@ -256,11 +268,24 @@ namespace Operador_911
                 }
 
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Error al actualizar policia: " + ex.Message);
+                // Manejo específico de errores de SQL
+                switch (ex.Number)
+                {
+                    case 2627: // violación de clave única
+                        MessageBox.Show("Ya existe un policia con esa placa.");
+                        break;
+                    case -1: // servidor no encontrado
+                        MessageBox.Show("No se pudo conectar al servidor de base de datos.");
+                        break;
+                    default:
+                        MessageBox.Show("Error al actualizar policia en la base de datos: " + ex.Message);
+                        break;
+                }
             }
         }
+        
 
         private void btnPoliciasEliminado_Click(object sender, EventArgs e)
         {

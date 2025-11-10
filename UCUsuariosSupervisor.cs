@@ -169,9 +169,21 @@ namespace Operador_911
                     CargarUsuarios();
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Error al agregar usuario: " + ex.Message);
+                // Manejo específico de errores de SQL
+                switch (ex.Number)
+                {
+                    case 2627: // violación de clave única
+                        MessageBox.Show("Ya existe un Usuario con ese DNI o correo electronico.");
+                        break;
+                    case -1: // servidor no encontrado
+                        MessageBox.Show("No se pudo conectar al servidor de base de datos.");
+                        break;
+                    default:
+                        MessageBox.Show("Error al agregar usuario en la base de datos: " + ex.Message);
+                        break;
+                }
             }
         }
 
@@ -491,17 +503,29 @@ namespace Operador_911
 
                 if (btnUsuarioEliminado.Text == "Ver Usuarios Eliminados")
                 {
-                    CargarUsuariosEliminados();
+                    CargarUsuarios();
                 }
                 else
                 {
-                    CargarUsuarios();
-                    
+                     CargarUsuariosEliminados();
+
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show("Error al actualizar usuario: " + ex.Message);
+                // Manejo específico de errores de SQL
+                switch (ex.Number)
+                {
+                    case 2627: // violación de clave única
+                        MessageBox.Show("Ya existe un Usuario con ese DNI o correo electronico.");
+                        break;
+                    case -1: // servidor no encontrado
+                        MessageBox.Show("No se pudo conectar al servidor de base de datos.");
+                        break;
+                    default:
+                        MessageBox.Show("Error al actualizar usuario en la base de datos: " + ex.Message);
+                        break;
+                }
             }
         }
 

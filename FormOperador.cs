@@ -499,8 +499,18 @@ namespace Operador_911
                 }
 
                 // =================== 🚨 Clic en una alerta ===================
-                if (item.Tag?.ToString() == "Alerta")
+                // =================== 🚨 Clic en una alerta ===================
+                if (item.Tag != null && item.Tag.ToString().StartsWith("Alerta|"))
                 {
+                    // 🧩 Extraemos el ID de la alerta desde el Tag
+                    string[] partesTag = item.Tag.ToString().Split('|');
+                    if (partesTag.Length < 2 || !int.TryParse(partesTag[1], out int idAlerta))
+                    {
+                        MessageBox.Show("No se pudo obtener el ID de la alerta seleccionada.",
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     if (string.IsNullOrEmpty(patrullaSeleccionada) || idPatrullaSeleccionada <= 0)
                     {
                         MessageBox.Show("Seleccioná primero una patrulla disponible.",
@@ -508,22 +518,7 @@ namespace Operador_911
                         return;
                     }
 
-                    // 🧭 Obtenemos los datos base
-                    string[] partes = item.ToolTipText.Split(new[] { ", " }, 2, StringSplitOptions.None);
-                    string delito = partes[0];
-                    string direccion = partes.Length > 1 ? partes[1] : "";
-
-                    int idAlerta = ObtenerIdAlertaPorDireccion(direccion);
                     idPatrulla = idPatrullaSeleccionada;
-
-                    if (idAlerta <= 0)
-                    {
-                        MessageBox.Show("No se pudo obtener la información de la alerta.",
-                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        patrullaSeleccionada = null;
-                        idPatrullaSeleccionada = 0;
-                        return;
-                    }
 
                     // 🚫 Si la patrulla fue asignada mientras tanto
                     if (PatrullaOcupada(idPatrulla))
@@ -538,10 +533,11 @@ namespace Operador_911
                     // ✅ Asignar en base de datos
                     AsignarPatrullaAlerta(idPatrulla, idAlerta);
 
-                    // 🔹 Borrar ruta anterior (por si existía)
-                    EliminarRutaPorNombre($"Ruta_P{idPatrulla}_A{idAlerta}");
+                    // 🔹 Borrar rutas anteriores de esa patrulla
+                    EliminarRutasDePatrulla(idPatrulla);
 
-                    // 🔹 Obtener coordenadas actualizadas de la patrulla (orden = 1)
+
+                    // 🔹 Obtener posiciones
                     PointLatLng posPatrulla = ObtenerCoordenadasPrimeraUbicacion(idPatrulla);
                     PointLatLng posAlerta = item.Position;
 
@@ -572,6 +568,25 @@ namespace Operador_911
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void EliminarRutasDePatrulla(int idPatrulla)
+        {
+            if (overlayRutas == null || overlayRutas.Routes.Count == 0)
+                return;
+
+            // Buscar todas las rutas que correspondan a esa patrulla
+            var rutasParaEliminar = overlayRutas.Routes
+                .Where(r => r.Name.StartsWith($"Ruta_P{idPatrulla}_"))
+                .ToList();
+
+            foreach (var ruta in rutasParaEliminar)
+                overlayRutas.Routes.Remove(ruta);
+
+            gMapControl1.Update();
+        }
+
+
+
 
         private string ObtenerCodigoPatrullaPorId(int idPatrulla)
         {
@@ -1032,8 +1047,11 @@ namespace Operador_911
 
                     foreach (DataGridViewRow row in dataGridViewAlertas.Rows)
                     {
+                        if (row.IsNewRow) continue; // evitar fila vacía
+
                         string direccion = row.Cells["Direccion"].Value?.ToString();
                         string incidente = row.Cells["Incidente"].Value?.ToString();
+                        int idAlerta = Convert.ToInt32(row.Cells["id_alerta"].Value);
 
                         if (!string.IsNullOrWhiteSpace(direccion))
                         {
@@ -1045,8 +1063,8 @@ namespace Operador_911
                             {
                                 var marker = new GMarkerGoogle(point.Value, GMarkerGoogleType.red)
                                 {
-                                    Tag = "Alerta",
-                                    ToolTipText = $"{incidente}" + ", " + $"{direccion}",
+                                    Tag = $"Alerta|{idAlerta}",  // ✅ ahora sí guarda el ID correctamente
+                                    ToolTipText = $"{incidente}, {direccion}",
                                     ToolTipMode = MarkerTooltipMode.OnMouseOver
                                 };
 
@@ -1054,6 +1072,7 @@ namespace Operador_911
                             }
                         }
                     }
+
 
                     for (int i = 0; i < dataGridViewAlertas.Rows.Count; i++)
                     {

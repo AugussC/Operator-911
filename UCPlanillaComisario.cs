@@ -615,6 +615,7 @@ namespace Operador_911
             return null;
         }
 
+        /*
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             try
@@ -660,6 +661,7 @@ namespace Operador_911
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        */
 
         private void btnVerPlanilla_Click_1(object sender, EventArgs e)
         {

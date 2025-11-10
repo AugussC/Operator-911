@@ -53,20 +53,18 @@
             // 
             this.labelCodigo.AutoSize = true;
             this.labelCodigo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCodigo.Location = new System.Drawing.Point(46, 260);
-            this.labelCodigo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelCodigo.Location = new System.Drawing.Point(31, 169);
             this.labelCodigo.Name = "labelCodigo";
-            this.labelCodigo.Size = new System.Drawing.Size(110, 22);
+            this.labelCodigo.Size = new System.Drawing.Size(76, 14);
             this.labelCodigo.TabIndex = 1;
             this.labelCodigo.Text = "Nro Vehiculo";
             // 
             // btnAgregarPatrulla
             // 
             this.btnAgregarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarPatrulla.Location = new System.Drawing.Point(41, 614);
-            this.btnAgregarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAgregarPatrulla.Location = new System.Drawing.Point(27, 399);
             this.btnAgregarPatrulla.Name = "btnAgregarPatrulla";
-            this.btnAgregarPatrulla.Size = new System.Drawing.Size(126, 46);
+            this.btnAgregarPatrulla.Size = new System.Drawing.Size(84, 30);
             this.btnAgregarPatrulla.TabIndex = 2;
             this.btnAgregarPatrulla.Text = "Agregar";
             this.btnAgregarPatrulla.UseVisualStyleBackColor = true;
@@ -75,10 +73,9 @@
             // btnEditarPatrulla
             // 
             this.btnEditarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPatrulla.Location = new System.Drawing.Point(185, 614);
-            this.btnEditarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEditarPatrulla.Location = new System.Drawing.Point(123, 399);
             this.btnEditarPatrulla.Name = "btnEditarPatrulla";
-            this.btnEditarPatrulla.Size = new System.Drawing.Size(126, 46);
+            this.btnEditarPatrulla.Size = new System.Drawing.Size(84, 30);
             this.btnEditarPatrulla.TabIndex = 3;
             this.btnEditarPatrulla.Text = "Editar";
             this.btnEditarPatrulla.UseVisualStyleBackColor = true;
@@ -87,10 +84,9 @@
             // btnEliminarPatrulla
             // 
             this.btnEliminarPatrulla.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPatrulla.Location = new System.Drawing.Point(327, 614);
-            this.btnEliminarPatrulla.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnEliminarPatrulla.Location = new System.Drawing.Point(218, 399);
             this.btnEliminarPatrulla.Name = "btnEliminarPatrulla";
-            this.btnEliminarPatrulla.Size = new System.Drawing.Size(126, 46);
+            this.btnEliminarPatrulla.Size = new System.Drawing.Size(84, 30);
             this.btnEliminarPatrulla.TabIndex = 4;
             this.btnEliminarPatrulla.Text = "Eliminar";
             this.btnEliminarPatrulla.UseVisualStyleBackColor = true;
@@ -98,20 +94,18 @@
             // 
             // textNroVehiculo
             // 
-            this.textNroVehiculo.Location = new System.Drawing.Point(51, 286);
-            this.textNroVehiculo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textNroVehiculo.Location = new System.Drawing.Point(34, 186);
             this.textNroVehiculo.Name = "textNroVehiculo";
-            this.textNroVehiculo.Size = new System.Drawing.Size(393, 26);
+            this.textNroVehiculo.Size = new System.Drawing.Size(263, 20);
             this.textNroVehiculo.TabIndex = 5;
             // 
             // labelTipo
             // 
             this.labelTipo.AutoSize = true;
             this.labelTipo.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTipo.Location = new System.Drawing.Point(46, 352);
-            this.labelTipo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTipo.Location = new System.Drawing.Point(31, 229);
             this.labelTipo.Name = "labelTipo";
-            this.labelTipo.Size = new System.Drawing.Size(45, 22);
+            this.labelTipo.Size = new System.Drawing.Size(31, 14);
             this.labelTipo.TabIndex = 6;
             this.labelTipo.Text = "Tipo";
             // 
@@ -122,20 +116,18 @@
             this.TipoVehiculoBox.Items.AddRange(new object[] {
             "Auto",
             "Moto"});
-            this.TipoVehiculoBox.Location = new System.Drawing.Point(51, 379);
-            this.TipoVehiculoBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TipoVehiculoBox.Location = new System.Drawing.Point(34, 246);
             this.TipoVehiculoBox.Name = "TipoVehiculoBox";
-            this.TipoVehiculoBox.Size = new System.Drawing.Size(393, 28);
+            this.TipoVehiculoBox.Size = new System.Drawing.Size(263, 21);
             this.TipoVehiculoBox.TabIndex = 7;
             // 
             // labelEstado
             // 
             this.labelEstado.AutoSize = true;
             this.labelEstado.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelEstado.Location = new System.Drawing.Point(46, 439);
-            this.labelEstado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelEstado.Location = new System.Drawing.Point(31, 285);
             this.labelEstado.Name = "labelEstado";
-            this.labelEstado.Size = new System.Drawing.Size(63, 22);
+            this.labelEstado.Size = new System.Drawing.Size(44, 14);
             this.labelEstado.TabIndex = 8;
             this.labelEstado.Text = "Estado";
             // 
@@ -146,29 +138,28 @@
             this.EstadoVehiculoBox.Items.AddRange(new object[] {
             "En Servicio",
             "En Base"});
-            this.EstadoVehiculoBox.Location = new System.Drawing.Point(51, 466);
-            this.EstadoVehiculoBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.EstadoVehiculoBox.Location = new System.Drawing.Point(34, 303);
             this.EstadoVehiculoBox.Name = "EstadoVehiculoBox";
-            this.EstadoVehiculoBox.Size = new System.Drawing.Size(393, 28);
+            this.EstadoVehiculoBox.Size = new System.Drawing.Size(263, 21);
             this.EstadoVehiculoBox.TabIndex = 9;
             // 
             // labelTitulo_Vehiculos
             // 
             this.labelTitulo_Vehiculos.AutoSize = true;
             this.labelTitulo_Vehiculos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitulo_Vehiculos.Location = new System.Drawing.Point(71, 131);
-            this.labelTitulo_Vehiculos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitulo_Vehiculos.Location = new System.Drawing.Point(47, 85);
             this.labelTitulo_Vehiculos.Name = "labelTitulo_Vehiculos";
-            this.labelTitulo_Vehiculos.Size = new System.Drawing.Size(350, 37);
+            this.labelTitulo_Vehiculos.Size = new System.Drawing.Size(241, 25);
             this.labelTitulo_Vehiculos.TabIndex = 24;
             this.labelTitulo_Vehiculos.Text = "Administrar Vehiculos";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.panel1.Location = new System.Drawing.Point(1676, 0);
+            this.panel1.Location = new System.Drawing.Point(1117, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(117, 1075);
+            this.panel1.Size = new System.Drawing.Size(78, 699);
             this.panel1.TabIndex = 25;
             // 
             // panel2
@@ -184,48 +175,45 @@
             this.panel2.Controls.Add(this.labelEstado);
             this.panel2.Controls.Add(this.labelCodigo);
             this.panel2.Controls.Add(this.labelTipo);
-            this.panel2.Location = new System.Drawing.Point(68, 197);
+            this.panel2.Location = new System.Drawing.Point(45, 128);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(499, 802);
+            this.panel2.Size = new System.Drawing.Size(333, 521);
             this.panel2.TabIndex = 26;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1000, 65);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(667, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(295, 37);
+            this.label1.Size = new System.Drawing.Size(206, 25);
             this.label1.TabIndex = 27;
             this.label1.Text = "Lista de Vehiculos";
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(1142, 143);
-            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnBuscar.Location = new System.Drawing.Point(761, 93);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(146, 35);
+            this.btnBuscar.Size = new System.Drawing.Size(97, 23);
             this.btnBuscar.TabIndex = 32;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             // 
             // textBoxBuscar
             // 
-            this.textBoxBuscar.Location = new System.Drawing.Point(642, 147);
-            this.textBoxBuscar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxBuscar.Location = new System.Drawing.Point(428, 96);
             this.textBoxBuscar.Name = "textBoxBuscar";
-            this.textBoxBuscar.Size = new System.Drawing.Size(478, 26);
+            this.textBoxBuscar.Size = new System.Drawing.Size(320, 20);
             this.textBoxBuscar.TabIndex = 31;
             this.textBoxBuscar.TextChanged += new System.EventHandler(this.textBoxBuscar_TextChanged);
             // 
             // btnVehiculosEliminado
             // 
             this.btnVehiculosEliminado.Font = new System.Drawing.Font("Tahoma", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVehiculosEliminado.Location = new System.Drawing.Point(1408, 134);
-            this.btnVehiculosEliminado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnVehiculosEliminado.Location = new System.Drawing.Point(939, 87);
             this.btnVehiculosEliminado.Name = "btnVehiculosEliminado";
-            this.btnVehiculosEliminado.Size = new System.Drawing.Size(224, 55);
+            this.btnVehiculosEliminado.Size = new System.Drawing.Size(149, 36);
             this.btnVehiculosEliminado.TabIndex = 36;
             this.btnVehiculosEliminado.Text = "Ver Eliminados";
             this.btnVehiculosEliminado.UseVisualStyleBackColor = true;
@@ -235,11 +223,11 @@
             // 
             this.dataGridViewPatrullas.AllowUserToAddRows = false;
             this.dataGridViewPatrullas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewPatrullas.Location = new System.Drawing.Point(610, 197);
-            this.dataGridViewPatrullas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridViewPatrullas.Location = new System.Drawing.Point(407, 128);
             this.dataGridViewPatrullas.Name = "dataGridViewPatrullas";
+            this.dataGridViewPatrullas.RowHeadersVisible = false;
             this.dataGridViewPatrullas.RowHeadersWidth = 62;
-            this.dataGridViewPatrullas.Size = new System.Drawing.Size(1022, 802);
+            this.dataGridViewPatrullas.Size = new System.Drawing.Size(681, 521);
             this.dataGridViewPatrullas.TabIndex = 0;
             this.dataGridViewPatrullas.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPatrullas_CellValueChanged);
             this.dataGridViewPatrullas.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridUsuarios_CurrentCellDirtyStateChanged);
@@ -247,7 +235,7 @@
             // 
             // UCPatrullasComisario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnVehiculosEliminado);
             this.Controls.Add(this.btnBuscar);
@@ -256,9 +244,8 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridViewPatrullas);
             this.Controls.Add(this.panel2);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UCPatrullasComisario";
-            this.Size = new System.Drawing.Size(1743, 1075);
+            this.Size = new System.Drawing.Size(1162, 699);
             this.Load += new System.EventHandler(this.UCPatrullasComisario_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
